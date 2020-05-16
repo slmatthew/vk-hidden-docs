@@ -3,3 +3,4 @@
 
 ## Секции методов
 * [shortVideo](shortVideo/readme.md) — клипы
+* [vkRun](vkRun/readme.md) — шагомер
