@@ -1,9 +1,5 @@
-# VK API Docs
-В этом репозитории находится документация по непубличным методам VK API.
+# VK Hidden Docs
+В этом репозитории опубликована неофициальная документация для разработчиков, использующих возможности VK.
 
-## Секции методов
-* [bugtracker](bugtracker/readme.md) — баг-трекер
-* [donut](donut/readme.md) — VK Donut
-* [shortVideo](shortVideo/readme.md) — клипы
-* [utils](utils/readme.md) — служебные методы
-* [vkRun](vkRun/readme.md) — шагомер
+## Разделы
+* [Документация по непубличным версиям API][api/README.md]
