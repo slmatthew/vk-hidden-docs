@@ -3,3 +3,4 @@
 
 ## Разделы
 * [Документация по непубличным версиям API](api/README.md)
+* [VK Bridge](bridge/readme.md)
