@@ -4,3 +4,4 @@
 ## Содержание
 * [Авторизация с получением cookies](cookie.md)
 * [Прямая авторизация](password.md)
+* [Получение токена через /authorize](authorize.md)
