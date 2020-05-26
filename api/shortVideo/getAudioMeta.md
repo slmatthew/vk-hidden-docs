@@ -10,10 +10,10 @@
 ## Пример ответа
 ```json
 {
-	"response": {
-		"url": "https://vk.link/to/audio.mp3",
-		"waveform": [0, 0, 1, 0, 0],
-		"start_position": 53
-	}
+  "response": {
+    "url": "https://vk.link/to/audio.mp3",
+    "waveform": [0, 0, 1, 0, 0],
+    "start_position": 53
+  }
 }
 ```

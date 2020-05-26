@@ -11,8 +11,8 @@
 ## Доступ
 1. [Авторизоваться](../../auth/password.md) на `vk.com` и сохранить куки
 2. Сделать POST-запрос на `https://login.vk.com/?app_id=7344294&act=web_token&vkui=1` со следующими заголовками:
-	* User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:77.0) Gecko/20100101 Firefox/77.0 *или от любого другого браузера*
-	* Передайте cookies, полученные на первом этапе
+  * User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:77.0) Gecko/20100101 Firefox/77.0 *или от любого другого браузера*
+  * Передайте cookies, полученные на первом этапе
 3. Получить токен из запроса
 
 ```json
@@ -26,10 +26,10 @@
 
 ```json
 {
-	"error": {
-		"error_code": 15,
-		"error_msg": "Access denied: you must validate your account for this action"
-	}
+  "error": {
+    "error_code": 15,
+    "error_msg": "Access denied: you must validate your account for this action"
+  }
 }
 ```
 
@@ -39,11 +39,11 @@
 
 ```json
 {
-	"error": {
-		"error_code": 3302,
-		"error_msg": "Password validation needed",
-		"session": "qwerty12345"
-	}
+  "error": {
+    "error_code": 3302,
+    "error_msg": "Password validation needed",
+    "session": "qwerty12345"
+  }
 }
 ```
 
