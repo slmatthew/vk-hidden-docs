@@ -6,6 +6,7 @@
 * [shortVideo.getAudioMeta](getAudioMeta.md)
 * [shortVideo.getOwnerVideos](getOwnerVideos.md)
 * [shortVideo.getTopVideos](getTopVideos.md)
+* [shortVideo.markClipsBadgeViewed](markClipsBadgeViewed.md)
 * [shortVideo.notInterested](notInterested.md)
 
 ## Доступ
