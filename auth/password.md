@@ -19,6 +19,8 @@
 | 3032107       | NOmHf1JNKONiIG5zPJUu | Vika          |
 | 3697615       | AlVXZFMUqyrnABp8ncuU | Windows 10    |
 | 3502557       | PEObAuQi6KloPM4T30DV | Windows Phone |
+| 3265802       | t106ZcWMk9BLdrxobdh5 | API Console   |
+| 3032107       | NOmHf1JNKONiIG5zPJUu | BlackBerry    |
 
 Далее составьте запрос к `https://oauth.vk.com/token` с этими параметрами:
 * `scope = all`
