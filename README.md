@@ -5,3 +5,4 @@
 * [Авторизация](auth/readme.md)
 * [Документация по непубличным версиям API](api/README.md)
 * [VK Bridge](bridge/readme.md)
+* [События User LP](userlp/README.md)
