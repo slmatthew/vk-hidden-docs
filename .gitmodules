@@ -1,0 +1,3 @@
+[submodule "userlp"]
+	path = userlp
+	url = https://github.com/danyadev/longpoll-doc
