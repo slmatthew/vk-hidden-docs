@@ -2,6 +2,7 @@
 В этом разделе находится документация по непубличным методам VK API.
 
 ## Секции методов
+* [audio](audio/readme.md) — аудиозаписи
 * [bugtracker](bugtracker/readme.md) — баг-трекер
 * [donut](donut/readme.md) — VK Donut
 * [settings](settings/readme.md) — методы для работы с разделом «Безопасность»
