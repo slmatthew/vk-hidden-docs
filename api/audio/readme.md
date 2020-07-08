@@ -3,35 +3,64 @@
 
 ## Список методов
 * [audio.add](#audioadd) — добавить аудиозапись к себе
-* [audio.restore](#audiorestore) — восстановить удаленную аудиозапись
-* [audio.sendTrackReaction](#audiosendtrackreaction)
-* [audio.getById](#audiogetbyid) — получить аудизаписи по их идентификаторам
-* [audio.deletePlaylist](#audiodeleteplaylist) — удалить плейлист
-* [audio.searchPlaylists](#audiosearchplaylists) — найти плейлист
-* [audio.delete](#audiodelete) — удалить аудиозапись из добавленных
-* [audio.search](#audiosearch) — поиск по аудиозаписям
+* [audio.addAlbum](audioaddalbum)
+* [audio.addToFavorites](audioaddtofavorites)
+* [audio.addToPlaylist](audioaddtoplaylist)
 * [audio.createPlaylist](#audiocreateplaylist) — создать плейлист
-* [audio.save](#audiosave) — сохранить аудиозапись после загрузки
-* [audio.sendStartEvent](#audiosendstartevent)
+* [audio.delete](#audiodelete) — удалить аудиозапись из добавленных
+* [audio.deleteAlbum](audiodeletealbum)
+* [audio.deletePlaylist](#audiodeleteplaylist) — удалить плейлист
+* [audio.edit](audioedit)
+* [audio.editAlbum](audioeditalbum)
+* [audio.editPlaylist](audioeditplaylist)
 * [audio.followArtist](#audiofollowartist) — подписаться на артиста
 * [audio.followPlaylist](#audiofollowplaylist)
 * [audio.get](#audioget) — получить аудиозаписи
-* [audio.setBroadcast](#audiosetbroadcast) — установить аудиозапись в статус
+* [audio.getAlbums](audiogetalbums)
+* [audio.getAlbumsByArtist](audiogetalbumsbyartist)
+* [audio.getArtists](audiogetartists)
 * [audio.getAudiosByArtist](#audiogetaudiosbyartist) — получить треки артиста
-* [audio.setForDownload](#audiosetfordownload)
-* [audio.setPlaylistForDownload](#audiosetplaylistfordownload)
+* [audio.getBroadcast](audiogetbroadcast)
 * [audio.getButtonTracks](#audiogetbuttontracks) — получить список аудиозаписей в плейлисте
-* [audio.subscribeToQueue](#audiosubscribetoqueue) — возвращает адрес какого-то специального лонгпула
-* [audio.unfollowArtist](#audiounfollowartist) — отписаться от артиста
+* [audio.getById](#audiogetbyid) — получить аудизаписи по их идентификаторам
 * [audio.getCatalog](#audiogetcatalog) — получить чарт
 * [audio.getCatalogBlockById](#audiogetcatalogblockbyid) — получить секцию чарта
+* [audio.getCatalogSearch](audiogetcatalogsearch)
+* [audio.getCatalogSection](audiogetcatalogsection)
+* [audio.getCount](audiogetcount)
+* [audio.getFavorites](audiogetfavorites)
+* [audio.getForDownload](audiogetfordownload)
+* [audio.getHints](audiogethints)
 * [audio.getLyrics](#audiogetlyrics) — получить слова песни
 * [audio.getOnboardingOffer](#audiogetonboardingoffer)
+* [audio.getPlaylistForDownload](audiogetplaylistfordownload)
 * [audio.getPlaylists](#audiogetplaylists) — получить плейлисты
-* [audio.getUploadServer](#audiogetuploadserver) — получить адрес для загрузки аудиозаписи
-* [audio.getSearchTrends](#audiogetsearchtrends) — получить популярные поисковые запросы
+* [audio.getPopular](audiogetpopular)
+* [audio.getRecentAudios](audiogetrecentaudios)
 * [audio.getRecommendations](#audiogetrecommendations) — получить музыкальные рекомендации
 * [audio.getRestrictionPopup](#audiogetrestrictionpopup) — получить информацию об ограничении доступа к аудиозаписи
+* [audio.getSearchTrends](#audiogetsearchtrends) — получить популярные поисковые запросы
+* [audio.getStoryCatalog](audiogetstorycatalog)
+* [audio.getStoryCatalogBlock](audiogetstorycatalogblock)
+* [audio.getStorySearchCatalog](audiogetstorysearchcatalog)
+* [audio.getUploadServer](#audiogetuploadserver) — получить адрес для загрузки аудиозаписи
+* [audio.moveToAlbum](audiomovetoalbum) +
+* [audio.reorder](audioreorder)
+* [audio.reorderPlaylists](audioreorderplaylists)
+* [audio.restore](#audiorestore) — восстановить удаленную аудиозапись
+* [audio.save](#audiosave) — сохранить аудиозапись после загрузки
+* [audio.search](#audiosearch) — поиск по аудиозаписям
+* [audio.searchAlbums](audiosearchalbums)
+* [audio.searchArtists](audiosearchartists)
+* [audio.searchMain](audiosearchmain)
+* [audio.searchPlaylists](#audiosearchplaylists) — найти плейлист
+* [audio.sendStartEvent](#audiosendstartevent)
+* [audio.sendTrackReaction](#audiosendtrackreaction)
+* [audio.setBroadcast](#audiosetbroadcast) — установить аудиозапись в статус
+* [audio.setForDownload](#audiosetfordownload)
+* [audio.setPlaylistForDownload](#audiosetplaylistfordownload)
+* [audio.subscribeToQueue](#audiosubscribetoqueue) — возвращает адрес какого-то специального лонгпула
+* [audio.unfollowArtist](#audiounfollowartist) — отписаться от артиста
 
 ## audio.add
 Добавить аудиозапись к себе
