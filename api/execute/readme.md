@@ -3,8 +3,8 @@
 
 * [execute.CommunityAudiosAndPlaylists](#executecommunityaudiosandplaylists)
 * [execute.addAudioToPlaylist](#executeaddaudiotoplaylist)
-<!-- * [execute.cancelDonutSubscription](#executecanceldonutsubscription)
-* [execute.createCommentRestricted](#executecreatecommentrestricted)
+* [execute.cancelDonutSubscription](#executecanceldonutsubscription)
+<!-- * [execute.createCommentRestricted](#executecreatecommentrestricted)
 * [execute.deleteAvatarNew](#executedeleteavatarnew)
 * [execute.deleteStory](#executedeletestory)
 * [execute.discoverCategories](#executediscovercategories)
@@ -361,6 +361,221 @@ interface ExecuteAddAudioToPlaylist {
       ],
       "access_key": "***",
       "album_type": "playlist"
+    }
+  }
+  ```
+</details>
+
+
+
+## execute.cancelDonutSubscription
+
+Отменяет подписку на сообщество (с возможностью отменить отписку).
+
+### Параметры
+
+| Параметр | Тип    | Описание                       |
+|----------|--------|--------------------------------|
+| owner_id | number | id пользователя или сообщества |
+
+### Тип возвращаемого значения
+
+```ts
+interface ExecuteCancelDonutSubscription {
+  cancelled: true
+  group?: VKGroup
+}
+```
+
+В поле `group` находится дополнительное поле `donut`, которое можно самостоятельно получить, если вызвать
+метод `groups.getById` с `fields: 'donut'`. Его тип:
+
+```ts
+interface VKGroupDonut {
+  is_don: boolean
+  // возвращается, если ты дон
+  payment_link?: {
+    target: 'internal'
+    type: 'open_url'
+    // ссылка на продление подписки (которая не имеет смысла)
+    url: string
+  }
+  // возвращается, если ты дон
+  status?: 'expiring'
+  wall: {
+    available: boolean
+    is_enabled: boolean
+    // возвращается, если ты _не_ дон
+    widget?: VKWidget
+  }
+}
+```
+
+### Пример ответа
+
+В примере ответа автор не является доном.
+
+<details>
+  <summary>тык</summary>
+
+  ```json
+  {
+    "canceled": true,
+    "group": {
+      "id": 163369292,
+      "name": "Flyink outdoor",
+      "screen_name": "mem.flyink",
+      "is_closed": 0,
+      "type": "page",
+      "is_admin": 0,
+      "is_member": 1,
+      "is_advertiser": 0,
+      "donut": {
+        "is_don": false,
+        "wall": {
+          "is_enabled": true,
+          "available": false,
+          "widget": {
+            "text": "Здесь Вы сможете просматривать эксклюзивные материалы Вашего любимого автора, если оформите платную подписку на его творчество с помощью VK Donut.",
+            "title": "VK Donut",
+            "button": {
+              "action": {
+                "target": "internal",
+                "type": "open_url",
+                "url": "https://vk.com/@donut-faq-dlya-donov"
+              },
+              "title": "Подробнее"
+            },
+            "image": [
+              {
+                "height": 64,
+                "url": "https://vk.com/images/donate/vk_donate_64.png",
+                "width": 64
+              },
+              {
+                "height": 96,
+                "url": "https://vk.com/images/donate/vk_donate_64_1,5x.png",
+                "width": 96
+              },
+              {
+                "height": 128,
+                "url": "https://vk.com/images/donate/vk_donate_64_2x.png",
+                "width": 128
+              },
+              {
+                "height": 192,
+                "url": "https://vk.com/images/donate/vk_donate_64_3x.png",
+                "width": 192
+              },
+              {
+                "height": 256,
+                "url": "https://vk.com/images/donate/vk_donate_64_4x.png",
+                "width": 256
+              }
+            ]
+          }
+        },
+        "description": {
+          "about_button": {
+            "action": {
+              "target": "internal",
+              "type": "open_url",
+              "url": "https://vk.com/@donut-faq-dlya-donov"
+            },
+            "title": "Что такое VK Donut?"
+          },
+          "text": "цп",
+          "title": "Поддержать автора",
+          "button": {
+            "action": {
+              "target": "internal",
+              "type": "open_url",
+              "url": "https://vk.com/mem.flyink?w=donut_payment-163369292&source=description"
+            },
+            "title": "Поддержать автора"
+          },
+          "friends": [
+            {
+              "first_name": "Р­Р»СЊС‡РёРЅ",
+              "id": 172894294,
+              "last_name": "РћСЂСѓРґР¶РµРІ",
+              "can_access_closed": true,
+              "is_closed": false,
+              "sex": 2,
+              "photo_50": "https://sun7-6.userapi.com/impg/jTvmWwYpVfkXnv9Vki5kEzHw0z_OtWo3Vd0OYw/3No0ZlpCLVk.jpg?size=50x0&quality=90&crop=210,153,469,469&sign=13da3e69604a141eb5cb73599ecfb508&c_uniq_tag=KuRB0mOW8B-aq8sqzKIgNUsq4RVbJUpSRQeBuTrNTy4&ava=1",
+              "photo_100": "https://sun7-6.userapi.com/impg/jTvmWwYpVfkXnv9Vki5kEzHw0z_OtWo3Vd0OYw/3No0ZlpCLVk.jpg?size=100x0&quality=90&crop=210,153,469,469&sign=81e4e0607a248d132c01273d6396c0e4&c_uniq_tag=cpE0YN8H0njXKvGSpWbo_Zd7WUtAFsjxnfU_ox8YwxE&ava=1",
+              "photo_200": "https://sun7-6.userapi.com/impg/jTvmWwYpVfkXnv9Vki5kEzHw0z_OtWo3Vd0OYw/3No0ZlpCLVk.jpg?size=200x0&quality=90&crop=210,153,469,469&sign=94e0cff55b667647605abe38243d1130&c_uniq_tag=tR469ut-uYJcuny8ckkf_fCznHO_TX6CicsuiHt-rmw&ava=1",
+              "friend_status": 3
+            },
+            {
+              "first_name": "РњР°РєСЃРµРј",
+              "id": 236820864,
+              "last_name": "РњР°РЅР°РµРЅРєРѕРІ",
+              "can_access_closed": true,
+              "is_closed": false,
+              "sex": 2,
+              "photo_50": "https://sun9-30.userapi.com/impg/c857024/v857024963/15aeb4/y1ZsWz3rDSo.jpg?size=50x0&quality=90&crop=575,641,608,608&sign=1fef7d20445939e2b88022dffbf7b578&c_uniq_tag=Ouli111gqzYboYicUDpZq9y6JynMxw7juC1Jr5kIK_c&ava=1",
+              "photo_100": "https://sun9-30.userapi.com/impg/c857024/v857024963/15aeb4/y1ZsWz3rDSo.jpg?size=100x0&quality=90&crop=575,641,608,608&sign=15b313537bbccf0a110bf3b96ee84edd&c_uniq_tag=yLdXjjmnCwXaKoW7zer_c69GDs_YPSdh-HRsYl1Z5Us&ava=1",
+              "photo_200": "https://sun9-30.userapi.com/impg/c857024/v857024963/15aeb4/y1ZsWz3rDSo.jpg?size=200x0&quality=90&crop=575,641,608,608&sign=7ed6bcc634361408c36455f9fa3f574f&c_uniq_tag=YOJTVLus46ySB3gyY26dit0SQ2jyDD_k2ZuQZle23jE&ava=1",
+              "friend_status": 3
+            },
+            {
+              "first_name": "РљРёСЂРёР»Р»",
+              "id": 343294797,
+              "last_name": "Р“Р»СѓС€Р°РєРѕРІ",
+              "can_access_closed": true,
+              "is_closed": true,
+              "sex": 2,
+              "photo_50": "https://sun9-11.userapi.com/impg/c856524/v856524902/192e1a/s8Sip6jVv1w.jpg?size=50x0&quality=90&crop=63,206,822,822&sign=d0ceb81b91eb33c5cb906bb9f1b85414&c_uniq_tag=e2b6fBZhkPHls7NpjLJo8Gp9J6agvqcbEth_odlQt_s&ava=1",
+              "photo_100": "https://sun9-11.userapi.com/impg/c856524/v856524902/192e1a/s8Sip6jVv1w.jpg?size=100x0&quality=90&crop=63,206,822,822&sign=c6ffcd9e4a18c7f86fde3dec11422b34&c_uniq_tag=idewtlZe9FY3Uer5cuNG9w9epOQ-PTYAo-ED7GOQjvs&ava=1",
+              "photo_200": "https://sun9-11.userapi.com/impg/c856524/v856524902/192e1a/s8Sip6jVv1w.jpg?size=200x0&quality=90&crop=63,206,822,822&sign=91a7334469a3a71f61672f1136fdbf9a&c_uniq_tag=cBn8OoWbx4mVH-7SZ-RNpI5PkVKdrZmVsz7E680OtKs&ava=1",
+              "friend_status": 3
+            }
+          ],
+          "image": [
+            {
+              "height": 44,
+              "url": "https://vk.com/images/donate/vk_donate_44.png",
+              "width": 44
+            },
+            {
+              "height": 66,
+              "url": "https://vk.com/images/donate/vk_donate_44_1,5x.png",
+              "width": 66
+            },
+            {
+              "height": 88,
+              "url": "https://vk.com/images/donate/vk_donate_44_2x.png",
+              "width": 88
+            },
+            {
+              "height": 132,
+              "url": "https://vk.com/images/donate/vk_donate_44_3x.png",
+              "width": 132
+            },
+            {
+              "height": 176,
+              "url": "https://vk.com/images/donate/vk_donate_44_4x.png",
+              "width": 176
+            }
+          ],
+          "statistics": [
+            {
+              "description": "4 дона · 3 друга",
+              "icon": "subscribers",
+              "show_friends": true
+            },
+            {
+              "description": "7 эксклюзивных записей",
+              "icon": "wall"
+            }
+          ],
+          "price": 50
+        }
+      },
+      "photo_50": "https://sun9-50.userapi.com/c855036/v855036378/240b6b/qvGHxCbM6DA.jpg?ava=1",
+      "photo_100": "https://sun9-25.userapi.com/c855036/v855036378/240b6a/bW_CQRrO_YU.jpg?ava=1",
+      "photo_200": "https://sun9-46.userapi.com/c855036/v855036378/240b69/Wb9UIrkr2rw.jpg?ava=1"
     }
   }
   ```
