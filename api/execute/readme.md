@@ -1,228 +1,248 @@
 # execute
 Различные методы, используемые в VK для Android.
 
-* execute.CommunityAudiosAndPlaylists
-* execute.CommunityPhotosCounter
-* execute.addAudioToPlaylist
-* execute.cancelDonutSubscription
-* execute.createCommentRestricted
-* execute.deleteAvatarNew
-* execute.deleteStory
-* execute.discoverCategories
-* execute.editComment
-* execute.fetchComments
-* execute.friendsAddWithRecommendations
-* execute.getAccountSettings
-* execute.getAudioServicePackages
-* execute.getAvailableForGiftStickers
-* execute.getBirthdaysInfo
-* execute.getClipsPage
-* execute.getCommentsNew
-* execute.getCommunityChats
-* execute.getCommunityDetails
-* execute.getCommunityNotificationSettings
-* execute.getCopyrightInfo
-* execute.getDiscover
-* execute.getDocTypes
-* execute.getFave
-* execute.getFaveWithPages
-* execute.getFeedLikes
-* execute.getFriendRequestsMaterial
-* execute.getFriendRequestsNotifications
-* execute.getFriendsAndLists
-* execute.getFriendsUsedMoneyTransfers
-* execute.getFullAddress
-* execute.getFullGroupNewNew
-* execute.getFullProfileNewNew
-* execute.getGameLeaderboard
-* execute.getGamePage
-* execute.getGamesPage
-* execute.getGeoNews
-* execute.getGiftByStickerId
-* execute.getGifts
-* execute.getGiftsCatalogMaterial
-* execute.getGroupBannedUsers
-* execute.getMarketItemFullPage
-* execute.getMarketPage
-* execute.getMusicPage
-* execute.getMutualFriendsExtended
-* execute.getNewPhotoTagsWithProfiles
-* execute.getNewsfeedCustom
-* execute.getNewsfeedSmart
-* execute.getNotifications
-* execute.getNotificationsIgnoredSources
-* execute.getNotificationsSettings
-* execute.getPhotoAlbum
-* execute.getPlaceCheckinsNew
-* execute.getPlaceInfoNew
-* execute.getPlaylist
-* execute.getPodcastEpisodesWithInfo
-* execute.getPodcastList
-* execute.getPodcastListPage
-* execute.getPodcastPage
-* execute.getPostPreviewWithInfo
-* execute.getPostingSettings
-* execute.getRequestsAndRecommendations
-* execute.getServiceApp
-* execute.getSourcesForClips
-* execute.getSpecialEventsInfo
-* execute.getStickersCatalogFirstPage
-* execute.getStoriesAndOwners
-* execute.getTrustedPackage
-* execute.getUserInfo
-* execute.getUserPhotosAndNewTags
-* execute.getUsersAndGroups
-* execute.getVideoAlbums
-* execute.getVideoById
-* execute.getVideosWithProfiles
-* execute.getWallSubscriptions
-* execute.groupsGet
-* execute.imGetLongPollHistoryExtended
-* execute.imLpInit
-* execute.isVideoAdded
-* execute.joinGroup
-* execute.leaveGroup
-* execute.marketReplaceCartItem
-* execute.moneyGetTransferFull
-* execute.newsfeedIgnoreItem
-* execute.notificationsDeleteGroupSource
-* execute.podcastsJoinGroup
-* execute.podcastsLeaveGroup
-* execute.pollsAddVote
-* execute.pollsDeleteVote
-* execute.pollsEdit
-* execute.pollsGetExtraWithCriteria
-* execute.removeAudioFromPlaylist
-* execute.resolveScreenName
-* execute.savePlaylist
-* execute.searchAll
-* execute.searchApps
-* execute.searchGetHintsWithAttachments
-* execute.searchGroups
-* execute.searchNewsfeedSmart
-* execute.searchPeople
-* execute.searchVideosWithProfiles
-* execute.setPostTopic
-* execute.setSubscriptionStatus
-* execute.setVideoAlbums
-* execute.storiesAddBan
-* execute.storiesAskQuestion
-* execute.storiesDeleteBan
-* execute.storiesGetFeedSettings
-* execute.storiesGetRepliesFull
-* execute.videoGetTabs
-* execute.wallArchive
-* execute.wallEdit
-* execute.wallGetWrapNew
-* execute.wallPost
-* execute.wallReveal
+* [execute.CommunityAudiosAndPlaylists](#executecommunityaudiosandplaylists)
+<!-- * [execute.CommunityPhotosCounter](#executecommunityphotoscounter)
+* [execute.addAudioToPlaylist](#executeaddaudiotoplaylist)
+* [execute.cancelDonutSubscription](#executecanceldonutsubscription)
+* [execute.createCommentRestricted](#executecreatecommentrestricted)
+* [execute.deleteAvatarNew](#executedeleteavatarnew)
+* [execute.deleteStory](#executedeletestory)
+* [execute.discoverCategories](#executediscovercategories)
+* [execute.editComment](#executeeditcomment)
+* [execute.fetchComments](#executefetchcomments)
+* [execute.friendsAddWithRecommendations](#executefriendsaddwithrecommendations)
+* [execute.getAccountSettings](#executegetaccountsettings)
+* [execute.getAudioServicePackages](#executegetaudioservicepackages)
+* [execute.getAvailableForGiftStickers](#executegetavailableforgiftstickers)
+* [execute.getBirthdaysInfo](#executegetbirthdaysinfo)
+* [execute.getClipsPage](#executegetclipspage)
+* [execute.getCommentsNew](#executegetcommentsnew)
+* [execute.getCommunityChats](#executegetcommunitychats)
+* [execute.getCommunityDetails](#executegetcommunitydetails)
+* [execute.getCommunityNotificationSettings](#executegetcommunitynotificationsettings)
+* [execute.getCopyrightInfo](#executegetcopyrightinfo)
+* [execute.getDiscover](#executegetdiscover)
+* [execute.getDocTypes](#executegetdoctypes)
+* [execute.getFave](#executegetfave)
+* [execute.getFaveWithPages](#executegetfavewithpages)
+* [execute.getFeedLikes](#executegetfeedlikes)
+* [execute.getFriendRequestsMaterial](#executegetfriendrequestsmaterial)
+* [execute.getFriendRequestsNotifications](#executegetfriendrequestsnotifications)
+* [execute.getFriendsAndLists](#executegetfriendsandlists)
+* [execute.getFriendsUsedMoneyTransfers](#executegetfriendsusedmoneytransfers)
+* [execute.getFullAddress](#executegetfulladdress)
+* [execute.getFullGroupNewNew](#executegetfullgroupnewnew)
+* [execute.getFullProfileNewNew](#executegetfullprofilenewnew)
+* [execute.getGameLeaderboard](#executegetgameleaderboard)
+* [execute.getGamePage](#executegetgamepage)
+* [execute.getGamesPage](#executegetgamespage)
+* [execute.getGeoNews](#executegetgeonews)
+* [execute.getGiftByStickerId](#executegetgiftbystickerid)
+* [execute.getGifts](#executegetgifts)
+* [execute.getGiftsCatalogMaterial](#executegetgiftscatalogmaterial)
+* [execute.getGroupBannedUsers](#executegetgroupbannedusers)
+* [execute.getMarketItemFullPage](#executegetmarketitemfullpage)
+* [execute.getMarketPage](#executegetmarketpage)
+* [execute.getMusicPage](#executegetmusicpage)
+* [execute.getMutualFriendsExtended](#executegetmutualfriendsextended)
+* [execute.getNewPhotoTagsWithProfiles](#executegetnewphototagswithprofiles)
+* [execute.getNewsfeedCustom](#executegetnewsfeedcustom)
+* [execute.getNewsfeedSmart](#executegetnewsfeedsmart)
+* [execute.getNotifications](#executegetnotifications)
+* [execute.getNotificationsIgnoredSources](#executegetnotificationsignoredsources)
+* [execute.getNotificationsSettings](#executegetnotificationssettings)
+* [execute.getPhotoAlbum](#executegetphotoalbum)
+* [execute.getPlaceCheckinsNew](#executegetplacecheckinsnew)
+* [execute.getPlaceInfoNew](#executegetplaceinfonew)
+* [execute.getPlaylist](#executegetplaylist)
+* [execute.getPodcastEpisodesWithInfo](#executegetpodcastepisodeswithinfo)
+* [execute.getPodcastList](#executegetpodcastlist)
+* [execute.getPodcastListPage](#executegetpodcastlistpage)
+* [execute.getPodcastPage](#executegetpodcastpage)
+* [execute.getPostPreviewWithInfo](#executegetpostpreviewwithinfo)
+* [execute.getPostingSettings](#executegetpostingsettings)
+* [execute.getRequestsAndRecommendations](#executegetrequestsandrecommendations)
+* [execute.getServiceApp](#executegetserviceapp)
+* [execute.getSourcesForClips](#executegetsourcesforclips)
+* [execute.getSpecialEventsInfo](#executegetspecialeventsinfo)
+* [execute.getStickersCatalogFirstPage](#executegetstickerscatalogfirstpage)
+* [execute.getStoriesAndOwners](#executegetstoriesandowners)
+* [execute.getTrustedPackage](#executegettrustedpackage)
+* [execute.getUserInfo](#executegetuserinfo)
+* [execute.getUserPhotosAndNewTags](#executegetuserphotosandnewtags)
+* [execute.getUsersAndGroups](#executegetusersandgroups)
+* [execute.getVideoAlbums](#executegetvideoalbums)
+* [execute.getVideoById](#executegetvideobyid)
+* [execute.getVideosWithProfiles](#executegetvideoswithprofiles)
+* [execute.getWallSubscriptions](#executegetwallsubscriptions)
+* [execute.groupsGet](#executegroupsget)
+* [execute.imGetLongPollHistoryExtended](#executeimgetlongpollhistoryextended)
+* [execute.imLpInit](#executeimlpinit)
+* [execute.isVideoAdded](#executeisvideoadded)
+* [execute.joinGroup](#executejoingroup)
+* [execute.leaveGroup](#executeleavegroup)
+* [execute.marketReplaceCartItem](#executemarketreplacecartitem)
+* [execute.moneyGetTransferFull](#executemoneygettransferfull)
+* [execute.newsfeedIgnoreItem](#executenewsfeedignoreitem)
+* [execute.notificationsDeleteGroupSource](#executenotificationsdeletegroupsource)
+* [execute.podcastsJoinGroup](#executepodcastsjoingroup)
+* [execute.podcastsLeaveGroup](#executepodcastsleavegroup)
+* [execute.pollsAddVote](#executepollsaddvote)
+* [execute.pollsDeleteVote](#executepollsdeletevote)
+* [execute.pollsEdit](#executepollsedit)
+* [execute.pollsGetExtraWithCriteria](#executepollsgetextrawithcriteria)
+* [execute.removeAudioFromPlaylist](#executeremoveaudiofromplaylist)
+* [execute.resolveScreenName](#executeresolvescreenname)
+* [execute.savePlaylist](#executesaveplaylist)
+* [execute.searchAll](#executesearchall)
+* [execute.searchApps](#executesearchapps)
+* [execute.searchGetHintsWithAttachments](#executesearchgethintswithattachments)
+* [execute.searchGroups](#executesearchgroups)
+* [execute.searchNewsfeedSmart](#executesearchnewsfeedsmart)
+* [execute.searchPeople](#executesearchpeople)
+* [execute.searchVideosWithProfiles](#executesearchvideoswithprofiles)
+* [execute.setPostTopic](#executesetposttopic)
+* [execute.setSubscriptionStatus](#executesetsubscriptionstatus)
+* [execute.setVideoAlbums](#executesetvideoalbums)
+* [execute.storiesAddBan](#executestoriesaddban)
+* [execute.storiesAskQuestion](#executestoriesaskquestion)
+* [execute.storiesDeleteBan](#executestoriesdeleteban)
+* [execute.storiesGetFeedSettings](#executestoriesgetfeedsettings)
+* [execute.storiesGetRepliesFull](#executestoriesgetrepliesfull)
+* [execute.videoGetTabs](#executevideogettabs)
+* [execute.wallArchive](#executewallarchive)
+* [execute.wallEdit](#executewalledit)
+* [execute.wallGetWrapNew](#executewallgetwrapnew)
+* [execute.wallPost](#executewallpost)
+* [execute.wallReveal](#executewallreveal) -->
 
-## execute.getGameLeaderboard
-app_id (int), fields (string)
+## execute.CommunityAudiosAndPlaylists
 
-## execute.getGamePage
-platform ('android'), type ('points'), app_id (int), fields (string), func_v (int)
+Возвращает до 3 треков и до 15 плейлистов в аккаунте пользователя или сообщества.
 
-## execute.getGamesPage
-platform ('android'), fields (string), func_v (int | 12)
+**Обратите внимание:** метод может вернуть ошибку для любого сообщества, поэтому при использовании нужно обязательно проверять ответ на наличие `execute_errors`.
 
-## execute.getServiceApp
-app_id (int), url (https://vk.com/app<app_id>#<hash (optional)>), ref (string), func_v (int | 3)
+### Параметры
 
-## execute.notificationsDeleteGroupSource
-group_id (int)
+| Параметр | Тип    | Описание                       |
+|----------|--------|--------------------------------|
+| gid      | number | id пользователя или сообщества |
 
-## execute.getAccountSettings
-func_v (int | 2)
+### Тип возвращаемого значения
 
-## execute.getCommunityDetails
-group_id (int), need_events (bool), need_chats (bool)
+```ts
+interface ExecuteCommunityAudiosAndPlaylists {
+  audios: VKAudio[]
+  playlists: VKPlaylist[]
+}
+```
 
-## execute.getCommunityNotificationSettings
-group_id (int), force_settings (1)
+### Пример ответа
+<details>
+  <summary>тык</summary>
 
-## execute.CommunityPhotosCounter
-gid (int), main_album_id (int), skip_hidden (1), count (int), loadAlbum (1)
-
-## execute.groupsGet
-user_id (int), extended (1), fields (string)
-
-## execute.resolveScreenName
-screen_name (string), url (string), owner_id (int), func_v (int | 17), ref (string), ref_section_id (string)
-
-## execute.setSubscriptionStatus
-id (int), subscribe (1 | 0), func_v (int | 3)
-
-## execute.getFave
-func_v 1, count int, extended 1, photo_sizes 1, offset int, fields string, ref string, is_from_snackbar bool, item_type string, tag_id int, filter string
-
-## execute.getFaveWithPages
-func_v 1, count int, extended 1, photo_sizes 1, offset int, fields string, ref string, is_from_snackbar bool, tag_id int, type 'hints'
-
-## execute.friendsAddWithRecommendations
-user_id int, text string, follow 0, add_only bool, source string, track_code string
-
-## execute.getFriendsAndLists
-fields string, order 'hints', need_lists 1, user_id int, func_v int 3, need_requests 1, need_suggest 1
-
-## execute.getMutualFriendsExtended
-fields string, target_uid int
-
-## execute.getFriendRequestsMaterial
-offset int, func_v int 3, count int, fields string, suggested 1, out 1
-
-## execute.getRequestsAndRecommendations
-count int, func_v int 3, ref string
-
-## execute.getFriendRequestsNotifications
-count int, offset int, sort 0, need_mutual 1, need_messages 1, fields string, ref string
-
-## execute.joinGroup
-group_id int, not_sure 1, video_id int, owner_id int, need_suggestions bool, source string, track_code string
-
-## execute.getFullAddress
-group_id int, extended 1, count int, func_v 3, need_taxi 1|0, address_ids int, latitude int, longitude int
-
-## execute.getGroupBannedUsers
-fields string, group_id int, owner_id int, func_v 2
-
-## execute.getCommunityChats
-group_id int, offset int, count int
-
-## execute.leaveGroup
-group_id int, func_v 2, cancel_donut_subscription bool, source string, track_code string
-
-## execute.getMarketPage
-owner_id int, count int, offset int, extended 1, photo_sizes 1, query string, load_market 1, albums_count int, albums_offset int, func_v 2, sort_type 0 - byDefault 2 - byAddDate 3 - byPriceAsk 4 - byPriceDesc, album_id int, price_from long, price_to long
-
-## execute.getMarketItemFullPage
-owner_id int, id int, offset int, count int, need_likes 1, forceLoadGood 1, func_v 7, access_key string
-
-## execute.marketReplaceCartItem
-item_ids `(-int)_(int)`, old_item_id int, new_item_id int, quantity int, group_id int, extended 1
-
-## execute.getCopyrightInfo
-owner_id int, source_id int, source_type string (unknown, owner, vk_app, app, artist, external_link)
-
-## execute.searchGetHintsWithAttachments
-q string, limit int, fields string
-
-## execute.deleteAvatarNew
-owner_id int
-
-## execute.getNewPhotoTagsWithProfiles
-offset int, count int, photo_sizes 1
-
-## execute.getUserPhotosAndNewTags
-offset i, count i2, extended 1, sort 'desk', photo_sizes 1
-
-## execute.getPlaceCheckinsNew
-place_id int, offset int, count int, func_v 3, fields
-
-## execute.getPlaceInfoNew
-place_id int, func_v 3
-
-## execute.searchAll
-q string, limit int, offset int, func_v 2
-
-я устал
+  ```json
+  {
+    "audios": [
+      {
+        "artist": "Markul feat. Платина",
+        "id": 456241386,
+        "owner_id": 249247563,
+        "title": "Конфеты",
+        "duration": 161,
+        "access_key": "544dab7a483ec5fdf7",
+        "ads": {
+          "content_id": "249247563_456241386",
+          "duration": "161",
+          "account_age_type": "3",
+          "puid1": "554",
+          "puid22": "14"
+        },
+        "is_explicit": true,
+        "is_focus_track": false,
+        "is_licensed": true,
+        "track_code": "f413c26d1sPTa9MUAln3tfVYEDsZyL1YNtrPOysU",
+        "url": "https://cs7-12v4.vkuseraudio.net/p4/b14c9d5b11/c06b0e031664b8/index.m3u8?extra=GFrr7j8laTGi1I8RLTYChzJsiRzMRJYRCUrCzUTZ_AVNOBGnkMOVm8INPLepxS3bY2mvKNkbwHePBQyyT3A2rJjwlh2jHxI-VUzU6znDObOLS_lJyRl67hfmvvgx8VzzYzt_g48hTcGLmcXtkT1srzArfQ&long_chunk=1",
+        "date": 1594593737,
+        "no_search": 1,
+        "album": {
+          "id": 7981110,
+          "title": "Конфеты",
+          "owner_id": -2000981110,
+          "access_key": "bde1bfe90c048fb53f",
+          "thumb": {
+            "width": 300,
+            "height": 300,
+            "photo_34": "https://sun9-55.userapi.com/c858036/v858036877/21528b/gAG6F87iB9U.jpg",
+            "photo_68": "https://sun9-8.userapi.com/c858036/v858036877/215289/z3lV3iwUOAM.jpg",
+            "photo_135": "https://sun9-66.userapi.com/c858036/v858036877/215287/Ksotp0sy3L8.jpg",
+            "photo_270": "https://sun9-4.userapi.com/c858036/v858036877/215284/KRi0vxPmVZ4.jpg",
+            "photo_300": "https://sun9-57.userapi.com/c858036/v858036877/215282/1o6DfbICuUQ.jpg",
+            "photo_600": "https://sun9-48.userapi.com/c858036/v858036877/215281/pAnBuLUn0KU.jpg",
+            "photo_1200": "https://sun9-23.userapi.com/c858036/v858036877/215280/ESX9LAQQbv8.jpg"
+          }
+        },
+        "main_artists": [
+          {
+            "name": "Markul",
+            "domain": "8473949182781681811",
+            "id": "8473949182781681811"
+          }
+        ],
+        "featured_artists": [
+          {
+            "name": "Платина",
+            "domain": "7935075146089096976",
+            "id": "7935075146089096976"
+          }
+        ],
+        "short_videos_allowed": false,
+        "stories_allowed": false
+      }
+    ],
+    "playlists": [
+      {
+        "id": 47,
+        "owner_id": 249247563,
+        "type": 0,
+        "title": "Happy(для тусовок)",
+        "description": "Есть musiceverysf телеграмм, где я каждые день выкладываю новые треки. Если интересно- залетай.",
+        "count": 131,
+        "followers": 26159,
+        "plays": 368600,
+        "create_time": 1588022194,
+        "update_time": 1594641785,
+        "genres": [],
+        "is_following": false,
+        "original": {
+          "playlist_id": 45,
+          "owner_id": 166352597,
+          "access_key": "3da97cfef1ddf7384d"
+        },
+        "photo": {
+          "width": 300,
+          "height": 300,
+          "photo_34": "https://sun9-52.userapi.com/c857224/v857224961/1bca59/DssgMcBJMc0.jpg",
+          "photo_68": "https://sun9-27.userapi.com/c857224/v857224961/1bca57/bFHSwYnSis0.jpg",
+          "photo_135": "https://sun9-33.userapi.com/c857224/v857224961/1bca55/pvi85HGkcwM.jpg",
+          "photo_270": "https://sun9-22.userapi.com/c857224/v857224961/1bca52/rn72ju2nOy4.jpg",
+          "photo_300": "https://sun9-56.userapi.com/c857224/v857224961/1bca50/KiP1dsp76rA.jpg",
+          "photo_600": "https://sun9-56.userapi.com/c857224/v857224961/1bca4f/f-osqxKmOKo.jpg",
+          "photo_1200": "https://sun9-40.userapi.com/c857224/v857224961/1bca4e/L4SoxnNBoDs.jpg"
+        },
+        "permissions": {
+          "play": true,
+          "share": true,
+          "edit": false,
+          "follow": true
+        },
+        "subtitle_badge": false,
+        "play_button": false,
+        "access_key": "ce6f341d1d273ae160",
+        "album_type": "playlist"
+      }
+    ]
+  }
+  ```
+</details>
