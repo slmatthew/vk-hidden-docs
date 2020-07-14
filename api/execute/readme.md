@@ -1,7 +1,121 @@
 # execute
 Различные методы, используемые в VK для Android.
 
+* execute.CommunityAudiosAndPlaylists
+* execute.CommunityPhotosCounter
+* execute.addAudioToPlaylist
+* execute.cancelDonutSubscription
+* execute.createCommentRestricted
+* execute.deleteAvatarNew
+* execute.deleteStory
+* execute.discoverCategories
+* execute.editComment
+* execute.fetchComments
+* execute.friendsAddWithRecommendations
+* execute.getAccountSettings
+* execute.getAudioServicePackages
+* execute.getAvailableForGiftStickers
+* execute.getBirthdaysInfo
+* execute.getClipsPage
+* execute.getCommentsNew
+* execute.getCommunityChats
+* execute.getCommunityDetails
+* execute.getCommunityNotificationSettings
+* execute.getCopyrightInfo
+* execute.getDiscover
+* execute.getDocTypes
+* execute.getFave
+* execute.getFaveWithPages
+* execute.getFeedLikes
+* execute.getFriendRequestsMaterial
+* execute.getFriendRequestsNotifications
+* execute.getFriendsAndLists
+* execute.getFriendsUsedMoneyTransfers
+* execute.getFullAddress
+* execute.getFullGroupNewNew
+* execute.getFullProfileNewNew
 * execute.getGameLeaderboard
+* execute.getGamePage
+* execute.getGamesPage
+* execute.getGeoNews
+* execute.getGiftByStickerId
+* execute.getGifts
+* execute.getGiftsCatalogMaterial
+* execute.getGroupBannedUsers
+* execute.getMarketItemFullPage
+* execute.getMarketPage
+* execute.getMusicPage
+* execute.getMutualFriendsExtended
+* execute.getNewPhotoTagsWithProfiles
+* execute.getNewsfeedCustom
+* execute.getNewsfeedSmart
+* execute.getNotifications
+* execute.getNotificationsIgnoredSources
+* execute.getNotificationsSettings
+* execute.getPhotoAlbum
+* execute.getPlaceCheckinsNew
+* execute.getPlaceInfoNew
+* execute.getPlaylist
+* execute.getPodcastEpisodesWithInfo
+* execute.getPodcastList
+* execute.getPodcastListPage
+* execute.getPodcastPage
+* execute.getPostPreviewWithInfo
+* execute.getPostingSettings
+* execute.getRequestsAndRecommendations
+* execute.getServiceApp
+* execute.getSourcesForClips
+* execute.getSpecialEventsInfo
+* execute.getStickersCatalogFirstPage
+* execute.getStoriesAndOwners
+* execute.getTrustedPackage
+* execute.getUserInfo
+* execute.getUserPhotosAndNewTags
+* execute.getUsersAndGroups
+* execute.getVideoAlbums
+* execute.getVideoById
+* execute.getVideosWithProfiles
+* execute.getWallSubscriptions
+* execute.groupsGet
+* execute.imGetLongPollHistoryExtended
+* execute.imLpInit
+* execute.isVideoAdded
+* execute.joinGroup
+* execute.leaveGroup
+* execute.marketReplaceCartItem
+* execute.moneyGetTransferFull
+* execute.newsfeedIgnoreItem
+* execute.notificationsDeleteGroupSource
+* execute.podcastsJoinGroup
+* execute.podcastsLeaveGroup
+* execute.pollsAddVote
+* execute.pollsDeleteVote
+* execute.pollsEdit
+* execute.pollsGetExtraWithCriteria
+* execute.removeAudioFromPlaylist
+* execute.resolveScreenName
+* execute.savePlaylist
+* execute.searchAll
+* execute.searchApps
+* execute.searchGetHintsWithAttachments
+* execute.searchGroups
+* execute.searchNewsfeedSmart
+* execute.searchPeople
+* execute.searchVideosWithProfiles
+* execute.setPostTopic
+* execute.setSubscriptionStatus
+* execute.setVideoAlbums
+* execute.storiesAddBan
+* execute.storiesAskQuestion
+* execute.storiesDeleteBan
+* execute.storiesGetFeedSettings
+* execute.storiesGetRepliesFull
+* execute.videoGetTabs
+* execute.wallArchive
+* execute.wallEdit
+* execute.wallGetWrapNew
+* execute.wallPost
+* execute.wallReveal
 
 ## execute.getGameLeaderboard
 app_id (int), fields (string)
@@ -77,12 +191,6 @@ group_id int, offset int, count int
 
 ## execute.leaveGroup
 group_id int, func_v 2, cancel_donut_subscription bool, source string, track_code string
-
-## execute.imGetLongPollHistoryExtended
-?
-
-## execute.imLpInit
-?
 
 ## execute.getMarketPage
 owner_id int, count int, offset int, extended 1, photo_sizes 1, query string, load_market 1, albums_count int, albums_offset int, func_v 2, sort_type 0 - byDefault 2 - byAddDate 3 - byPriceAsk 4 - byPriceDesc, album_id int, price_from long, price_to long
