@@ -2,9 +2,8 @@
 Различные методы, используемые в VK для Android.
 
 * [execute.CommunityAudiosAndPlaylists](#executecommunityaudiosandplaylists)
-<!-- * [execute.CommunityPhotosCounter](#executecommunityphotoscounter)
 * [execute.addAudioToPlaylist](#executeaddaudiotoplaylist)
-* [execute.cancelDonutSubscription](#executecanceldonutsubscription)
+<!-- * [execute.cancelDonutSubscription](#executecanceldonutsubscription)
 * [execute.createCommentRestricted](#executecreatecommentrestricted)
 * [execute.deleteAvatarNew](#executedeleteavatarnew)
 * [execute.deleteStory](#executedeletestory)
@@ -117,6 +116,8 @@
 * [execute.wallPost](#executewallpost)
 * [execute.wallReveal](#executewallreveal) -->
 
+
+
 ## execute.CommunityAudiosAndPlaylists
 
 Возвращает до 3 треков и до 15 плейлистов в аккаунте пользователя или сообщества.
@@ -137,6 +138,12 @@ interface ExecuteCommunityAudiosAndPlaylists {
   playlists: VKPlaylist[]
 }
 ```
+
+### Как работает
+
+Для получения поля `audios` вызывается `audio.get` с параметрами `count: 3` и `owner_id`.
+
+Для получения поля `playlists` вызывается `audio.getPlaylists` с параметрами `count: 15` и `owner_id`.
 
 ### Пример ответа
 <details>
@@ -243,6 +250,118 @@ interface ExecuteCommunityAudiosAndPlaylists {
         "album_type": "playlist"
       }
     ]
+  }
+  ```
+</details>
+
+
+
+## execute.addAudioToPlaylist
+
+Добавляет аудиозаписи в плейлист и возвращает обновленный альбом.
+
+### Параметры
+
+| Параметр    | Тип    | Описание                                            |
+|-------------|--------|-----------------------------------------------------|
+| owner_id    | number | id пользователя или сообщества                      |
+| playlist_id | number | id плейлиста                                        |
+| audio_ids   | string | id аудиозаписей в формате ownerId_audioId_accessKey |
+
+### Тип возвращаемого значения
+
+```ts
+interface ExecuteAddAudioToPlaylist {
+  result: { audio_id: number }[]
+  playlist: VKPlaylist
+}
+```
+
+### Как работает
+
+Для получения поля `result` вызывается метод `audio.addToPlaylist`, в который передаются те же параметры,
+что и в этот метод.
+
+Для получения поля `playlist` вызывается метод `audio.getPlaylistById` с параметрами `owner_id` и `playlist_id`.
+
+### Пример ответа
+
+<details>
+  <summary>тык</summary>
+
+  ```json
+  {
+    "result": [{ "audio_id": 456239732 }],
+    "playlist": {
+      "id": 5,
+      "owner_id": 88262293,
+      "type": 0,
+      "title": "фываыва",
+      "description": "",
+      "count": 17,
+      "followers": 0,
+      "plays": 0,
+      "create_time": 1551094084,
+      "update_time": 1594746956,
+      "genres": [],
+      "is_following": false,
+      "permissions": {
+        "play": true,
+        "share": true,
+        "edit": true,
+        "follow": true
+      },
+      "subtitle_badge": false,
+      "play_button": false,
+      "thumbs": [
+        {
+          "width": 300,
+          "height": 300,
+          "photo_34": "https://sun9-55.userapi.com/c858036/v858036877/21528b/gAG6F87iB9U.jpg",
+          "photo_68": "https://sun9-8.userapi.com/c858036/v858036877/215289/z3lV3iwUOAM.jpg",
+          "photo_135": "https://sun9-66.userapi.com/c858036/v858036877/215287/Ksotp0sy3L8.jpg",
+          "photo_270": "https://sun9-4.userapi.com/c858036/v858036877/215284/KRi0vxPmVZ4.jpg",
+          "photo_300": "https://sun9-57.userapi.com/c858036/v858036877/215282/1o6DfbICuUQ.jpg",
+          "photo_600": "https://sun9-48.userapi.com/c858036/v858036877/215281/pAnBuLUn0KU.jpg",
+          "photo_1200": "https://sun9-23.userapi.com/c858036/v858036877/215280/ESX9LAQQbv8.jpg"
+        },
+        {
+          "width": 300,
+          "height": 300,
+          "photo_34": "https://sun9-55.userapi.com/c846217/v846217368/1c155b/TwDPBBlui4Y.jpg",
+          "photo_68": "https://sun9-57.userapi.com/c846217/v846217368/1c1559/_vM0aBzNKvE.jpg",
+          "photo_135": "https://sun9-50.userapi.com/c846217/v846217368/1c1557/ACYLOgJu90o.jpg",
+          "photo_270": "https://sun9-46.userapi.com/c846217/v846217368/1c1554/SGvkSBuOTwk.jpg",
+          "photo_300": "https://sun9-72.userapi.com/c846217/v846217368/1c1552/Rvbbz6sKMdw.jpg",
+          "photo_600": "https://sun9-1.userapi.com/c846217/v846217368/1c1551/BzOIUxmIzXQ.jpg",
+          "photo_1200": "https://sun9-10.userapi.com/c846217/v846217368/1c1550/amcpWlIUkro.jpg"
+        },
+        {
+          "width": 300,
+          "height": 300,
+          "photo_34": "https://sun9-11.userapi.com/c815322/v815322005/1a/iGZcAWxO40Y.jpg",
+          "photo_68": "https://sun9-21.userapi.com/c815322/v815322005/18/4DXtFlSvem8.jpg",
+          "photo_135": "https://sun9-58.userapi.com/c815322/v815322005/16/6U22nflg9hk.jpg",
+          "photo_270": "https://sun9-59.userapi.com/c815322/v815322005/13/RWTo6TaQ5wY.jpg",
+          "photo_300": "https://sun9-32.userapi.com/c815322/v815322005/11/4vo8bxKqALw.jpg",
+          "photo_600": "https://sun9-11.userapi.com/c815322/v815322005/10/1gqcpSPzpNY.jpg",
+          "photo_1200": "https://sun9-20.userapi.com/c815322/v815322005/f/w7_7ulvJQQg.jpg"
+        },
+        {
+          "width": 300,
+          "height": 300,
+          "photo_34": "https://sun9-4.userapi.com/c855336/v855336230/43014/9H2xNoeRqQk.jpg",
+          "photo_68": "https://sun9-4.userapi.com/c855336/v855336230/43012/7m77lID303k.jpg",
+          "photo_135": "https://sun9-1.userapi.com/c855336/v855336230/43010/BjIkGdtjhPc.jpg",
+          "photo_270": "https://sun9-10.userapi.com/c855336/v855336230/4300d/otKUV-LrSM8.jpg",
+          "photo_300": "https://sun9-65.userapi.com/c855336/v855336230/4300b/Mm6NAWO7m1Y.jpg",
+          "photo_600": "https://sun9-69.userapi.com/c855336/v855336230/4300a/Mql2JSH_kSw.jpg",
+          "photo_1200": "https://sun9-33.userapi.com/c855336/v855336230/43009/8Qvk2gQI4So.jpg"
+        }
+      ],
+      "access_key": "***",
+      "album_type": "playlist"
+    }
   }
   ```
 </details>
