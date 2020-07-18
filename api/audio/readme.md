@@ -77,6 +77,41 @@
   ```
 </details>
 
+## audio.addToFavorites
+### Параметры
+
+| Параметр | Тип | Описание                 |
+|----------|-----|--------------------------|
+| owner_id | int | ID владельца аудиозаписи |
+| audio_id | int | ID аудиозаписи           |
+
+## audio.addToPlaylist
+Добавить аудиозапись в плейлист
+
+### Параметры
+
+| Параметр    | Тип    | Описание                                                       |
+|-------------|--------|----------------------------------------------------------------|
+| owner_id    | int    | ID владельца плейлиста                                         |
+| playlist_id | int    | ID плейлиста                                                   |
+| audio_ids   | string | ID аудиозаписей в формате {owner_id}\_{audio_id} через запятую |
+
+### Пример ответа
+
+<details>
+  <summary>Открыть</summary>
+
+  ```json
+  {
+    "response": [
+      {
+        "audio_id": 456240000
+      }
+    ]
+  }
+  ```
+</details>
+
 ## audio.createPlaylist
 Создать плейлист
 
@@ -161,6 +196,58 @@
   ```
 </details>
 
+## audio.edit
+Отредактировать данные аудиозаписи
+
+### Параметры
+
+| Параметр  | Тип    | Описание                                                      |
+|-----------|--------|---------------------------------------------------------------|
+| owner_id  | int    | ID владельца аудиозаписи                                      |
+| audio_id  | int    | ID аудиозаписи                                                |
+| artist    | string | Новое название исполнителя                                    |
+| title     | string | Новое название композиции                                     |
+| text      | string | Новый текст аудиозаписи                                       |
+| genre_id  | int    | ID жанра из [списка](https://vk.com/dev/objects/audio_genres) |
+| no_search | int    | Флаг. Если 1 - аудиозапись не будет доступна в поиске         |
+
+### Пример ответа
+
+<details>
+  <summary>Открыть</summary>
+
+  Возвращает ID слов аудиозаписи, если они указаны
+
+  ```json
+  {
+    "response": 447900000
+  }
+  ```
+</details>
+
+## audio.editPlaylist
+Отредактировать данные плейлиста
+
+### Параметры
+
+| Параметр    | Тип    | Описание               |
+|-------------|--------|------------------------|
+| owner_id    | int    | ID владельца плейлиста |
+| playlist_id | int    | ID плейлиста           |
+| title       | string | Название плейлиста     |
+
+### Пример ответа
+
+<details>
+  <summary>Открыть</summary>
+
+  ```json
+  {
+    "response": 1
+  }
+  ```
+</details>
+
 ## audio.followArtist
 Подписаться на артиста
 
@@ -170,6 +257,30 @@
 |-----------|--------|-----------------------------------------------------------------|
 | artist_id | string | ID артиста                                                      |
 | ref       | string | Этот параметр используется для статистики. Я использовал `home` |
+
+## audio.followPlaylist
+### Параметры
+
+| Параметр    | Тип    | Описание               |
+|-------------|--------|------------------------|
+| owner_id    | int    | ID владельца плейлиста |
+| playlist_id | int    | ID плейлиста           |
+| access_key  | string | Ключ доступа           |
+
+### Пример ответа
+
+<details>
+  <summary>Открыть</summary>
+
+  ```json
+  {
+    "response": {
+      "playlist_id": 82750000,
+      "owner_id": 305360617
+    }
+  }
+  ```
+</details>
 
 ## audio.get
 Получить аудиозаписи
@@ -222,6 +333,81 @@
   }
   ```
 </details>
+
+## audio.getAlbumsByArtist
+Получить альбомы исполнителя
+
+### Параметры
+
+| Параметр  | Тип    | Описание            |
+|-----------|--------|---------------------|
+| artist_id | string | ID артиста          |
+| count     | int    | Количество альбомов |
+| offset    | int    | Оффсет              |
+
+### Пример ответа
+
+<details>
+  <summary>Открыть</summary>
+
+  ```json
+  {
+    "response": {
+      "count": 15,
+      "items": [
+        {
+          "id": 7646592,
+          "owner_id": -2000646592,
+          "type": 1,
+          "title": "OLD BLOOD",
+          "description": "",
+          "count": 12,
+          "followers": 642749,
+          "plays": 17346937,
+          "create_time": 1590673347,
+          "update_time": 1590673347,
+          "genres": [
+            {
+              "id": 10,
+              "name": "Хип-хоп"
+            }
+          ],
+          "is_following": true,
+          "year": 2020,
+          "followed": {
+            "playlist_id": 82750000,
+            "owner_id": 305360617
+          },
+          "photo": {
+            "width": 300,
+            "height": 300,
+            "photo_34": "",
+            "photo_68": "",
+            "photo_135": "",
+            "photo_270": "",
+            "photo_300": "",
+            "photo_600": "",
+            "photo_1200": ""
+          },
+          "access_key": "",
+          "is_explicit": true,
+          "main_artists": [
+            {
+              "name": "Boulevard Depo",
+              "domain": "4351355679024274167",
+              "id": "4351355679024274167"
+            }
+          ],
+          "album_type": "main_feat"
+        }
+      ]
+    }
+  }
+  ```
+</details>
+
+## audio.getArtists
+Не удалось вызвать этот метод.
 
 ## audio.getAudiosByArtist
 Получить треки артиста
@@ -297,85 +483,8 @@
   ```
 </details>
 
-## audio.getById
-Получить аудизаписи по их идентификаторам
-
-### Параметры
-
-| Параметр | Тип    | Описание                    |
-|----------|--------|-----------------------------|
-| audios   | string | Идентификаторы аудиозаписей |
-
-### Пример ответа
-
-<details>
-  <summary>Открыть</summary>
-
-  ```json
-  {
-    "response": [
-      {
-        "artist": "ФОНКЕР",
-        "id": 456200000,
-        "owner_id": 305360617,
-        "title": "ЛЮТЫЙ",
-        "duration": 142,
-        "access_key": "",
-        "ads": {
-          "content_id": "305360617_456200000",
-          "duration": "142",
-          "account_age_type": "3",
-          "puid1": "554",
-          "puid22": "11"
-        },
-        "is_licensed": true,
-        "track_code": "",
-        "url": "",
-        "date": 1592003498,
-        "genre_id": 3,
-        "no_search": 1
-      }
-    ]
-  }
-  ```
-</details>
-
-## audio.restore
-Восстановить удаленную аудиозапись
-
-### Параметры
-
-| Параметр | Тип | Описание       |
-|----------|-----|----------------|
-| owner_id | int | ID владельца   |
-| audio_id | int | ID аудиозаписи |
-
-## audio.save
-Сохранить аудиозапись после загрузки
-
-### Параметры
-
-| Параметр | Тип    | Описание                                                                   |
-|----------|--------|----------------------------------------------------------------------------|
-| audio    | string | Параметр, возвращаемый после [загрузки](https://vk.com/dev/upload_files_2) |
-| server   | string | Параметр, возвращаемый после [загрузки](https://vk.com/dev/upload_files_2) |
-| hash     | string | Параметр, возвращаемый после [загрузки](https://vk.com/dev/upload_files_2) |
-| artist   | string | Автор композиции                                                           |
-| title    | string | Название композиции                                                        |
-
-## audio.search
-Поиск по аудиозаписям
-
-### Параметры
-
-| Параметр       | Тип    | Описание                                                             |
-|----------------|--------|----------------------------------------------------------------------|
-| q              | string | Строка поиска                                                        |
-| search_own     | int    | Флаг. Если 1, то в результатах поиска будут и аудио владельца токена |
-| performer_only | int    | Флаг. Отвечает за поиск по артистам                                  |
-| owner_id       | int    | ID владельца                                                         |
-| offset         | int    | Оффсет                                                               |
-| count          | int    | Количество аудиозаписей                                              |
+## audio.getBroadcast
+Узнать, транслируется ли аудиозапись в статус
 
 ### Пример ответа
 
@@ -385,212 +494,8 @@
   ```json
   {
     "response": {
-      "count": 1,
-      "items": [
-        {
-          "id": 456200000,
-          "owner_id": 305360617,
-          "artist": "ФОНКЕР",
-          "title": "ЛЮТЫЙ",
-          "duration": 142,
-          "date": 1592003498,
-          "url": ""
-        }
-      ]
+      "enabled": 0
     }
-  }
-  ```
-</details>
-
-## audio.searchPlaylists
-Найти плейлист
-
-### Параметры
-
-| Параметр | Тип    | Описание      |
-|----------|--------|---------------|
-| q        | string | Строка поиска |
-| owner_id | int    | ID владельца  |
-| offset   | int    | Оффсет        |
-| filters  | string | Фильтры       |
-| count    | int    | Количество    |
-
-### Пример ответа
-
-<details>
-  <summary>Открыть</summary>
-
-  ```json
-  {
-    "response": {
-      "count": 15921,
-      "items": [
-        {
-          "id": 82753370,
-          "owner_id": 305360617,
-          "type": 1,
-          "title": "OLD BLOOD",
-          "description": "",
-          "count": 12,
-          "followers": 598848,
-          "plays": 12717640,
-          "create_time": 1590673347,
-          "update_time": 1590673347,
-          "genres": [
-            {
-              "id": 10,
-              "name": "Хип-хоп"
-            }
-          ],
-          "year": 2020,
-          "original": {
-            "playlist_id": 7646592,
-            "owner_id": -2000646592,
-            "access_key": ""
-          },
-          "photo": {
-            "width": 300,
-            "height": 300,
-            "photo_34": "",
-            "photo_68": "",
-            "photo_135": "",
-            "photo_270": "",
-            "photo_300": "",
-            "photo_600": "",
-            "photo_1200": ""
-          },
-          "access_key": "",
-          "is_explicit": true,
-          "main_artists": [
-            {
-              "name": "Boulevard Depo",
-              "domain": "4351355679024274167",
-              "id": "4351355679024274167"
-            }
-          ],
-          "album_type": "main_feat"
-        },
-        {
-          "id": 85412888,
-          "owner_id": -28905875,
-          "type": 0,
-          "title": "BOULEVARD DEPO – «OLD BLOOD»",
-          "description": "",
-          "count": 12,
-          "followers": 64811,
-          "plays": 1367311,
-          "create_time": 1590699505,
-          "update_time": 1590699739,
-          "genres": [],
-          "photo": {
-            "width": 300,
-            "height": 300,
-            "photo_34": "",
-            "photo_68": "",
-            "photo_135": "",
-            "photo_270": "",
-            "photo_300": "",
-            "photo_600": "",
-            "photo_1200": ""
-          },
-          "access_key": "",
-          "album_type": "playlist"
-        }
-      ]
-    }
-  }
-  ```
-</details>
-
-## audio.sendStartEvent
-### Параметры
-
-| Параметр | Тип    | Описание                                     |
-|----------|--------|----------------------------------------------|
-| uuid     | string | Неизвестно                                   |
-| audio_id | string | Аудиозапись в формате {owner_id}\_{audio_id} |
-
-### Пример ответа
-
-<details>
-  <summary>Открыть</summary>
-
-  ```json
-  {
-    "response": 1
-  }
-  ```
-</details>
-
-## audio.sendTrackReaction
-### Параметры
-
-| Параметр | Тип    | Описание        |
-|----------|--------|-----------------|
-| user_id  | int    | ID пользователя |
-| audio_id | string | Аудиозапись     |
-| reaction | string | Неизвестно      |
-| position | float  | Неизвестно      |
-
-## audio.setBroadcast
-Установить аудиозапись в статус
-
-### Параметры
-
-| Параметр   | Тип    | Описание                                                                                         |
-|------------|--------|--------------------------------------------------------------------------------------------------|
-| audio      | string | Аудиозапись в формате {owner_id}\_{audio_id}. Если не передать этот параметр, то статус пропадет |
-| target_ids | string | ID страниц, куда будет установлен статус                                                         |
-
-### Пример ответа
-
-<details>
-  <summary>Открыть</summary>
-
-  ```json
-  {
-    "response": []
-  }
-  ```
-</details>
-
-## audio.setForDownload
-### Параметры
-
-| Параметр | Тип | Описание                 |
-|----------|-----|--------------------------|
-| owner_id | int | ID владельца аудиозаписи |
-| audio_id | int | ID аудиозаписи           |
-
-### Пример ответа
-
-<details>
-  <summary>Открыть</summary>
-
- ```json
-  {
-    "response": 1
-  }
-  ```
-</details>
-
-## audio.setPlaylistForDownload
-### Параметры
-
-| Параметр    | Тип    | Описание               |
-|-------------|--------|------------------------|
-| owner_id    | int    | ID владельца плейлиста |
-| playlist_id | int    | ID плейлиста           |
-| access_key  | string | Ключ доступа           |
-
-### Пример ответа
-
-<details>
-  <summary>Открыть</summary>
-
-  ```json
-  {
-    "response": 1
   }
   ```
 </details>
@@ -667,8 +572,14 @@
   ```
 </details>
 
-## audio.subscribeToQueue
-Возвращает адрес какого-то специального лонгпула
+## audio.getById
+Получить аудизаписи по их идентификаторам
+
+### Параметры
+
+| Параметр | Тип    | Описание                    |
+|----------|--------|-----------------------------|
+| audios   | string | Идентификаторы аудиозаписей |
 
 ### Пример ответа
 
@@ -677,23 +588,32 @@
 
   ```json
   {
-    "response": {
-      "url": ""
-    }
+    "response": [
+      {
+        "artist": "ФОНКЕР",
+        "id": 456200000,
+        "owner_id": 305360617,
+        "title": "ЛЮТЫЙ",
+        "duration": 142,
+        "access_key": "",
+        "ads": {
+          "content_id": "305360617_456200000",
+          "duration": "142",
+          "account_age_type": "3",
+          "puid1": "554",
+          "puid22": "11"
+        },
+        "is_licensed": true,
+        "track_code": "",
+        "url": "",
+        "date": 1592003498,
+        "genre_id": 3,
+        "no_search": 1
+      }
+    ]
   }
   ```
 </details>
-
-## audio.unfollowArtist
-Отписаться от артиста
-
-### Параметры
-
-| Параметр  | Тип    | Описание                |
-|-----------|--------|-------------------------|
-| artist_id | string | ID артиста              |
-| user_id   | int    | ID пользователя         |
-| ref       | string | Параметр для статистики |
 
 ## audio.getCatalog
 Получить чарт
@@ -896,6 +816,59 @@
   ```
 </details>
 
+## audio.getCount
+Получить количество аудиозаписей
+
+### Параметры
+
+| Параметр | Тип | Описание     |
+|----------|-----|--------------|
+| owner_id | int | ID владельца |
+
+### Пример ответа
+
+<details>
+  <summary>Открыть</summary>
+
+  ```json
+  {
+    "response": 100
+  }
+  ```
+</details>
+
+## audio.getHints
+### Пример ответа
+
+<details>
+  <summary>Открыть</summary>
+
+  ```json
+  {
+    "response": {
+      "count": 5,
+      "items": [
+        {
+          "name": "сектор газа"
+        },
+        {
+          "name": "король и шут"
+        },
+        {
+          "name": "rammstein"
+        },
+        {
+          "name": "кино"
+        },
+        {
+          "name": "ария"
+        }
+      ]
+    }
+  }
+  ```
+</details>
+
 ## audio.getLyrics
 Получить слова песни
 
@@ -922,6 +895,46 @@
 
 ## audio.getOnboardingOffer
 Просто метод. Мне выдало ошибку 104 Not found
+
+## audio.getPlaylistById
+Получить плейлист по его идентификатору
+
+### Параметры
+
+| Параметр    | Тип | Описание               |
+|-------------|-----|------------------------|
+| owner_id    | int | ID владельца плейлиста |
+| playlist_id | int | ID плейлиста           |
+
+### Пример ответа
+
+<details>
+  <summary>Открыть</summary>
+
+  ```json
+  {
+    "response": {
+      "id": 82750000,
+      "owner_id": 305360617,
+      "type": 0,
+      "title": "test",
+      "description": "",
+      "count": 1,
+      "followers": 0,
+      "plays": 0,
+      "create_time": 1591962698,
+      "update_time": 1594637580,
+      "genres": [],
+      "is_following": false,
+      "access_key": "",
+      "album_type": "playlist",
+      "meta": {
+        "view": "compact"
+      }
+    }
+  }
+  ```
+</details>
 
 ## audio.getPlaylists
 Получить плейлисты
@@ -973,8 +986,15 @@
   ```
 </details>
 
-## audio.getUploadServer
-Получить адрес для загрузки аудиозаписи
+## audio.getPopular
+Получить популярные треки
+
+### Параметры
+
+| Параметр | Тип | Описание                |
+|----------|-----|-------------------------|
+| count    | int | Количество аудиозаписей |
+| offset   | int | Оффсет                  |
 
 ### Пример ответа
 
@@ -983,24 +1003,54 @@
 
   ```json
   {
-    "response": {
-      "upload_url": ""
-    }
+    "response": [
+      {
+        "artist": "Dua Lipa",
+        "id": 456240861,
+        "owner_id": -30462549,
+        "title": "Lost In Your Light (feat. Miguel)",
+        "duration": 203,
+        "access_key": "",
+        "is_explicit": false,
+        "is_focus_track": false,
+        "is_licensed": true,
+        "track_code": "",
+        "url": "",
+        "date": 1492759440,
+        "album": {
+          "id": 1076509,
+          "title": "Dua Lipa (Deluxe)",
+          "owner_id": -2000076509,
+          "access_key": "",
+          "thumb": {
+            "width": 300,
+            "height": 300,
+            "photo_34": "",
+            "photo_68": "",
+            "photo_135": "",
+            "photo_270": "",
+            "photo_300": "",
+            "photo_600": "",
+            "photo_1200": ""
+          }
+        },
+        "short_videos_allowed": false,
+        "stories_allowed": false
+      }
+    ]
   }
   ```
 </details>
 
-## audio.getSearchTrends
-Получить популярные поисковые запросы
+## audio.getRecentAudios
+Получить недавно прослушанные треки
 
 ### Параметры
-Эти параметры ни на что не влияют
 
-| Параметр     | Тип    | Описание            |
-|--------------|--------|---------------------|
-| count        | int    | Количество запросов |
-| offset       | int    | Оффсет              |
-| need_queries | string | Неизвестно          |
+| Параметр | Тип | Описание                |
+|----------|-----|-------------------------|
+| count    | int | Количество аудиозаписей |
+| offset   | int | Оффсет                  |
 
 ### Пример ответа
 
@@ -1010,25 +1060,35 @@
   ```json
   {
     "response": {
-      "count": 6,
+      "count": 100,
       "items": [
         {
-          "name": "morgenshtern"
-        },
-        {
-          "name": "мы открываем бизнес"
-        },
-        {
-          "name": "макс корж"
-        },
-        {
-          "name": "дочка прокурора"
-        },
-        {
-          "name": "сектор газа"
-        },
-        {
-          "name": "хавчик"
+          "artist": "GONE.Fludd",
+          "id": 456452940,
+          "owner_id": 474499274,
+          "title": "ВТОРНИК",
+          "duration": 112,
+          "is_explicit": false,
+          "is_focus_track": false,
+          "is_licensed": true,
+          "track_code": "",
+          "url": "",
+          "date": 1594070316,
+          "album": {
+            "id": 8020519,
+            "title": "ВТОРНИК",
+            "owner_id": -2000020519,
+            "access_key": ""
+          },
+          "main_artists": [
+            {
+              "name": "GONE.Fludd",
+              "domain": "5201359060516373864",
+              "id": "5201359060516373864"
+            }
+          ],
+          "short_videos_allowed": false,
+          "stories_allowed": false
         }
       ]
     }
@@ -1153,101 +1213,17 @@
   ```
 </details>
 
-## audio.addToFavorites
-### Параметры
-
-| Параметр | Тип | Описание                 |
-|----------|-----|--------------------------|
-| owner_id | int | ID владельца аудиозаписи |
-| audio_id | int | ID аудиозаписи           |
-
-## audio.addToPlaylist
-Добавить аудиозапись в плейлист
+## audio.getSearchTrends
+Получить популярные поисковые запросы
 
 ### Параметры
+Эти параметры ни на что не влияют
 
-| Параметр    | Тип    | Описание                                                       |
-|-------------|--------|----------------------------------------------------------------|
-| owner_id    | int    | ID владельца плейлиста                                         |
-| playlist_id | int    | ID плейлиста                                                   |
-| audio_ids   | string | ID аудиозаписей в формате {owner_id}\_{audio_id} через запятую |
-
-### Пример ответа
-
-<details>
-  <summary>Открыть</summary>
-
-  ```json
-  {
-    "response": [
-      {
-        "audio_id": 456240000
-      }
-    ]
-  }
-  ```
-</details>
-
-## audio.edit
-Отредактировать данные аудиозаписи
-
-### Параметры
-
-| Параметр  | Тип    | Описание                                                      |
-|-----------|--------|---------------------------------------------------------------|
-| owner_id  | int    | ID владельца аудиозаписи                                      |
-| audio_id  | int    | ID аудиозаписи                                                |
-| artist    | string | Новое название исполнителя                                    |
-| title     | string | Новое название композиции                                     |
-| text      | string | Новый текст аудиозаписи                                       |
-| genre_id  | int    | ID жанра из [списка](https://vk.com/dev/objects/audio_genres) |
-| no_search | int    | Флаг. Если 1 - аудиозапись не будет доступна в поиске         |
-
-### Пример ответа
-
-<details>
-  <summary>Открыть</summary>
-
-  Возвращает ID слов аудиозаписи, если они указаны
-
-  ```json
-  {
-    "response": 447900000
-  }
-  ```
-</details>
-
-## audio.editPlaylist
-Отредактировать данные плейлиста
-
-### Параметры
-
-| Параметр    | Тип    | Описание               |
-|-------------|--------|------------------------|
-| owner_id    | int    | ID владельца плейлиста |
-| playlist_id | int    | ID плейлиста           |
-| title       | string | Название плейлиста     |
-
-### Пример ответа
-
-<details>
-  <summary>Открыть</summary>
-
-  ```json
-  {
-    "response": 1
-  }
-  ```
-</details>
-
-## audio.followPlaylist
-### Параметры
-
-| Параметр    | Тип    | Описание               |
-|-------------|--------|------------------------|
-| owner_id    | int    | ID владельца плейлиста |
-| playlist_id | int    | ID плейлиста           |
-| access_key  | string | Ключ доступа           |
+| Параметр     | Тип    | Описание            |
+|--------------|--------|---------------------|
+| count        | int    | Количество запросов |
+| offset       | int    | Оффсет              |
+| need_queries | string | Неизвестно          |
 
 ### Пример ответа
 
@@ -1257,303 +1233,27 @@
   ```json
   {
     "response": {
-      "playlist_id": 82750000,
-      "owner_id": 305360617
-    }
-  }
-  ```
-</details>
-
-## audio.getAlbumsByArtist
-Получить альбомы исполнителя
-
-### Параметры
-
-| Параметр  | Тип    | Описание            |
-|-----------|--------|---------------------|
-| artist_id | string | ID артиста          |
-| count     | int    | Количество альбомов |
-| offset    | int    | Оффсет              |
-
-### Пример ответа
-
-<details>
-  <summary>Открыть</summary>
-
-  ```json
-  {
-    "response": {
-      "count": 15,
+      "count": 6,
       "items": [
         {
-          "id": 7646592,
-          "owner_id": -2000646592,
-          "type": 1,
-          "title": "OLD BLOOD",
-          "description": "",
-          "count": 12,
-          "followers": 642749,
-          "plays": 17346937,
-          "create_time": 1590673347,
-          "update_time": 1590673347,
-          "genres": [
-            {
-              "id": 10,
-              "name": "Хип-хоп"
-            }
-          ],
-          "is_following": true,
-          "year": 2020,
-          "followed": {
-            "playlist_id": 82750000,
-            "owner_id": 305360617
-          },
-          "photo": {
-            "width": 300,
-            "height": 300,
-            "photo_34": "",
-            "photo_68": "",
-            "photo_135": "",
-            "photo_270": "",
-            "photo_300": "",
-            "photo_600": "",
-            "photo_1200": ""
-          },
-          "access_key": "",
-          "is_explicit": true,
-          "main_artists": [
-            {
-              "name": "Boulevard Depo",
-              "domain": "4351355679024274167",
-              "id": "4351355679024274167"
-            }
-          ],
-          "album_type": "main_feat"
-        }
-      ]
-    }
-  }
-  ```
-</details>
-
-## audio.getArtists
-Не удалось вызвать этот метод.
-
-## audio.getBroadcast
-Узнать, транслируется ли аудиозапись в статус
-
-### Пример ответа
-
-<details>
-  <summary>Открыть</summary>
-
-  ```json
-  {
-    "response": {
-      "enabled": 0
-    }
-  }
-  ```
-</details>
-
-## audio.getCount
-Получить количество аудиозаписей
-
-### Параметры
-
-| Параметр | Тип | Описание     |
-|----------|-----|--------------|
-| owner_id | int | ID владельца |
-
-### Пример ответа
-
-<details>
-  <summary>Открыть</summary>
-
-  ```json
-  {
-    "response": 100
-  }
-  ```
-</details>
-
-## audio.getHints
-### Пример ответа
-
-<details>
-  <summary>Открыть</summary>
-
-  ```json
-  {
-    "response": {
-      "count": 5,
-      "items": [
+          "name": "morgenshtern"
+        },
+        {
+          "name": "мы открываем бизнес"
+        },
+        {
+          "name": "макс корж"
+        },
+        {
+          "name": "дочка прокурора"
+        },
         {
           "name": "сектор газа"
         },
         {
-          "name": "король и шут"
-        },
-        {
-          "name": "rammstein"
-        },
-        {
-          "name": "кино"
-        },
-        {
-          "name": "ария"
+          "name": "хавчик"
         }
       ]
-    }
-  }
-  ```
-</details>
-
-## audio.getPopular
-Получить популярные треки
-
-### Параметры
-
-| Параметр | Тип | Описание                |
-|----------|-----|-------------------------|
-| count    | int | Количество аудиозаписей |
-| offset   | int | Оффсет                  |
-
-### Пример ответа
-
-<details>
-  <summary>Открыть</summary>
-
-  ```json
-  {
-    "response": [
-      {
-        "artist": "Dua Lipa",
-        "id": 456240861,
-        "owner_id": -30462549,
-        "title": "Lost In Your Light (feat. Miguel)",
-        "duration": 203,
-        "access_key": "",
-        "is_explicit": false,
-        "is_focus_track": false,
-        "is_licensed": true,
-        "track_code": "",
-        "url": "",
-        "date": 1492759440,
-        "album": {
-          "id": 1076509,
-          "title": "Dua Lipa (Deluxe)",
-          "owner_id": -2000076509,
-          "access_key": "",
-          "thumb": {
-            "width": 300,
-            "height": 300,
-            "photo_34": "",
-            "photo_68": "",
-            "photo_135": "",
-            "photo_270": "",
-            "photo_300": "",
-            "photo_600": "",
-            "photo_1200": ""
-          }
-        },
-        "short_videos_allowed": false,
-        "stories_allowed": false
-      }
-    ]
-  }
-  ```
-</details>
-
-## audio.getRecentAudios
-Получить недавно прослушанные треки
-
-### Параметры
-
-| Параметр | Тип | Описание                |
-|----------|-----|-------------------------|
-| count    | int | Количество аудиозаписей |
-| offset   | int | Оффсет                  |
-
-### Пример ответа
-
-<details>
-  <summary>Открыть</summary>
-
-  ```json
-  {
-    "response": {
-      "count": 100,
-      "items": [
-        {
-          "artist": "GONE.Fludd",
-          "id": 456452940,
-          "owner_id": 474499274,
-          "title": "ВТОРНИК",
-          "duration": 112,
-          "is_explicit": false,
-          "is_focus_track": false,
-          "is_licensed": true,
-          "track_code": "",
-          "url": "",
-          "date": 1594070316,
-          "album": {
-            "id": 8020519,
-            "title": "ВТОРНИК",
-            "owner_id": -2000020519,
-            "access_key": ""
-          },
-          "main_artists": [
-            {
-              "name": "GONE.Fludd",
-              "domain": "5201359060516373864",
-              "id": "5201359060516373864"
-            }
-          ],
-          "short_videos_allowed": false,
-          "stories_allowed": false
-        }
-      ]
-    }
-  }
-  ```
-</details>
-
-## audio.getPlaylistById
-Получить плейлист по его идентификатору
-
-### Параметры
-
-| Параметр    | Тип | Описание               |
-|-------------|-----|------------------------|
-| owner_id    | int | ID владельца плейлиста |
-| playlist_id | int | ID плейлиста           |
-
-### Пример ответа
-
-<details>
-  <summary>Открыть</summary>
-
-  ```json
-  {
-    "response": {
-      "id": 82750000,
-      "owner_id": 305360617,
-      "type": 0,
-      "title": "test",
-      "description": "",
-      "count": 1,
-      "followers": 0,
-      "plays": 0,
-      "create_time": 1591962698,
-      "update_time": 1594637580,
-      "genres": [],
-      "is_following": false,
-      "access_key": "",
-      "album_type": "playlist",
-      "meta": {
-        "view": "compact"
-      }
     }
   }
   ```
@@ -1662,6 +1362,23 @@
   ```
 </details>
 
+## audio.getUploadServer
+Получить адрес для загрузки аудиозаписи
+
+### Пример ответа
+
+<details>
+  <summary>Открыть</summary>
+
+  ```json
+  {
+    "response": {
+      "upload_url": ""
+    }
+  }
+  ```
+</details>
+
 ## audio.reorder
 Изменить положение аудиозаписи
 
@@ -1707,6 +1424,68 @@
   ```json
   {
     "response": 1
+  }
+  ```
+</details>
+
+## audio.restore
+Восстановить удаленную аудиозапись
+
+### Параметры
+
+| Параметр | Тип | Описание       |
+|----------|-----|----------------|
+| owner_id | int | ID владельца   |
+| audio_id | int | ID аудиозаписи |
+
+## audio.save
+Сохранить аудиозапись после загрузки
+
+### Параметры
+
+| Параметр | Тип    | Описание                                                                   |
+|----------|--------|----------------------------------------------------------------------------|
+| audio    | string | Параметр, возвращаемый после [загрузки](https://vk.com/dev/upload_files_2) |
+| server   | string | Параметр, возвращаемый после [загрузки](https://vk.com/dev/upload_files_2) |
+| hash     | string | Параметр, возвращаемый после [загрузки](https://vk.com/dev/upload_files_2) |
+| artist   | string | Автор композиции                                                           |
+| title    | string | Название композиции                                                        |
+
+## audio.search
+Поиск по аудиозаписям
+
+### Параметры
+
+| Параметр       | Тип    | Описание                                                             |
+|----------------|--------|----------------------------------------------------------------------|
+| q              | string | Строка поиска                                                        |
+| search_own     | int    | Флаг. Если 1, то в результатах поиска будут и аудио владельца токена |
+| performer_only | int    | Флаг. Отвечает за поиск по артистам                                  |
+| owner_id       | int    | ID владельца                                                         |
+| offset         | int    | Оффсет                                                               |
+| count          | int    | Количество аудиозаписей                                              |
+
+### Пример ответа
+
+<details>
+  <summary>Открыть</summary>
+
+  ```json
+  {
+    "response": {
+      "count": 1,
+      "items": [
+        {
+          "id": 456200000,
+          "owner_id": 305360617,
+          "artist": "ФОНКЕР",
+          "title": "ЛЮТЫЙ",
+          "duration": 142,
+          "date": 1592003498,
+          "url": ""
+        }
+      ]
+    }
   }
   ```
 </details>
@@ -1893,3 +1672,224 @@
   }
   ```
 </details>
+
+## audio.searchPlaylists
+Найти плейлист
+
+### Параметры
+
+| Параметр | Тип    | Описание      |
+|----------|--------|---------------|
+| q        | string | Строка поиска |
+| owner_id | int    | ID владельца  |
+| offset   | int    | Оффсет        |
+| filters  | string | Фильтры       |
+| count    | int    | Количество    |
+
+### Пример ответа
+
+<details>
+  <summary>Открыть</summary>
+
+  ```json
+  {
+    "response": {
+      "count": 15921,
+      "items": [
+        {
+          "id": 82753370,
+          "owner_id": 305360617,
+          "type": 1,
+          "title": "OLD BLOOD",
+          "description": "",
+          "count": 12,
+          "followers": 598848,
+          "plays": 12717640,
+          "create_time": 1590673347,
+          "update_time": 1590673347,
+          "genres": [
+            {
+              "id": 10,
+              "name": "Хип-хоп"
+            }
+          ],
+          "year": 2020,
+          "original": {
+            "playlist_id": 7646592,
+            "owner_id": -2000646592,
+            "access_key": ""
+          },
+          "photo": {
+            "width": 300,
+            "height": 300,
+            "photo_34": "",
+            "photo_68": "",
+            "photo_135": "",
+            "photo_270": "",
+            "photo_300": "",
+            "photo_600": "",
+            "photo_1200": ""
+          },
+          "access_key": "",
+          "is_explicit": true,
+          "main_artists": [
+            {
+              "name": "Boulevard Depo",
+              "domain": "4351355679024274167",
+              "id": "4351355679024274167"
+            }
+          ],
+          "album_type": "main_feat"
+        },
+        {
+          "id": 85412888,
+          "owner_id": -28905875,
+          "type": 0,
+          "title": "BOULEVARD DEPO – «OLD BLOOD»",
+          "description": "",
+          "count": 12,
+          "followers": 64811,
+          "plays": 1367311,
+          "create_time": 1590699505,
+          "update_time": 1590699739,
+          "genres": [],
+          "photo": {
+            "width": 300,
+            "height": 300,
+            "photo_34": "",
+            "photo_68": "",
+            "photo_135": "",
+            "photo_270": "",
+            "photo_300": "",
+            "photo_600": "",
+            "photo_1200": ""
+          },
+          "access_key": "",
+          "album_type": "playlist"
+        }
+      ]
+    }
+  }
+  ```
+</details>
+
+## audio.sendStartEvent
+### Параметры
+
+| Параметр | Тип    | Описание                                     |
+|----------|--------|----------------------------------------------|
+| uuid     | string | Неизвестно                                   |
+| audio_id | string | Аудиозапись в формате {owner_id}\_{audio_id} |
+
+### Пример ответа
+
+<details>
+  <summary>Открыть</summary>
+
+  ```json
+  {
+    "response": 1
+  }
+  ```
+</details>
+
+## audio.sendTrackReaction
+### Параметры
+
+| Параметр | Тип    | Описание        |
+|----------|--------|-----------------|
+| user_id  | int    | ID пользователя |
+| audio_id | string | Аудиозапись     |
+| reaction | string | Неизвестно      |
+| position | float  | Неизвестно      |
+
+## audio.setBroadcast
+Установить аудиозапись в статус
+
+### Параметры
+
+| Параметр   | Тип    | Описание                                                                                         |
+|------------|--------|--------------------------------------------------------------------------------------------------|
+| audio      | string | Аудиозапись в формате {owner_id}\_{audio_id}. Если не передать этот параметр, то статус пропадет |
+| target_ids | string | ID страниц, куда будет установлен статус                                                         |
+
+### Пример ответа
+
+<details>
+  <summary>Открыть</summary>
+
+  ```json
+  {
+    "response": []
+  }
+  ```
+</details>
+
+## audio.setForDownload
+### Параметры
+
+| Параметр | Тип | Описание                 |
+|----------|-----|--------------------------|
+| owner_id | int | ID владельца аудиозаписи |
+| audio_id | int | ID аудиозаписи           |
+
+### Пример ответа
+
+<details>
+  <summary>Открыть</summary>
+
+ ```json
+  {
+    "response": 1
+  }
+  ```
+</details>
+
+## audio.setPlaylistForDownload
+### Параметры
+
+| Параметр    | Тип    | Описание               |
+|-------------|--------|------------------------|
+| owner_id    | int    | ID владельца плейлиста |
+| playlist_id | int    | ID плейлиста           |
+| access_key  | string | Ключ доступа           |
+
+### Пример ответа
+
+<details>
+  <summary>Открыть</summary>
+
+  ```json
+  {
+    "response": 1
+  }
+  ```
+</details>
+
+## audio.subscribeToQueue
+Возвращает адрес какого-то специального лонгпула
+
+### Пример ответа
+
+<details>
+  <summary>Открыть</summary>
+
+  ```json
+  {
+    "response": {
+      "url": ""
+    }
+  }
+  ```
+</details>
+
+## audio.unfollowArtist
+Отписаться от артиста
+
+### Параметры
+
+| Параметр  | Тип    | Описание                |
+|-----------|--------|-------------------------|
+| artist_id | string | ID артиста              |
+| user_id   | int    | ID пользователя         |
+| ref       | string | Параметр для статистики |
