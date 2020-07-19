@@ -3,13 +3,13 @@
 
 ## Список методов
 * [audio.add](#audioadd) — Добавить аудиозапись к себе
-* [audio.addToPlaylist](#audioaddtoplaylist) — Добавить аудиозапись в плейлист
+* [audio.addToPlaylist](#audioaddtoplaylist) — Добавить аудиозаписи в плейлист
 * [audio.createPlaylist](#audiocreateplaylist) — Создать плейлист
 * [audio.delete](#audiodelete) — Удалить свою аудиозапись
 * [audio.deletePlaylist](#audiodeleteplaylist) — Удалить плейлист
 * [audio.edit](#audioedit) — Отредактировать данные аудиозаписи
 * [audio.editPlaylist](#audioeditplaylist) — Отредактировать данные плейлиста
-* [audio.get](#audioget) — Получить список аудиозаписей
+* [audio.get](#audioget) — Получить список аудиозаписей (своих, у других людей или в плейлисте)
 * [audio.getAlbumsByArtist](#audiogetalbumsbyartist) — Получить альбомы исполнителя
 * [audio.getAudiosByArtist](#audiogetaudiosbyartist) — Получить треки исполнителя
 * [audio.getBroadcast](#audiogetbroadcast) — Включена ли трансляция треков в статус
@@ -36,45 +36,56 @@
 * [audio.search](#audiosearch) — Поиск по аудиозаписям
 * [audio.searchAlbums](#audiosearchalbums) — Поиск альбомов
 * [audio.searchArtists](#audiosearchartists) — Поиск исполнителей
-* [audio.searchMain](#audiosearchmain) — общий поиск
-* [audio.searchPlaylists](#audiosearchplaylists) — найти плейлист
-* [audio.setBroadcast](#audiosetbroadcast) — установить аудиозапись в статус
+* [audio.searchMain](#audiosearchmain) — Поиск всех объектов, связанных с разделом музыки
+* [audio.searchPlaylists](#audiosearchplaylists) — Поиск плейлистов
+* [audio.setBroadcast](#audiosetbroadcast) — Установить аудиозапись в статус профиля или сообществ
 
 ## audio.add
-Добавить аудиозапись к себе
+
+Добавляет чужую аудиозапись к себе.
 
 ### Параметры
 
-| Параметр   | Тип    | Описание                |
-|------------|--------|-------------------------|
-| owner_id   | int    | ID владельца            |
-| audio_id   | int    | ID аудио                |
-| access_key | string | Ключ доступа            |
-| track_code | string | Трек-код для статистики |
-| ref        | string | Неизвестно              |
+| Параметр     | Тип    | Описание                |
+|--------------|--------|-------------------------|
+| **owner_id** | int    | ID владельца            |
+| **audio_id** | int    | ID аудио                |
+| access_key   | string | Ключ доступа            |
+| track_code   | string | Трек-код для статистики |
+
+### Тип возвращаемого значения
+
+```ts
+type AudioAdd = number;
+```
 
 ### Пример ответа
 
 <details>
   <summary>Открыть</summary>
 
-  ```json
-  {
-    "response": 456200000
-  }
+  ```js
+  456239735
   ```
 </details>
 
 ## audio.addToPlaylist
-Добавить аудиозапись в плейлист
+
+Добавляет аудиозаписи в плейлист.
 
 ### Параметры
 
-| Параметр    | Тип    | Описание                                                       |
-|-------------|--------|----------------------------------------------------------------|
-| owner_id    | int    | ID владельца плейлиста                                         |
-| playlist_id | int    | ID плейлиста                                                   |
-| audio_ids   | string | ID аудиозаписей в формате {owner_id}\_{audio_id} через запятую |
+| Параметр        | Тип    | Описание                                                        |
+|-----------------|--------|-----------------------------------------------------------------|
+| **owner_id**    | int    | ID владельца плейлиста                                          |
+| **playlist_id** | int    | ID плейлиста                                                    |
+| **audio_ids**   | string | ID аудиозаписей в формате `{owner_id}_{audio_id}` через запятую |
+
+### Тип возвращаемого значения
+
+```ts
+type AudioAddToPlaylist = { audio_id: number }[];
+```
 
 ### Пример ответа
 
@@ -82,27 +93,32 @@
   <summary>Открыть</summary>
 
   ```json
-  {
-    "response": [
-      {
-        "audio_id": 456240000
-      }
-    ]
-  }
+  [
+    { "audio_id": 456239736 }
+  ]
   ```
 </details>
 
 ## audio.createPlaylist
-Создать плейлист
+
+Создаёт плейлист.
+
+В качестве `owner_id` можно указать либо свой ID, либо ID группы, в которую можно добавлять аудиозаписи.
 
 ### Параметры
 
-| Параметр    | Тип    | Описание                                       |
-|-------------|--------|------------------------------------------------|
-| owner_id    | int    | ID владельца плейлиста                         |
-| title       | string | Название плейлиста                             |
-| description | string | Описание плейлиста                             |
-| audio_ids   | string | Аудиозаписи, которые нужно добавить в плейлист |
+| Параметр     | Тип    | Описание                                              |
+|--------------|--------|-------------------------------------------------------|
+| **owner_id** | int    | ID пользователя или группы                            |
+| **title**    | string | Название плейлиста                                    |
+| description  | string | Описание плейлиста                                    |
+| audio_ids    | string | Список аудиозаписей в формате `{owner_id}_{audio_id}` |
+
+### Тип возвращаемого значения
+
+```ts
+type AudioCreatePlaylist = VKPlaylist;
+```
 
 ### Пример ответа
 
@@ -111,120 +127,156 @@
 
   ```json
   {
-    "response": {
-      "id": 82750000,
-      "owner_id": 305360617,
-      "type": 0,
-      "title": "test playlist",
-      "description": "",
-      "count": 0,
-      "followers": 0,
-      "plays": 0,
-      "create_time": 1591962784,
-      "update_time": 1591962784,
-      "genres": [],
-      "album_type": "playlist",
-      "meta": {
-        "view": "compact"
-      }
+    "id": 8,
+    "owner_id": 88262293,
+    "type": 0,
+    "title": "Тайтл",
+    "description": "Описание",
+    "count": 0,
+    "followers": 0,
+    "plays": 0,
+    "create_time": 1595147240,
+    "update_time": 1595147240,
+    "genres": [],
+    "is_following": false,
+    "permissions": {
+      "play": true,
+      "share": true,
+      "edit": true,
+      "follow": true
+    },
+    "subtitle_badge": false,
+    "play_button": false,
+    "access_key": "...",
+    "album_type": "playlist",
+    "meta": {
+      "view": "compact"
     }
   }
   ```
 </details>
 
 ## audio.delete
-Удалить аудиозапись из добавленных
+
+Удаляет аудиозапись из добавленных.
 
 ### Параметры
 
-| Параметр | Тип | Описание     |
-|----------|-----|--------------|
-| owner_id | int | ID владельца |
-| audio_id | int | ID аудио     |
+| Параметр     | Тип | Описание     |
+|--------------|-----|--------------|
+| **owner_id** | int | ID владельца |
+| **audio_id** | int | ID аудио     |
+
+### Тип возвращаемого значения
+
+```ts
+type AudioDelete = 1;
+```
 
 ### Пример ответа
 
 <details>
   <summary>Открыть</summary>
 
-  ```json
-  {
-    "response": 1
-  }
+  ```js
+  1
   ```
 </details>
 
 ## audio.deletePlaylist
-Удалить плейлист
+
+Удаляет плейлист.
 
 ### Параметры
 
-| Параметр    | Тип | Описание     |
-|-------------|-----|--------------|
-| playlist_id | int | ID плейлиста |
-| owner_id    | int | ID владельца |
+| Параметр        | Тип | Описание     |
+|-----------------|-----|--------------|
+| **owner_id**    | int | ID владельца |
+| **playlist_id** | int | ID плейлиста |
+
+### Тип возвращаемого значения
+
+```ts
+type AudioDeletePlaylist = 1;
+```
 
 ### Пример ответа
 
 <details>
   <summary>Открыть</summary>
 
-  ```json
-  {
-    "response": 1
-  }
+  ```js
+  1
   ```
 </details>
 
 ## audio.edit
-Отредактировать данные аудиозаписи
+
+Редактирует данные аудиозаписи.
+
+**Обратите внимание:** для некоторых треков может прийти 15 ошибка API (Access Denied).
+Отличить разрешенные и запрещенные для редактирования треки невозможно, поэтому нужно проверять каждый вызов.
+
+Однако, по моим наблюдениям, наличие поля `main_artists` всегда означает запрет на редактирование.
 
 ### Параметры
 
-| Параметр  | Тип    | Описание                                                      |
-|-----------|--------|---------------------------------------------------------------|
-| owner_id  | int    | ID владельца аудиозаписи                                      |
-| audio_id  | int    | ID аудиозаписи                                                |
-| artist    | string | Новое название исполнителя                                    |
-| title     | string | Новое название композиции                                     |
-| text      | string | Новый текст аудиозаписи                                       |
-| genre_id  | int    | ID жанра из [списка](https://vk.com/dev/objects/audio_genres) |
-| no_search | int    | Флаг. Если 1 - аудиозапись не будет доступна в поиске         |
+| Параметр      | Тип    | Описание                                            |
+|---------------|--------|-----------------------------------------------------|
+| **owner_id**  | int    | ID владельца аудиозаписи                            |
+| **audio_id**  | int    | ID аудиозаписи                                      |
+| artist        | string | Новое название исполнителя                          |
+| title         | string | Новое название аудиозаписи                          |
+| text          | string | Новый текст аудиозаписи                             |
+| genre_id      | int    | [ID жанра](https://vk.com/dev/objects/audio_genres) |
+| no_search     | 0 / 1  | 1 если нужно исключить аудиозапись из поиска        |
+
+Для редактирования одного или нескольких полей необязательно передавать все остальные.
+
+### Тип возвращаемого значения
+
+```ts
+// Возвращает lyrics_id (если есть текст песни) или 0
+type AudioEdit = number;
+```
 
 ### Пример ответа
 
 <details>
   <summary>Открыть</summary>
-
-  Возвращает ID слов аудиозаписи, если они указаны
-
-  ```json
-  {
-    "response": 447900000
-  }
+  ```js
+  314927765
   ```
 </details>
 
 ## audio.editPlaylist
-Отредактировать данные плейлиста
+
+Редактирует данные плейлиста.
 
 ### Параметры
 
-| Параметр    | Тип    | Описание               |
-|-------------|--------|------------------------|
-| owner_id    | int    | ID владельца плейлиста |
-| playlist_id | int    | ID плейлиста           |
-| title       | string | Название плейлиста     |
+| Параметр        | Тип    | Описание               |
+|-----------------|--------|------------------------|
+| **owner_id**    | int    | ID владельца плейлиста |
+| **playlist_id** | int    | ID плейлиста           |
+| title           | string | Название плейлиста     |
+| description     | string | Описание плейлиста     |
+
+Для редактирования одного поля необязательно передавать все остальные.
+
+### Тип возвращаемого значения
+
+```ts
+type AudioEditPlaylist = 1;
+```
 
 ### Пример ответа
 
 <details>
   <summary>Открыть</summary>
 
-  ```json
-  {
-    "response": 1
-  }
+  ```js
+  1
   ```
 </details>
 
@@ -233,15 +285,28 @@
 
 ### Параметры
 
-| Параметр     | Тип | Описание                                                            |
-|--------------|-----|---------------------------------------------------------------------|
-| owner_id     | int | Чьи аудиозаписи нужно получить. По умолчанию — ID владельца токена  |
-| count        | int | Количество аудиозаписей                                             |
-| offset       | int | Оффсет                                                              |
-| playlist_id  | int | ID плейлиста                                                        |
-| extended     | int | Флаг. Если 1, то в ответе API будут поля `profiles` и `groups`      |
-| shuffle      | int | Флаг. Вроде-бы ни на что не влияет                                  |
-| shuffle_seed | int | Рандомное число. Используется для случайной сортировки аудиозаписей |
+| Параметр     | Тип    | Описание                                                            |
+|--------------|--------|---------------------------------------------------------------------|
+| owner_id     | int    | ID владельца аудиозаписей. По умолчанию ваш ID                      |
+| count        | int    | Количество аудиозаписей                                             |
+| offset       | int    | Смещение                                                            |
+| playlist_id  | int    | ID плейлиста                                                        |
+| extended     | 0 / 1  | 1 - возвращать в ответе поля `profiles` и `groups`                  |
+| fields       | string | Дополнительные поля для `profiles` и `groups`                       |
+| shuffle_seed | int    | Рандомное число. Используется для случайной сортировки аудиозаписей |
+
+### Тип возвращаемого значения
+
+```ts
+interface AudioGet {
+  count: number
+  items: VKAudio[]
+  // profiles и groups возвращаются всегда:
+  // если нет объектов, то возвращается пустой массив
+  profiles?: VKUser[]
+  groups?: VKGroup[]
+}
+```
 
 ### Пример ответа
 
@@ -250,32 +315,57 @@
 
   ```json
   {
-    "response": {
-      "count": 481,
-      "items": [
-        {
-          "artist": "ФОНКЕР",
-          "id": 456200000,
-          "owner_id": 305360617,
-          "title": "ЛЮТЫЙ",
-          "duration": 142,
-          "access_key": "",
-          "ads": {
-            "content_id": "305360617_456200000",
-            "duration": "142",
-            "account_age_type": "3",
-            "puid1": "554",
-            "puid22": "11"
-          },
-          "is_licensed": true,
-          "track_code": "",
-          "url": "",
-          "date": 1592003498,
-          "genre_id": 3,
-          "no_search": 1
-        }
-      ]
-    }
+    "count": 16,
+    "items": [
+      {
+        "artist": "Anne-Marie",
+        "id": 456239728,
+        "owner_id": 88262293,
+        "title": "Alarm",
+        "duration": 219,
+        "access_key": "...",
+        "ads": {
+          "content_id": "88262293_456239728",
+          "duration": "219",
+          "account_age_type": "3",
+          "puid1": "554",
+          "puid22": "14"
+        },
+        "is_explicit": true,
+        "is_focus_track": false,
+        "is_licensed": true,
+        "track_code": "...",
+        "url": "https://cs7-1v4.vkuseraudio.net/p4/b1ee...qQpDOAworV6aHmdmGB&long_chunk=1",
+        "date": 1593884324,
+        "album": {
+          "id": 128721,
+          "title": "Alarm (Remixes)",
+          "owner_id": -2000128721,
+          "access_key": "...",
+          "thumb": {
+            "width": 300,
+            "height": 300,
+            "photo_34": "https://sun9-55.userapi.com/c846217/v846217368/1c155b/TwDPBBlui4Y.jpg",
+            "photo_68": "https://sun9-57.userapi.com/c846217/v846217368/1c1559/_vM0aBzNKvE.jpg",
+            "photo_135": "https://sun7-7.userapi.com/c846217/v846217368/1c1557/ACYLOgJu90o.jpg",
+            "photo_270": "https://sun9-46.userapi.com/c846217/v846217368/1c1554/SGvkSBuOTwk.jpg",
+            "photo_300": "https://sun9-72.userapi.com/c846217/v846217368/1c1552/Rvbbz6sKMdw.jpg",
+            "photo_600": "https://sun9-1.userapi.com/c846217/v846217368/1c1551/BzOIUxmIzXQ.jpg",
+            "photo_1200": "https://sun9-10.userapi.com/c846217/v846217368/1c1550/amcpWlIUkro.jpg"
+          }
+        },
+        "main_artists": [
+          {
+            "name": "Anne-Marie",
+            "domain": "313759640627391837",
+            "id": "313759640627391837"
+          }
+        ],
+        "subtitle": "Marshmello Remix",
+        "short_videos_allowed": false,
+        "stories_allowed": false
+      }
+    ]
   }
   ```
 </details>
@@ -1383,7 +1473,7 @@
 
 ## audio.save
 
-Сохраняет аудиозапись после [загрузки](https://vk.com/dev/upload_files_2).
+Сохраняет аудиозапись в своем списке аудиозаписей после [загрузки](https://vk.com/dev/upload_files_2).
 
 ### Параметры
 
