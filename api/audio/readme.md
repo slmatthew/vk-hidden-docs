@@ -107,7 +107,7 @@ type AudioAddToPlaylist = { audio_id: number }[];
 
 ## audio.createPlaylist
 
-Создаёт плейлист.
+Создает плейлист.
 
 В качестве `owner_id` можно указать либо свой ID, либо ID группы, в которую можно добавлять аудиозаписи.
 
@@ -1034,8 +1034,8 @@ type AudioGetPlaylistById = VKPlaylist;
 |--------------|--------|------------------------------------------------|
 | **owner_id** | int    | ID пользователя или группы                     |
 | extended     | flag   | Возвращать в ответе поля `profiles` и `groups` |
-| count        | int    | Количество плейлистов                          |
 | fields       | string | Дополнительные поля для `profiles` и `groups`  |
+| count        | int    | Количество плейлистов                          |
 | start_from   | string | Смещение (поле `next_from`)                    |
 | offset       | int    | Смещение                                       |
 | filters      | string | `all`, `owned` или `followed`                  |
@@ -1335,10 +1335,10 @@ interface AudioGetRecommendations {
 
 ### Параметры
 
-| Параметр   | Тип    | Описание                                      |
-|------------|--------|-----------------------------------------------|
-| audio_id   | string | Аудиозапись в формате `{owner_id}_{audio_id}` |
-| track_code | string | Параметр для сбора статистики                 |
+| Параметр     | Тип    | Описание                                      |
+|--------------|--------|-----------------------------------------------|
+| **audio_id** | string | Аудиозапись в формате `{owner_id}_{audio_id}` |
+| track_code   | string | Параметр для сбора статистики                 |
 
 ### Тип возвращаемого значения
 
