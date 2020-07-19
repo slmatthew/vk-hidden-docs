@@ -69,10 +69,19 @@
 | device_id | int    | ID устройства |
 | hash      | string | `add_hash`    |
 
+### Тип возвращаемого значения
+
+```ts
+
+```
+
 ### Пример ответа
-```json
-{
-  "response": {
+
+<details>
+  <summary>Открыть</summary>
+
+  ```js
+  {
     "can_add_device": true,
     "device": {
       "id": 1,
@@ -92,8 +101,8 @@
       "remove_hash": ""
     }
   }
-}
-```
+  ```
+</details>
 
 ## bugtracker.bookmark
 Добавить отчёт в закладки или удалить его оттуда.
@@ -105,14 +114,21 @@
 | bugreport_id | int    | ID репорта                         |
 | hash         | string | `bookmark_hash` из объекта репорта |
 
-### Пример ответа
-```json
-{
-  "response": {
-    "is_bookmarked": true
-  }
-}
+### Тип возвращаемого значения
+
+```ts
+
 ```
+
+### Пример ответа
+
+<details>
+  <summary>Открыть</summary>
+
+  ```js
+  { "is_bookmarked": true }
+  ```
+</details>
 
 ## bugtracker.changeBugreportStatus
 Сменить статус отчёта
@@ -126,12 +142,21 @@
 | status       | int    | ID нового статуса отчёта                |
 | comment      | string | Текст комментария                       |
 
-### Пример ответа
-```json
-{
-  "response": 1
-}
+### Тип возвращаемого значения
+
+```ts
+
 ```
+
+### Пример ответа
+
+<details>
+  <summary>Открыть</summary>
+
+  ```js
+  1
+  ```
+</details>
 
 ## bugtracker.createComment
 Отправить комментарий.
@@ -145,10 +170,19 @@
 | hash         | string        | `comment_hash` из `bugtracker.getComments`     |
 | attachments  | array[string] | Вложения                                       |
 
+### Тип возвращаемого значения
+
+```ts
+
+```
+
 ### Пример ответа
-```json
-{
-  "response": {
+
+<details>
+  <summary>Открыть</summary>
+
+  ```js
+  {
     "comment": {
       "bugreport_id": 1,
       "comment_id": 2,
@@ -161,8 +195,8 @@
       "remove_hash": ""
     }
   }
-}
-```
+  ```
+</details>
 
 ## bugtracker.deleteComment
 Удалить комментарий
@@ -175,14 +209,23 @@
 | hash         | string        | `comment.remove_hash` |
 | comment_id   | int           | ID комментария        |
 
+### Тип возвращаемого значения
+
+```ts
+
+```
+
 ### Пример ответа
-```json
-{
-  "response": {
+
+<details>
+  <summary>Открыть</summary>
+
+  ```js
+  {
     "restore_hash": ""
   }
-}
-```
+  ```
+</details>
 
 ## bugtracker.deleteUserDevice
 Удалить устройство
@@ -194,17 +237,26 @@
 | user_device_id | int    | ID устройства |
 | hash           | string | `remove_hash` |
 
+### Тип возвращаемого значения
+
+```ts
+
+```
+
 ### Пример ответа
-```json
-{
-  "response": {
+
+<details>
+  <summary>Открыть</summary>
+
+  ```js
+  {
     "can_add_device": true,
     "platform_ids": [
       1
     ]
   }
-}
-```
+  ```
+</details>
 
 ## bugtracker.editBugreport
 Отредактировать репорт или создать новый.
@@ -215,10 +267,19 @@
 |--------------|-----|-----------------------------------------------------------------------|
 | bugreport_id | int | ID репорта. Если не передать этот параметр, будет создан новый репорт |
 
+### Тип возвращаемого значения
+
+```ts
+
+```
+
 ### Пример ответа
-```json
-{
-  "response": {
+
+<details>
+  <summary>Открыть</summary>
+
+  ```js
+  {
     "bugreport": {
       "id": 0,
       "title": "",
@@ -702,8 +763,8 @@
     ],
     "hash": ""
   }
-}
-```
+  ```
+</details>
 
 ## bugtracker.editComment
 Редактирование комментария.
@@ -720,10 +781,19 @@
 
 > Чтобы убрать аттачи из коммента, который был с ними, нужно не указывать attachments.
 
+### Тип возвращаемого значения
+
+```ts
+
+```
+
 ### Пример ответа
-```json
-{
-  "response": {
+
+<details>
+  <summary>Открыть</summary>
+
+  ```js
+  {
     "comment": {
       "bugreport_id": 1,
       "comment_id": 2,
@@ -736,8 +806,8 @@
       "remove_hash": ""
     }
   }
-}
-```
+  ```
+</details>
 
 ## bugtracker.getBookmarks
 Получить список отчетов в закладках
@@ -749,10 +819,19 @@
 | count    | int | Количество отчетов |
 | offset   | int | Оффсет             |
 
+### Тип возвращаемого значения
+
+```ts
+
+```
+
 ### Пример ответа
-```json
-{
-  "response": {
+
+<details>
+  <summary>Открыть</summary>
+
+  ```js
+  {
     "count": 28,
     "items": [
       {
@@ -791,8 +870,8 @@
       }
     ]
   }
-}
-```
+  ```
+</details>
 
 ## bugtracker.getBugreportById
 Получить репорт по его ID.
@@ -804,10 +883,19 @@
 | bugreport_id | int    | ID репорта                      |
 | fields       | string | https://vk.com/dev/objects/user |
 
+### Тип возвращаемого значения
+
+```ts
+
+```
+
 ### Пример ответа
-```json
-{
-  "response": {
+
+<details>
+  <summary>Открыть</summary>
+
+  ```js
+  {
     "bugreport": {
       "id": 1,
       "title": "Тест",
@@ -907,8 +995,8 @@
       }
     ]
   }
-}
-```
+  ```
+</details>
 
 ## bugtracker.getBugreportSectionList
 Неизвестно зачем нужен
@@ -930,10 +1018,19 @@
 | bugreport_id | int    | ID репорта                              |
 | hash         | string | `change_status_hash` из объекта репорта |
 
+### Тип возвращаемого значения
+
+```ts
+
+```
+
 ### Пример ответа
-```json
-{
-  "response": {
+
+<details>
+  <summary>Открыть</summary>
+
+  ```js
+  {
     "current_status": 5,
     "suggested_status": 5,
     "statuses": [
@@ -950,8 +1047,8 @@
       7
     ]
   }
-}
-```
+  ```
+</details>
 
 ## bugtracker.getComments
 Получить комментарии к репорту.
@@ -963,10 +1060,19 @@
 | bugreport_id | int | ID репорта                            |
 | count        | int | Количество комментариев. Максимум 100 |
 
+### Тип возвращаемого значения
+
+```ts
+
+```
+
 ### Пример ответа
-```json
-{
-  "response": {
+
+<details>
+  <summary>Открыть</summary>
+
+  ```js
+  {
     "count": 3,
     "items": [
       {
@@ -999,8 +1105,8 @@
     ],
     "comment_hash": ""
   }
-}
-```
+  ```
+</details>
 
 ## bugtracker.getDownloadVersionUrl
 Получить адрес для загрузки версии.
@@ -1013,26 +1119,44 @@
 | version_id | int    | ID версии                         |
 | hash       | string | `download_hash` из объекта версии |
 
+### Тип возвращаемого значения
+
+```ts
+
+```
+
 ### Пример ответа
-```json
-{
-  "response": {
+
+<details>
+  <summary>Открыть</summary>
+
+  ```js
+  {
     "url": "https://vk.link/to/version.apk",
     "app_title": "VK для Android",
     "bundle_name": "com.vkontakte.android",
     "build_id": 1234,
     "build_title": "1.0"
   }
-}
-```
+  ```
+</details>
 
 ## bugtracker.getEditDeviceFormData
 Список ОС
 
+### Тип возвращаемого значения
+
+```ts
+
+```
+
 ### Пример ответа
-```json
-{
-  "response": {
+
+<details>
+  <summary>Открыть</summary>
+
+  ```js
+  {
     "platforms": [
       {
         "id": 0,
@@ -1167,16 +1291,25 @@
       }
     ]
   }
-}
-```
+  ```
+</details>
 
 ## bugtracker.getInfo
 Получение информации о текущем пользователе. Не принимает параметров.
 
+### Тип возвращаемого значения
+
+```ts
+
+```
+
 ### Пример ответа
-```json
-{
-  "response": {
+
+<details>
+  <summary>Открыть</summary>
+
+  ```js
+  {
     "balance": 0,
     "updates_count": 0,
     "can_add_report": true,
@@ -1190,8 +1323,8 @@
     "can_view_authored_reports": true,
     "can_view_bookmarks": true
   }
-}
-```
+  ```
+</details>
 
 ## bugtracker.getProductBranches
 Получить ветки продукта.
@@ -1202,10 +1335,19 @@
 |------------|-----|-------------|
 | product_id | int | ID продукта |
 
+### Тип возвращаемого значения
+
+```ts
+
+```
+
 ### Пример ответа
-```json
-{
-  "response": {
+
+<details>
+  <summary>Открыть</summary>
+
+  ```js
+  {
     "count": 1,
     "items": [
       {
@@ -1223,8 +1365,8 @@
       }
     ]
   }
-}
-```
+  ```
+</details>
 
 ## bugtracker.getProductVersions
 Получить версии продукта.
@@ -1238,12 +1380,19 @@
 | count       | int | Количество версий                               |
 | extended    | int | Флаг. Получить расширенную информацию о версиях |
 
-### Пример ответа
-extended = 0
+### Тип возвращаемого значения
 
-```json
-{
-  "response": {
+```ts
+
+```
+
+### Пример ответа
+
+<details>
+  <summary>extended = 0</summary>
+
+  ```js
+  {
     "items": [
       {
         "id": 1,
@@ -1259,14 +1408,14 @@ extended = 0
       }
     ]
   }
-}
-```
+  ```
+</details>
 
-extended = 1
+<details>
+  <summary>Открыть</summary>
 
-```json
-{
-  "response": {
+  ```js
+  {
     "items": [
       {
         "id": 1,
@@ -1284,8 +1433,8 @@ extended = 1
       }
     ]
   }
-}
-``` 
+  ```
+</details>
 
 ## bugtracker.getProducts
 Получить продукты.
@@ -1300,10 +1449,19 @@ extended = 1
 | platform | int    | Неизвестно. Я видел `3`                 |
 | q        | string | Строка поиска                           |
 
+### Тип возвращаемого значения
+
+```ts
+
+```
+
 ### Пример ответа
-```json
-{
-  "response": {
+
+<details>
+  <summary>Открыть</summary>
+
+  ```js
+  {
     "items": [
       {
         "id": 1,
@@ -1329,8 +1487,8 @@ extended = 1
       }
     ]
   }
-}
-```
+  ```
+</details>
 
 ## bugtracker.getProductsById
 Получить продукты по ID.
@@ -1342,12 +1500,19 @@ extended = 1
 | product_ids | string | ID продуктов через запятую                   |
 | extended    | int    | Флаг. Вернуть расширенную информацию или нет |
 
-### Пример ответа
-extended = 0
+### Тип возвращаемого значения
 
-```json
-{
-  "response": {
+```ts
+
+```
+
+### Пример ответа
+
+<details>
+  <summary>extended = 0</summary>
+
+  ```js
+  {
     "items": [
       {
         "id": 1,
@@ -1360,14 +1525,14 @@ extended = 0
       }
     ]
   }
-}
-```
+  ```
+</details>
 
-extended = 1
+<details>
+  <summary>extended = 1</summary>
 
-```json
-{
-  "response": {
+  ```js
+  {
     "items": [
       {
         "id": 1,
@@ -1422,13 +1587,14 @@ extended = 1
       }
     ]
   }
-}
-```
+  ```
+</details>
 
-Проект, к которому можно присоединиться
-```json
-{
-  "response": {
+<details>
+  <summary>Продукт, к которому можно присоединиться</summary>
+
+  ```js
+  {
     "id": 2,
     "title": "Product",
     "description": "Description",
@@ -1439,8 +1605,8 @@ extended = 1
     "status_note": "Вы отказались от участия в тестировании",
     "licence_status": 5
   }
-}
-```
+  ```
+</details>
 
 ## bugtracker.getProductVersions
 Получить версии продукта.
@@ -1454,12 +1620,19 @@ extended = 1
 | count       | int | Количество версий                               |
 | extended    | int | Флаг. Получить расширенную информацию о версиях |
 
-### Пример ответа
-extended = 0
+### Тип возвращаемого значения
 
-```json
-{
-  "response": {
+```ts
+
+```
+
+### Пример ответа
+
+<details>
+  <summary>extended = 0</summary>
+
+  ```js
+  {
     "items": [
       {
         "id": 1,
@@ -1475,14 +1648,14 @@ extended = 0
       }
     ]
   }
-}
-```
+  ```
+</details>
 
-extended = 1
+<details>
+  <summary>extended = 1</summary>
 
-```json
-{
-  "response": {
+  ```js
+  {
     "items": [
       {
         "id": 1,
@@ -1500,8 +1673,8 @@ extended = 1
       }
     ]
   }
-}
-```
+  ```
+</details>
 
 ## bugtracker.getReporterProducts
 Метод возвращает список продуктов пользователя
@@ -1513,10 +1686,19 @@ extended = 1
 | reporter_id | int | ID пользователя. Необязательный                                          |
 | preview     | int | Флаг. Если `1`, то в ответе будут три рандомных продукта. Необязательный |
 
+### Тип возвращаемого значения
+
+```ts
+
+```
+
 ### Пример ответа
-```json
-{
-  "response": {
+
+<details>
+  <summary>Открыть</summary>
+
+  ```js
+  {
     "items": [
       {
         "id": 1,
@@ -1535,8 +1717,8 @@ extended = 1
     "uncounted_reports_count": 0,
     "unshown_reports_count": 150
   }
-}
-```
+  ```
+</details>
 
 ## bugtracker.getReportersById
 Получить карточки тестировщиков.
@@ -1549,10 +1731,19 @@ extended = 1
 | fields       | string | https://vk.com/dev/objects/user                                     |
 | extended     | int    | Флаг. Если `1`, то будет возвращена сетка активности                |
 
+### Тип возвращаемого значения
+
+```ts
+
+```
+
 ### Пример ответа
-```json
-{
-  "response": {
+
+<details>
+  <summary>Открыть</summary>
+
+  ```js
+  {
     "items": [
       {
         "id": 1,
@@ -1584,8 +1775,8 @@ extended = 1
       }
     ]
   }
-}
-```
+  ```
+</details>
 
 ## bugtracker.getReportersTop
 Получить топ участников
@@ -1599,10 +1790,19 @@ extended = 1
 | sort     | string | Тип сортировки: `rate` или `reports` |
 | q        | string | Строка поиска                        |
 
+### Тип возвращаемого значения
+
+```ts
+
+```
+
 ### Пример ответа
-```json
-{
-  "response": {
+
+<details>
+  <summary>Открыть</summary>
+
+  ```js
+  {
     "items": [
       {
         "id": 1,
@@ -1620,16 +1820,25 @@ extended = 1
       }
     ]
   }
-}
-```
+  ```
+</details>
 
 ## bugtracker.getSearchParameters
 Возвращает параметры для поиска. Типы, теги, все дела.
 
+### Тип возвращаемого значения
+
+```ts
+
+```
+
 ### Пример ответа
-```json
-{
-  "response": {
+
+<details>
+  <summary>Открыть</summary>
+
+  ```js
+  {
     "products": [
       {
         "id": 1,
@@ -1914,19 +2123,28 @@ extended = 1
       }
     ]
   }
-}
-```
+  ```
+</details>
 
 ## bugtracker.getSettings
 Получить список устройств
 
-### Пример ответа
-`login_ha` — логин HockeyApp
-`login_tf` — логин TestFlight
+### Тип возвращаемого значения
 
-```json
-{
-  "response": {
+```ts
+
+```
+
+### Пример ответа
+
+<details>
+  <summary>Открыть</summary>
+
+  `login_ha` — логин HockeyApp
+	`login_tf` — логин TestFlight
+
+  ```js
+  {
     "login_ha": "ha***@slmatthew.dev",
     "login_tf": "",
     "devices": [
@@ -1959,8 +2177,8 @@ extended = 1
     ],
     "can_add_device": true
   }
-}
-```
+  ```
+</details>
 
 ## bugtracker.joinProduct
 Присоединиться к продукту
@@ -1972,12 +2190,21 @@ extended = 1
 | product_id | int    | ID продукта |
 | hash       | string | `join_hash` |
 
-### Пример ответа
-```json
-{
-  "response": 1
-}
+### Тип возвращаемого значения
+
+```ts
+
 ```
+
+### Пример ответа
+
+<details>
+  <summary>Открыть</summary>
+
+  ```js
+  1
+  ```
+</details>
 
 ## bugtracker.leaveProduct
 Выйти из продукта
@@ -1989,12 +2216,21 @@ extended = 1
 | product_id | int    | ID продукта  |
 | hash       | string | `leave_hash` |
 
-### Пример ответа
-```json
-{
-  "response": 1
-}
+### Тип возвращаемого значения
+
+```ts
+
 ```
+
+### Пример ответа
+
+<details>
+  <summary>Открыть</summary>
+
+  ```js
+  1
+  ```
+</details>
 
 ## bugtracker.removeBugreport
 Удалить репорт
@@ -2006,12 +2242,21 @@ extended = 1
 | bugreport_id | int    | ID репорта    |
 | hash         | string | `remove_hash` |
 
-### Пример ответа
-```json
-{
-  "response": 1
-}
+### Тип возвращаемого значения
+
+```ts
+
 ```
+
+### Пример ответа
+
+<details>
+  <summary>Открыть</summary>
+
+  ```js
+  1
+  ```
+</details>
 
 ## bugtracker.reproduce
 Поставить отметку «Воспроизводится» или «Нравится»
@@ -2024,10 +2269,19 @@ extended = 1
 | hash         | string | `bugreport.reproduces.reproduce_hash`       |
 | state        | int    | 1 - воспроизводится, 0 - не воспроизводится |
 
+### Тип возвращаемого значения
+
+```ts
+
+```
+
 ### Пример ответа
-```json
-{
-  "response": {
+
+<details>
+  <summary>Открыть</summary>
+
+  ```js
+  {
     "reproduces": {
       "count": 1,
       "profiles": [
@@ -2045,8 +2299,8 @@ extended = 1
       "reproduce_hash": ""
     }
   }
-}
-```
+  ```
+</details>
 
 ## bugtracker.restoreComment
 Восстановить комментарий.
@@ -2059,12 +2313,21 @@ extended = 1
 | comment_id   | int    | ID комментария                               |
 | hash         | string | `restore_hash` из `bugtracker.deleteComment` |
 
-### Пример ответа
-```json
-{
-  "response": 1
-}
+### Тип возвращаемого значения
+
+```ts
+
 ```
+
+### Пример ответа
+
+<details>
+  <summary>Открыть</summary>
+
+  ```js
+  1
+  ```
+</details>
 
 ## bugtracker.saveBugreport
 Сохранить репорт
@@ -2091,14 +2354,23 @@ extended = 1
 | hash               | string  | `hash` из `bugtracker.editBugreport`               |
 | comment            | unknown | ?                                                  |
 
+### Тип возвращаемого значения
+
+```ts
+
+```
+
 ### Пример ответа
-```json
-{
-  "response": {
+
+<details>
+  <summary>Открыть</summary>
+
+  ```js
+  {
     "bugreport_id": 123
   }
-}
-```
+  ```
+</details>
 
 ## bugtracker.saveDevice
 Видимо, нужен для сохранения нового устройства.
@@ -2124,12 +2396,21 @@ extended = 1
 | hash             | string | `edit_hash`   |
 | platform_version | int    | ID версии ОС  |
 
-### Пример ответа
-```json
-{
-  "response": 1
-}
+### Тип возвращаемого значения
+
+```ts
+
 ```
+
+### Пример ответа
+
+<details>
+  <summary>Открыть</summary>
+
+  ```js
+  1
+  ```
+</details>
 
 ## bugtracker.searchBugreports
 Получить репорты.
@@ -2158,10 +2439,19 @@ extended = 1
 * Неактуальные `99`
 * Любой статус `100`
 
+### Тип возвращаемого значения
+
+```ts
+
+```
+
 ### Пример ответа
-```json
-{
-  "response": {
+
+<details>
+  <summary>Открыть</summary>
+
+  ```js
+  {
     "count": 23321,
     "next_from": 1589053866,
     "items": [
@@ -2204,8 +2494,8 @@ extended = 1
       }
     ]
   }
-}
-```
+  ```
+</details>
 
 ## bugtracker.searchDevices
 Поиск девайса
@@ -2216,10 +2506,19 @@ extended = 1
 |----------|--------|---------------|
 | q        | string | Строка поиска |
 
+### Тип возвращаемого значения
+
+```ts
+
+```
+
 ### Пример ответа
-```json
-{
-  "response": {
+
+<details>
+  <summary>Открыть</summary>
+
+  ```js
+  {
     "items": [
       {
         "id": 17423,
@@ -2235,8 +2534,8 @@ extended = 1
     ],
     "save_device_hash": ""
   }
-}
-```
+  ```
+</details>
 
 ## bugtracker.setProductVersionNotify
 Настроить уведомления о новых версиях
@@ -2248,14 +2547,23 @@ extended = 1
 | product_id | int    | ID продукта                                           |
 | hash       | string | `set_notify_hash` из `getProductsById` с `extended=1` |
 
+### Тип возвращаемого значения
+
+```ts
+
+```
+
 ### Пример ответа
-```json
-{
-  "response": {
+
+<details>
+  <summary>Открыть</summary>
+
+  ```js
+  {
     "is_notify_enabled": false
   }
-}
-```
+  ```
+</details>
 
 ## bugtracker.updateBugreportVersion
 Добавить отметку об актуальности отчета в новой версии продукта
@@ -2268,9 +2576,18 @@ extended = 1
 | hash         | string | `bugreport.close_on_update.close_hash` |
 | actual       | int    | Флаг. `1` - актуально                  |
 
-### Пример ответа
-```json
-{
-  "response": 1
-}
+### Тип возвращаемого значения
+
+```ts
+
 ```
+
+### Пример ответа
+
+<details>
+  <summary>Открыть</summary>
+
+  ```js
+  1
+  ```
+</details>
