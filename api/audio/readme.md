@@ -2,43 +2,43 @@
 Методы для работы с аудиозаписями
 
 ## Список методов
-* [audio.add](#audioadd) — Добавить аудиозапись к себе
-* [audio.addToPlaylist](#audioaddtoplaylist) — Добавить аудиозаписи в плейлист
-* [audio.createPlaylist](#audiocreateplaylist) — Создать плейлист
-* [audio.delete](#audiodelete) — Удалить свою аудиозапись
-* [audio.deletePlaylist](#audiodeleteplaylist) — Удалить плейлист
-* [audio.edit](#audioedit) — Отредактировать данные аудиозаписи
-* [audio.editPlaylist](#audioeditplaylist) — Отредактировать данные плейлиста
-* [audio.get](#audioget) — Получить список аудиозаписей (своих, у других людей или в плейлисте)
-* [audio.getAlbumsByArtist](#audiogetalbumsbyartist) — Получить альбомы исполнителя
-* [audio.getAudiosByArtist](#audiogetaudiosbyartist) — Получить треки исполнителя
-* [audio.getBroadcast](#audiogetbroadcast) — Включена ли трансляция треков в статус
-* [audio.getById](#audiogetbyid) — Получить аудиозаписи по ID
-* [audio.getCatalog](#audiogetcatalog) — Получить список секций с аудиозаписями или плейлистами
-* [audio.getCatalogBlockById](#audiogetcatalogblockbyid) — Получить секцию
-* [audio.getCount](#audiogetcount) — Получить количество аудиозаписей
-* [audio.getHints](#audiogethints) — Получить подсказки при поиске
-* [audio.getLyrics](#audiogetlyrics) — Получить слова песни
-* [audio.getPlaylistById](#audiogetplaylistbyid) — Получить плейлист по ID
-* [audio.getPlaylists](#audiogetplaylists) — Получить список плейлистов
-* [audio.getPopular](#audiogetpopular) — Получить популярные треки
-* [audio.getRecentAudios](#audiogetrecentaudios) — Получить недавно прослушанные треки
-* [audio.getRecommendations](#audiogetrecommendations) — Получить музыкальные рекомендации или похожие на аудиозапись треки
-* [audio.getRestrictionPopup](#audiogetrestrictionpopup) — Получить информацию об ограничении доступа к аудиозаписи
-* [audio.getSearchTrends](#audiogetsearchtrends) — Получить популярные поисковые запросы
-* [audio.getStoryCatalog](#audiogetstorycatalog) — Получить аудиозаписи, которые можно использовать в историях
-* [audio.getStorySearchCatalog](#audiogetstorysearchcatalog) — Поиск аудиозаписей, которые можно использовать в историях
-* [audio.getUploadServer](#audiogetuploadserver) — Получить адрес для загрузки аудиозаписи
-* [audio.reorder](#audioreorder) — Изменить положение аудиозаписи
-* [audio.reorderPlaylists](#audioreorderplaylists) — Изменить положение плейлиста
-* [audio.restore](#audiorestore) — Восстановить удаленную аудиозапись
-* [audio.save](#audiosave) — Сохранить аудиозапись после загрузки
-* [audio.search](#audiosearch) — Поиск по аудиозаписям
-* [audio.searchAlbums](#audiosearchalbums) — Поиск альбомов
-* [audio.searchArtists](#audiosearchartists) — Поиск исполнителей
-* [audio.searchMain](#audiosearchmain) — Поиск всех объектов, связанных с разделом музыки
-* [audio.searchPlaylists](#audiosearchplaylists) — Поиск плейлистов
-* [audio.setBroadcast](#audiosetbroadcast) — Установить аудиозапись в статус профиля или сообществ
+* [audio.add](#audioadd) — добавить аудиозапись к себе
+* [audio.addToPlaylist](#audioaddtoplaylist) — добавить аудиозаписи в плейлист
+* [audio.createPlaylist](#audiocreateplaylist) — создать плейлист
+* [audio.delete](#audiodelete) — удалить свою аудиозапись
+* [audio.deletePlaylist](#audiodeleteplaylist) — удалить плейлист
+* [audio.edit](#audioedit) — отредактировать данные аудиозаписи
+* [audio.editPlaylist](#audioeditplaylist) — отредактировать данные плейлиста
+* [audio.get](#audioget) — получить список аудиозаписей (своих, у других людей или в плейлисте)
+* [audio.getAlbumsByArtist](#audiogetalbumsbyartist) — получить альбомы исполнителя
+* [audio.getAudiosByArtist](#audiogetaudiosbyartist) — получить треки исполнителя
+* [audio.getBroadcast](#audiogetbroadcast) — включена ли трансляция треков в статус
+* [audio.getById](#audiogetbyid) — получить аудиозаписи по ID
+* [audio.getCatalog](#audiogetcatalog) — получить список секций с аудиозаписями или плейлистами
+* [audio.getCatalogBlockById](#audiogetcatalogblockbyid) — получить секцию
+* [audio.getCount](#audiogetcount) — получить количество аудиозаписей
+* [audio.getHints](#audiogethints) — получить подсказки при поиске
+* [audio.getLyrics](#audiogetlyrics) — получить слова песни
+* [audio.getPlaylistById](#audiogetplaylistbyid) — получить плейлист по ID
+* [audio.getPlaylists](#audiogetplaylists) — получить список плейлистов
+* [audio.getPopular](#audiogetpopular) — получить популярные треки
+* [audio.getRecentAudios](#audiogetrecentaudios) — получить недавно прослушанные треки
+* [audio.getRecommendations](#audiogetrecommendations) — получить музыкальные рекомендации или похожие на аудиозапись треки
+* [audio.getRestrictionPopup](#audiogetrestrictionpopup) — получить информацию об ограничении доступа к аудиозаписи
+* [audio.getSearchTrends](#audiogetsearchtrends) — получить популярные поисковые запросы
+* [audio.getStoryCatalog](#audiogetstorycatalog) — получить аудиозаписи, которые можно использовать в историях
+* [audio.getStorySearchCatalog](#audiogetstorysearchcatalog) — поиск аудиозаписей, которые можно использовать в историях
+* [audio.getUploadServer](#audiogetuploadserver) — получить адрес для загрузки аудиозаписи
+* [audio.reorder](#audioreorder) — изменить положение аудиозаписи
+* [audio.reorderPlaylists](#audioreorderplaylists) — изменить положение плейлиста
+* [audio.restore](#audiorestore) — восстановить удаленную аудиозапись
+* [audio.save](#audiosave) — сохранить аудиозапись после загрузки
+* [audio.search](#audiosearch) — поиск по аудиозаписям
+* [audio.searchAlbums](#audiosearchalbums) — поиск альбомов
+* [audio.searchArtists](#audiosearchartists) — поиск исполнителей
+* [audio.searchMain](#audiosearchmain) — поиск всех объектов, связанных с разделом музыки
+* [audio.searchPlaylists](#audiosearchplaylists) — поиск плейлистов
+* [audio.setBroadcast](#audiosetbroadcast) — установить аудиозапись в статус профиля или сообществ
 
 ## audio.add
 
