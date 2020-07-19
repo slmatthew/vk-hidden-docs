@@ -2,55 +2,43 @@
 Методы для работы с аудиозаписями
 
 ## Список методов
-* [audio.add](#audioadd) — добавить аудиозапись к себе
-* [audio.addToFavorites](#audioaddtofavorites)
-* [audio.addToPlaylist](#audioaddtoplaylist) — добавить аудиозапись в плейлист
-* [audio.createPlaylist](#audiocreateplaylist) — создать плейлист
-* [audio.delete](#audiodelete) — удалить аудиозапись из добавленных
-* [audio.deletePlaylist](#audiodeleteplaylist) — удалить плейлист
-* [audio.edit](#audioedit) — отредактировать данные аудиозаписи
-* [audio.editPlaylist](#audioeditplaylist) — отредактировать данные плейлиста
-* [audio.followArtist](#audiofollowartist) — подписаться на артиста
-* [audio.followPlaylist](#audiofollowplaylist)
-* [audio.get](#audioget) — получить аудиозаписи
-* [audio.getAlbumsByArtist](#audiogetalbumsbyartist) — получить альбомы исполнителя
-* [audio.getArtists](#audiogetartists)
-* [audio.getAudiosByArtist](#audiogetaudiosbyartist) — получить треки артиста
-* [audio.getBroadcast](#audiogetbroadcast) — включена ли трансляция треков в статус
-* [audio.getButtonTracks](#audiogetbuttontracks) — получить список аудиозаписей в плейлисте
-* [audio.getById](#audiogetbyid) — получить аудизаписи по их идентификаторам
-* [audio.getCatalog](#audiogetcatalog) — получить чарт
-* [audio.getCatalogBlockById](#audiogetcatalogblockbyid) — получить секцию чарта
-* [audio.getCount](#audiogetcount) — получить количество аудиозаписей
-* [audio.getHints](#audiogethints)
-* [audio.getLyrics](#audiogetlyrics) — получить слова песни
-* [audio.getOnboardingOffer](#audiogetonboardingoffer)
-* [audio.getPlaylistById](#audiogetplaylistbyid) — получить плейлист по его идентификатору
-* [audio.getPlaylists](#audiogetplaylists) — получить плейлисты
-* [audio.getPopular](#audiogetpopular) — получить популярные треки
-* [audio.getRecentAudios](#audiogetrecentaudios) — получить недавно прослушанные треки
-* [audio.getRecommendations](#audiogetrecommendations) — получить музыкальные рекомендации
-* [audio.getRestrictionPopup](#audiogetrestrictionpopup) — получить информацию об ограничении доступа к аудиозаписи
-* [audio.getSearchTrends](#audiogetsearchtrends) — получить популярные поисковые запросы
-* [audio.getStoryCatalog](#audiogetstorycatalog) — получить аудиозаписи которые можно использовать в историях
-* [audio.getStorySearchCatalog](#audiogetstorysearchcatalog)
-* [audio.getUploadServer](#audiogetuploadserver) — получить адрес для загрузки аудиозаписи
+* [audio.add](#audioadd) — Добавить аудиозапись к себе
+* [audio.addToPlaylist](#audioaddtoplaylist) — Добавить аудиозапись в плейлист
+* [audio.createPlaylist](#audiocreateplaylist) — Создать плейлист
+* [audio.delete](#audiodelete) — Удалить свою аудиозапись
+* [audio.deletePlaylist](#audiodeleteplaylist) — Удалить плейлист
+* [audio.edit](#audioedit) — Отредактировать данные аудиозаписи
+* [audio.editPlaylist](#audioeditplaylist) — Отредактировать данные плейлиста
+* [audio.get](#audioget) — Получить список аудиозаписей
+* [audio.getAlbumsByArtist](#audiogetalbumsbyartist) — Получить альбомы исполнителя
+* [audio.getAudiosByArtist](#audiogetaudiosbyartist) — Получить треки исполнителя
+* [audio.getBroadcast](#audiogetbroadcast) — Включена ли трансляция треков в статус
+* [audio.getById](#audiogetbyid) — Получить аудиозаписи по ID
+* [audio.getCatalog](#audiogetcatalog) — Получить список секций с аудиозаписями или плейлистами
+* [audio.getCatalogBlockById](#audiogetcatalogblockbyid) — Получить секцию
+* [audio.getCount](#audiogetcount) — Получить количество аудиозаписей
+* [audio.getHints](#audiogethints) — Получить подсказки при поиске
+* [audio.getLyrics](#audiogetlyrics) — Получить слова песни
+* [audio.getPlaylistById](#audiogetplaylistbyid) — Получить плейлист по ID
+* [audio.getPlaylists](#audiogetplaylists) — Получить список плейлистов
+* [audio.getPopular](#audiogetpopular) — Получить популярные треки
+* [audio.getRecentAudios](#audiogetrecentaudios) — Получить недавно прослушанные треки
+* [audio.getRecommendations](#audiogetrecommendations) — Получить музыкальные рекомендации или похожие на аудиозапись треки
+* [audio.getRestrictionPopup](#audiogetrestrictionpopup) — Получить информацию об ограничении доступа к аудиозаписи
+* [audio.getSearchTrends](#audiogetsearchtrends) — Получить популярные поисковые запросы
+* [audio.getStoryCatalog](#audiogetstorycatalog) — Получить аудиозаписи, которые можно использовать в историях
+* [audio.getStorySearchCatalog](#audiogetstorysearchcatalog) — Поиск аудиозаписей, которые можно использовать в историях
+* [audio.getUploadServer](#audiogetuploadserver) — Получить адрес для загрузки аудиозаписи
 * [audio.reorder](#audioreorder) — Изменить положение аудиозаписи
-* [audio.reorderPlaylists](#audioreorderplaylists) — изменить положение плейлиста
-* [audio.restore](#audiorestore) — восстановить удаленную аудиозапись
-* [audio.save](#audiosave) — сохранить аудиозапись после загрузки
-* [audio.search](#audiosearch) — поиск по аудиозаписям
-* [audio.searchAlbums](#audiosearchalbums) — поиск альбомов
-* [audio.searchArtists](#audiosearchartists) — поиск исполнителей
+* [audio.reorderPlaylists](#audioreorderplaylists) — Изменить положение плейлиста
+* [audio.restore](#audiorestore) — Восстановить удаленную аудиозапись
+* [audio.save](#audiosave) — Сохранить аудиозапись после загрузки
+* [audio.search](#audiosearch) — Поиск по аудиозаписям
+* [audio.searchAlbums](#audiosearchalbums) — Поиск альбомов
+* [audio.searchArtists](#audiosearchartists) — Поиск исполнителей
 * [audio.searchMain](#audiosearchmain) — общий поиск
 * [audio.searchPlaylists](#audiosearchplaylists) — найти плейлист
-* [audio.sendStartEvent](#audiosendstartevent)
-* [audio.sendTrackReaction](#audiosendtrackreaction)
 * [audio.setBroadcast](#audiosetbroadcast) — установить аудиозапись в статус
-* [audio.setForDownload](#audiosetfordownload)
-* [audio.setPlaylistForDownload](#audiosetplaylistfordownload)
-* [audio.subscribeToQueue](#audiosubscribetoqueue) — возвращает адрес какого-то специального лонгпула
-* [audio.unfollowArtist](#audiounfollowartist) — отписаться от артиста
 
 ## audio.add
 Добавить аудиозапись к себе
@@ -76,14 +64,6 @@
   }
   ```
 </details>
-
-## audio.addToFavorites
-### Параметры
-
-| Параметр | Тип | Описание                 |
-|----------|-----|--------------------------|
-| owner_id | int | ID владельца аудиозаписи |
-| audio_id | int | ID аудиозаписи           |
 
 ## audio.addToPlaylist
 Добавить аудиозапись в плейлист
@@ -248,40 +228,6 @@
   ```
 </details>
 
-## audio.followArtist
-Подписаться на артиста
-
-### Параметры
-
-| Параметр  | Тип    | Описание                                                        |
-|-----------|--------|-----------------------------------------------------------------|
-| artist_id | string | ID артиста                                                      |
-| ref       | string | Этот параметр используется для статистики. Я использовал `home` |
-
-## audio.followPlaylist
-### Параметры
-
-| Параметр    | Тип    | Описание               |
-|-------------|--------|------------------------|
-| owner_id    | int    | ID владельца плейлиста |
-| playlist_id | int    | ID плейлиста           |
-| access_key  | string | Ключ доступа           |
-
-### Пример ответа
-
-<details>
-  <summary>Открыть</summary>
-
-  ```json
-  {
-    "response": {
-      "playlist_id": 82750000,
-      "owner_id": 305360617
-    }
-  }
-  ```
-</details>
-
 ## audio.get
 Получить аудиозаписи
 
@@ -406,9 +352,6 @@
   ```
 </details>
 
-## audio.getArtists
-Не удалось вызвать этот метод.
-
 ## audio.getAudiosByArtist
 Получить треки артиста
 
@@ -495,78 +438,6 @@
   {
     "response": {
       "enabled": 0
-    }
-  }
-  ```
-</details>
-
-## audio.getButtonTracks
-Получить список аудиозаписей в плейлисте
-
-### Параметры
-
-| Параметр     | Тип    | Описание                                         |
-|--------------|--------|--------------------------------------------------|
-| id           | string | ID плейлиста в формате {owner_id}\_{playlist_id} |
-| count        | int    | Количество аудиозаписей                          |
-| shuffle_seed | int    | Рандомное число для случайной сортировки         |
-
-### Пример ответа
-
-<details>
-  <summary>Открыть</summary>
-
-  `next_from` приходит только если `count` меньше, чем количество аудиозаписей в плейлисте
-
-  ```json
-  {
-    "response": {
-      "next_from": "",
-      "audios": [
-        {
-          "artist": "Boulevard Depo",
-          "id": 67604118,
-          "owner_id": -2001604118,
-          "title": "Введение",
-          "duration": 34,
-          "access_key": "",
-          "ads": {
-            "content_id": "-2001604118_67604118",
-            "duration": "34",
-            "account_age_type": "3",
-            "puid1": "554",
-            "puid22": "14"
-          },
-          "is_licensed": true,
-          "track_code": "",
-          "url": "",
-          "date": 1590673418,
-          "album": {
-            "id": 7646592,
-            "title": "OLD BLOOD",
-            "owner_id": -2000646592,
-            "access_key": "",
-            "thumb": {
-              "width": 300,
-              "height": 300,
-              "photo_34": "",
-              "photo_68": "",
-              "photo_135": "",
-              "photo_270": "",
-              "photo_300": "",
-              "photo_600": "",
-              "photo_1200": ""
-            }
-          },
-          "main_artists": [
-            {
-              "name": "Boulevard Depo",
-              "domain": "4351355679024274167",
-              "id": "4351355679024274167"
-            }
-          ]
-        }
-      ]
     }
   }
   ```
@@ -838,6 +709,15 @@
 </details>
 
 ## audio.getHints
+
+Возвращает список возможных вариантов запроса. Если не передать `q`, то выведет топ-5 запросов.
+
+### Параметры
+
+| Параметр | Тип    | Описание      |
+|----------|--------|---------------|
+| q        | string | Строка поиска |
+
 ### Пример ответа
 
 <details>
@@ -870,13 +750,15 @@
 </details>
 
 ## audio.getLyrics
-Получить слова песни
+
+Возвращает текст песни. Поле `lyrics_id` можно получить из объекта аудиозаписи у поля с таким же названием.
+Часто можно встретить песни, у которых не возвращается `lyrics_id`, поэтому нужно проверять их наличие перед использованием.
 
 ### Параметры
 
-| Параметр  | Тип | Описание |
-|-----------|-----|----------|
-| lyrics_id | int | ID слов  |
+| Параметр  | Тип | Описание         |
+|-----------|-----|------------------|
+| lyrics_id | int | ID текста песни  |
 
 ### Пример ответа
 
@@ -886,15 +768,12 @@
   ```json
   {
     "response": {
-      "lyrics_id": 447900000,
-      "text": ""
+      "lyrics_id": 314927765,
+      "text": "Я знаю, где живет любовь. <продолжение текста ...>"
     }
   }
   ```
 </details>
-
-## audio.getOnboardingOffer
-Просто метод. Мне выдало ошибку 104 Not found
 
 ## audio.getPlaylistById
 Получить плейлист по его идентификатору
@@ -1043,14 +922,16 @@
 </details>
 
 ## audio.getRecentAudios
-Получить недавно прослушанные треки
+
+Возвращает недавно прослушанные треки.
 
 ### Параметры
 
-| Параметр | Тип | Описание                |
-|----------|-----|-------------------------|
-| count    | int | Количество аудиозаписей |
-| offset   | int | Оффсет                  |
+| Параметр    | Тип | Описание                              |
+|-------------|-----|---------------------------------------|
+| **user_id** | int | ID юзера, чьи аудиозаписи мы получаем |
+| count       | int | Количество аудиозаписей               |
+| offset      | int | Оффсет                                |
 
 ### Пример ответа
 
@@ -1097,13 +978,14 @@
 </details>
 
 ## audio.getRecommendations
-Получить музыкальные рекомендации
+
+Возвращает музыкальные рекомендации или похожие на определенную аудиозапись треки.
 
 ### Параметры
 
 | Параметр     | Тип    | Описание                                                                                 |
 |--------------|--------|------------------------------------------------------------------------------------------|
-| count        | int    | Количество аудиозаписей                                                                  |
+| count        | int    | Количество аудиозаписей (по умолчанию 100)                                               |
 | target_audio | string | Аудиозапись в формате {owner_id}\_{audio_id}, на которой будут основываться рекомендации |
 
 ### Пример ответа
@@ -1214,16 +1096,15 @@
 </details>
 
 ## audio.getSearchTrends
-Получить популярные поисковые запросы
+
+Возвращает популярные поисковые запросы.
 
 ### Параметры
-Эти параметры ни на что не влияют
 
-| Параметр     | Тип    | Описание            |
-|--------------|--------|---------------------|
-| count        | int    | Количество запросов |
-| offset       | int    | Оффсет              |
-| need_queries | string | Неизвестно          |
+| Параметр | Тип | Описание             |
+|----------|-----|----------------------|
+| count    | int | Количество элементов |
+| offset   | int | Оффсет               |
 
 ### Пример ответа
 
@@ -1260,7 +1141,8 @@
 </details>
 
 ## audio.getStoryCatalog
-Получить аудиозаписи которые можно использовать в историях
+
+Возвращает аудиозаписи, которые можно использовать в историях.
 
 ### Пример ответа
 
@@ -1339,6 +1221,15 @@
 </details>
 
 ## audio.getStorySearchCatalog
+
+Возвращает список найденных песен для прикрепления к истории.
+
+### Параметры
+
+| Параметр | Тип    | Описание      |
+|----------|--------|---------------|
+| query    | string | Строка поиска |
+
 ### Пример ответа
 
 <details>
@@ -1346,24 +1237,77 @@
 
   ```json
   {
-    "response": {
-      "sections": [
-        {
-          "id": "PUldVA8HR0RzSVNUagdTRGpJUFQPBRY",
-          "name": "",
-          "blocks": [],
-          "url": "https:\/\/vk.com\/",
-          "is_selected": 1,
-          "total_count": 1
-        }
-      ]
-    }
+    "sections": [
+      {
+        "id": "PUldVA8HR0RzSVNUagdTRGpJUFQPBRY",
+        "name": "",
+        "blocks": [{
+          "id": "PUlQVA8GR0R3W0tMF2tZUmRHS0EXDkk6M1tdRVNoHlZyX1kqQARfVX5JRVQAFlFEGVhRVBkWX0R8WEVUBAFJXHcW",
+          "block_view_type": "list_picker",
+          "url": "https://vk.com/",
+          "no_header": 1,
+          "music_audios": [{
+            "artist": "VERBEE",
+            "id": 68784845,
+            "owner_id": -2001784845,
+            "title": "Принцесса",
+            "duration": 117,
+            "access_key": "...",
+            "ads": {
+              "content_id": "-2001784845_68784845",
+              "duration": "117",
+              "account_age_type": "3",
+              "puid1": "554",
+              "puid22": "14"
+            },
+            "is_explicit": false,
+            "is_focus_track": false,
+            "is_licensed": true,
+            "track_code": "...",
+            "url": "...",
+            "date": 1592583398,
+            "no_search": 1,
+            "album": {
+              "id": 7861792,
+              "title": "Принцесса",
+              "owner_id": -2000861792,
+              "access_key": "60a6d61af956c4c187",
+              "thumb": {
+                "width": 300,
+                "height": 300,
+                "photo_34": "https://sun7-8.userapi.com/c857220/v857220302/1bd044/lufhjf4fggw.jpg",
+                "photo_68": "https://sun7-6.userapi.com/c857220/v857220302/1bd042/tZGN11-2fu0.jpg",
+                "photo_135": "https://sun7-7.userapi.com/c857220/v857220302/1bd040/5FJisGHMJfc.jpg",
+                "photo_270": "https://sun7-7.userapi.com/c857220/v857220302/1bd03d/tMmi291b-tA.jpg",
+                "photo_300": "https://sun7-7.userapi.com/c857220/v857220302/1bd03b/DJHz6iWmrFo.jpg",
+                "photo_600": "https://sun7-9.userapi.com/c857220/v857220302/1bd03a/eLCKbhDa1oU.jpg",
+                "photo_1200": "https://sun7-7.userapi.com/c857220/v857220302/1bd039/SMq8E76aysg.jpg"
+              }
+            },
+            "main_artists": [{
+              "name": "VERBEE",
+              "domain": "2451624268979701525",
+              "id": "2451624268979701525"
+            }],
+            "short_videos_allowed": true,
+            "stories_allowed": true
+          }],
+          "fullscreen_view_type": "list_picker",
+          "title": "Все аудиозаписи",
+          "data_type": "music_audios"
+        }],
+        "url": "https://vk.com/",
+        "is_selected": 1,
+        "total_count": 1
+      }
+    ]
   }
   ```
 </details>
 
 ## audio.getUploadServer
-Получить адрес для загрузки аудиозаписи
+
+Возвращает адрес для загрузки аудиозаписи.
 
 ### Пример ответа
 
@@ -1372,40 +1316,38 @@
 
   ```json
   {
-    "response": {
-      "upload_url": ""
-    }
+    "upload_url": "..."
   }
   ```
 </details>
 
 ## audio.reorder
-Изменить положение аудиозаписи
+
+Изменяет положение аудиозаписи.
 
 ### Параметры
 
 | Параметр | Тип | Описание                                                          |
 |----------|-----|-------------------------------------------------------------------|
-| audio_id | int | ID аудиозаписи, позицию которой меняем                            |
+| audio_id | int | ID аудиозаписи, у которой меняем позицию                          |
 | after    | int | ID аудиозаписи, после которой будет поставлена первая аудиозапись |
 | before   | int | ID аудиозаписи, перед которой будет поставлена первая аудиозапись |
 
-Вы должны выбрать либо `before`, либо `after`. Параметры нельзя использовать одновременно
+Вы должны использовать либо `before`, либо `after`. Нельзя использовать оба параметра сразу.
 
 ### Пример ответа
 
 <details>
   <summary>Открыть</summary>
 
-  ```json
-  {
-    "response": 1
-  }
+  ```js
+  1
   ```
 </details>
 
 ## audio.reorderPlaylists
-Изменить положение плейлиста
+
+Изменяет положение плейлиста.
 
 ### Параметры
 
@@ -1416,20 +1358,21 @@
 | after       | int | ID плейлиста, после которого будет поставлен первый плейлист |
 | before      | int | ID плейлиста, перед которым будет поставлен первый плейлист  |
 
+Вы должны использовать либо `before`, либо `after`. Нельзя использовать оба параметра сразу.
+
 ### Пример ответа
 
 <details>
   <summary>Открыть</summary>
 
-  ```json
-  {
-    "response": 1
-  }
+  ```js
+  1
   ```
 </details>
 
 ## audio.restore
-Восстановить удаленную аудиозапись
+
+Восстанавливает удаленную аудиозапись.
 
 ### Параметры
 
@@ -1439,20 +1382,45 @@
 | audio_id | int | ID аудиозаписи |
 
 ## audio.save
-Сохранить аудиозапись после загрузки
+
+Сохраняет аудиозапись после [загрузки](https://vk.com/dev/upload_files_2).
 
 ### Параметры
 
-| Параметр | Тип    | Описание                                                                   |
-|----------|--------|----------------------------------------------------------------------------|
-| audio    | string | Параметр, возвращаемый после [загрузки](https://vk.com/dev/upload_files_2) |
-| server   | string | Параметр, возвращаемый после [загрузки](https://vk.com/dev/upload_files_2) |
-| hash     | string | Параметр, возвращаемый после [загрузки](https://vk.com/dev/upload_files_2) |
-| artist   | string | Автор композиции                                                           |
-| title    | string | Название композиции                                                        |
+| Параметр     | Тип    | Описание                                                                   |
+|--------------|--------|----------------------------------------------------------------------------|
+| **audio**    | string | Параметр, возвращаемый после [загрузки](https://vk.com/dev/upload_files_2) |
+| **server**   | string | Параметр, возвращаемый после [загрузки](https://vk.com/dev/upload_files_2) |
+| **hash**     | string | Параметр, возвращаемый после [загрузки](https://vk.com/dev/upload_files_2) |
+| artist       | string | Автор композиции (по умолчанию `Unknown artist`)                           |
+| title        | string | Название композиции (по умолчанию `Untitled`)                              |
+
+### Пример ответа
+
+<details>
+  <summary>Открыть</summary>
+
+  ```json
+  {
+    "artist": "артист",
+    "id": 456239733,
+    "owner_id": 88262293,
+    "title": "тайтл",
+    "duration": 219,
+    "is_explicit": false,
+    "is_focus_track": false,
+    "track_code": "...",
+    "url": "https://cs7-1v4.v...TU&long_chunk=1",
+    "date": 1595144321,
+    "short_videos_allowed": false,
+    "stories_allowed": false
+  }
+  ```
+</details>
 
 ## audio.search
-Поиск по аудиозаписям
+
+Возвращает найденные аудиозаписи.
 
 ### Параметры
 
@@ -1491,7 +1459,10 @@
 </details>
 
 ## audio.searchAlbums
-Поиск альбомов
+
+Возвращает найденные альбомы.
+Отличается от плейлистов тем, что альбомы могут быть выпущены только исполнителями.
+
 
 ### Параметры
 
@@ -1560,7 +1531,8 @@
 </details>
 
 ## audio.searchArtists
-Поиск исполнителей
+
+Возвращает найденных исполнителей.
 
 ### Параметры
 
@@ -1624,7 +1596,8 @@
 </details>
 
 ## audio.searchMain
-Общий поиск
+
+Возвращает все найденные объекты, связанные с разделом музыки.
 
 ### Параметры
 
@@ -1674,7 +1647,9 @@
 </details>
 
 ## audio.searchPlaylists
-Найти плейлист
+
+Возвращает найденные плейлисты.
+Отличается от альбомов тем, что плейлисты могут составляться и обычными пользователями (`owner_id` > 0).
 
 ### Параметры
 
@@ -1773,36 +1748,6 @@
   ```
 </details>
 
-## audio.sendStartEvent
-### Параметры
-
-| Параметр | Тип    | Описание                                     |
-|----------|--------|----------------------------------------------|
-| uuid     | string | Неизвестно                                   |
-| audio_id | string | Аудиозапись в формате {owner_id}\_{audio_id} |
-
-### Пример ответа
-
-<details>
-  <summary>Открыть</summary>
-
-  ```json
-  {
-    "response": 1
-  }
-  ```
-</details>
-
-## audio.sendTrackReaction
-### Параметры
-
-| Параметр | Тип    | Описание        |
-|----------|--------|-----------------|
-| user_id  | int    | ID пользователя |
-| audio_id | string | Аудиозапись     |
-| reaction | string | Неизвестно      |
-| position | float  | Неизвестно      |
-
 ## audio.setBroadcast
 Установить аудиозапись в статус
 
@@ -1811,7 +1756,7 @@
 | Параметр   | Тип    | Описание                                                                                         |
 |------------|--------|--------------------------------------------------------------------------------------------------|
 | audio      | string | Аудиозапись в формате {owner_id}\_{audio_id}. Если не передать этот параметр, то статус пропадет |
-| target_ids | string | ID страниц, куда будет установлен статус                                                         |
+| target_ids | string | ID профилей или сообществ, куда будет установлен статус                                          |
 
 ### Пример ответа
 
@@ -1824,72 +1769,3 @@
   }
   ```
 </details>
-
-## audio.setForDownload
-### Параметры
-
-| Параметр | Тип | Описание                 |
-|----------|-----|--------------------------|
-| owner_id | int | ID владельца аудиозаписи |
-| audio_id | int | ID аудиозаписи           |
-
-### Пример ответа
-
-<details>
-  <summary>Открыть</summary>
-
- ```json
-  {
-    "response": 1
-  }
-  ```
-</details>
-
-## audio.setPlaylistForDownload
-### Параметры
-
-| Параметр    | Тип    | Описание               |
-|-------------|--------|------------------------|
-| owner_id    | int    | ID владельца плейлиста |
-| playlist_id | int    | ID плейлиста           |
-| access_key  | string | Ключ доступа           |
-
-### Пример ответа
-
-<details>
-  <summary>Открыть</summary>
-
-  ```json
-  {
-    "response": 1
-  }
-  ```
-</details>
-
-## audio.subscribeToQueue
-Возвращает адрес какого-то специального лонгпула
-
-### Пример ответа
-
-<details>
-  <summary>Открыть</summary>
-
-  ```json
-  {
-    "response": {
-      "url": ""
-    }
-  }
-  ```
-</details>
-
-## audio.unfollowArtist
-Отписаться от артиста
-
-### Параметры
-
-| Параметр  | Тип    | Описание                |
-|-----------|--------|-------------------------|
-| artist_id | string | ID артиста              |
-| user_id   | int    | ID пользователя         |
-| ref       | string | Параметр для статистики |
