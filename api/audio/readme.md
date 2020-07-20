@@ -1,7 +1,9 @@
 # audio
+
 Методы для работы с аудиозаписями
 
 ## Список методов
+
 * [audio.add](#audioadd) — добавить аудиозапись к себе
 * [audio.addToPlaylist](#audioaddtoplaylist) — добавить аудиозаписи в плейлист
 * [audio.createPlaylist](#audiocreateplaylist) — создать плейлист
@@ -9,7 +11,7 @@
 * [audio.deletePlaylist](#audiodeleteplaylist) — удалить плейлист
 * [audio.edit](#audioedit) — отредактировать данные аудиозаписи
 * [audio.editPlaylist](#audioeditplaylist) — отредактировать данные плейлиста
-* [audio.get](#audioget) — получить список аудиозаписей (своих, у других людей или в плейлисте)
+* [audio.get](#audioget) — получить список аудиозаписей в профиле или плейлисте
 * [audio.getAlbumsByArtist](#audiogetalbumsbyartist) — получить альбомы исполнителя
 * [audio.getAudiosByArtist](#audiogetaudiosbyartist) — получить треки исполнителя
 * [audio.getBroadcast](#audiogetbroadcast) — включена ли трансляция треков в статус
@@ -46,6 +48,8 @@
 
 Добавляет чужую аудиозапись к себе.
 
+Метод так же позволяет добавлять аудиозаписи из своего списка, даже если они были удалены **несколько лет назад**.
+
 ### Параметры
 
 | Параметр     | Тип    | Описание                |
@@ -57,6 +61,8 @@
 
 ### Тип возвращаемого значения
 
+Возвращает ID добавленной аудиозаписи.
+
 ```ts
 type AudioAdd = number;
 ```
@@ -66,7 +72,7 @@ type AudioAdd = number;
 <details>
   <summary>Открыть</summary>
 
-  ```js
+  ```json
   456239735
   ```
 </details>
@@ -86,6 +92,8 @@ type AudioAdd = number;
 | **audio_ids**   | string | ID аудиозаписей в формате `{owner_id}_{audio_id}` через запятую |
 
 ### Тип возвращаемого значения
+
+Возвращает список с ID добавленных аудиозаписей.
 
 ```ts
 type AudioAddToPlaylist = { audio_id: number }[];
@@ -109,8 +117,6 @@ type AudioAddToPlaylist = { audio_id: number }[];
 
 Создает плейлист.
 
-В качестве `owner_id` можно указать либо свой ID, либо ID группы, в которую можно добавлять аудиозаписи.
-
 ### Параметры
 
 | Параметр     | Тип    | Описание                                              |
@@ -119,6 +125,8 @@ type AudioAddToPlaylist = { audio_id: number }[];
 | **title**    | string | Название плейлиста                                    |
 | description  | string | Описание плейлиста                                    |
 | audio_ids    | string | Список аудиозаписей в формате `{owner_id}_{audio_id}` |
+
+В качестве `owner_id` можно указать либо свой ID, либо ID группы, в которую можно добавлять аудиозаписи.
 
 ### Тип возвращаемого значения
 
@@ -166,7 +174,7 @@ type AudioCreatePlaylist = VKPlaylist;
 
 ## audio.delete
 
-Удаляет аудиозапись из добавленных.
+Удаляет аудиозапись из добавленных с [возможностью ее восстановления](#audiorestore).
 
 ### Параметры
 
@@ -186,7 +194,7 @@ type AudioDelete = 1;
 <details>
   <summary>Открыть</summary>
 
-  ```js
+  ```json
   1
   ```
 </details>
@@ -195,7 +203,7 @@ type AudioDelete = 1;
 
 ## audio.deletePlaylist
 
-Удаляет плейлист.
+Удаляет плейлист **без возможности восстановления**.
 
 ### Параметры
 
@@ -215,7 +223,7 @@ type AudioDeletePlaylist = 1;
 <details>
   <summary>Открыть</summary>
 
-  ```js
+  ```json
   1
   ```
 </details>
@@ -226,10 +234,14 @@ type AudioDeletePlaylist = 1;
 
 Редактирует данные аудиозаписи.
 
-**Обратите внимание:** для некоторых треков может прийти 15 ошибка API (Access Denied).
-Отличить разрешенные и запрещенные для редактирования треки невозможно, поэтому нужно проверять каждый вызов.
+**Обратите внимание:** для треков, которые нельзя редактировать приходит 15 ошибка API `Access Denied`.
 
-Однако, по моим наблюдениям, наличие поля `main_artists` всегда означает запрет на редактирование.
+Понять, что редактировать трек разрешено, можно только после вызова этого метода с передачей двух
+обязательных параметров. Если редактировать нельзя, то придет ошибка, а если можно, то вернется число.
+
+Понять, что редактировать трек запрещено, можно либо с помощью вызова этого метода, либо проверив
+аудиозапись на наличие поля `main_artists`. Если этого поля не будет, то это не означает, что редактировать
+трек разрешено.
 
 ### Параметры
 
@@ -256,7 +268,7 @@ type AudioEdit = number;
 
 <details>
   <summary>Открыть</summary>
-  ```js
+  ```json
   314927765
   ```
 </details>
@@ -289,7 +301,7 @@ type AudioEditPlaylist = 1;
 <details>
   <summary>Открыть</summary>
 
-  ```js
+  ```json
   1
   ```
 </details>
@@ -297,16 +309,20 @@ type AudioEditPlaylist = 1;
 
 
 ## audio.get
-Получить аудиозаписи
+
+Возвращает аудиозаписи:
+  * С вашей страницы (если не указывать или указать ваш `owner_id`)
+  * Со страницы другого пользователя или группы (при указании `owner_id`)
+  * Из плейлиста пользователя или группы (при указании `playlist_id`)
 
 ### Параметры
 
 | Параметр     | Тип    | Описание                                                            |
 |--------------|--------|---------------------------------------------------------------------|
 | owner_id     | int    | ID владельца аудиозаписей. По умолчанию ваш ID                      |
+| playlist_id  | int    | ID плейлиста                                                        |
 | count        | int    | Количество аудиозаписей                                             |
 | offset       | int    | Смещение                                                            |
-| playlist_id  | int    | ID плейлиста                                                        |
 | extended     | flag   | Возвращать в ответе поля `profiles` и `groups`                      |
 | fields       | string | Дополнительные поля для `profiles` и `groups`                       |
 | shuffle_seed | int    | Рандомное число. Используется для случайной сортировки аудиозаписей |
@@ -317,8 +333,6 @@ type AudioEditPlaylist = 1;
 interface AudioGet {
   count: number
   items: VKAudio[]
-  // profiles и groups возвращаются всегда:
-  // если нет объектов, то возвращается пустой массив
   profiles?: VKUser[]
   groups?: VKGroup[]
 }
@@ -332,56 +346,52 @@ interface AudioGet {
   ```json
   {
     "count": 16,
-    "items": [
-      {
-        "artist": "Anne-Marie",
-        "id": 456239728,
-        "owner_id": 88262293,
-        "title": "Alarm",
-        "duration": 219,
+    "items": [{
+      "artist": "Anne-Marie",
+      "id": 456239728,
+      "owner_id": 88262293,
+      "title": "Alarm",
+      "duration": 219,
+      "access_key": "...",
+      "ads": {
+        "content_id": "88262293_456239728",
+        "duration": "219",
+        "account_age_type": "3",
+        "puid1": "554",
+        "puid22": "14"
+      },
+      "is_explicit": true,
+      "is_focus_track": false,
+      "is_licensed": true,
+      "track_code": "...",
+      "url": "...",
+      "date": 1593884324,
+      "album": {
+        "id": 128721,
+        "title": "Alarm (Remixes)",
+        "owner_id": -2000128721,
         "access_key": "...",
-        "ads": {
-          "content_id": "88262293_456239728",
-          "duration": "219",
-          "account_age_type": "3",
-          "puid1": "554",
-          "puid22": "14"
-        },
-        "is_explicit": true,
-        "is_focus_track": false,
-        "is_licensed": true,
-        "track_code": "...",
-        "url": "https://cs7-1v4.vkuseraudio.net/p4/b1ee...qQpDOAworV6aHmdmGB&long_chunk=1",
-        "date": 1593884324,
-        "album": {
-          "id": 128721,
-          "title": "Alarm (Remixes)",
-          "owner_id": -2000128721,
-          "access_key": "...",
-          "thumb": {
-            "width": 300,
-            "height": 300,
-            "photo_34": "https://sun9-55.userapi.com/c846217/v846217368/1c155b/TwDPBBlui4Y.jpg",
-            "photo_68": "https://sun9-57.userapi.com/c846217/v846217368/1c1559/_vM0aBzNKvE.jpg",
-            "photo_135": "https://sun7-7.userapi.com/c846217/v846217368/1c1557/ACYLOgJu90o.jpg",
-            "photo_270": "https://sun9-46.userapi.com/c846217/v846217368/1c1554/SGvkSBuOTwk.jpg",
-            "photo_300": "https://sun9-72.userapi.com/c846217/v846217368/1c1552/Rvbbz6sKMdw.jpg",
-            "photo_600": "https://sun9-1.userapi.com/c846217/v846217368/1c1551/BzOIUxmIzXQ.jpg",
-            "photo_1200": "https://sun9-10.userapi.com/c846217/v846217368/1c1550/amcpWlIUkro.jpg"
-          }
-        },
-        "main_artists": [
-          {
-            "name": "Anne-Marie",
-            "domain": "313759640627391837",
-            "id": "313759640627391837"
-          }
-        ],
-        "subtitle": "Marshmello Remix",
-        "short_videos_allowed": false,
-        "stories_allowed": false
-      }
-    ]
+        "thumb": {
+          "width": 300,
+          "height": 300,
+          "photo_34": "https://sun9-55.userapi.com/c846217/v846217368/1c155b/TwDPBBlui4Y.jpg",
+          "photo_68": "https://sun9-57.userapi.com/c846217/v846217368/1c1559/_vM0aBzNKvE.jpg",
+          "photo_135": "https://sun7-7.userapi.com/c846217/v846217368/1c1557/ACYLOgJu90o.jpg",
+          "photo_270": "https://sun9-46.userapi.com/c846217/v846217368/1c1554/SGvkSBuOTwk.jpg",
+          "photo_300": "https://sun9-72.userapi.com/c846217/v846217368/1c1552/Rvbbz6sKMdw.jpg",
+          "photo_600": "https://sun9-1.userapi.com/c846217/v846217368/1c1551/BzOIUxmIzXQ.jpg",
+          "photo_1200": "https://sun9-10.userapi.com/c846217/v846217368/1c1550/amcpWlIUkro.jpg"
+        }
+      },
+      "main_artists": [{
+        "name": "Anne-Marie",
+        "domain": "313759640627391837",
+        "id": "313759640627391837"
+      }],
+      "subtitle": "Marshmello Remix",
+      "short_videos_allowed": false,
+      "stories_allowed": false
+    }]
   }
   ```
 </details>
@@ -650,24 +660,24 @@ type AudioGetById = VKAudio[];
 ## audio.getCatalog
 
 Возвращает список разделов с аудиозаписями, альбомами, плейлистами, артистами и так далее
-(при использовании параметров, описанных ниже, могут вернуться и многие другие разделы, включая свои
+(при использовании некоторых параметров, могут вернуться и многие другие разделы, включая свои
 и чужие аудиозаписи).
-
-При использовании параметра `artist_id` возвращаются только те разделы, в которых упоминается этот автор:
-его "профиль" (информация об артисте), популярные треки, альбомы и так далее.
-
-При использовании параметра `query` возвращаются данные из всех разделов, в которых имеется информация
-об этом запросе.
 
 ### Параметры
 
 | Параметр   | Тип    | Описание                                      |
 |------------|--------|-----------------------------------------------|
 | artist_id  | string | ID артиста                                    |
-| count      | int    | Количество разделов                           |
-| fields     | string | Дополнительные поля для `profiles` и `groups` |
-| start_from | string | Смещение (поле `next_from`)                   |
 | query      | string | Строка поиска                                 |
+| count      | int    | Количество разделов                           |
+| start_from | string | Смещение (поле `next_from`)                   |
+| fields     | string | Дополнительные поля для `profiles` и `groups` |
+
+При использовании параметра `artist_id` возвращаются только те разделы, в которых упоминается этот автор:
+его "профиль" (информация об артисте), популярные треки, альбомы и так далее.
+
+При использовании параметра `query` возвращаются данные из всех разделов, в которых имеется информация
+об этом запросе.
 
 ### Тип возвращаемого значения
 
@@ -783,10 +793,10 @@ interface AudioGetCatalog {
 |--------------|--------|------------------------------------------------|
 | **block_id** | string | ID секции                                      |
 | count        | int    | Количество возвращаемых объектов               |
-| extended     | flag   | Возвращать в ответе поля `profiles` и `groups` |
-| fields       | string | Дополнительные поля для `profiles` и `groups`  |
 | start_from   | string | Смещение (поле `next_from`)                    |
 | shuffle      | flag   | Перемешать треки                               |
+| extended     | flag   | Возвращать в ответе поля `profiles` и `groups` |
+| fields       | string | Дополнительные поля для `profiles` и `groups`  |
 
 ### Тип возвращаемого значения
 
@@ -887,7 +897,7 @@ type AudioGetCount = number;
 <details>
   <summary>Открыть</summary>
 
-  ```js
+  ```json
   43
   ```
 </details>
@@ -936,14 +946,16 @@ interface AudioGetHints {
 
 ## audio.getLyrics
 
-Возвращает текст песни. Поле `lyrics_id` можно получить из объекта аудиозаписи у поля с таким же названием.
-Часто можно встретить песни, у которых не возвращается `lyrics_id`, поэтому нужно проверять их наличие перед использованием.
+Возвращает текст песни.
 
 ### Параметры
 
 | Параметр      | Тип | Описание        |
 |---------------|-----|-----------------|
 | **lyrics_id** | int | ID текста песни |
+
+Поле `lyrics_id` можно получить из объекта аудиозаписи.
+В некоторых аудиозаписях данное поле отсутствует.
 
 ### Тип возвращаемого значения
 
@@ -1033,16 +1045,19 @@ type AudioGetPlaylistById = VKPlaylist;
 | Параметр     | Тип    | Описание                                       |
 |--------------|--------|------------------------------------------------|
 | **owner_id** | int    | ID пользователя или группы                     |
-| extended     | flag   | Возвращать в ответе поля `profiles` и `groups` |
-| fields       | string | Дополнительные поля для `profiles` и `groups`  |
 | count        | int    | Количество плейлистов                          |
 | start_from   | string | Смещение (поле `next_from`)                    |
 | offset       | int    | Смещение                                       |
+| extended     | flag   | Возвращать в ответе поля `profiles` и `groups` |
+| fields       | string | Дополнительные поля для `profiles` и `groups`  |
 | filters      | string | `all`, `owned` или `followed`                  |
 
-Поля `start_from` и `offset` хоть и являются разными полями, которые используются для смещения,
-их все же можно использовать вместе. Однако я настоятельно **не** рекомендую использовать их вместе,
-чтобы не запутаться и предотвратить потенциальные проблемы.
+Поля `start_from` и `offset` отвечают за смещение, но работают по разному:
+  * Поле `start_from` не требует сохранения количества полученных плейлистов и не имеет никаких багов.
+  * Поле `offset` же требует передавать в него количество уже загруженных плейлистов. Так же,
+    если между двумя запросами пользователь добавит плейлист или удалит его, то в результате
+    мы можем увидеть один уже полученный плейлист или пропустить еще не полученный.
+    С полем `start_from` таких проблем нет.
 
 ### Тип возвращаемого значения
 
@@ -1449,12 +1464,40 @@ interface AudioGetSearchTrends {
 
 Возвращает аудиозаписи, которые можно использовать в историях.
 
-**Внимание:** Документация для этого метода не завершена.
+### Параметры
+
+| Параметр   | Тип    | Описание          |
+|------------|--------|-------------------|
+| count      | int    | Количество блоков |
+| start_from | string | Смещение          |
 
 ### Тип возвращаемого значения
 
 ```ts
-// TODO
+interface AudioGetStoryCatalog {
+  sections: VKAudioStorySection[]
+}
+
+interface VKAudioStorySection {
+  id: string
+  name: string
+  blocks: VKAudioStoryBlock[]
+  url: string
+  is_selected: 1
+  next_from?: string
+  total_count: number
+}
+
+interface VKAudioStoryBlock {
+  id: string
+  block_view_type: 'triple_stacked_slider_picker'
+  url: string
+  music_audios: VKAudio[]
+  owner_id: number
+  fullscreen_view_type: 'list_picker'
+  title: string
+  data_type: 'music_audios'
+}
 ```
 
 ### Пример ответа
@@ -1536,8 +1579,6 @@ interface AudioGetSearchTrends {
 
 Возвращает список найденных песен для прикрепления к истории.
 
-**Внимание:** Документация для этого метода не завершена.
-
 ### Параметры
 
 | Параметр | Тип    | Описание      |
@@ -1547,7 +1588,8 @@ interface AudioGetSearchTrends {
 ### Тип возвращаемого значения
 
 ```ts
-// TODO
+// Описан в методе выше
+type AudioGetStorySearchCatalog = AudioGetStoryCatalog;
 ```
 
 ### Пример ответа
@@ -1557,76 +1599,74 @@ interface AudioGetSearchTrends {
 
   ```json
   {
-    "sections": [
-      {
-        "id": "PUldVA8HR0RzSVNUagdTRGpJUFQPBRY",
-        "name": "",
-        "blocks": [{
-          "id": "PUlQVA8GR0R3W0tMF2tZUmRHS0EXDkk6M1tdRVNoHlZyX1kqQARfVX43HEYBB1k6M1tdRQBoHlZyX1tUGRZeRHxJNkUNFkdEcklTRRkWWlNkUVgL",
-          "block_view_type": "list_picker",
-          "url": "https://vk.com/",
-          "no_header": 1,
-          "music_audios": [{
-            "artist": "MATRANG, Баста",
-            "id": 52301274,
-            "owner_id": -2001301274,
-            "title": "Привет",
-            "duration": 195,
-            "access_key": "...",
-            "ads": {
-              "content_id": "-2001301274_52301274",
-              "duration": "195",
-              "account_age_type": "3",
-              "puid1": "554",
-              "puid22": "14"
-            },
-            "is_explicit": false,
-            "is_focus_track": false,
-            "is_licensed": true,
-            "track_code": "...",
-            "url": "...",
-            "date": 1559735459,
-            "album": {
-              "id": 4878866,
-              "title": "Привет",
-              "owner_id": -2000878866,
-              "access_key": "...",
-              "thumb": {
-                "width": 300,
-                "height": 300,
-                "photo_34": "https://sun7-9.userapi.com/c852320/v852320164/146b17/fZiahTMz7co.jpg",
-                "photo_68": "https://sun7-8.userapi.com/c852320/v852320164/146b15/GpA8CPkpuuE.jpg",
-                "photo_135": "https://sun7-8.userapi.com/c852320/v852320164/146b13/tCavZykKSL0.jpg",
-                "photo_270": "https://sun7-6.userapi.com/c852320/v852320164/146b10/SZXbfzX-Shg.jpg",
-                "photo_300": "https://sun7-6.userapi.com/c852320/v852320164/146b0e/uSziIaxD450.jpg",
-                "photo_600": "https://sun7-7.userapi.com/c852320/v852320164/146b0d/E6kDgHMCsqY.jpg",
-                "photo_1200": "https://sun7-7.userapi.com/c852320/v852320164/146b0c/Ttd6hXc-aII.jpg"
-              }
-            },
-            "main_artists": [
-              {
-                "name": "MATRANG",
-                "domain": "4563136988003343146",
-                "id": "4563136988003343146"
-              },
-              {
-                "name": "Баста",
-                "domain": "2860392754699853973",
-                "id": "2860392754699853973"
-              }
-            ],
-            "short_videos_allowed": true,
-            "stories_allowed": true
-          }],
-          "fullscreen_view_type": "list_picker",
-          "title": "Все аудиозаписи",
-          "data_type": "music_audios"
-        }],
+    "sections": [{
+      "id": "PUldVA8HR0RzSVNUagdTRGpJUFQPBRY",
+      "name": "",
+      "blocks": [{
+        "id": "PUlQVA8GR0R3W0tMF2tZUmRHS0EXDkk6M1tdRVNoHlZyX1kqQARfVX43HEYBB1k6M1tdRQBoHlZyX1tUGRZeRHxJNkUNFkdEcklTRRkWWlNkUVgL",
+        "block_view_type": "list_picker",
         "url": "https://vk.com/",
-        "is_selected": 1,
-        "total_count": 1
-      }
-    ]
+        "no_header": 1,
+        "music_audios": [{
+          "artist": "MATRANG, Баста",
+          "id": 52301274,
+          "owner_id": -2001301274,
+          "title": "Привет",
+          "duration": 195,
+          "access_key": "...",
+          "ads": {
+            "content_id": "-2001301274_52301274",
+            "duration": "195",
+            "account_age_type": "3",
+            "puid1": "554",
+            "puid22": "14"
+          },
+          "is_explicit": false,
+          "is_focus_track": false,
+          "is_licensed": true,
+          "track_code": "...",
+          "url": "...",
+          "date": 1559735459,
+          "album": {
+            "id": 4878866,
+            "title": "Привет",
+            "owner_id": -2000878866,
+            "access_key": "...",
+            "thumb": {
+              "width": 300,
+              "height": 300,
+              "photo_34": "https://sun7-9.userapi.com/c852320/v852320164/146b17/fZiahTMz7co.jpg",
+              "photo_68": "https://sun7-8.userapi.com/c852320/v852320164/146b15/GpA8CPkpuuE.jpg",
+              "photo_135": "https://sun7-8.userapi.com/c852320/v852320164/146b13/tCavZykKSL0.jpg",
+              "photo_270": "https://sun7-6.userapi.com/c852320/v852320164/146b10/SZXbfzX-Shg.jpg",
+              "photo_300": "https://sun7-6.userapi.com/c852320/v852320164/146b0e/uSziIaxD450.jpg",
+              "photo_600": "https://sun7-7.userapi.com/c852320/v852320164/146b0d/E6kDgHMCsqY.jpg",
+              "photo_1200": "https://sun7-7.userapi.com/c852320/v852320164/146b0c/Ttd6hXc-aII.jpg"
+            }
+          },
+          "main_artists": [
+            {
+              "name": "MATRANG",
+              "domain": "4563136988003343146",
+              "id": "4563136988003343146"
+            },
+            {
+              "name": "Баста",
+              "domain": "2860392754699853973",
+              "id": "2860392754699853973"
+            }
+          ],
+          "short_videos_allowed": true,
+          "stories_allowed": true
+        }],
+        "fullscreen_view_type": "list_picker",
+        "title": "Все аудиозаписи",
+        "data_type": "music_audios"
+      }],
+      "url": "https://vk.com/",
+      "is_selected": 1,
+      "total_count": 1
+    }]
   }
   ```
 </details>
@@ -1684,7 +1724,7 @@ type AudioReorder = 1;
 <details>
   <summary>Открыть</summary>
 
-  ```js
+  ```json
   1
   ```
 </details>
@@ -1717,7 +1757,7 @@ type AudioReorderPlaylists = 1;
 <details>
   <summary>Открыть</summary>
 
-  ```js
+  ```json
   1
   ```
 </details>
@@ -1728,10 +1768,11 @@ type AudioReorderPlaylists = 1;
 
 Восстанавливает удаленную аудиозапись.
 
-**Внимание: метод не работает!**
+**Внимание:** метод может не восстановить аудиозапись, а выдать 15 ошибку
+`Access denied: can not restore too late`, даже если с момента удаления прошла всего секунда.
 
-Вместо использования этого метода, вам нужно использовать [audio.add](#audioadd) для добавления аудиозаписи
-и [audio.reorder](#audioreorder) для перемещения на старое положение.
+Если восстановить аудиозапись не удалось, вы можете использовать [audio.add](#audioadd) для
+добавления аудиозаписи и [audio.reorder](#audioreorder) для перемещения на старое положение.
 
 ### Параметры
 
@@ -1739,6 +1780,66 @@ type AudioReorderPlaylists = 1;
 |--------------|-----|----------------|
 | **owner_id** | int | ID владельца   |
 | **audio_id** | int | ID аудиозаписи |
+
+### Тип возвращаемого значения
+
+```ts
+type AudioRestore = VKAudio;
+```
+
+### Пример ответа
+
+<details>
+  <summary>Открыть</summary>
+
+  ```json
+  {
+    "artist": "Galantis",
+    "id": 456239739,
+    "owner_id": 88262293,
+    "title": "Holy Water",
+    "duration": 176,
+    "access_key": "...",
+    "ads": {
+      "content_id": "88262293_456239739",
+      "duration": "176",
+      "account_age_type": "3",
+      "puid1": "554",
+      "puid22": "14"
+    },
+    "is_explicit": false,
+    "is_focus_track": false,
+    "is_licensed": true,
+    "track_code": "...",
+    "url": "...",
+    "date": 1595181602,
+    "album": {
+      "id": 6662324,
+      "title": "Church",
+      "owner_id": -2000662324,
+      "access_key": "...",
+      "thumb": {
+        "width": 300,
+        "height": 300,
+        "photo_34": "https://sun9-72.userapi.com/c855328/v855328237/1eadf9/vnhIHV1Z6r4.jpg",
+        "photo_68": "https://sun9-33.userapi.com/c855328/v855328237/1eadf7/Z24BeWRX5mA.jpg",
+        "photo_135": "https://sun9-68.userapi.com/c855328/v855328237/1eadf5/k2NyMgcDJuc.jpg",
+        "photo_270": "https://sun9-25.userapi.com/c855328/v855328237/1eadf2/Qb2VLx3DsN0.jpg",
+        "photo_300": "https://sun9-5.userapi.com/c855328/v855328237/1eadf0/9tedhIMwRd4.jpg",
+        "photo_600": "https://sun9-75.userapi.com/c855328/v855328237/1eadef/jAJ3KsEwhmc.jpg",
+        "photo_1200": "https://sun9-38.userapi.com/c855328/v855328237/1eadee/p3LqYbLbYlE.jpg"
+      }
+    },
+    "main_artists": [{
+      "name": "Galantis",
+      "domain": "2964507775719132986",
+      "id": "2964507775719132986"
+    }],
+    "short_videos_allowed": false,
+    "stories_allowed": false
+  }
+  ```
+</details>
 
 
 
@@ -1777,7 +1878,7 @@ type AudioSave = VKAudio;
     "is_explicit": false,
     "is_focus_track": false,
     "track_code": "...",
-    "url": "https://cs7-1v4.v...TU&long_chunk=1",
+    "url": "...",
     "date": 1595144321,
     "short_videos_allowed": false,
     "stories_allowed": false
@@ -1793,13 +1894,13 @@ type AudioSave = VKAudio;
 
 ### Параметры
 
-| Параметр       | Тип    | Описание                                              |
-|----------------|--------|-------------------------------------------------------|
-| **q**          | string | Строка поиска                                         |
-| search_own     | flag   | Разрешить использование своих аудиозаписей для поиска |
-| performer_only | flag   | Учитывать при поиске только имя артиста               |
-| offset         | int    | Смещение                                              |
-| count          | int    | Количество аудиозаписей                               |
+| Параметр       | Тип    | Описание                                |
+|----------------|--------|-----------------------------------------|
+| **q**          | string | Строка поиска                           |
+| search_own     | flag   | Включить в поиск свои аудиозаписи       |
+| performer_only | flag   | Учитывать при поиске только имя артиста |
+| count          | int    | Количество аудиозаписей                 |
+| offset         | int    | Смещение                                |
 
 ### Тип возвращаемого значения
 
@@ -1972,16 +2073,16 @@ interface AudioSearchAlbums {
 ### Тип возвращаемого значения
 
 ```ts
+interface AudioSearchArtists {
+  count: number
+  items: VKArtist[]
+}
+
 interface VKArtist {
   id: string
   name: string
   domain: string
   photo?: { width: number, height: number, url: string }[]
-}
-
-interface AudioSearchArtists {
-  count: number
-  items: VKArtist[]
 }
 ```
 
@@ -1992,48 +2093,19 @@ interface AudioSearchArtists {
 
   ```json
   {
-    "response": {
-      "count": 103,
-      "items": [
-        {
-          "name": "Boulevard Depo",
-          "domain": "boulevarddepo",
-          "id": "4351355679024274167",
-          "photo": [
-            {
-              "height": 100,
-              "url": "",
-              "width": 100
-            },
-            {
-              "height": 135,
-              "url": "",
-              "width": 135
-            },
-            {
-              "height": 50,
-              "url": "",
-              "width": 50
-            },
-            {
-              "height": 270,
-              "url": "",
-              "width": 270
-            },
-            {
-              "height": 198,
-              "url": "",
-              "width": 198
-            }
-          ]
-        },
-        {
-          "name": "Boulevard des airs",
-          "domain": "boulevarddesairs",
-          "id": "1914845056630918822"
-        }
+    "count": 103,
+    "items": [{
+      "name": "Boulevard Depo",
+      "domain": "boulevarddepo",
+      "id": "4351355679024274167",
+      "photo": [
+        { "height": 100, "url": "...", "width": 100 },
+        { "height": 135, "url": "...", "width": 135 },
+        { "height": 50, "url": "...", "width": 50 },
+        { "height": 270, "url": "...", "width": 270 },
+        { "height": 198, "url": "...", "width": 198 }
       ]
-    }
+    }]
   }
   ```
 </details>
@@ -2076,35 +2148,217 @@ interface AudioSearchMain {
 
   ```json
   {
-    "response": {
-      "albums": {
-        "count": 0,
-        "items": []
-      },
-      "audios": {
-        "count": 0,
-        "items": []
-      },
-      "artists": {
-        "count": 0,
-        "items": []
-      },
-      "playlists": {
-        "count": 0,
-        "items": []
-      },
-      "own_audios": {
-        "count": 0,
-        "items": []
-      },
-      "own_playlists": {
-        "count": 0,
-        "items": []
-      },
-      "own_albums": {
-        "count": 0,
-        "items": []
-      }
+    "albums": {
+      "count": 30,
+      "items": [{
+        "id": 2909952,
+        "owner_id": -2000909952,
+        "type": 1,
+        "title": "Морг",
+        "description": "",
+        "count": 1,
+        "followers": 631,
+        "plays": 18341,
+        "create_time": 1524674167,
+        "update_time": 1545240988,
+        "genres": [{
+          "id": 10,
+          "name": "Хип-хоп"
+        }],
+        "is_following": false,
+        "year": 2018,
+        "photo": {
+          "width": 300,
+          "height": 300,
+          "photo_34": "https://sun7-6.userapi.com/c846417/v846417632/33961/Ffp6Rgejous.jpg",
+          "photo_68": "https://sun7-9.userapi.com/c846417/v846417632/3395f/i-3N78E04pg.jpg",
+          "photo_135": "https://sun7-8.userapi.com/c846417/v846417632/3395d/5UsLXbHdpOc.jpg",
+          "photo_270": "https://sun7-7.userapi.com/c846417/v846417632/3395a/2UPQ5KPEckk.jpg",
+          "photo_300": "https://sun7-7.userapi.com/c846417/v846417632/33958/ccUv93JGzcE.jpg",
+          "photo_600": "https://sun7-6.userapi.com/c846417/v846417632/33957/l8kK8qOAJo8.jpg",
+          "photo_1200": "https://sun7-8.userapi.com/c846417/v846417632/33956/Dy4ydlxN9qk.jpg"
+        },
+        "permissions": {
+          "play": true,
+          "share": true,
+          "edit": false,
+          "follow": true
+        },
+        "subtitle_badge": false,
+        "play_button": false,
+        "access_key": "...",
+        "is_explicit": true,
+        "main_artists": [{
+          "name": "Jubilee",
+          "domain": "4372543522501467211",
+          "id": "4372543522501467211"
+        }],
+        "album_type": "main_only"
+      }]
+    },
+    "audios": {
+      "count": 3601,
+      "items": [{
+        "artist": "Jubilee",
+        "id": 456590904,
+        "owner_id": 371745470,
+        "title": "Морг",
+        "duration": 159,
+        "access_key": "...",
+        "ads": {
+          "content_id": "371745470_456590904",
+          "duration": "159",
+          "account_age_type": "3",
+          "puid1": "554",
+          "puid22": "14"
+        },
+        "is_explicit": true,
+        "is_focus_track": false,
+        "is_licensed": true,
+        "track_code": "...",
+        "url": "...",
+        "date": 1524733409,
+        "album": {
+          "id": 2909952,
+          "title": "Морг",
+          "owner_id": -2000909952,
+          "access_key": "...",
+          "thumb": {
+            "width": 300,
+            "height": 300,
+            "photo_34": "https://sun7-6.userapi.com/c846417/v846417632/33961/Ffp6Rgejous.jpg",
+            "photo_68": "https://sun7-9.userapi.com/c846417/v846417632/3395f/i-3N78E04pg.jpg",
+            "photo_135": "https://sun7-8.userapi.com/c846417/v846417632/3395d/5UsLXbHdpOc.jpg",
+            "photo_270": "https://sun7-7.userapi.com/c846417/v846417632/3395a/2UPQ5KPEckk.jpg",
+            "photo_300": "https://sun7-7.userapi.com/c846417/v846417632/33958/ccUv93JGzcE.jpg",
+            "photo_600": "https://sun7-6.userapi.com/c846417/v846417632/33957/l8kK8qOAJo8.jpg",
+            "photo_1200": "https://sun7-8.userapi.com/c846417/v846417632/33956/Dy4ydlxN9qk.jpg"
+          }
+        },
+        "main_artists": [{
+          "name": "Jubilee",
+          "domain": "4372543522501467211",
+          "id": "4372543522501467211"
+        }],
+        "short_videos_allowed": false,
+        "stories_allowed": false
+      }]
+    },
+    "artists": {
+      "count": 500,
+      "items": [{
+        "name": "MORGENSHTERN",
+        "domain": "morgenshtern",
+        "id": "424386446084080541",
+        "photo": [
+          { "height": 100, "url": "...", "width": 100 },
+          { "height": 135, "url": "...", "width": 135 },
+          { "height": 50, "url": "...", "width": 50 },
+          { "height": 270, "url": "...", "width": 270 },
+          { "height": 198, "url": "...", "width": 198 }
+        ]
+      }]
+    },
+    "playlists": {
+      "count": 1255,
+      "items": [{
+        "id": 1,
+        "owner_id": -14017140,
+        "type": 0,
+        "title": "Коррозия Металла - Богиня морга (2018)",
+        "description": "",
+        "count": 13,
+        "followers": 166,
+        "plays": 7662,
+        "create_time": 1531424918,
+        "update_time": 1531424918,
+        "genres": [],
+        "is_following": false,
+        "photo": {
+          "width": 300,
+          "height": 300,
+          "photo_34": "https://sun9-55.userapi.com/c844320/v844320503/9fed3/VqKT7t5ithc.jpg",
+          "photo_68": "https://sun9-48.userapi.com/c844320/v844320503/9fed1/6fhozlv1dwk.jpg",
+          "photo_135": "https://sun9-14.userapi.com/c844320/v844320503/9fecf/DGmBOepVLB8.jpg",
+          "photo_270": "https://sun9-46.userapi.com/c844320/v844320503/9fecc/xsGpxjHeWnc.jpg",
+          "photo_300": "https://sun9-64.userapi.com/c844320/v844320503/9feca/8zJTTJl4zjo.jpg",
+          "photo_600": "https://sun9-72.userapi.com/c844320/v844320503/9fec9/SlxsPKA4Wy8.jpg",
+          "photo_1200": "https://sun9-12.userapi.com/c844320/v844320503/9fec8/dZIsX5Yl5sw.jpg"
+        },
+        "permissions": {
+          "play": true,
+          "share": true,
+          "edit": false,
+          "follow": true
+        },
+        "subtitle_badge": false,
+        "play_button": false,
+        "access_key": "...",
+        "album_type": "playlist"
+      }]
+    },
+    "own_audios": {
+      "count": 1,
+      "items": [{
+        "artist": "MORGENSHTERN, Витя АК",
+        "id": 456239715,
+        "owner_id": 88262293,
+        "title": "РАТАТАТАТА",
+        "duration": 118,
+        "access_key": "...",
+        "ads": {
+          "content_id": "88262293_456239715",
+          "duration": "118",
+          "account_age_type": "3",
+          "puid1": "554",
+          "puid22": "14"
+        },
+        "is_explicit": true,
+        "is_focus_track": false,
+        "is_licensed": true,
+        "track_code": "...",
+        "url": "...",
+        "date": 1585566342,
+        "album": {
+          "id": 6511315,
+          "title": "ЛЕГЕНДАРНАЯ ПЫЛЬ",
+          "owner_id": -2000511315,
+          "access_key": "...",
+          "thumb": {
+            "width": 300,
+            "height": 300,
+            "photo_34": "https://sun7-9.userapi.com/c854028/v854028325/1cbcdc/5w-est2b8M8.jpg",
+            "photo_68": "https://sun7-9.userapi.com/c854028/v854028325/1cbcda/T_RaoVNWr6I.jpg",
+            "photo_135": "https://sun7-8.userapi.com/c854028/v854028325/1cbcd8/MSPm0wNc6Yk.jpg",
+            "photo_270": "https://sun7-8.userapi.com/c854028/v854028325/1cbcd5/Z3s7GNvAW3w.jpg",
+            "photo_300": "https://sun7-9.userapi.com/c854028/v854028325/1cbcd3/BLDcJamT8UM.jpg",
+            "photo_600": "https://sun7-7.userapi.com/c854028/v854028325/1cbcd2/-Foooa6O0Is.jpg",
+            "photo_1200": "https://sun7-8.userapi.com/c854028/v854028325/1cbcd1/vpsju_dkqcc.jpg"
+          }
+        },
+        "main_artists": [
+          {
+            "name": "MORGENSHTERN",
+            "domain": "424386446084080541",
+            "id": "424386446084080541"
+          },
+          {
+            "name": "Витя АК",
+            "domain": "8901459601699630854",
+            "id": "8901459601699630854"
+          }
+        ],
+        "short_videos_allowed": false,
+        "stories_allowed": false
+      }]
+    },
+    "own_playlists": {
+      "count": 0,
+      "items": []
+    },
+    "own_albums": {
+      "count": 0,
+      "items": []
     }
   }
   ```
@@ -2122,9 +2376,9 @@ interface AudioSearchMain {
 | Параметр | Тип    | Описание                      |
 |----------|--------|-------------------------------|
 | **q**    | string | Строка поиска                 |
+| count    | int    | Количество объектов           |
 | offset   | int    | Смещение                      |
 | filters  | string | `all`, `owned` или `followed` |
-| count    | int    | Количество объектов           |
 
 ### Тип возвращаемого значения
 
