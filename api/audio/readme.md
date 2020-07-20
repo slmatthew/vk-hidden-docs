@@ -28,8 +28,8 @@
 * [audio.getRecommendations](#audiogetrecommendations) — получить музыкальные рекомендации или похожие на аудиозапись треки
 * [audio.getRestrictionPopup](#audiogetrestrictionpopup) — получить информацию об ограничении доступа к аудиозаписи
 * [audio.getSearchTrends](#audiogetsearchtrends) — получить популярные поисковые запросы
-* [audio.getStoryCatalog](#audiogetstorycatalog) — **[не завершено]** получить аудиозаписи, которые можно использовать в историях
-* [audio.getStorySearchCatalog](#audiogetstorysearchcatalog) — **[не завершено]** поиск аудиозаписей, которые можно использовать в историях
+* [audio.getStoryCatalog](#audiogetstorycatalog) — получить аудиозаписи, которые можно использовать в историях
+* [audio.getStorySearchCatalog](#audiogetstorysearchcatalog) — поиск аудиозаписей, которые можно использовать в историях
 * [audio.getUploadServer](#audiogetuploadserver) — получить адрес для загрузки аудиозаписи
 * [audio.reorder](#audioreorder) — изменить положение аудиозаписи
 * [audio.reorderPlaylists](#audioreorderplaylists) — изменить положение плейлиста
