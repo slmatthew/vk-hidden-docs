@@ -1,9 +1,12 @@
 # execute
+
 Различные методы, используемые в VK для Android.
 
-* [execute.CommunityAudiosAndPlaylists](#executecommunityaudiosandplaylists)
-* [execute.addAudioToPlaylist](#executeaddaudiotoplaylist)
-* [execute.cancelDonutSubscription](#executecanceldonutsubscription)
+## Список методов
+
+* [execute.CommunityAudiosAndPlaylists](#executecommunityaudiosandplaylists) — получить превью треков и плейлистов
+* [execute.addAudioToPlaylist](#executeaddaudiotoplaylist) — добавить аудиозаписи в плейлист
+* [execute.cancelDonutSubscription](#executecanceldonutsubscription) — отменить подписку на сообщество
 <!-- * [execute.createCommentRestricted](#executecreatecommentrestricted)
 * [execute.deleteAvatarNew](#executedeleteavatarnew)
 * [execute.deleteStory](#executedeletestory)
@@ -122,13 +125,14 @@
 
 Возвращает до 3 треков и до 15 плейлистов в аккаунте пользователя или сообщества.
 
-**Обратите внимание:** метод может вернуть ошибку для любого сообщества, поэтому при использовании нужно обязательно проверять ответ на наличие `execute_errors`.
+**Обратите внимание:** метод может вернуть ошибку для любого пользователя или сообщества,
+поэтому при использовании нужно обязательно проверять ответ на наличие `execute_errors`.
 
 ### Параметры
 
-| Параметр | Тип    | Описание                       |
-|----------|--------|--------------------------------|
-| gid      | number | id пользователя или сообщества |
+| Параметр | Тип | Описание     |
+|----------|-----|--------------|
+| **gid**  | int | ID владельца |
 
 ### Тип возвращаемого значения
 
@@ -139,117 +143,104 @@ interface ExecuteCommunityAudiosAndPlaylists {
 }
 ```
 
-### Как работает
-
-Для получения поля `audios` вызывается `audio.get` с параметрами `count: 3` и `owner_id`.
-
-Для получения поля `playlists` вызывается `audio.getPlaylists` с параметрами `count: 15` и `owner_id`.
-
 ### Пример ответа
+
 <details>
-  <summary>тык</summary>
+  <summary>Открыть</summary>
 
   ```json
   {
-    "audios": [
-      {
-        "artist": "Markul feat. Платина",
-        "id": 456241386,
-        "owner_id": 249247563,
+    "audios": [{
+      "artist": "Markul feat. Платина",
+      "id": 456241386,
+      "owner_id": 249247563,
+      "title": "Конфеты",
+      "duration": 161,
+      "access_key": "...",
+      "ads": {
+        "content_id": "249247563_456241386",
+        "duration": "161",
+        "account_age_type": "3",
+        "puid1": "554",
+        "puid22": "14"
+      },
+      "is_explicit": true,
+      "is_focus_track": false,
+      "is_licensed": true,
+      "track_code": "...",
+      "url": "...",
+      "date": 1594593737,
+      "no_search": 1,
+      "album": {
+        "id": 7981110,
         "title": "Конфеты",
-        "duration": 161,
-        "access_key": "544dab7a483ec5fdf7",
-        "ads": {
-          "content_id": "249247563_456241386",
-          "duration": "161",
-          "account_age_type": "3",
-          "puid1": "554",
-          "puid22": "14"
-        },
-        "is_explicit": true,
-        "is_focus_track": false,
-        "is_licensed": true,
-        "track_code": "f413c26d1sPTa9MUAln3tfVYEDsZyL1YNtrPOysU",
-        "url": "https://cs7-12v4.vkuseraudio.net/p4/b14c9d5b11/c06b0e031664b8/index.m3u8?extra=GFrr7j8laTGi1I8RLTYChzJsiRzMRJYRCUrCzUTZ_AVNOBGnkMOVm8INPLepxS3bY2mvKNkbwHePBQyyT3A2rJjwlh2jHxI-VUzU6znDObOLS_lJyRl67hfmvvgx8VzzYzt_g48hTcGLmcXtkT1srzArfQ&long_chunk=1",
-        "date": 1594593737,
-        "no_search": 1,
-        "album": {
-          "id": 7981110,
-          "title": "Конфеты",
-          "owner_id": -2000981110,
-          "access_key": "bde1bfe90c048fb53f",
-          "thumb": {
-            "width": 300,
-            "height": 300,
-            "photo_34": "https://sun9-55.userapi.com/c858036/v858036877/21528b/gAG6F87iB9U.jpg",
-            "photo_68": "https://sun9-8.userapi.com/c858036/v858036877/215289/z3lV3iwUOAM.jpg",
-            "photo_135": "https://sun9-66.userapi.com/c858036/v858036877/215287/Ksotp0sy3L8.jpg",
-            "photo_270": "https://sun9-4.userapi.com/c858036/v858036877/215284/KRi0vxPmVZ4.jpg",
-            "photo_300": "https://sun9-57.userapi.com/c858036/v858036877/215282/1o6DfbICuUQ.jpg",
-            "photo_600": "https://sun9-48.userapi.com/c858036/v858036877/215281/pAnBuLUn0KU.jpg",
-            "photo_1200": "https://sun9-23.userapi.com/c858036/v858036877/215280/ESX9LAQQbv8.jpg"
-          }
-        },
-        "main_artists": [
-          {
-            "name": "Markul",
-            "domain": "8473949182781681811",
-            "id": "8473949182781681811"
-          }
-        ],
-        "featured_artists": [
-          {
-            "name": "Платина",
-            "domain": "7935075146089096976",
-            "id": "7935075146089096976"
-          }
-        ],
-        "short_videos_allowed": false,
-        "stories_allowed": false
-      }
-    ],
-    "playlists": [
-      {
-        "id": 47,
-        "owner_id": 249247563,
-        "type": 0,
-        "title": "Happy(для тусовок)",
-        "description": "Есть musiceverysf телеграмм, где я каждые день выкладываю новые треки. Если интересно- залетай.",
-        "count": 131,
-        "followers": 26159,
-        "plays": 368600,
-        "create_time": 1588022194,
-        "update_time": 1594641785,
-        "genres": [],
-        "is_following": false,
-        "original": {
-          "playlist_id": 45,
-          "owner_id": 166352597,
-          "access_key": "3da97cfef1ddf7384d"
-        },
-        "photo": {
+        "owner_id": -2000981110,
+        "access_key": "...",
+        "thumb": {
           "width": 300,
           "height": 300,
-          "photo_34": "https://sun9-52.userapi.com/c857224/v857224961/1bca59/DssgMcBJMc0.jpg",
-          "photo_68": "https://sun9-27.userapi.com/c857224/v857224961/1bca57/bFHSwYnSis0.jpg",
-          "photo_135": "https://sun9-33.userapi.com/c857224/v857224961/1bca55/pvi85HGkcwM.jpg",
-          "photo_270": "https://sun9-22.userapi.com/c857224/v857224961/1bca52/rn72ju2nOy4.jpg",
-          "photo_300": "https://sun9-56.userapi.com/c857224/v857224961/1bca50/KiP1dsp76rA.jpg",
-          "photo_600": "https://sun9-56.userapi.com/c857224/v857224961/1bca4f/f-osqxKmOKo.jpg",
-          "photo_1200": "https://sun9-40.userapi.com/c857224/v857224961/1bca4e/L4SoxnNBoDs.jpg"
-        },
-        "permissions": {
-          "play": true,
-          "share": true,
-          "edit": false,
-          "follow": true
-        },
-        "subtitle_badge": false,
-        "play_button": false,
-        "access_key": "ce6f341d1d273ae160",
-        "album_type": "playlist"
-      }
-    ]
+          "photo_34": "https://sun9-55.userapi.com/c858036/v858036877/21528b/gAG6F87iB9U.jpg",
+          "photo_68": "https://sun9-8.userapi.com/c858036/v858036877/215289/z3lV3iwUOAM.jpg",
+          "photo_135": "https://sun9-66.userapi.com/c858036/v858036877/215287/Ksotp0sy3L8.jpg",
+          "photo_270": "https://sun9-4.userapi.com/c858036/v858036877/215284/KRi0vxPmVZ4.jpg",
+          "photo_300": "https://sun9-57.userapi.com/c858036/v858036877/215282/1o6DfbICuUQ.jpg",
+          "photo_600": "https://sun9-48.userapi.com/c858036/v858036877/215281/pAnBuLUn0KU.jpg",
+          "photo_1200": "https://sun9-23.userapi.com/c858036/v858036877/215280/ESX9LAQQbv8.jpg"
+        }
+      },
+      "main_artists": [{
+        "name": "Markul",
+        "domain": "8473949182781681811",
+        "id": "8473949182781681811"
+      }],
+      "featured_artists": [{
+        "name": "Платина",
+        "domain": "7935075146089096976",
+        "id": "7935075146089096976"
+      }],
+      "short_videos_allowed": false,
+      "stories_allowed": false
+    }],
+    "playlists": [{
+      "id": 47,
+      "owner_id": 249247563,
+      "type": 0,
+      "title": "Happy(для тусовок)",
+      "description": "Есть musiceverysf телеграмм, где я каждые день выкладываю новые треки. Если интересно- залетай.",
+      "count": 131,
+      "followers": 26159,
+      "plays": 368600,
+      "create_time": 1588022194,
+      "update_time": 1594641785,
+      "genres": [],
+      "is_following": false,
+      "original": {
+        "playlist_id": 45,
+        "owner_id": 166352597,
+        "access_key": "..."
+      },
+      "photo": {
+        "width": 300,
+        "height": 300,
+        "photo_34": "https://sun9-52.userapi.com/c857224/v857224961/1bca59/DssgMcBJMc0.jpg",
+        "photo_68": "https://sun9-27.userapi.com/c857224/v857224961/1bca57/bFHSwYnSis0.jpg",
+        "photo_135": "https://sun9-33.userapi.com/c857224/v857224961/1bca55/pvi85HGkcwM.jpg",
+        "photo_270": "https://sun9-22.userapi.com/c857224/v857224961/1bca52/rn72ju2nOy4.jpg",
+        "photo_300": "https://sun9-56.userapi.com/c857224/v857224961/1bca50/KiP1dsp76rA.jpg",
+        "photo_600": "https://sun9-56.userapi.com/c857224/v857224961/1bca4f/f-osqxKmOKo.jpg",
+        "photo_1200": "https://sun9-40.userapi.com/c857224/v857224961/1bca4e/L4SoxnNBoDs.jpg"
+      },
+      "permissions": {
+        "play": true,
+        "share": true,
+        "edit": false,
+        "follow": true
+      },
+      "subtitle_badge": false,
+      "play_button": false,
+      "access_key": "...",
+      "album_type": "playlist"
+    }]
   }
   ```
 </details>
@@ -258,15 +249,15 @@ interface ExecuteCommunityAudiosAndPlaylists {
 
 ## execute.addAudioToPlaylist
 
-Добавляет аудиозаписи в плейлист и возвращает обновленный альбом.
+Добавляет аудиозаписи в плейлист и возвращает обновленный плейлист.
 
 ### Параметры
 
-| Параметр    | Тип    | Описание                                            |
-|-------------|--------|-----------------------------------------------------|
-| owner_id    | number | id пользователя или сообщества                      |
-| playlist_id | number | id плейлиста                                        |
-| audio_ids   | string | id аудиозаписей в формате ownerId_audioId_accessKey |
+| Параметр        | Тип    | Описание                                              |
+|-----------------|--------|-------------------------------------------------------|
+| **owner_id**    | int    | ID владельца                                          |
+| **playlist_id** | int    | ID плейлиста                                          |
+| **audio_ids**   | string | Список аудиозаписей в формате `{owner_id}_{audio_id}` |
 
 ### Тип возвращаемого значения
 
@@ -277,17 +268,10 @@ interface ExecuteAddAudioToPlaylist {
 }
 ```
 
-### Как работает
-
-Для получения поля `result` вызывается метод `audio.addToPlaylist`, в который передаются те же параметры,
-что и в этот метод.
-
-Для получения поля `playlist` вызывается метод `audio.getPlaylistById` с параметрами `owner_id` и `playlist_id`.
-
 ### Пример ответа
 
 <details>
-  <summary>тык</summary>
+  <summary>Открыть</summary>
 
   ```json
   {
@@ -359,7 +343,7 @@ interface ExecuteAddAudioToPlaylist {
           "photo_1200": "https://sun9-33.userapi.com/c855336/v855336230/43009/8Qvk2gQI4So.jpg"
         }
       ],
-      "access_key": "***",
+      "access_key": "...",
       "album_type": "playlist"
     }
   }
@@ -370,13 +354,13 @@ interface ExecuteAddAudioToPlaylist {
 
 ## execute.cancelDonutSubscription
 
-Отменяет подписку на сообщество (с возможностью отменить отписку).
+Отменяет подписку на сообщество с возможностью отменить отписку.
 
 ### Параметры
 
-| Параметр | Тип    | Описание                       |
-|----------|--------|--------------------------------|
-| owner_id | number | id пользователя или сообщества |
+| Параметр     | Тип | Описание      |
+|--------------|-----|---------------|
+| **owner_id** | int | ID сообщества |
 
 ### Тип возвращаемого значения
 
@@ -388,7 +372,7 @@ interface ExecuteCancelDonutSubscription {
 ```
 
 В поле `group` находится дополнительное поле `donut`, которое можно самостоятельно получить, если вызвать
-метод `groups.getById` с `fields: 'donut'`. Его тип:
+метод `groups.getById` с `fields: 'donut'`:
 
 ```ts
 interface VKGroupDonut {
@@ -416,7 +400,7 @@ interface VKGroupDonut {
 В примере ответа автор не является доном.
 
 <details>
-  <summary>тык</summary>
+  <summary>Открыть</summary>
 
   ```json
   {
@@ -502,9 +486,9 @@ interface VKGroupDonut {
               "can_access_closed": true,
               "is_closed": false,
               "sex": 2,
-              "photo_50": "https://sun7-6.userapi.com/impg/jTvmWwYpVfkXnv9Vki5kEzHw0z_OtWo3Vd0OYw/3No0ZlpCLVk.jpg?size=50x0&quality=90&crop=210,153,469,469&sign=13da3e69604a141eb5cb73599ecfb508&c_uniq_tag=KuRB0mOW8B-aq8sqzKIgNUsq4RVbJUpSRQeBuTrNTy4&ava=1",
-              "photo_100": "https://sun7-6.userapi.com/impg/jTvmWwYpVfkXnv9Vki5kEzHw0z_OtWo3Vd0OYw/3No0ZlpCLVk.jpg?size=100x0&quality=90&crop=210,153,469,469&sign=81e4e0607a248d132c01273d6396c0e4&c_uniq_tag=cpE0YN8H0njXKvGSpWbo_Zd7WUtAFsjxnfU_ox8YwxE&ava=1",
-              "photo_200": "https://sun7-6.userapi.com/impg/jTvmWwYpVfkXnv9Vki5kEzHw0z_OtWo3Vd0OYw/3No0ZlpCLVk.jpg?size=200x0&quality=90&crop=210,153,469,469&sign=94e0cff55b667647605abe38243d1130&c_uniq_tag=tR469ut-uYJcuny8ckkf_fCznHO_TX6CicsuiHt-rmw&ava=1",
+              "photo_50": "...",
+              "photo_100": "...",
+              "photo_200": "...",
               "friend_status": 3
             },
             {
@@ -514,9 +498,9 @@ interface VKGroupDonut {
               "can_access_closed": true,
               "is_closed": false,
               "sex": 2,
-              "photo_50": "https://sun9-30.userapi.com/impg/c857024/v857024963/15aeb4/y1ZsWz3rDSo.jpg?size=50x0&quality=90&crop=575,641,608,608&sign=1fef7d20445939e2b88022dffbf7b578&c_uniq_tag=Ouli111gqzYboYicUDpZq9y6JynMxw7juC1Jr5kIK_c&ava=1",
-              "photo_100": "https://sun9-30.userapi.com/impg/c857024/v857024963/15aeb4/y1ZsWz3rDSo.jpg?size=100x0&quality=90&crop=575,641,608,608&sign=15b313537bbccf0a110bf3b96ee84edd&c_uniq_tag=yLdXjjmnCwXaKoW7zer_c69GDs_YPSdh-HRsYl1Z5Us&ava=1",
-              "photo_200": "https://sun9-30.userapi.com/impg/c857024/v857024963/15aeb4/y1ZsWz3rDSo.jpg?size=200x0&quality=90&crop=575,641,608,608&sign=7ed6bcc634361408c36455f9fa3f574f&c_uniq_tag=YOJTVLus46ySB3gyY26dit0SQ2jyDD_k2ZuQZle23jE&ava=1",
+              "photo_50": "...",
+              "photo_100": "...",
+              "photo_200": "...",
               "friend_status": 3
             },
             {
@@ -526,9 +510,9 @@ interface VKGroupDonut {
               "can_access_closed": true,
               "is_closed": true,
               "sex": 2,
-              "photo_50": "https://sun9-11.userapi.com/impg/c856524/v856524902/192e1a/s8Sip6jVv1w.jpg?size=50x0&quality=90&crop=63,206,822,822&sign=d0ceb81b91eb33c5cb906bb9f1b85414&c_uniq_tag=e2b6fBZhkPHls7NpjLJo8Gp9J6agvqcbEth_odlQt_s&ava=1",
-              "photo_100": "https://sun9-11.userapi.com/impg/c856524/v856524902/192e1a/s8Sip6jVv1w.jpg?size=100x0&quality=90&crop=63,206,822,822&sign=c6ffcd9e4a18c7f86fde3dec11422b34&c_uniq_tag=idewtlZe9FY3Uer5cuNG9w9epOQ-PTYAo-ED7GOQjvs&ava=1",
-              "photo_200": "https://sun9-11.userapi.com/impg/c856524/v856524902/192e1a/s8Sip6jVv1w.jpg?size=200x0&quality=90&crop=63,206,822,822&sign=91a7334469a3a71f61672f1136fdbf9a&c_uniq_tag=cBn8OoWbx4mVH-7SZ-RNpI5PkVKdrZmVsz7E680OtKs&ava=1",
+              "photo_50": "...",
+              "photo_100": "...",
+              "photo_200": "...",
               "friend_status": 3
             }
           ],
