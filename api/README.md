@@ -5,6 +5,7 @@
 * [audio](audio/readme.md) — аудиозаписи
 * [bugtracker](bugtracker/readme.md) — баг-трекер
 * [donut](donut/readme.md) — VK Donut
+* [execute](execute/readme.md) — execute методы, используемые в VK для Android
 * [settings](settings/readme.md) — методы для работы с разделом «Безопасность»
 * [shortVideo](shortVideo/readme.md) — клипы
 * [utils](utils/readme.md) — служебные методы
