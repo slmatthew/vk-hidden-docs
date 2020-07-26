@@ -9,3 +9,5 @@
 * [shortVideo](shortVideo/readme.md) — клипы
 * [utils](utils/readme.md) — служебные методы
 * [vkRun](vkRun/readme.md) — шагомер
+* [audio](audio/readme.md) — аудиозаписи
+* [catalog](catalog/readme.md) — каталоги
