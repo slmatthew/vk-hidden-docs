@@ -4,40 +4,35 @@
 
 ## Список методов
 
-* [store.activateProduct](#storeactivateproduct) — добавляет набор стикеров в список стикеров
+* [store.activateProduct](#storeactivateproduct) — добавляет набор стикеров в список стикерпаков
 * [store.addStickersToFavorite](#storeaddstickerstofavorite) — добавляет стикеры в избранные
-* [store.deactivateProduct](#storedeactivateproduct) — удаляет набор стикеров из списка стикеров
+* [store.deactivateProduct](#storedeactivateproduct) — удаляет набор стикеров из списка стикерпаков
 * [store.getCatalog](#storegetcatalog) — возвращает баннеры и названия разделов
 * [store.getFavoriteStickers](#storegetfavoritestickers) — возвращает избранные стикеры
-* [store.getProducts](#storegetproducts) — возвращает наборы стикеров по различным фильтрам
+* [store.getProducts](#storegetproducts) — возвращает купленные или активные стикерпаки
 * [store.getStickers](#storegetstickers) — возвращает массив стикеров по ID
 * [store.getStickersKeywords](#storegetstickerskeywords) — возвращает подсказки для стикеров
 * [store.getStockItemByName](#storegetstockitembyname) — возвращает стикерпак по его названию
-* [store.getStockItemByProductId](#storegetstockitembyproductid) — возвращает стикерпак по ID
-* [store.getStockItemByStickerId](#storegetstockitembystickerid) —
-* [store.getStockItems](#storegetstockitems) —
-* [store.getSubscription](#storegetsubscription) —
-* [store.hasNewItems](#storehasnewitems) —
-* [store.hasStickersUpdates](#storehasstickersupdates) —
-* [store.markAsViewed](#storemarkasviewed) —
-* [store.removeStickersFromFavorite](#storeremovestickersfromfavorite) —
-* [store.reorderProducts](#storereorderproducts) —
-* [store.updateSubscription](#storeupdatesubscription) —
+* [store.getStockItemByProductId](#storegetstockitembyproductid) — возвращает стикерпак по его ID
+* [store.getStockItemByStickerId](#storegetstockitembystickerid) — возвращает стикерпак по ID стикера в нем
+* [store.getStockItems](#storegetstockitems) — возвращает список всех стикерпаков, по ID или из указанного раздела
+* [store.removeStickersFromFavorite](#storeremovestickersfromfavorite) — удаляет стикеры из избранных
+* [store.reorderProducts](#storereorderproducts) — перемещает набор стикеров в списке стикерпаков на другое место
 
 
 
 ## store.activateProduct
 
-Возвращает набор стикеров в список стикеров.
+Добавляет набор стикеров в список стикерпаков.
 
 Для удаления набора из списка нужно вызвать метод [store.deactivateProduct](#storedeactivateproduct).
 
 ### Параметры
 
-| Параметр       | Тип    | Описание           |
-|----------------|--------|--------------------|
-| **type**       | string | `stickers`         |
-| **product_id** | int    | ID набора стикеров |
+| Параметр       | Тип    | Описание      |
+|----------------|--------|---------------|
+| **type**       | string | `stickers`    |
+| **product_id** | int    | ID стикерпака |
 
 ### Тип возвращаемого значения
 
@@ -62,6 +57,8 @@ type StoreActivateProduct = 1;
 Добавляет стикеры в избранные.
 
 Для получения избранных стикеров воспользуйтесь методом [store.getFavoriteStickers](#storegetfavoritestickers).
+
+Для удаления избранных стикеров воспользуйтесь методом [store.removeStickersFromFavorite](#storeremovestickersfromfavorite).
 
 ### Параметры
 
@@ -89,16 +86,16 @@ type StoreAddStickersToFavorite = 1;
 
 ## store.deactivateProduct
 
-Удаляет набор стикеров из списка стикеров.
+Удаляет набор стикеров из списка стикерпаков.
 
-Для добавления набора обратно нужно вызвать метод [store.deactivateProduct](#storedeactivateproduct).
+Для добавления набора обратно нужно вызвать метод [store.activateProduct](#storeactivateproduct).
 
 ### Параметры
 
-| Параметр       | Тип    | Описание           |
-|----------------|--------|--------------------|
-| **type**       | string | `stickers`         |
-| **product_id** | int    | ID набора стикеров |
+| Параметр       | Тип    | Описание      |
+|----------------|--------|---------------|
+| **type**       | string | `stickers`    |
+| **product_id** | int    | ID стикерпака |
 
 ### Тип возвращаемого значения
 
@@ -286,6 +283,8 @@ interface VKStickerPackStockItem {
 
 Для добавления избранных стикеров воспользуйтесь методом [store.addStickersToFavorite](#storeaddstickerstofavorite).
 
+Для удаления избранных стикеров воспользуйтесь методом [store.removeStickersFromFavorite](#storeremovestickersfromfavorite).
+
 ### Параметры
 
 Нет.
@@ -331,27 +330,25 @@ interface StoreGetFavoriteStickers {
 
 ## store.getProducts
 
-Возвращает наборы стикеров по различным фильтрам.
+Возвращает купленные или активные стикерпаки.
 
 ### Параметры
 
-| Параметр    | Тип    | Описание                                         |
-|-------------|--------|--------------------------------------------------|
-| **type**    | string | `stickers`                                       |
-| **filters** | string | Список из `purchased`, `active` и `promoted`     |
-| extended    | flag   | Включить в объект стикерпака дополнительные поля |
+| Параметр    | Тип    | Описание                                     |
+|-------------|--------|----------------------------------------------|
+| **type**    | string | `stickers`                                   |
+| **filters** | string | Список из `purchased`, `active` и `promoted` |
+| extended    | flag   | Возвращать картинки в объектах стикеров      |
 
 Поле `filters` должно включать как минимум одно из предложенных значений,
 но может включать два или три значения сразу, перечисляя их через запятую.
 
 Возможные значения поля `filters`:
-  * `purchased` — все купленные стикеры
-  * `active` — стикеры, отображаемые в списке используемых стикеров. Эти стикеры можно [менять местами](#storereorderproducts),
-[удалять](#storedeactivateproduct) и [восстанавливать](#storeactivateproduct)
+  * `purchased` — все купленные наборы стикеров
+  * `active` — наборы стикеров, отображаемые в списке используемых стикерпаков.
+    Эти стикерпаки можно [менять местами](#storereorderproducts),
+    [удалять](#storedeactivateproduct) и [восстанавливать](#storeactivateproduct)
   * `promoted` — неизвестно
-
-Если не указать поле `extended`, то вам придет сильно обрезанная версия описания стикерпака, которая
-не содержит ни названия, ни иконки, ни самих стикеров.
 
 ### Тип возвращаемого значения
 
@@ -441,10 +438,10 @@ type StoreGetStickers = VKSticker[];
 
 ### Параметры
 
-| Параметр      | Тип  | Описание                                          |
-|---------------|------|---------------------------------------------------|
-| aliases       | flag | Возвращать подсказки для сразу нескольких слов    |
-| need_stickers | flag | Возвращать в объектах стикеров ссылки на картинки |
+| Параметр      | Тип  | Описание                                       |
+|---------------|------|------------------------------------------------|
+| aliases       | flag | Возвращать подсказки для сразу нескольких слов |
+| need_stickers | flag | Возвращать картинки в объектах стикеров        |
 
 По умолчанию оба параметра включены.
 
@@ -534,7 +531,7 @@ interface KeywordsWithoutStickers {
 
 Возвращает стикерпак по его названию.
 
-Название можно получить из ссылки на набор стикеров: `https://vk.com/stickers/<name>`.
+Название можно получить из ссылки на стикерпак: `https://vk.com/stickers/<name>`.
 Подобную ссылку можно найти в объекте стикерпака.
 
 ### Параметры
@@ -732,34 +729,273 @@ type StoreGetStockItemByProductId = VKStickerPackStockItem;
 
 ## store.getStockItemByStickerId
 
+Возвращает стикерпак по ID стикера в нем.
+
+### Параметры
+
+| Параметр       | Тип | Описание   |
+|----------------|-----|------------|
+| **sticker_id** | int | ID стикера |
+
+### Тип возвращаемого значения
+
+```ts
+type StoreGetStockItemByStickerId = VKStickerPackStockItem;
+```
+
+### Пример ответа
+
+<details>
+  <summary>Открыть</summary>
+
+  ```json
+  {
+    "product": {
+      "id": "1",
+      "type": "stickers",
+      "purchased": 1,
+      "active": 1,
+      "purchase_date": 1426970466,
+      "title": "Спотти",
+      "stickers": [{
+        "sticker_id": 19633,
+        "is_allowed": true,
+        "images": [
+          { "url": "https://vk.com/sticker/1-19633-64", "width": 64, "height": 64 },
+          { "url": "https://vk.com/sticker/1-19633-128", "width": 128, "height": 128 },
+          { "url": "https://vk.com/sticker/1-19633-256", "width": 256, "height": 256 },
+          { "url": "https://vk.com/sticker/1-19633-352", "width": 352, "height": 352 }
+        ],
+        "images_with_background": [
+          { "url": "https://vk.com/sticker/1-19633-64b", "width": 64, "height": 64 },
+          { "url": "https://vk.com/sticker/1-19633-128b", "width": 128, "height": 128 },
+          { "url": "https://vk.com/sticker/1-19633-256b", "width": 256, "height": 256 },
+          { "url": "https://vk.com/sticker/1-19633-352b", "width": 352, "height": 352 }
+        ]
+      }],
+      "icon": [
+        { "url": "https://vk.com/sticker/1-19633-512", "width": 512, "height": 512 },
+        { "url": "https://vk.com/sticker/1-19633-352", "width": 352, "height": 352 },
+        { "url": "https://vk.com/sticker/1-19633-256", "width": 256, "height": 256 },
+        { "url": "https://vk.com/sticker/1-19633-128", "width": 128, "height": 128 },
+        { "url": "https://vk.com/sticker/1-19633-64", "width": 64, "height": 64 }
+      ],
+      "previews": [
+        { "url": "https://vk.com/sticker/2-1-thumb-22-", "width": 22, "height": 22 },
+        { "url": "https://vk.com/sticker/2-1-thumb-34-", "width": 34, "height": 34 },
+        { "url": "https://vk.com/sticker/2-1-thumb-44-", "width": 44, "height": 44 },
+        { "url": "https://vk.com/sticker/2-1-thumb-68-", "width": 68, "height": 68 },
+        { "url": "https://vk.com/sticker/2-1-thumb-102-", "width": 102, "height": 102 }
+      ],
+      "url": "https://vk.com/stickers/spotty"
+    },
+    "description": "Чемпион по вилянию хвостом, верный друг и надёжная грелка.",
+    "author": "Андрей Яковенко",
+    "can_purchase": 1,
+    "can_gift": 0,
+    "free": 1,
+    "payment_type": "balance",
+    "price": 0,
+    "price_str": "Бесплатно",
+    "price_buy": 0,
+    "price_buy_str": "Бесплатно",
+    "photo_35": "https://vk.com/sticker/2-1-cover-35b-",
+    "photo_70": "https://vk.com/sticker/2-1-cover-70b-",
+    "photo_140": "https://vk.com/sticker/2-1-cover-140b-",
+    "photo_296": "https://vk.com/sticker/2-1-preview-296-1",
+    "photo_592": "https://vk.com/sticker/2-1-preview-592-1",
+    "background": "https://vk.com/sticker/2-1-background--",
+    "demo_photos_560": [
+      "https://vk.com/sticker/2-1-demo-560-1",
+      "https://vk.com/sticker/2-1-demo-560-2",
+      "https://vk.com/sticker/2-1-demo-560-3",
+      "https://vk.com/sticker/2-1-demo-560-4",
+      "https://vk.com/sticker/2-1-demo-560-5",
+      "https://vk.com/sticker/2-1-demo-560-6"
+    ],
+    "version_hash": "..."
+  }
+  ```
+</details>
+
 
 
 ## store.getStockItems
 
+Возвращает:
+ - Список всех стикерпаков
+ - Список стикерпаков по ID
+ - Список стикерпаков из указанного раздела
 
+### Параметры
 
-## store.getSubscription
+| Параметр    | Тип    | Описание                                |
+|-------------|--------|-----------------------------------------|
+| **type**    | string | `stickers`                              |
+| product_ids | string | ID стикерпаков через запятую            |
+| section     | string | Название раздела со стикерпаками        |
+| need_images | flag   | Возвращать картинки в объектах стикеров |
 
+Если не указывать необязательные параметры, то придет список всех доступных стикерпаков.
+Если не передать поле `need_images: 0`, то список будет приходить очень долго, потому что данных там очень много.
 
+Если указать поле `product_ids`, то придет указанный список стикерпаков.
 
-## store.hasNewItems
+Если указать поле `section`, то придет список стикерпаков из указанного раздела.
+Список всех разделов можно получить из метода [store.getCatalog](#storegetcatalog).
 
+Поле `need_images` по умолчанию имеет значение `1`.
 
+### Тип возвращаемого значения
 
-## store.hasStickersUpdates
+```ts
+interface StoreGetStockItems {
+  count: number
+  items: VKStickerPackStockItem[]
+}
+```
 
+### Пример ответа
 
+<details>
+  <summary>Открыть</summary>
 
-## store.markAsViewed
+  ```json
+  {
+    "count": 1,
+    "items": [{
+      "product": {
+        "id": "1",
+        "type": "stickers",
+        "purchased": 1,
+        "active": 1,
+        "purchase_date": 1426970466,
+        "title": "Спотти",
+        "stickers": [{
+          "sticker_id": 19633,
+          "is_allowed": true,
+          "images": [
+            { "url": "https://vk.com/sticker/1-19633-64", "width": 64, "height": 64 },
+            { "url": "https://vk.com/sticker/1-19633-128", "width": 128, "height": 128 },
+            { "url": "https://vk.com/sticker/1-19633-256", "width": 256, "height": 256 },
+            { "url": "https://vk.com/sticker/1-19633-352", "width": 352, "height": 352 }
+          ],
+          "images_with_background": [
+            { "url": "https://vk.com/sticker/1-19633-64b", "width": 64, "height": 64 },
+            { "url": "https://vk.com/sticker/1-19633-128b", "width": 128, "height": 128 },
+            { "url": "https://vk.com/sticker/1-19633-256b", "width": 256, "height": 256 },
+            { "url": "https://vk.com/sticker/1-19633-352b", "width": 352, "height": 352 }
+          ]
+        }],
+        "icon": [
+          { "url": "https://vk.com/sticker/1-19633-512", "width": 512, "height": 512 },
+          { "url": "https://vk.com/sticker/1-19633-352", "width": 352, "height": 352 },
+          { "url": "https://vk.com/sticker/1-19633-256", "width": 256, "height": 256 },
+          { "url": "https://vk.com/sticker/1-19633-128", "width": 128, "height": 128 },
+          { "url": "https://vk.com/sticker/1-19633-64", "width": 64, "height": 64 }
+        ],
+        "previews": [
+          { "url": "https://vk.com/sticker/2-1-thumb-22-", "width": 22, "height": 22 },
+          { "url": "https://vk.com/sticker/2-1-thumb-34-", "width": 34, "height": 34 },
+          { "url": "https://vk.com/sticker/2-1-thumb-44-", "width": 44, "height": 44 },
+          { "url": "https://vk.com/sticker/2-1-thumb-68-", "width": 68, "height": 68 },
+          { "url": "https://vk.com/sticker/2-1-thumb-102-", "width": 102, "height": 102 }
+        ],
+        "url": "https://vk.com/stickers/spotty"
+      },
+      "description": "Чемпион по вилянию хвостом, верный друг и надёжная грелка.",
+      "author": "Андрей Яковенко",
+      "can_purchase": 1,
+      "can_gift": 0,
+      "free": 1,
+      "payment_type": "balance",
+      "price": 0,
+      "price_str": "Бесплатно",
+      "price_buy": 0,
+      "price_buy_str": "Бесплатно",
+      "photo_35": "https://vk.com/sticker/2-1-cover-35b-",
+      "photo_70": "https://vk.com/sticker/2-1-cover-70b-",
+      "photo_140": "https://vk.com/sticker/2-1-cover-140b-",
+      "photo_296": "https://vk.com/sticker/2-1-preview-296-1",
+      "photo_592": "https://vk.com/sticker/2-1-preview-592-1",
+      "background": "https://vk.com/sticker/2-1-background--",
+      "demo_photos_560": [
+        "https://vk.com/sticker/2-1-demo-560-1",
+        "https://vk.com/sticker/2-1-demo-560-2",
+        "https://vk.com/sticker/2-1-demo-560-3",
+        "https://vk.com/sticker/2-1-demo-560-4",
+        "https://vk.com/sticker/2-1-demo-560-5",
+        "https://vk.com/sticker/2-1-demo-560-6"
+      ],
+      "version_hash": "..."
+    }]
+  }
+  ```
+</details>
 
 
 
 ## store.removeStickersFromFavorite
 
+Удаляет стикеры из избранных.
+
+**Внимание**: Если один из переданных стикеров не находится в избранных, то будет выдана 2102 ошибка API.
+
+Для добавления избранных стикеров воспользуйтесь методом [store.addStickersToFavorite](#storeaddstickerstofavorite).
+
+Для получения избранных стикеров воспользуйтесь методом [store.getFavoriteStickers](#storegetfavoritestickers).
+
+### Параметры
+
+| Параметр        | Тип    | Описание    |
+|-----------------|--------|-------------|
+| **sticker_ids** | string | ID стикеров |
+
+### Тип возвращаемого значения
+
+```ts
+type StoreRemoveStickersFromFavorite = 1;
+```
+
+### Пример ответа
+
+<details>
+  <summary>Открыть</summary>
+
+  ```json
+  1
+  ```
+</details>
+
 
 
 ## store.reorderProducts
 
+Перемещает стикерпак в списке стикерпаков на другое место.
 
+### Параметры
 
-## store.updateSubscription
+| Параметр       | Тип    | Описание                                                     |
+|----------------|--------|--------------------------------------------------------------|
+| **type**       | string | `stickers`                                                   |
+| **product_id** | int    | ID стикерпака                                                |
+| before         | int    | ID стикерпака, перед которым будет установлен наш стикерпак  |
+| after          | int    | ID стикерпака, после которого будет установлен наш стикерпак |
+
+Необходимо обязательно указать либо параметр `before`, либо параметр `after`.
+
+### Тип возвращаемого значения
+
+```ts
+type StoreReorderProducts = 1;
+```
+
+### Пример ответа
+
+<details>
+  <summary>Открыть</summary>
+
+  ```json
+  1
+  ```
+</details>
