@@ -299,10 +299,6 @@ interface VKStickerPackStockItem {
 
 Для удаления избранных стикеров воспользуйтесь методом [store.removeStickersFromFavorite](#storeremovestickersfromfavorite).
 
-### Параметры
-
-Нет.
-
 ### Тип возвращаемого значения
 
 ```ts
