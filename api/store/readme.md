@@ -91,10 +91,8 @@ type StoreAddStickersToFavorite = 1;
 
 ## Связанные методы
 
-| Метод                                                                | Описание                     |
-|----------------------------------------------------------------------|------------------------------|
-| [store.getFavoriteStickers](#storegetfavoritestickers)               | Получить избранные стикеры   |
-| [store.removeStickersFromFavorite](#storeremovestickersfromfavorite) | Удалить стикеры из избранных |
+* [store.getFavoriteStickers](#storegetfavoritestickers) — Получить избранные стикеры
+* [store.removeStickersFromFavorite](#storeremovestickersfromfavorite) — Удалить стикеры из избранных
 
 
 
@@ -127,9 +125,7 @@ type StoreDeactivateProduct = 1;
 
 ## Связанные методы
 
-| Метод                                          | Описание                                     |
-|------------------------------------------------|----------------------------------------------|
-| [store.activateProduct](#storeactivateproduct) | Добавить набор стикеров в список стикерпаков |
+* [store.activateProduct](#storeactivateproduct) — Добавить набор стикеров в список стикерпаков
 
 
 
@@ -295,9 +291,7 @@ interface VKStickerPackStockItem {
 
 ## Связанные методы
 
-| Метод                                      | Описание                                                                       |
-|--------------------------------------------|--------------------------------------------------------------------------------|
-| [store.getStockItems](#storegetstockitems) | Получить все стикерпаки, стикерпаки по ID или стикерпаки из указанного раздела |
+* [store.getStockItems](#storegetstockitems) — Получить все стикерпаки, стикерпаки по ID или стикерпаки из указанного раздела
 
 
 
@@ -344,10 +338,8 @@ interface StoreGetFavoriteStickers {
 
 ## Связанные методы
 
-| Метод                                                                | Описание                     |
-|----------------------------------------------------------------------|------------------------------|
-| [store.addStickersToFavorite](#storeaddstickerstofavorite)           | Добавить стикеры в избранные |
-| [store.removeStickersFromFavorite](#storeremovestickersfromfavorite) | Удалить стикеры из избранных |
+* [store.addStickersToFavorite](#storeaddstickerstofavorite) — Добавить стикеры в избранные
+* [store.removeStickersFromFavorite](#storeremovestickersfromfavorite) — Удалить стикеры из избранных
 
 
 
@@ -957,9 +949,7 @@ interface StoreGetStockItems {
 
 ## Связанные методы
 
-| Метод                                | Описание                                             |
-|--------------------------------------|------------------------------------------------------|
-| [store.getCatalog](#storegetcatalog) | Получить баннеры и названия разделов со стикерпаками |
+* [store.getCatalog](#storegetcatalog) — Получить баннеры и названия разделов со стикерпаками
 
 
 
@@ -993,10 +983,8 @@ type StoreRemoveStickersFromFavorite = 1;
 
 ## Связанные методы
 
-| Метод                                                      | Описание                     |
-|------------------------------------------------------------|------------------------------|
-| [store.addStickersToFavorite](#storeaddstickerstofavorite) | Добавить стикеры в избранные |
-| [store.getFavoriteStickers](#storegetfavoritestickers)     | Получить избранные стикеры   |
+* [store.addStickersToFavorite](#storeaddstickerstofavorite) — Добавить стикеры в избранные
+* [store.getFavoriteStickers](#storegetfavoritestickers) — Получить избранные стикеры
 
 
 
