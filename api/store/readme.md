@@ -4,20 +4,20 @@
 
 ## Список методов
 
-* [store.activateProduct](#storeactivateproduct) — добавляет набор стикеров в список стикерпаков
-* [store.addStickersToFavorite](#storeaddstickerstofavorite) — добавляет стикеры в избранные
-* [store.deactivateProduct](#storedeactivateproduct) — удаляет набор стикеров из списка стикерпаков
-* [store.getCatalog](#storegetcatalog) — возвращает баннеры и названия разделов со стикерпаками
-* [store.getFavoriteStickers](#storegetfavoritestickers) — возвращает избранные стикеры
-* [store.getProducts](#storegetproducts) — возвращает купленные или активные стикерпаки
-* [store.getStickers](#storegetstickers) — возвращает массив стикеров по ID
-* [store.getStickersKeywords](#storegetstickerskeywords) — возвращает подсказки для стикеров
-* [store.getStockItemByName](#storegetstockitembyname) — возвращает стикерпак по его названию
-* [store.getStockItemByProductId](#storegetstockitembyproductid) — возвращает стикерпак по его ID
-* [store.getStockItemByStickerId](#storegetstockitembystickerid) — возвращает стикерпак по ID стикера в нем
-* [store.getStockItems](#storegetstockitems) — возвращает все стикерпаки, стикерпаки по ID или стикерпаки из указанного раздела
-* [store.removeStickersFromFavorite](#storeremovestickersfromfavorite) — удаляет стикеры из избранных
-* [store.reorderProducts](#storereorderproducts) — перемещает набор стикеров в списке стикерпаков на другое место
+* [store.activateProduct](#storeactivateproduct) — добавить набор стикеров в список стикерпаков
+* [store.addStickersToFavorite](#storeaddstickerstofavorite) — добавить стикеры в избранные
+* [store.deactivateProduct](#storedeactivateproduct) — удалить набор стикеров из списка стикерпаков
+* [store.getCatalog](#storegetcatalog) — получить баннеры и названия разделов со стикерпаками
+* [store.getFavoriteStickers](#storegetfavoritestickers) — получить избранные стикеры
+* [store.getProducts](#storegetproducts) — получить купленные или активные стикерпаки
+* [store.getStickers](#storegetstickers) — получить стикеры по ID
+* [store.getStickersKeywords](#storegetstickerskeywords) — получить подсказки для стикеров
+* [store.getStockItemByName](#storegetstockitembyname) — получить стикерпак по его названию
+* [store.getStockItemByProductId](#storegetstockitembyproductid) — получить стикерпак по его ID
+* [store.getStockItemByStickerId](#storegetstockitembystickerid) — получить стикерпак по ID стикера в нем
+* [store.getStockItems](#storegetstockitems) — получить все стикерпаки, стикерпаки по ID или стикерпаки из указанного раздела
+* [store.removeStickersFromFavorite](#storeremovestickersfromfavorite) — удалить стикеры из избранных
+* [store.reorderProducts](#storereorderproducts) — изменить положение набора стикеров в списке стикерпаков
 
 
 
