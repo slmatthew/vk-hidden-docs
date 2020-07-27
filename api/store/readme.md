@@ -132,7 +132,7 @@ type StoreDeactivateProduct = 1;
 
 ```ts
 interface StoreGetCatalog {
-  banners: Banner[]
+  banners: VKStickerPackBanner[]
   sections: { name: string, title: string }[]
 }
 
