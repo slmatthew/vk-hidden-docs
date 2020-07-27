@@ -36,8 +36,6 @@
 
 Добавляет набор стикеров в список стикерпаков.
 
-Для удаления набора из списка воспользуйтесь методом [store.deactivateProduct](#storedeactivateproduct).
-
 ### Параметры
 
 | Параметр       | Тип    | Описание      |
@@ -60,6 +58,10 @@ type StoreActivateProduct = 1;
   1
   ```
 </details>
+
+### Связанные методы
+
+* [store.deactivateProduct](#storedeactivateproduct) — удалить набор из списка стикерпаков
 
 
 
