@@ -67,10 +67,6 @@ type StoreActivateProduct = 1;
 
 Добавляет стикеры в избранные.
 
-Для получения избранных стикеров воспользуйтесь методом [store.getFavoriteStickers](#storegetfavoritestickers).
-
-Для удаления избранных стикеров воспользуйтесь методом [store.removeStickersFromFavorite](#storeremovestickersfromfavorite).
-
 ### Параметры
 
 | Параметр        | Тип    | Описание                  |
@@ -93,13 +89,18 @@ type StoreAddStickersToFavorite = 1;
   ```
 </details>
 
+## Связанные методы
+
+| Метод                                                                | Описание                     |
+|----------------------------------------------------------------------|------------------------------|
+| [store.getFavoriteStickers](#storegetfavoritestickers)               | Получить избранные стикеры   |
+| [store.removeStickersFromFavorite](#storeremovestickersfromfavorite) | Удалить стикеры из избранных |
+
 
 
 ## store.deactivateProduct
 
 Удаляет набор стикеров из списка стикерпаков.
-
-Для добавления набора обратно воспользуйтесь методом [store.activateProduct](#storeactivateproduct).
 
 ### Параметры
 
@@ -124,14 +125,17 @@ type StoreDeactivateProduct = 1;
   ```
 </details>
 
+## Связанные методы
+
+| Метод                                          | Описание                                     |
+|------------------------------------------------|----------------------------------------------|
+| [store.activateProduct](#storeactivateproduct) | Добавить набор стикеров в список стикерпаков |
+
 
 
 ## store.getCatalog
 
 Возвращает баннеры и названия разделов со стикерпаками.
-
-Чтобы получить стикерпаки из определенного раздела, нужно вызвать метод
-[store.getStockItems](#storegetstockitems) с указанием параметра `section`.
 
 ### Параметры
 
@@ -289,15 +293,17 @@ interface VKStickerPackStockItem {
   ```
 </details>
 
+## Связанные методы
+
+| Метод                                      | Описание                                                                       |
+|--------------------------------------------|--------------------------------------------------------------------------------|
+| [store.getStockItems](#storegetstockitems) | Получить все стикерпаки, стикерпаки по ID или стикерпаки из указанного раздела |
+
 
 
 ## store.getFavoriteStickers
 
 Возвращает избранные стикеры.
-
-Для добавления избранных стикеров воспользуйтесь методом [store.addStickersToFavorite](#storeaddstickerstofavorite).
-
-Для удаления избранных стикеров воспользуйтесь методом [store.removeStickersFromFavorite](#storeremovestickersfromfavorite).
 
 ### Тип возвращаемого значения
 
@@ -335,6 +341,13 @@ interface StoreGetFavoriteStickers {
   }
   ```
 </details>
+
+## Связанные методы
+
+| Метод                                                                | Описание                     |
+|----------------------------------------------------------------------|------------------------------|
+| [store.addStickersToFavorite](#storeaddstickerstofavorite)           | Добавить стикеры в избранные |
+| [store.removeStickersFromFavorite](#storeremovestickersfromfavorite) | Удалить стикеры из избранных |
 
 
 
@@ -833,9 +846,9 @@ type StoreGetStockItemByStickerId = VKStickerPackStockItem;
 ## store.getStockItems
 
 Возвращает:
- - Список всех стикерпаков
- - Список стикерпаков по ID
- - Список стикерпаков из указанного раздела
+ - список всех стикерпаков
+ - список стикерпаков по ID
+ - список стикерпаков из указанного раздела
 
 ### Параметры
 
@@ -852,7 +865,6 @@ type StoreGetStockItemByStickerId = VKStickerPackStockItem;
 Если указать поле `product_ids`, то придет указанный список стикерпаков.
 
 Если указать поле `section`, то придет список стикерпаков из указанного раздела.
-Список всех разделов можно получить из метода [store.getCatalog](#storegetcatalog).
 
 Поле `need_images` по умолчанию имеет значение `1`.
 
@@ -943,6 +955,12 @@ interface StoreGetStockItems {
   ```
 </details>
 
+## Связанные методы
+
+| Метод                                | Описание                                             |
+|--------------------------------------|------------------------------------------------------|
+| [store.getCatalog](#storegetcatalog) | Получить баннеры и названия разделов со стикерпаками |
+
 
 
 ## store.removeStickersFromFavorite
@@ -950,10 +968,6 @@ interface StoreGetStockItems {
 Удаляет стикеры из избранных.
 
 **Внимание**: Если один из переданных стикеров не находится в избранных, то будет выдана 2102 ошибка API.
-
-Для добавления избранных стикеров воспользуйтесь методом [store.addStickersToFavorite](#storeaddstickerstofavorite).
-
-Для получения избранных стикеров воспользуйтесь методом [store.getFavoriteStickers](#storegetfavoritestickers).
 
 ### Параметры
 
@@ -976,6 +990,13 @@ type StoreRemoveStickersFromFavorite = 1;
   1
   ```
 </details>
+
+## Связанные методы
+
+| Метод                                                      | Описание                     |
+|------------------------------------------------------------|------------------------------|
+| [store.addStickersToFavorite](#storeaddstickerstofavorite) | Добавить стикеры в избранные |
+| [store.getFavoriteStickers](#storegetfavoritestickers)     | Получить избранные стикеры   |
 
 
 
