@@ -27,6 +27,7 @@
 * [store.getStockItemByProductId](#storegetstockitembyproductid) — получить стикерпак по его ID
 * [store.getStockItemByStickerId](#storegetstockitembystickerid) — получить стикерпак по ID стикера в нем
 * [store.getStockItems](#storegetstockitems) — получить все стикерпаки, стикерпаки по ID или стикерпаки из указанного раздела
+* [store.hasNewItems](#storehasnewitems) — проверить, есть ли новые стикерпаки в магазине стикеров
 * [store.removeStickersFromFavorite](#storeremovestickersfromfavorite) — удалить стикеры из избранных
 * [store.reorderProducts](#storereorderproducts) — изменить положение набора стикеров в списке стикерпаков
 
@@ -952,6 +953,81 @@ interface StoreGetStockItems {
 ### Связанные методы
 
 * [store.getCatalog](#storegetcatalog) — получить баннеры и названия разделов со стикерпаками
+
+
+
+## store.hasNewItems
+
+Проверить, есть ли новые стикерпаки в магазине стикеров.
+
+### Параметры
+
+| Параметр     | Тип    | Описание                                                   |
+|--------------|--------|------------------------------------------------------------|
+| **type**     | string | `stickers`                                                 |
+| device_id    | string | ID устройства                                              |
+| merchant     | string | `google`                                                   |
+| version_hash | string | Версия стикерпаков. Поле `stickers_version_hash` из ответа |
+
+`version_hash` используется для того, чтобы показать новые стикерпаки, если они имеются. Это работает так:
+1. Клиент сохраняет значение поля `stickers_version_hash` из ответа
+2. Когда пользователь заходит в магазин стикеров, клиент отправляет ещё один запрос к этому методу, указывая `version_hash`
+3. Если есть различия — клиент отображает их пользователю
+
+### Тип возвращаемого значения
+
+```ts
+interface StoreHasNewItems {
+  // По моим наблюдениям, это значение всегда равно нулю
+  global_promotion: 0
+  store_new_items: number
+  stickers_version_hash: string
+  // Приходит, если version_hash устарел
+  sticker_packs_version_hashes?: {
+    pack_id: number
+    hash: string
+  }[]
+  sticker_packs_chunk_size_limit: number
+  suggestions_version_hash: string
+  favorite_stickers_version_hash: string
+}
+```
+
+### Пример ответа
+
+<details>
+  <summary>Актальный `version_hash`</summary>
+
+  ```json
+  {
+    "global_promotion": 0,
+    "store_new_items": 0,
+    "stickers_version_hash": "...",
+    "sticker_packs_chunk_size_limit": 100,
+    "suggestions_version_hash": "...",
+    "favorite_stickers_version_hash": "..."
+  }
+  ```
+</details>
+
+<details>
+  <summary>Устаревший `version_hash`</summary>
+
+  ```json
+  {
+    "global_promotion": 0,
+    "store_new_items": 0,
+    "stickers_version_hash": "...",
+    "sticker_packs_version_hashes": [
+      { "pack_id": 583, "hash": "..." },
+      { "pack_id": 571, "hash": "..." }
+    ],
+    "sticker_packs_chunk_size_limit": 100,
+    "suggestions_version_hash": "...",
+    "favorite_stickers_version_hash": "..."
+  }
+  ```
+</details>
 
 
 
