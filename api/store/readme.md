@@ -7,7 +7,7 @@
 * [store.activateProduct](#storeactivateproduct) — добавляет набор стикеров в список стикерпаков
 * [store.addStickersToFavorite](#storeaddstickerstofavorite) — добавляет стикеры в избранные
 * [store.deactivateProduct](#storedeactivateproduct) — удаляет набор стикеров из списка стикерпаков
-* [store.getCatalog](#storegetcatalog) — возвращает баннеры и названия разделов
+* [store.getCatalog](#storegetcatalog) — возвращает баннеры и названия разделов со стикерпаками
 * [store.getFavoriteStickers](#storegetfavoritestickers) — возвращает избранные стикеры
 * [store.getProducts](#storegetproducts) — возвращает купленные или активные стикерпаки
 * [store.getStickers](#storegetstickers) — возвращает массив стикеров по ID
@@ -15,7 +15,7 @@
 * [store.getStockItemByName](#storegetstockitembyname) — возвращает стикерпак по его названию
 * [store.getStockItemByProductId](#storegetstockitembyproductid) — возвращает стикерпак по его ID
 * [store.getStockItemByStickerId](#storegetstockitembystickerid) — возвращает стикерпак по ID стикера в нем
-* [store.getStockItems](#storegetstockitems) — возвращает список всех стикерпаков, по ID или из указанного раздела
+* [store.getStockItems](#storegetstockitems) — возвращает все стикерпаки, стикерпаки по ID или стикерпаки из указанного раздела
 * [store.removeStickersFromFavorite](#storeremovestickersfromfavorite) — удаляет стикеры из избранных
 * [store.reorderProducts](#storereorderproducts) — перемещает набор стикеров в списке стикерпаков на другое место
 
@@ -25,7 +25,7 @@
 
 Добавляет набор стикеров в список стикерпаков.
 
-Для удаления набора из списка нужно вызвать метод [store.deactivateProduct](#storedeactivateproduct).
+Для удаления набора из списка воспользуйтесь методом [store.deactivateProduct](#storedeactivateproduct).
 
 ### Параметры
 
@@ -88,7 +88,7 @@ type StoreAddStickersToFavorite = 1;
 
 Удаляет набор стикеров из списка стикерпаков.
 
-Для добавления набора обратно нужно вызвать метод [store.activateProduct](#storeactivateproduct).
+Для добавления набора обратно воспользуйтесь методом [store.activateProduct](#storeactivateproduct).
 
 ### Параметры
 
@@ -117,7 +117,10 @@ type StoreDeactivateProduct = 1;
 
 ## store.getCatalog
 
-Возвращает баннеры и названия разделов.
+Возвращает баннеры и названия разделов со стикерпаками.
+
+Чтобы получить стикерпаки из определенного раздела, нужно вызвать метод
+[store.getStockItems](#storegetstockitems) с указанием параметра `section`.
 
 ### Параметры
 
@@ -445,8 +448,8 @@ type StoreGetStickers = VKSticker[];
 
 По умолчанию оба параметра включены.
 
-Если указать поле `aliases: 0`, то в ответе в поле `words` всегда будет приходить только одно поле.
-Иначе будет приходить сразу несколько полей.
+Если указать параметр `aliases: 0`, то в ответе в поле `words` всегда будет приходить только одно слово.
+Если не указать этот параметр, то в некоторых случаях в поле `words` будут находиться сразу несколько слов.
 
 ### Тип возвращаемого значения
 
@@ -947,9 +950,9 @@ interface StoreGetStockItems {
 
 ### Параметры
 
-| Параметр        | Тип    | Описание    |
-|-----------------|--------|-------------|
-| **sticker_ids** | string | ID стикеров |
+| Параметр        | Тип    | Описание                  |
+|-----------------|--------|---------------------------|
+| **sticker_ids** | string | ID стикеров через запятую |
 
 ### Тип возвращаемого значения
 
