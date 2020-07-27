@@ -89,10 +89,10 @@ type StoreAddStickersToFavorite = 1;
   ```
 </details>
 
-## Связанные методы
+### Связанные методы
 
-* [store.getFavoriteStickers](#storegetfavoritestickers) — Получить избранные стикеры
-* [store.removeStickersFromFavorite](#storeremovestickersfromfavorite) — Удалить стикеры из избранных
+* [store.getFavoriteStickers](#storegetfavoritestickers) — получить избранные стикеры
+* [store.removeStickersFromFavorite](#storeremovestickersfromfavorite) — удалить стикеры из избранных
 
 
 
@@ -123,9 +123,9 @@ type StoreDeactivateProduct = 1;
   ```
 </details>
 
-## Связанные методы
+### Связанные методы
 
-* [store.activateProduct](#storeactivateproduct) — Добавить набор стикеров в список стикерпаков
+* [store.activateProduct](#storeactivateproduct) — добавить набор стикеров в список стикерпаков
 
 
 
@@ -289,9 +289,9 @@ interface VKStickerPackStockItem {
   ```
 </details>
 
-## Связанные методы
+### Связанные методы
 
-* [store.getStockItems](#storegetstockitems) — Получить все стикерпаки, стикерпаки по ID или стикерпаки из указанного раздела
+* [store.getStockItems](#storegetstockitems) — получить все стикерпаки, стикерпаки по ID или стикерпаки из указанного раздела
 
 
 
@@ -336,10 +336,10 @@ interface StoreGetFavoriteStickers {
   ```
 </details>
 
-## Связанные методы
+### Связанные методы
 
-* [store.addStickersToFavorite](#storeaddstickerstofavorite) — Добавить стикеры в избранные
-* [store.removeStickersFromFavorite](#storeremovestickersfromfavorite) — Удалить стикеры из избранных
+* [store.addStickersToFavorite](#storeaddstickerstofavorite) — добавить стикеры в избранные
+* [store.removeStickersFromFavorite](#storeremovestickersfromfavorite) — удалить стикеры из избранных
 
 
 
@@ -947,9 +947,9 @@ interface StoreGetStockItems {
   ```
 </details>
 
-## Связанные методы
+### Связанные методы
 
-* [store.getCatalog](#storegetcatalog) — Получить баннеры и названия разделов со стикерпаками
+* [store.getCatalog](#storegetcatalog) — получить баннеры и названия разделов со стикерпаками
 
 
 
@@ -981,10 +981,10 @@ type StoreRemoveStickersFromFavorite = 1;
   ```
 </details>
 
-## Связанные методы
+### Связанные методы
 
-* [store.addStickersToFavorite](#storeaddstickerstofavorite) — Добавить стикеры в избранные
-* [store.getFavoriteStickers](#storegetfavoritestickers) — Получить избранные стикеры
+* [store.addStickersToFavorite](#storeaddstickerstofavorite) — добавить стикеры в избранные
+* [store.getFavoriteStickers](#storegetfavoritestickers) — получить избранные стикеры
 
 
 
