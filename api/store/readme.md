@@ -28,6 +28,7 @@
 * [store.getStockItemByStickerId](#storegetstockitembystickerid) — получить стикерпак по ID стикера в нем
 * [store.getStockItems](#storegetstockitems) — получить все стикерпаки, стикерпаки по ID или стикерпаки из указанного раздела
 * [store.hasNewItems](#storehasnewitems) — проверить наличие изменений в списке стикерпаков, в подсказках для стикеров и в избранных стикерах
+* [store.markAsViewed](#storemarkasviewed) — пометить новые стикерпаки в магазине как просмотренные
 * [store.removeStickersFromFavorite](#storeremovestickersfromfavorite) — удалить стикеры из избранных
 * [store.reorderProducts](#storereorderproducts) — изменить положение набора стикеров в списке стикерпаков
 
@@ -1045,6 +1046,48 @@ interface StoreHasNewItems {
   }
   ```
 </details>
+
+## Связанные методы
+
+* [store.markAsViewed](#storemarkasviewed) — пометить новые стикерпаки в магазине как просмотренные
+
+
+
+## store.markAsViewed
+
+Помечает новые стикерпаки в магазине как просмотренные.
+
+### Параметры
+
+| Параметр  | Тип    | Описание                                 |
+|-----------|--------|------------------------------------------|
+| **type**  | string | `stickers`                               |
+| **reset** | string | `global_promotion` или `store_new_items` |
+
+Значение `store_new_items` помечает новые стикерпаки как просмотренные,
+а про значение `global_promotion` пока ничего неизвестно.
+
+Количество непросмотренных элементов можно узнать в методе [store.hasNewItems](#storehasnewitems).
+
+### Тип возвращаемого значения
+
+```ts
+type StoreMarkAsViewed = 1;
+```
+
+### Пример ответа
+
+<details>
+  <summary>Открыть</summary>
+
+  ```json
+  1
+  ```
+</details>
+
+### Связанные методы
+
+* [store.hasNewItems](#storehasnewitems) — проверить наличие изменений в списке стикерпаков, в подсказках для стикеров и в избранных стикерах
 
 
 
