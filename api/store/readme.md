@@ -1047,7 +1047,7 @@ interface StoreHasNewItems {
   ```
 </details>
 
-## Связанные методы
+### Связанные методы
 
 * [store.markAsViewed](#storemarkasviewed) — пометить новые стикерпаки в магазине как просмотренные
 
