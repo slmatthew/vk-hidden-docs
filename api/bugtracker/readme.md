@@ -1,13 +1,12 @@
 # bugtracker
-Методы для работы с баг-трекером.
+
+Методы для работы с баг-трекером
 
 ## Доступ
-Для доступа к этим методам нужен токен от приложения `6831669` (Мобильный баг-трекер).
 
-### Лёгкий способ
-Открыть ссылку `https://oauth.vk.com/authorize?client_id=6831669&scope=65536&redirect_uri=https://oauth.vk.com/blank.html&display=page&response_type=token&revoke=1` и скопировать токен.
+Для доступа к этим методам нужен токен от приложения `Мобильный баг-трекер` с ID `6831669`.
 
-### Сложный способ
+Для получения токена вам нужно проделать следующие действия:
 1. Авторизоваться на `m.vk.com` и сохранить куки
 2. Сделать запрос на `https://m.vk.com/vkui_internal?app_id=6831669&act=login` со следующими заголовками:
 	* User-Agent: `Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:77.0) Gecko/20100101 Firefox/77.0` *или от любого другого браузера*
@@ -17,106 +16,113 @@
 	* Cache-Control: `max-age=0`
 3. Получить токен из запроса
 
-## Ещё кое-что
-Все хеши заменены на пустую строку, большинство значений были изменены.
+
 
 ## Типы данных
-### VKSimpleItem
-[bugtracker.editBugreport](#bugtrackereditbugreport): поле `description` есть у объекта типа проблемы (`issue_type`), а `versions` — у объекта платформы (`platform`).
 
-```ts
-interface VKSimpleItem {
-	id: number
-	name: string
-	description?: string
-	versions?: VKSimpleItem[]
-}
-```
+<details>
+	<summary>Открыть</summary>
 
-### VKDevice
+	### VKSimpleItem
 
-```ts
-interface VKDevice {
-	id: number
-	status: number
-	title: string
-	platform: VKSimpleItem
-	model: string
-	platform_version: VKSimpleItem
-	user_device_id: number
-	edit_hash?: string
-	remove_hash?: string
-}
-```
+	[bugtracker.editBugreport](#bugtrackereditbugreport): поле `description` есть у объекта типа проблемы (`issue_type`), а `versions` — у объекта платформы (`platform`).
 
-### VKComment
-Если не указан `from_id`, то комментарий оставлен модератором.
-В `meta_text` может быть информация об измененном статусе отчета или о его новом приоритете.
-
-```ts
-interface VKComment {
-	bugreport_id: number
-	comment_id: number
-	created: number
-	text: string
-	from_id?: number
-	meta_text?: string
-	author_name: string
-	author_photo: string
-	edit_hash?: string
-	remove_hash?: string
-}
-```
-
-### VKBugreport
-
-```ts
-interface VKBugreport {
-	id: number
-	title: string
-	owner_id: number
-	created: number
-	updated: number
-	status?: VKSimpleItem
-	description?: string
-	state_actual?: string
-	state_supposed?: string
-	attachments?: VKAttachment[]
-	comments_count: number
-	unsubscribe_hash?: string
-	is_subscribed?: boolean
-	bookmark_hash?: string
-	issue_type?: VKSimpleItem
-	severity?: VKSimpleItem
-	is_severity_by_moderator?: boolean
-	product: VKSimpleItem
-	product_version?: VKSimpleItem
-	product_actual_version?: VKSimpleItem
-	platforms?: VKSimpleItem[]
-	platforms_versions?: VKSimpleItem[]
-	tags: VKSimpleItem[]
-	user_devices?: VKDevice[]
-	reproduces: {
-		count: number
-		profiles?: VKUser[]
+	```ts
+	interface VKSimpleItem {
+		id: number
+		name: string
+		description?: string
+		versions?: VKSimpleItem[]
 	}
-}
-```
+	```
 
-### VKProduct
+	### VKDevice
 
-```ts
-interface VKProduct {
-	id: number
-	name: string
-	version: string
-	tags: VKSimpleItem[]
-	platforms: VKSimpleItem[]
-	platforms_versions: VKSimpleItem[]
-}
-```
+	```ts
+	interface VKDevice {
+		id: number
+		status: number
+		title: string
+		platform: VKSimpleItem
+		model: string
+		platform_version: VKSimpleItem
+		user_device_id: number
+		edit_hash?: string
+		remove_hash?: string
+	}
+	```
+
+	### VKComment
+	Если не указан `from_id`, то комментарий оставлен модератором.
+	В `meta_text` может быть информация об измененном статусе отчета или о его новом приоритете.
+
+	```ts
+	interface VKComment {
+		bugreport_id: number
+		comment_id: number
+		created: number
+		text: string
+		from_id?: number
+		meta_text?: string
+		author_name: string
+		author_photo: string
+		edit_hash?: string
+		remove_hash?: string
+	}
+	```
+
+	### VKBugreport
+
+	```ts
+	interface VKBugreport {
+		id: number
+		title: string
+		owner_id: number
+		created: number
+		updated: number
+		status?: VKSimpleItem
+		description?: string
+		state_actual?: string
+		state_supposed?: string
+		attachments?: VKAttachment[]
+		comments_count: number
+		unsubscribe_hash?: string
+		is_subscribed?: boolean
+		bookmark_hash?: string
+		issue_type?: VKSimpleItem
+		severity?: VKSimpleItem
+		is_severity_by_moderator?: boolean
+		product: VKSimpleItem
+		product_version?: VKSimpleItem
+		product_actual_version?: VKSimpleItem
+		platforms?: VKSimpleItem[]
+		platforms_versions?: VKSimpleItem[]
+		tags: VKSimpleItem[]
+		user_devices?: VKDevice[]
+		reproduces: {
+			count: number
+			profiles?: VKUser[]
+		}
+	}
+	```
+
+	### VKProduct
+
+	```ts
+	interface VKProduct {
+		id: number
+		name: string
+		version: string
+		tags: VKSimpleItem[]
+		platforms: VKSimpleItem[]
+		platforms_versions: VKSimpleItem[]
+	}
+	```
+</details>
+
 
 ## Список методов
+
 * [bugtracker.addUserDevice](#bugtrackeradduserdevice)
 * [bugtracker.bookmark](#bugtrackerbookmark)
 * [bugtracker.changeBugreportStatus](#bugtrackerchangebugreportstatus)
@@ -155,7 +161,10 @@ interface VKProduct {
 * [bugtracker.setProductVersionNotify](#bugtrackersetproductversionnotify)
 * [bugtracker.updateBugreportVersion](#bugtrackerupdatebugreportversion)
 
+
+
 ## bugtracker.addUserDevice
+
 Добавить устройства
 
 ### Параметры
@@ -179,7 +188,7 @@ interface BugtrackerAddUserDevice {
 <details>
   <summary>Открыть</summary>
 
-  ```js
+  ```json
   {
     "can_add_device": true,
     "device": {
@@ -203,7 +212,10 @@ interface BugtrackerAddUserDevice {
   ```
 </details>
 
+
+
 ## bugtracker.bookmark
+
 Добавить отчёт в закладки или удалить его оттуда.
 
 ### Параметры
@@ -226,12 +238,15 @@ interface BugtrackerBookmark {
 <details>
   <summary>Открыть</summary>
 
-  ```js
+  ```json
   { "is_bookmarked": true }
   ```
 </details>
 
+
+
 ## bugtracker.changeBugreportStatus
+
 Сменить статус отчёта
 
 ### Параметры
@@ -254,12 +269,15 @@ type BugtrackerChangeBugreportStatus = 1;
 <details>
   <summary>Открыть</summary>
 
-  ```js
+  ```json
   1
   ```
 </details>
 
+
+
 ## bugtracker.createComment
+
 Отправить комментарий.
 
 ### Параметры
@@ -284,7 +302,7 @@ interface BugtrackerCreateComment {
 <details>
   <summary>Открыть</summary>
 
-  ```js
+  ```json
   {
     "comment": {
       "bugreport_id": 1,
@@ -301,7 +319,10 @@ interface BugtrackerCreateComment {
   ```
 </details>
 
+
+
 ## bugtracker.deleteComment
+
 Удалить комментарий
 
 ### Параметры
@@ -325,14 +346,17 @@ interface BugtrackerDeleteComment {
 <details>
   <summary>Открыть</summary>
 
-  ```js
+  ```json
   {
     "restore_hash": ""
   }
   ```
 </details>
 
+
+
 ## bugtracker.deleteUserDevice
+
 Удалить устройство
 
 ### Параметры
@@ -356,7 +380,7 @@ interface BugtrackerDeleteUserDevice {
 <details>
   <summary>Открыть</summary>
 
-  ```js
+  ```json
   {
     "can_add_device": true,
     "platform_ids": [ 1 ]
@@ -364,7 +388,10 @@ interface BugtrackerDeleteUserDevice {
   ```
 </details>
 
+
+
 ## bugtracker.editBugreport
+
 Отредактировать репорт или создать новый.
 
 ### Параметр
@@ -407,7 +434,7 @@ interface BugtrackerEditBugreport {
 <details>
   <summary>Открыть</summary>
 
-  ```js
+  ```json
   {
     "bugreport": {
       "id": 0,
@@ -895,7 +922,10 @@ interface BugtrackerEditBugreport {
   ```
 </details>
 
+
+
 ## bugtracker.editComment
+
 Редактирование комментария.
 
 ### Параметры
@@ -921,7 +951,7 @@ interface BugtrackerEditBugreport {
 <details>
   <summary>Открыть</summary>
 
-  ```js
+  ```json
   {
     "comment": {
       "bugreport_id": 1,
@@ -938,7 +968,10 @@ interface BugtrackerEditBugreport {
   ```
 </details>
 
+
+
 ## bugtracker.getBookmarks
+
 Получить список отчетов в закладках
 
 ### Параметры
@@ -959,7 +992,7 @@ interface BugtrackerEditBugreport {
 <details>
   <summary>Открыть</summary>
 
-  ```js
+  ```json
   {
     "count": 28,
     "items": [
@@ -1002,7 +1035,10 @@ interface BugtrackerEditBugreport {
   ```
 </details>
 
+
+
 ## bugtracker.getBugreportById
+
 Получить репорт по его ID.
 
 ### Параметры
@@ -1023,7 +1059,7 @@ interface BugtrackerEditBugreport {
 <details>
   <summary>Открыть</summary>
 
-  ```js
+  ```json
   {
     "bugreport": {
       "id": 1,
@@ -1127,7 +1163,10 @@ interface BugtrackerEditBugreport {
   ```
 </details>
 
+
+
 ## bugtracker.getBugreportSectionList
+
 Неизвестно зачем нужен
 
 ### Параметры
@@ -1137,7 +1176,10 @@ interface BugtrackerEditBugreport {
 | bugreport_id | int    | ID репорта             |
 | section      | string | `clones` или `similar` |
 
+
+
 ## bugtracker.getBugreportStatusBox
+
 Получить данные для блока, через который нужно менять статус отчёта.
 
 ### Параметры
@@ -1158,7 +1200,7 @@ interface BugtrackerEditBugreport {
 <details>
   <summary>Открыть</summary>
 
-  ```js
+  ```json
   {
     "current_status": 5,
     "suggested_status": 5,
@@ -1179,7 +1221,10 @@ interface BugtrackerEditBugreport {
   ```
 </details>
 
+
+
 ## bugtracker.getComments
+
 Получить комментарии к репорту.
 
 ### Параметры
@@ -1200,7 +1245,7 @@ interface BugtrackerEditBugreport {
 <details>
   <summary>Открыть</summary>
 
-  ```js
+  ```json
   {
     "count": 3,
     "items": [
@@ -1237,7 +1282,10 @@ interface BugtrackerEditBugreport {
   ```
 </details>
 
+
+
 ## bugtracker.getDownloadVersionUrl
+
 Получить адрес для загрузки версии.
 
 ### Параметр
@@ -1259,7 +1307,7 @@ interface BugtrackerEditBugreport {
 <details>
   <summary>Открыть</summary>
 
-  ```js
+  ```json
   {
     "url": "https://vk.link/to/version.apk",
     "app_title": "VK для Android",
@@ -1270,7 +1318,10 @@ interface BugtrackerEditBugreport {
   ```
 </details>
 
+
+
 ## bugtracker.getEditDeviceFormData
+
 Список ОС
 
 ### Тип возвращаемого значения
@@ -1284,7 +1335,7 @@ interface BugtrackerEditBugreport {
 <details>
   <summary>Открыть</summary>
 
-  ```js
+  ```json
   {
     "platforms": [
       {
@@ -1423,7 +1474,10 @@ interface BugtrackerEditBugreport {
   ```
 </details>
 
+
+
 ## bugtracker.getInfo
+
 Получение информации о текущем пользователе. Не принимает параметров.
 
 ### Тип возвращаемого значения
@@ -1437,7 +1491,7 @@ interface BugtrackerEditBugreport {
 <details>
   <summary>Открыть</summary>
 
-  ```js
+  ```json
   {
     "balance": 0,
     "updates_count": 0,
@@ -1455,7 +1509,10 @@ interface BugtrackerEditBugreport {
   ```
 </details>
 
+
+
 ## bugtracker.getProductBranches
+
 Получить ветки продукта.
 
 ### Параметры
@@ -1475,7 +1532,7 @@ interface BugtrackerEditBugreport {
 <details>
   <summary>Открыть</summary>
 
-  ```js
+  ```json
   {
     "count": 1,
     "items": [
@@ -1497,7 +1554,10 @@ interface BugtrackerEditBugreport {
   ```
 </details>
 
+
+
 ## bugtracker.getProductVersions
+
 Получить версии продукта.
 
 ### Параметры
@@ -1520,7 +1580,7 @@ interface BugtrackerEditBugreport {
 <details>
   <summary>extended = 0</summary>
 
-  ```js
+  ```json
   {
     "items": [
       {
@@ -1543,7 +1603,7 @@ interface BugtrackerEditBugreport {
 <details>
   <summary>Открыть</summary>
 
-  ```js
+  ```json
   {
     "items": [
       {
@@ -1565,7 +1625,10 @@ interface BugtrackerEditBugreport {
   ```
 </details>
 
+
+
 ## bugtracker.getProducts
+
 Получить продукты.
 
 ### Параметры
@@ -1589,7 +1652,7 @@ interface BugtrackerEditBugreport {
 <details>
   <summary>Открыть</summary>
 
-  ```js
+  ```json
   {
     "items": [
       {
@@ -1619,7 +1682,10 @@ interface BugtrackerEditBugreport {
   ```
 </details>
 
+
+
 ## bugtracker.getProductsById
+
 Получить продукты по ID.
 
 ### Параметры
@@ -1640,7 +1706,7 @@ interface BugtrackerEditBugreport {
 <details>
   <summary>extended = 0</summary>
 
-  ```js
+  ```json
   {
     "items": [
       {
@@ -1660,7 +1726,7 @@ interface BugtrackerEditBugreport {
 <details>
   <summary>extended = 1</summary>
 
-  ```js
+  ```json
   {
     "items": [
       {
@@ -1722,7 +1788,7 @@ interface BugtrackerEditBugreport {
 <details>
   <summary>Продукт, к которому можно присоединиться</summary>
 
-  ```js
+  ```json
   {
     "id": 2,
     "title": "Product",
@@ -1737,7 +1803,10 @@ interface BugtrackerEditBugreport {
   ```
 </details>
 
+
+
 ## bugtracker.getProductVersions
+
 Получить версии продукта.
 
 ### Параметры
@@ -1760,7 +1829,7 @@ interface BugtrackerEditBugreport {
 <details>
   <summary>extended = 0</summary>
 
-  ```js
+  ```json
   {
     "items": [
       {
@@ -1783,7 +1852,7 @@ interface BugtrackerEditBugreport {
 <details>
   <summary>extended = 1</summary>
 
-  ```js
+  ```json
   {
     "items": [
       {
@@ -1805,7 +1874,10 @@ interface BugtrackerEditBugreport {
   ```
 </details>
 
+
+
 ## bugtracker.getReporterProducts
+
 Метод возвращает список продуктов пользователя
 
 ### Параметры
@@ -1826,7 +1898,7 @@ interface BugtrackerEditBugreport {
 <details>
   <summary>Открыть</summary>
 
-  ```js
+  ```json
   {
     "items": [
       {
@@ -1849,7 +1921,10 @@ interface BugtrackerEditBugreport {
   ```
 </details>
 
+
+
 ## bugtracker.getReportersById
+
 Получить карточки тестировщиков.
 
 ### Параметры
@@ -1871,7 +1946,7 @@ interface BugtrackerEditBugreport {
 <details>
   <summary>Открыть</summary>
 
-  ```js
+  ```json
   {
     "items": [
       {
@@ -1907,7 +1982,10 @@ interface BugtrackerEditBugreport {
   ```
 </details>
 
+
+
 ## bugtracker.getReportersTop
+
 Получить топ участников
 
 ### Параметры
@@ -1930,7 +2008,7 @@ interface BugtrackerEditBugreport {
 <details>
   <summary>Открыть</summary>
 
-  ```js
+  ```json
   {
     "items": [
       {
@@ -1952,7 +2030,10 @@ interface BugtrackerEditBugreport {
   ```
 </details>
 
+
+
 ## bugtracker.getSearchParameters
+
 Возвращает параметры для поиска. Типы, теги, все дела.
 
 ### Тип возвращаемого значения
@@ -1966,7 +2047,7 @@ interface BugtrackerEditBugreport {
 <details>
   <summary>Открыть</summary>
 
-  ```js
+  ```json
   {
     "products": [
       {
@@ -2255,7 +2336,10 @@ interface BugtrackerEditBugreport {
   ```
 </details>
 
+
+
 ## bugtracker.getSettings
+
 Получить список устройств
 
 ### Тип возвращаемого значения
@@ -2272,7 +2356,7 @@ interface BugtrackerEditBugreport {
   `login_ha` — логин HockeyApp
 	`login_tf` — логин TestFlight
 
-  ```js
+  ```json
   {
     "login_ha": "ha***@slmatthew.dev",
     "login_tf": "",
@@ -2309,7 +2393,10 @@ interface BugtrackerEditBugreport {
   ```
 </details>
 
+
+
 ## bugtracker.joinProduct
+
 Присоединиться к продукту
 
 ### Параметры
@@ -2330,12 +2417,15 @@ interface BugtrackerEditBugreport {
 <details>
   <summary>Открыть</summary>
 
-  ```js
+  ```json
   1
   ```
 </details>
 
+
+
 ## bugtracker.leaveProduct
+
 Выйти из продукта
 
 ### Параметры
@@ -2356,12 +2446,15 @@ interface BugtrackerEditBugreport {
 <details>
   <summary>Открыть</summary>
 
-  ```js
+  ```json
   1
   ```
 </details>
 
+
+
 ## bugtracker.removeBugreport
+
 Удалить репорт
 
 ### Параметры
@@ -2382,12 +2475,15 @@ interface BugtrackerEditBugreport {
 <details>
   <summary>Открыть</summary>
 
-  ```js
+  ```json
   1
   ```
 </details>
 
+
+
 ## bugtracker.reproduce
+
 Поставить отметку «Воспроизводится» или «Нравится»
 
 ### Параметры
@@ -2409,7 +2505,7 @@ interface BugtrackerEditBugreport {
 <details>
   <summary>Открыть</summary>
 
-  ```js
+  ```json
   {
     "reproduces": {
       "count": 1,
@@ -2431,7 +2527,10 @@ interface BugtrackerEditBugreport {
   ```
 </details>
 
+
+
 ## bugtracker.restoreComment
+
 Восстановить комментарий.
 
 ### Параметры
@@ -2453,12 +2552,15 @@ interface BugtrackerEditBugreport {
 <details>
   <summary>Открыть</summary>
 
-  ```js
+  ```json
   1
   ```
 </details>
 
+
+
 ## bugtracker.saveBugreport
+
 Сохранить репорт
 
 ### Параметры
@@ -2494,14 +2596,17 @@ interface BugtrackerEditBugreport {
 <details>
   <summary>Открыть</summary>
 
-  ```js
+  ```json
   {
     "bugreport_id": 123
   }
   ```
 </details>
 
+
+
 ## bugtracker.saveDevice
+
 Видимо, нужен для сохранения нового устройства.
 
 ### Параметры
@@ -2514,7 +2619,10 @@ interface BugtrackerEditBugreport {
 | model       | string  | Модель устройства                          |
 | platform    | unknown | Платформа                                  |
 
+
+
 ## bugtracker.saveUserDevice
+
 Сохранить настройки устройства
 
 ### Параметры
@@ -2536,12 +2644,15 @@ interface BugtrackerEditBugreport {
 <details>
   <summary>Открыть</summary>
 
-  ```js
+  ```json
   1
   ```
 </details>
 
+
+
 ## bugtracker.searchBugreports
+
 Получить репорты.
 
 ### Параметры
@@ -2579,7 +2690,7 @@ interface BugtrackerEditBugreport {
 <details>
   <summary>Открыть</summary>
 
-  ```js
+  ```json
   {
     "count": 23321,
     "next_from": 1589053866,
@@ -2626,7 +2737,10 @@ interface BugtrackerEditBugreport {
   ```
 </details>
 
+
+
 ## bugtracker.searchDevices
+
 Поиск девайса
 
 ### Параметры
@@ -2646,7 +2760,7 @@ interface BugtrackerEditBugreport {
 <details>
   <summary>Открыть</summary>
 
-  ```js
+  ```json
   {
     "items": [
       {
@@ -2666,7 +2780,10 @@ interface BugtrackerEditBugreport {
   ```
 </details>
 
+
+
 ## bugtracker.setProductVersionNotify
+
 Настроить уведомления о новых версиях
 
 ### Параметры
@@ -2687,14 +2804,17 @@ interface BugtrackerEditBugreport {
 <details>
   <summary>Открыть</summary>
 
-  ```js
+  ```json
   {
     "is_notify_enabled": false
   }
   ```
 </details>
 
+
+
 ## bugtracker.updateBugreportVersion
+
 Добавить отметку об актуальности отчета в новой версии продукта
 
 ### Параметры
@@ -2716,7 +2836,7 @@ interface BugtrackerEditBugreport {
 <details>
   <summary>Открыть</summary>
 
-  ```js
+  ```json
   1
   ```
 </details>
