@@ -20,106 +20,103 @@
 
 ## Типы данных
 
-<details>
-  <summary>Открыть</summary>
+### VKSimpleItem
 
-  ### VKSimpleItem
+[bugtracker.editBugreport](#bugtrackereditbugreport): поле `description` есть у объекта типа проблемы (`issue_type`),
+а `versions` — у объекта платформы (`platform`).
 
-  [bugtracker.editBugreport](#bugtrackereditbugreport): поле `description` есть у объекта типа проблемы (`issue_type`),
-  а `versions` — у объекта платформы (`platform`).
+```ts
+interface VKSimpleItem {
+  id: number
+  name: string
+  description?: string
+  versions?: VKSimpleItem[]
+}
+```
 
-  ```ts
-  interface VKSimpleItem {
-    id: number
-    name: string
-    description?: string
-    versions?: VKSimpleItem[]
+### VKDevice
+
+```ts
+interface VKDevice {
+  id: number
+  status: number
+  title: string
+  platform: VKSimpleItem
+  model: string
+  platform_version: VKSimpleItem
+  user_device_id: number
+  edit_hash?: string
+  remove_hash?: string
+}
+```
+
+### VKComment
+Если не указан `from_id`, то комментарий оставлен модератором.
+В `meta_text` может быть информация об измененном статусе отчета или о его новом приоритете.
+
+```ts
+interface VKComment {
+  bugreport_id: number
+  comment_id: number
+  created: number
+  text: string
+  from_id?: number
+  meta_text?: string
+  author_name: string
+  author_photo: string
+  edit_hash?: string
+  remove_hash?: string
+}
+```
+
+### VKBugreport
+
+```ts
+interface VKBugreport {
+  id: number
+  title: string
+  owner_id: number
+  created: number
+  updated: number
+  status?: VKSimpleItem
+  description?: string
+  state_actual?: string
+  state_supposed?: string
+  attachments?: VKAttachment[]
+  comments_count: number
+  unsubscribe_hash?: string
+  is_subscribed?: boolean
+  bookmark_hash?: string
+  issue_type?: VKSimpleItem
+  severity?: VKSimpleItem
+  is_severity_by_moderator?: boolean
+  product: VKSimpleItem
+  product_version?: VKSimpleItem
+  product_actual_version?: VKSimpleItem
+  platforms?: VKSimpleItem[]
+  platforms_versions?: VKSimpleItem[]
+  tags: VKSimpleItem[]
+  user_devices?: VKDevice[]
+  reproduces: {
+    count: number
+    profiles?: VKUser[]
   }
-  ```
+}
+```
 
-  ### VKDevice
+### VKProduct
 
-  ```ts
-  interface VKDevice {
-    id: number
-    status: number
-    title: string
-    platform: VKSimpleItem
-    model: string
-    platform_version: VKSimpleItem
-    user_device_id: number
-    edit_hash?: string
-    remove_hash?: string
-  }
-  ```
+```ts
+interface VKProduct {
+  id: number
+  name: string
+  version: string
+  tags: VKSimpleItem[]
+  platforms: VKSimpleItem[]
+  platforms_versions: VKSimpleItem[]
+}
+```
 
-  ### VKComment
-  Если не указан `from_id`, то комментарий оставлен модератором.
-  В `meta_text` может быть информация об измененном статусе отчета или о его новом приоритете.
-
-  ```ts
-  interface VKComment {
-    bugreport_id: number
-    comment_id: number
-    created: number
-    text: string
-    from_id?: number
-    meta_text?: string
-    author_name: string
-    author_photo: string
-    edit_hash?: string
-    remove_hash?: string
-  }
-  ```
-
-  ### VKBugreport
-
-  ```ts
-  interface VKBugreport {
-    id: number
-    title: string
-    owner_id: number
-    created: number
-    updated: number
-    status?: VKSimpleItem
-    description?: string
-    state_actual?: string
-    state_supposed?: string
-    attachments?: VKAttachment[]
-    comments_count: number
-    unsubscribe_hash?: string
-    is_subscribed?: boolean
-    bookmark_hash?: string
-    issue_type?: VKSimpleItem
-    severity?: VKSimpleItem
-    is_severity_by_moderator?: boolean
-    product: VKSimpleItem
-    product_version?: VKSimpleItem
-    product_actual_version?: VKSimpleItem
-    platforms?: VKSimpleItem[]
-    platforms_versions?: VKSimpleItem[]
-    tags: VKSimpleItem[]
-    user_devices?: VKDevice[]
-    reproduces: {
-      count: number
-      profiles?: VKUser[]
-    }
-  }
-  ```
-
-  ### VKProduct
-
-  ```ts
-  interface VKProduct {
-    id: number
-    name: string
-    version: string
-    tags: VKSimpleItem[]
-    platforms: VKSimpleItem[]
-    platforms_versions: VKSimpleItem[]
-  }
-  ```
-</details>
 
 
 ## Список методов
