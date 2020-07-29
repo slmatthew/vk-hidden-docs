@@ -9,11 +9,11 @@
 Для получения токена вам нужно проделать следующие действия:
 1. Авторизоваться на `m.vk.com` и сохранить куки
 2. Сделать запрос на `https://m.vk.com/vkui_internal?app_id=6831669&act=login` со следующими заголовками:
-	* User-Agent: `Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:77.0) Gecko/20100101 Firefox/77.0` *или от любого другого браузера*
-	* Accept: `*/*`
-	* Accept-Language: `ru,en-US;q=0.7,en;q=0.3`
-	* vkui: `1`
-	* Cache-Control: `max-age=0`
+  * User-Agent: `Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:77.0) Gecko/20100101 Firefox/77.0` *или от любого другого браузера*
+  * Accept: `*/*`
+  * Accept-Language: `ru,en-US;q=0.7,en;q=0.3`
+  * vkui: `1`
+  * Cache-Control: `max-age=0`
 3. Получить токен из запроса
 
 
@@ -21,103 +21,104 @@
 ## Типы данных
 
 <details>
-	<summary>Открыть</summary>
+  <summary>Открыть</summary>
 
-	### VKSimpleItem
+  ### VKSimpleItem
 
-	[bugtracker.editBugreport](#bugtrackereditbugreport): поле `description` есть у объекта типа проблемы (`issue_type`), а `versions` — у объекта платформы (`platform`).
+  [bugtracker.editBugreport](#bugtrackereditbugreport): поле `description` есть у объекта типа проблемы (`issue_type`),
+  а `versions` — у объекта платформы (`platform`).
 
-	```ts
-	interface VKSimpleItem {
-		id: number
-		name: string
-		description?: string
-		versions?: VKSimpleItem[]
-	}
-	```
+  ```ts
+  interface VKSimpleItem {
+    id: number
+    name: string
+    description?: string
+    versions?: VKSimpleItem[]
+  }
+  ```
 
-	### VKDevice
+  ### VKDevice
 
-	```ts
-	interface VKDevice {
-		id: number
-		status: number
-		title: string
-		platform: VKSimpleItem
-		model: string
-		platform_version: VKSimpleItem
-		user_device_id: number
-		edit_hash?: string
-		remove_hash?: string
-	}
-	```
+  ```ts
+  interface VKDevice {
+    id: number
+    status: number
+    title: string
+    platform: VKSimpleItem
+    model: string
+    platform_version: VKSimpleItem
+    user_device_id: number
+    edit_hash?: string
+    remove_hash?: string
+  }
+  ```
 
-	### VKComment
-	Если не указан `from_id`, то комментарий оставлен модератором.
-	В `meta_text` может быть информация об измененном статусе отчета или о его новом приоритете.
+  ### VKComment
+  Если не указан `from_id`, то комментарий оставлен модератором.
+  В `meta_text` может быть информация об измененном статусе отчета или о его новом приоритете.
 
-	```ts
-	interface VKComment {
-		bugreport_id: number
-		comment_id: number
-		created: number
-		text: string
-		from_id?: number
-		meta_text?: string
-		author_name: string
-		author_photo: string
-		edit_hash?: string
-		remove_hash?: string
-	}
-	```
+  ```ts
+  interface VKComment {
+    bugreport_id: number
+    comment_id: number
+    created: number
+    text: string
+    from_id?: number
+    meta_text?: string
+    author_name: string
+    author_photo: string
+    edit_hash?: string
+    remove_hash?: string
+  }
+  ```
 
-	### VKBugreport
+  ### VKBugreport
 
-	```ts
-	interface VKBugreport {
-		id: number
-		title: string
-		owner_id: number
-		created: number
-		updated: number
-		status?: VKSimpleItem
-		description?: string
-		state_actual?: string
-		state_supposed?: string
-		attachments?: VKAttachment[]
-		comments_count: number
-		unsubscribe_hash?: string
-		is_subscribed?: boolean
-		bookmark_hash?: string
-		issue_type?: VKSimpleItem
-		severity?: VKSimpleItem
-		is_severity_by_moderator?: boolean
-		product: VKSimpleItem
-		product_version?: VKSimpleItem
-		product_actual_version?: VKSimpleItem
-		platforms?: VKSimpleItem[]
-		platforms_versions?: VKSimpleItem[]
-		tags: VKSimpleItem[]
-		user_devices?: VKDevice[]
-		reproduces: {
-			count: number
-			profiles?: VKUser[]
-		}
-	}
-	```
+  ```ts
+  interface VKBugreport {
+    id: number
+    title: string
+    owner_id: number
+    created: number
+    updated: number
+    status?: VKSimpleItem
+    description?: string
+    state_actual?: string
+    state_supposed?: string
+    attachments?: VKAttachment[]
+    comments_count: number
+    unsubscribe_hash?: string
+    is_subscribed?: boolean
+    bookmark_hash?: string
+    issue_type?: VKSimpleItem
+    severity?: VKSimpleItem
+    is_severity_by_moderator?: boolean
+    product: VKSimpleItem
+    product_version?: VKSimpleItem
+    product_actual_version?: VKSimpleItem
+    platforms?: VKSimpleItem[]
+    platforms_versions?: VKSimpleItem[]
+    tags: VKSimpleItem[]
+    user_devices?: VKDevice[]
+    reproduces: {
+      count: number
+      profiles?: VKUser[]
+    }
+  }
+  ```
 
-	### VKProduct
+  ### VKProduct
 
-	```ts
-	interface VKProduct {
-		id: number
-		name: string
-		version: string
-		tags: VKSimpleItem[]
-		platforms: VKSimpleItem[]
-		platforms_versions: VKSimpleItem[]
-	}
-	```
+  ```ts
+  interface VKProduct {
+    id: number
+    name: string
+    version: string
+    tags: VKSimpleItem[]
+    platforms: VKSimpleItem[]
+    platforms_versions: VKSimpleItem[]
+  }
+  ```
 </details>
 
 
@@ -178,8 +179,8 @@
 
 ```ts
 interface BugtrackerAddUserDevice {
-	can_add_device: boolean
-	device: VKDevice
+  can_add_device: boolean
+  device: VKDevice
 }
 ```
 
@@ -229,7 +230,7 @@ interface BugtrackerAddUserDevice {
 
 ```ts
 interface BugtrackerBookmark {
-	is_bookmarked: boolean
+  is_bookmarked: boolean
 }
 ```
 
@@ -293,7 +294,7 @@ type BugtrackerChangeBugreportStatus = 1;
 
 ```ts
 interface BugtrackerCreateComment {
-	comment: VKComment
+  comment: VKComment
 }
 ```
 
@@ -337,7 +338,7 @@ interface BugtrackerCreateComment {
 
 ```ts
 interface BugtrackerDeleteComment {
-	restore_hash: string
+  restore_hash: string
 }
 ```
 
@@ -370,8 +371,8 @@ interface BugtrackerDeleteComment {
 
 ```ts
 interface BugtrackerDeleteUserDevice {
-	can_add_device: boolean
-	platform_ids: number[]
+  can_add_device: boolean
+  platform_ids: number[]
 }
 ```
 
@@ -404,28 +405,28 @@ interface BugtrackerDeleteUserDevice {
 
 ```ts
 interface BugtrackerEditBugreport {
-	bugreport: {
-		id: number
-		title: string
-		description: string
-		state_actual: string
-		state_supposed: string
-		product_id: number
-		confidential: boolean
-		severity: number
-		issue_type: number
-		attachments: VKAttachment[]
-		tags: number[]
-		user_devices: number[]
-		platforms: number[]
-		platforms_versions: number[]
-	}
-	products: VKProduct[]
-	user_devices: VKDevice[]
-	severities: VKSimpleItem[]
-	issue_types: VKSimpleItem[]
-	platforms: VKSimpleItem[]
-	hash: string
+  bugreport: {
+    id: number
+    title: string
+    description: string
+    state_actual: string
+    state_supposed: string
+    product_id: number
+    confidential: boolean
+    severity: number
+    issue_type: number
+    attachments: VKAttachment[]
+    tags: number[]
+    user_devices: number[]
+    platforms: number[]
+    platforms_versions: number[]
+  }
+  products: VKProduct[]
+  user_devices: VKDevice[]
+  severities: VKSimpleItem[]
+  issue_types: VKSimpleItem[]
+  platforms: VKSimpleItem[]
+  hash: string
 }
 ```
 
@@ -2354,7 +2355,7 @@ interface BugtrackerEditBugreport {
   <summary>Открыть</summary>
 
   `login_ha` — логин HockeyApp
-	`login_tf` — логин TestFlight
+  `login_tf` — логин TestFlight
 
   ```json
   {
