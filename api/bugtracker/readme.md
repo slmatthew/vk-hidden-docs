@@ -9,12 +9,12 @@
 Для получения токена вам нужно проделать следующие действия:
 1. Авторизоваться на `m.vk.com` и сохранить куки
 2. Сделать запрос на `https://m.vk.com/vkui_internal?app_id=6831669&act=login` со следующими заголовками:
-  * User-Agent: `Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:77.0) Gecko/20100101 Firefox/77.0` *или от любого другого браузера*
+  * User-Agent: `Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:77.0) Gecko/20100101 Firefox/77.0` (или от любого другого браузера)
   * Accept: `*/*`
   * Accept-Language: `ru,en-US;q=0.7,en;q=0.3`
   * vkui: `1`
   * Cache-Control: `max-age=0`
-3. Получить токен из запроса
+3. Получить токен из ответа
 
 
 
@@ -51,6 +51,7 @@ interface VKDevice {
 ```
 
 ### VKComment
+
 Если не указан `from_id`, то комментарий оставлен модератором.
 В `meta_text` может быть информация об измененном статусе отчета или о его новом приоритете.
 
@@ -155,7 +156,7 @@ interface VKProduct {
 * [bugtracker.saveDevice](#bugtrackersavedevice)
 * [bugtracker.saveUserDevice](#bugtrackersaveuserdevice)
 * [bugtracker.searchBugreports](#bugtrackersearchbugreports)
-* [bugtracker.searchDevices](#bugtrackersearchdevices)
+* [bugtracker.searchDevices](#bugtrackersearchdevices) — Поиск устройств или получение популярных устройств
 * [bugtracker.setProductVersionNotify](#bugtrackersetproductversionnotify)
 * [bugtracker.updateBugreportVersion](#bugtrackerupdatebugreportversion)
 
@@ -2739,18 +2740,34 @@ interface BugtrackerEditBugreport {
 
 ## bugtracker.searchDevices
 
-Поиск девайса
+Ищет устройства или возвращает популярные устройства (если не указать `q`).
 
 ### Параметры
 
-| Параметр | Тип    | Описание      |
-|----------|--------|---------------|
-| q        | string | Строка поиска |
+| Параметр | Тип    | Описание             |
+|----------|--------|----------------------|
+| q        | string | Строка поиска        |
+| count    | int    | Количество устройств |
 
 ### Тип возвращаемого значения
 
 ```ts
+interface BugtrackerSearchDevices {
+  items: VKDevice
+  save_device_hash: string
+}
 
+interface VKDevice {
+  id: number
+  status: 0
+  title: string
+  platform: {
+    id: number
+    name: 'Android' | 'iOS' | 'Windows' | 'MacOS' | 'Linux'
+  }
+  model?: string
+  add_hash: string
+}
 ```
 
 ### Пример ответа
@@ -2760,20 +2777,18 @@ interface BugtrackerEditBugreport {
 
   ```json
   {
-    "items": [
-      {
-        "id": 17423,
-        "status": 0,
-        "title": "Apple Macbook Air 13 inch",
-        "platform": {
-          "id": 2,
-          "name": "MacOS"
-        },
-        "model": "Macbook Air 13 inch 2013",
-        "add_hash": ""
-      }
-    ],
-    "save_device_hash": ""
+    "items": [{
+      "id": 20298,
+      "status": 0,
+      "title": "Linux Deepin",
+      "platform": {
+        "id": 5,
+        "name": "Linux"
+      },
+      "model": "Acer",
+      "add_hash": "..."
+    }],
+    "save_device_hash": "..."
   }
   ```
 </details>
