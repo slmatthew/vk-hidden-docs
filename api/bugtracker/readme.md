@@ -6,8 +6,8 @@
 
 Для доступа к этим методам нужен токен от приложения `Мобильный баг-трекер` с ID `6831669`.
 
-Для получения токена вам нужно перейти по
-[этой](Открыть ссылку `https://oauth.vk.com/authorize?client_id=6831669&redirect_uri=https://oauth.vk.com/blank.html&display=page&response_type=token`)
+Чтобы получить токен, нужно перейти по
+[этой](https://oauth.vk.com/authorize?client_id=6831669&redirect_uri=https://oauth.vk.com/blank.html&display=page&response_type=token)
 ссылке и после редиректа скопировать токен из ссылки.
 
 
