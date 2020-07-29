@@ -9,11 +9,11 @@
 Для получения токена вам нужно проделать следующие действия:
 1. Авторизоваться на `m.vk.com` и сохранить куки
 2. Сделать запрос на `https://m.vk.com/vkui_internal?app_id=6831669&act=login` со следующими заголовками:
-  * User-Agent: `Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:77.0) Gecko/20100101 Firefox/77.0` (или от любого другого браузера)
-  * Accept: `*/*`
-  * Accept-Language: `ru,en-US;q=0.7,en;q=0.3`
-  * vkui: `1`
-  * Cache-Control: `max-age=0`
+   * User-Agent: `Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:77.0) Gecko/20100101 Firefox/77.0` (или от любого другого браузера)
+   * Accept: `*/*`
+   * Accept-Language: `ru,en-US;q=0.7,en;q=0.3`
+   * vkui: `1`
+   * Cache-Control: `max-age=0`
 3. Получить токен из ответа
 
 
