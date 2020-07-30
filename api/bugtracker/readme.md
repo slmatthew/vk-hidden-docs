@@ -1526,18 +1526,31 @@ interface BugtrackerGetBugreportSectionList {
 
 ## bugtracker.getInfo
 
-Получение информации о текущем пользователе. Не принимает параметров.
+Возвращает информацию о правах доступа в баг-трекер текущего пользователя.
 
 ### Тип возвращаемого значения
 
 ```ts
-
+interface BugtrackerGetInfo {
+  balance: number
+  updates_count: number
+  can_add_report: boolean
+  can_search_reports: boolean
+  can_view_products_list: boolean
+  can_view_testers_list: boolean
+  can_view_updates: boolean
+  can_view_shop: boolean
+  can_view_personal_page: boolean
+  can_view_personal_settings: boolean
+  can_view_authored_reports: boolean
+  can_view_bookmarks: boolean
+}
 ```
 
 ### Пример ответа
 
 <details>
-  <summary>Открыть</summary>
+  <summary>Тестировщик</summary>
 
   ```json
   {
@@ -1553,6 +1566,27 @@ interface BugtrackerGetBugreportSectionList {
     "can_view_personal_settings": true,
     "can_view_authored_reports": true,
     "can_view_bookmarks": true
+  }
+  ```
+</details>
+
+<details>
+  <summary>Не тестировщик</summary>
+
+  ```json
+  {
+    "balance": 0,
+    "updates_count": 0,
+    "can_add_report": false,
+    "can_search_reports": true,
+    "can_view_products_list": true,
+    "can_view_testers_list": true,
+    "can_view_updates": false,
+    "can_view_shop": false,
+    "can_view_personal_page": false,
+    "can_view_personal_settings": false,
+    "can_view_authored_reports": false,
+    "can_view_bookmarks": false
   }
   ```
 </details>
