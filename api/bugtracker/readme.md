@@ -121,43 +121,43 @@ interface VKProduct {
 
 ## Список методов
 
-* [bugtracker.addUserDevice](#bugtrackeradduserdevice)
-* [bugtracker.bookmark](#bugtrackerbookmark)
-* [bugtracker.changeBugreportStatus](#bugtrackerchangebugreportstatus)
-* [bugtracker.createComment](#bugtrackercreatecomment)
-* [bugtracker.deleteComment](#bugtrackerdeletecomment)
-* [bugtracker.deleteUserDevice](#bugtrackerdeleteuserdevice)
-* [bugtracker.editBugreport](#bugtrackereditbugreport)
-* [bugtracker.editComment](#bugtrackereditcomment)
-* [bugtracker.getBookmarks](#bugtrackergetbookmarks)
-* [bugtracker.getBugreportById](#bugtrackergetbugreportbyid)
-* [bugtracker.getBugreportSectionList](#bugtrackergetbugreportsectionlist)
-* [bugtracker.getBugreportStatusBox](#bugtrackergetbugreportstatusbox)
-* [bugtracker.getComments](#bugtrackergetcomments)
-* [bugtracker.getDownloadVersionUrl](#bugtrackergetdownloadversionurl)
-* [bugtracker.getEditDeviceFormData](#bugtrackergeteditdeviceformdata)
-* [bugtracker.getInfo](#bugtrackergetinfo)
-* [bugtracker.getProductBranches](#bugtrackergetproductbranches)
-* [bugtracker.getProductVersions](#bugtrackergetproductversions)
-* [bugtracker.getProducts](#bugtrackergetproducts)
-* [bugtracker.getProductsById](#bugtrackergetproductsbyid)
-* [bugtracker.getReporterProducts](#bugtrackergetreporterproducts)
-* [bugtracker.getReportersById](#bugtrackergetreportersbyid)
-* [bugtracker.getReportersTop](#bugtrackergetreporterstop)
-* [bugtracker.getSearchParameters](#bugtrackergetsearchparameters)
-* [bugtracker.getSettings](#bugtrackergetsettings)
-* [bugtracker.joinProduct](#bugtrackerjoinproduct)
-* [bugtracker.leaveProduct](#bugtrackerleaveproduct)
-* [bugtracker.removeBugreport](#bugtrackerremovebugreport)
-* [bugtracker.reproduce](#bugtrackerreproduce)
-* [bugtracker.restoreComment](#bugtrackerrestorecomment)
-* [bugtracker.saveBugreport](#bugtrackersavebugreport)
-* [bugtracker.saveDevice](#bugtrackersavedevice)
-* [bugtracker.saveUserDevice](#bugtrackersaveuserdevice)
-* [bugtracker.searchBugreports](#bugtrackersearchbugreports)
+* [bugtracker.addUserDevice](#bugtrackeradduserdevice) — добавить устройство в профиль
+* [bugtracker.bookmark](#bugtrackerbookmark) — добавить или удалить отчет из закладок
+* [bugtracker.changeBugreportStatus](#bugtrackerchangebugreportstatus) — изменить статус отчета
+* [bugtracker.createComment](#bugtrackercreatecomment) — отправить комментарий
+* [bugtracker.deleteComment](#bugtrackerdeletecomment) — удалить комментарий
+* [bugtracker.deleteUserDevice](#bugtrackerdeleteuserdevice) — удалить устройство из профиля
+* [bugtracker.editBugreport](#bugtrackereditbugreport) — отредактировать отчет или создать новый
+* [bugtracker.editComment](#bugtrackereditcomment) — отредактировать комментарий
+* [bugtracker.getBookmarks](#bugtrackergetbookmarks) — получить список отчетов в закладках
+* [bugtracker.getBugreportById](#bugtrackergetbugreportbyid) — получить отчет по его ID
+* [bugtracker.getBugreportSectionList](#bugtrackergetbugreportsectionlist) — получить «приклеенные» и похожие отчеты
+* [bugtracker.getBugreportStatusBox](#bugtrackergetbugreportstatusbox) — получить список статусов, которые может иметь отчет
+* [bugtracker.getComments](#bugtrackergetcomments) — получить комментарии
+* [bugtracker.getDownloadVersionUrl](#bugtrackergetdownloadversionurl) — получить URL для загрузки версии
+* [bugtracker.getEditDeviceFormData](#bugtrackergeteditdeviceformdata) — получить список ОС для редактирования устройства
+* [bugtracker.getInfo](#bugtrackergetinfo) — получить основную информацию о текущем пользователе
+* [bugtracker.getProductBranches](#bugtrackergetproductbranches) — получить ветки продукта
+* [bugtracker.getProductVersions](#bugtrackergetproductversions) — получить версии продукта
+* [bugtracker.getProducts](#bugtrackergetproducts) — получить продукты
+* [bugtracker.getProductsById](#bugtrackergetproductsbyid) — получить продукты по ID
+* [bugtracker.getReporterProducts](#bugtrackergetreporterproducts) — получить список продуктов пользователя
+* [bugtracker.getReportersById](#bugtrackergetreportersbyid) — получить карточку тестировщика по ID пользователя
+* [bugtracker.getReportersTop](#bugtrackergetreporterstop) — получить топ тестировщиков
+* [bugtracker.getSearchParameters](#bugtrackergetsearchparameters) — получить параметры, доступные в поиске отчетов
+* [bugtracker.getSettings](#bugtrackergetsettings) — получить настройки текущего пользователя
+* [bugtracker.joinProduct](#bugtrackerjoinproduct) — присоединиться к тестированию продукта
+* [bugtracker.leaveProduct](#bugtrackerleaveproduct) — выйти из тестирования продукта
+* [bugtracker.removeBugreport](#bugtrackerremovebugreport) — удалить отчет
+* [bugtracker.reproduce](#bugtrackerreproduce) — поставить отметку «Воспроизводится» или «Нравится»
+* [bugtracker.restoreComment](#bugtrackerrestorecomment) — восстановить комментарий
+* [bugtracker.saveBugreport](#bugtrackersavebugreport) — сохранить отчет
+* [bugtracker.saveDevice](#bugtrackersavedevice) — сохранить новое устройство
+* [bugtracker.saveUserDevice](#bugtrackersaveuserdevice) — сохранить настройки устройства
+* [bugtracker.searchBugreports](#bugtrackersearchbugreports) — получить отчеты пользователя
 * [bugtracker.searchDevices](#bugtrackersearchdevices) — Поиск устройств или получение популярных устройств
-* [bugtracker.setProductVersionNotify](#bugtrackersetproductversionnotify)
-* [bugtracker.updateBugreportVersion](#bugtrackerupdatebugreportversion)
+* [bugtracker.setProductVersionNotify](#bugtrackersetproductversionnotify) — включить или выключить уведомления о новых версиях продукта
+* [bugtracker.updateBugreportVersion](#bugtrackerupdatebugreportversion) — добавить отметку об актуальности отчета
 
 
 
@@ -1196,7 +1196,6 @@ interface BugtrackerGetBugreportSectionList {
   profiles: VKUser[]
 }
 ```
-
 
 
 ## bugtracker.getBugreportStatusBox
