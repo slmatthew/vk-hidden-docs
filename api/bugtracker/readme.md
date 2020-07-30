@@ -47,6 +47,7 @@ interface VKDevice {
 ### VKComment
 
 Если не указан `from_id`, то комментарий оставлен модератором.
+
 В `meta_text` может быть информация об измененном статусе отчета или о его новом приоритете.
 
 ```ts
@@ -61,10 +62,13 @@ interface VKComment {
   author_photo: string
   edit_hash?: string
   remove_hash?: string
+  is_hidden?: bool
 }
 ```
 
 ### VKBugreport
+
+Поле `can_view_similar` есть только в отчетах, которые возвращает [bugtracker.getBugreportSectionList](#bugtrackergetbugreportsectionlist).
 
 ```ts
 interface VKBugreport {
@@ -96,6 +100,7 @@ interface VKBugreport {
     count: number
     profiles?: VKUser[]
   }
+  can_view_similar?: bool
 }
 ```
 
@@ -1170,7 +1175,7 @@ interface BugtrackerEditBugreport {
 
 ## bugtracker.getBugreportSectionList
 
-Неизвестно зачем нужен
+Возвращает «приклеенные» и похожие отчеты.
 
 ### Параметры
 
@@ -1178,6 +1183,19 @@ interface BugtrackerEditBugreport {
 |--------------|--------|------------------------|
 | bugreport_id | int    | ID репорта             |
 | section      | string | `clones` или `similar` |
+
+* `clones` — приклеенные отчеты
+* `similar` — похожие отчеты
+
+### Тип возвращаемого значения
+
+```ts
+interface BugtrackerGetBugreportSectionList {
+  count: number
+  items: VKBugreport[]
+  profiles: VKUser[]
+}
+```
 
 
 
