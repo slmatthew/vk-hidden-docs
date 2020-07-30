@@ -2396,7 +2396,7 @@ interface AudioSearchMain {
 ### Тип возвращаемого значения
 
 ```ts
-interface {
+interface AudioSearchPlaylists {
   count: number
   items: VKPlaylist[]
 }
