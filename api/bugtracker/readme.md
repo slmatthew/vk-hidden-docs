@@ -1075,19 +1075,22 @@ interface BugtrackerEditBugreport {
 
 ## bugtracker.getBugreportById
 
-Получить репорт по его ID.
+Возвращает отчет с указанным ID.
 
 ### Параметры
 
-| Параметр     | Тип    | Описание                        |
-|--------------|--------|---------------------------------|
-| bugreport_id | int    | ID репорта                      |
-| fields       | string | https://vk.com/dev/objects/user |
+| Параметр         | Тип    | Описание                                               |
+|------------------|--------|--------------------------------------------------------|
+| **bugreport_id** | int    | ID репорта                                             |
+| fields           | string | [Дополнительные поля](https://vk.com/dev/objects/user) |
 
 ### Тип возвращаемого значения
 
 ```ts
-
+interface BugreportGetBugreportById {
+  bugreport: VKBugreport
+  profiles: VKUser[]
+}
 ```
 
 ### Пример ответа
@@ -1098,103 +1101,85 @@ interface BugtrackerEditBugreport {
   ```json
   {
     "bugreport": {
-      "id": 1,
-      "title": "Тест",
-      "owner_id": 305360617,
-      "created": 1565715875,
-      "updated": 1571575826,
+      "id": 999999,
+      "title": "Title",
+      "owner_id": 123,
+      "created": 1596149839,
+      "updated": 1596149839,
       "status": {
-        "id": 2,
-        "name": "Исправлен"
+        "id": 0,
+        "name": "Открыт"
       },
       "description": "Шаги воспроизведения",
       "state_actual": "Фактический результат",
       "state_supposed": "Ожидаемый результат",
-      "attachments": [
-        {
-          "type": "photo",
-          "photo": {}
-        }
-      ],
-      "comments_count": 3,
-      "unsubscribe_hash": "",
-      "is_subscribed": true,
-      "bookmark_hash": "",
+      "attachments": [],
+      "bookmark_hash": "...",
+      "is_bookmarked": false,
+      "is_vulnerability": false,
       "issue_type": {
-        "id": 6,
-        "name": "Косметическое несоответствие"
+        "id": 1,
+        "name": "Падение приложения"
       },
       "severity": {
-        "id": 1,
-        "name": "Низкий"
+        "id": 2,
+        "name": "Средний"
       },
-      "is_severity_by_moderator": true,
+      "is_severity_by_moderator": false,
       "product": {
-        "id": 1,
-        "name": "Product name"
+        "id": 20,
+        "name": "VK для iPhone"
       },
       "product_version": {
-        "id": 186,
-        "name": "Version name"
+        "id": 2963,
+        "name": "..."
       },
       "product_actual_version": {
-        "id": 186,
-        "name": "Version name"
+        "id": 2963,
+        "name": "..."
       },
-      "platforms": [
-        {
-          "id": 1,
-          "name": "Windows"
-        }
-      ],
-      "platforms_versions": [],
-      "tags": [
-        {
-          "id": 85,
-          "name": "Комментарии"
+      "platforms": [{
+        "id": 3,
+        "name": "iOS"
+      }],
+      "platforms_versions": [{
+        "id": 6,
+        "name": "iOS 13"
+      }],
+      "tags": [{
+        "id": 2,
+        "name": "Профиль"
+      }],
+      "hidden_docs": false,
+      "user_devices": [{
+        "id": 17344,
+        "status": 0,
+        "title": "Apple IPhone SE",
+        "platform": {
+          "id": 3,
+          "name": "iOS"
         },
-        {
-          "id": 181,
-          "name": "Статьи"
-        }
-      ],
-      "user_devices": [
-        {
-          "id": 1,
-          "status": 0,
-          "title": "Device",
-          "platform": {
-            "id": 1,
-            "name": "Windows"
-          },
-          "model": "Model",
-          "user_device_id": 483300000
-        }
-      ],
+        "model": "SE",
+        "platform_version": {
+          "id": 6,
+          "name": "iOS 13"
+        },
+        "user_device_id": 863605259
+      }],
       "reproduces": {
-        "count": 1,
-        "profiles": [
-          {
-            "id": 408091805,
-            "first_name": "Глеб",
-            "last_name": "Фараонов",
-            "is_closed": false,
-            "can_access_closed": true,
-            "photo_50": "https://sun9-38.userapi.com/c858020/v858020062/5c30f/o4_KIcKAs-8.jpg?ava=1",
-            "photo_100": "https://sun9-55.userapi.com/c858020/v858020062/5c30e/ACB9ios-7UY.jpg?ava=1"
-          }
-        ]
-      }
+        "count": 0,
+        "is_reproduced_by_me": false,
+        "reproduce_hash": ""
+      },
+      "is_paid": false
     },
-    "profiles": [
-      {
-        "id": 305360617,
-        "first_name": "Матвей",
-        "last_name": "Вишневский",
-        "is_closed": false,
-        "can_access_closed": true
-      }
-    ]
+    "profiles": [{
+      "id": 123,
+      "first_name": "Павел",
+      "last_name": "Недуров",
+      "is_closed": true,
+      "can_access_closed": false
+    }]
   }
   ```
 </details>
