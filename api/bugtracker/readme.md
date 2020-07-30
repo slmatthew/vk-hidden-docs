@@ -163,14 +163,40 @@ interface VKProduct {
 
 ## bugtracker.addUserDevice
 
-Добавить устройства
+Добавляет устройство в профиль.
 
 ### Параметры
 
-| Параметр  | Тип    | Описание      |
-|-----------|--------|---------------|
-| device_id | int    | ID устройства |
-| hash      | string | `add_hash`    |
+| Параметр      | Тип    | Описание       |
+|---------------|--------|----------------|
+| **device_id** | int    | ID устройства  |
+| **hash**      | string | Хеш устройства |
+
+Эти два параметра можно получить из метода [bugtracker.searchDevices](#bugtrackersearchdevices).
+
+<details>
+  <summary>Наглядный пример</summary>
+
+  Здесь:
+  * `device_id = 17314`
+  * `hash = ...`
+
+  ```json
+  {
+    "items": [{
+      "id": 17314,
+      "status": 0,
+      "title": "Apple iPhone X",
+      "platform": {
+        "id": 3,
+        "name": "iOS"
+      },
+      "add_hash": "..."
+    }],
+    "save_device_hash": "hello"
+  }
+  ```
+</details>
 
 ### Тип возвращаемого значения
 
@@ -190,25 +216,27 @@ interface BugtrackerAddUserDevice {
   {
     "can_add_device": true,
     "device": {
-      "id": 1,
+      "id": 17314,
       "status": 0,
-      "title": "Device",
+      "title": "Apple iPhone X",
       "platform": {
-        "id": 4,
-        "name": "Android"
+        "id": 3,
+        "name": "iOS"
       },
-      "model": "Model",
-      "platform_version": {
-        "id": 10007,
-        "name": "6.0 Marshmallow"
-      },
-      "user_device_id": 483300000,
-      "edit_hash": "",
-      "remove_hash": ""
+      "user_device_id": 483369459,
+      "edit_hash": "...",
+      "remove_hash": "..."
     }
   }
   ```
 </details>
+
+### Связанные методы
+
+* [bugtracker.deleteUserDevice](#bugtrackerdeleteuserdevice) — удалить устройство из профиля
+* [bugtracker.getEditDeviceFormData](#bugtrackergeteditdeviceformdata) — получить список ОС для редактирования устройства
+* [bugtracker.saveUserDevice](#bugtrackersaveuserdevice) — сохранить настройки устройства
+* [bugtracker.searchDevices](#bugtrackersearchdevices) — поиск или получение популярных устройств
 
 
 
@@ -2774,7 +2802,7 @@ interface BugtrackerGetBugreportSectionList {
 
 ```ts
 interface BugtrackerSearchDevices {
-  items: VKDevice
+  items: VKDevice[]
   save_device_hash: string
 }
 
