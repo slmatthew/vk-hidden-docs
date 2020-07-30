@@ -1,6 +1,6 @@
 # donut
 
-Методы для работы с VK Donut.
+Методы для работы с VK Donut
 
 ## Доступ
 
@@ -19,7 +19,7 @@
 
 ## donut.cancelSubscription
 
-Отменить подписку на сообщество.
+Отменяет подписку на сообщество.
 
 ### Параметры
 
@@ -51,7 +51,7 @@ type DonutCancelSubscription = 1;
 
 ## donut.getFriends
 
-Получить список друзей-донов в сообществе.
+Возвращает список друзей-донов в сообществе.
 
 ### Параметры
 
@@ -81,15 +81,13 @@ type DonutGetFriends = VKList<VKUser>;
   ```json
   {
     "count": 4,
-    "items": [
-      {
-        "id": 180544766,
-        "first_name": "Михаил",
-        "last_name": "Милестон",
-        "is_closed": false,
-        "can_access_closed": true
-      }
-    ]
+    "items": [{
+      "id": 180544766,
+      "first_name": "Михаил",
+      "last_name": "Милестон",
+      "is_closed": false,
+      "can_access_closed": true
+    }]
   }
   ```
 </details>
@@ -98,7 +96,7 @@ type DonutGetFriends = VKList<VKUser>;
 
 ## donut.getPaymentLink
 
-Получить данные для оплаты подписки на сообщество.
+Возвращает данные для оплаты подписки на сообщество.
 
 ### Параметры
 
@@ -145,7 +143,7 @@ interface DonutGetPaymentLink {
 
 ## donut.getSubscriptions
 
-Получить список своих подписок.
+Возвращает список подписок текущего пользователя.
 
 ### Параметры
 
@@ -162,7 +160,7 @@ interface DonutGetSubscriptions {
     owner_id: number
     next_payment_date: number
     // Активная подписка - active, отмененная - expiring
-    status: string
+    status: 'active' | 'expiring'
     // Только если status = expiring
     payment_link?: string
     text: string
@@ -180,31 +178,27 @@ interface DonutGetSubscriptions {
 
   ```json
   {
-    "subscriptions": [
-      {
-        "owner_id": -12345,
-        "next_payment_date": 1598628648,
-        "status": "active",
-        "text": "50 ₽ в месяц"
-      }
-    ],
+    "subscriptions": [{
+      "owner_id": -12345,
+      "next_payment_date": 1598628648,
+      "status": "active",
+      "text": "50 ₽ в месяц"
+    }],
     "count": 1,
     "profiles": [],
-    "groups": [
-      {
-        "id": 12345,
-        "name": "хардбасия",
-        "screen_name": "...",
-        "is_closed": 2,
-        "type": "group",
-        "is_admin": 0,
-        "is_member": 1,
-        "is_advertiser": 0,
-        "photo_50": "https://vk.com/images/community_50.png?ava=1",
-        "photo_100": "https://vk.com/images/community_100.png?ava=1",
-        "photo_200": "https://vk.com/images/community_200.png?ava=1"
-      }
-    ]
+    "groups": [{
+      "id": 12345,
+      "name": "хардбасия",
+      "screen_name": "...",
+      "is_closed": 2,
+      "type": "group",
+      "is_admin": 0,
+      "is_member": 1,
+      "is_advertiser": 0,
+      "photo_50": "https://vk.com/images/community_50.png?ava=1",
+      "photo_100": "https://vk.com/images/community_100.png?ava=1",
+      "photo_200": "https://vk.com/images/community_200.png?ava=1"
+    }]
   }
   ```
 </details>
@@ -214,32 +208,28 @@ interface DonutGetSubscriptions {
 
   ```json
   {
-    "subscriptions": [
-      {
-        "owner_id": -12345,
-        "next_payment_date": 1598628648,
-        "status": "expiring",
-        "payment_link": "https://vk.com/club12345?w=donut_payment-12345&source=subscriptions_list",
-        "text": "50 ₽ в месяц"
-      }
-    ],
+    "subscriptions": [{
+      "owner_id": -12345,
+      "next_payment_date": 1598628648,
+      "status": "expiring",
+      "payment_link": "https://vk.com/club12345?w=donut_payment-12345&source=subscriptions_list",
+      "text": "50 ₽ в месяц"
+    }],
     "count": 1,
     "profiles": [],
-    "groups": [
-      {
-        "id": 12345,
-        "name": "хардбасия",
-        "screen_name": "...",
-        "is_closed": 2,
-        "type": "group",
-        "is_admin": 0,
-        "is_member": 1,
-        "is_advertiser": 0,
-        "photo_50": "https://vk.com/images/community_50.png?ava=1",
-        "photo_100": "https://vk.com/images/community_100.png?ava=1",
-        "photo_200": "https://vk.com/images/community_200.png?ava=1"
-      }
-    ]
+    "groups": [{
+      "id": 12345,
+      "name": "хардбасия",
+      "screen_name": "...",
+      "is_closed": 2,
+      "type": "group",
+      "is_admin": 0,
+      "is_member": 1,
+      "is_advertiser": 0,
+      "photo_50": "https://vk.com/images/community_50.png?ava=1",
+      "photo_100": "https://vk.com/images/community_100.png?ava=1",
+      "photo_200": "https://vk.com/images/community_200.png?ava=1"
+    }]
   }
   ```
 </details>
@@ -253,7 +243,7 @@ interface DonutGetSubscriptions {
 
 ## donut.isDon
 
-Проверить, является ли текущий пользователь доном сообщества.
+Проверяет, является ли текущий пользователь доном сообщества.
 
 ### Параметры
 
@@ -280,7 +270,7 @@ type DonutIsDon = 0 | 1;
 
 ## donut.revertUnsubscription
 
-Возобновить подписку
+Возобновляет подписку.
 
 ### Параметры
 
