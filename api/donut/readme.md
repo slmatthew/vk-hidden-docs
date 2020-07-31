@@ -65,12 +65,10 @@ type DonutCancelSubscription = 1;
 ### Тип возвращаемого значения
 
 ```ts
-interface VKList<T> {
+interface DonutGetFriends {
   count: number
-  items: T[]
+  items: VKUser[]
 }
-
-type DonutGetFriends = VKList<VKUser>;
 ```
 
 ### Пример ответа
@@ -98,18 +96,17 @@ type DonutGetFriends = VKList<VKUser>;
 
 Возвращает данные для оплаты подписки на сообщество.
 
+Чтобы пользователь оплатил подписку, приложение должно открыть ссылку из поля `payment_link`.
+
 ### Параметры
 
-| Параметр     | Тип    | Описание                                      |
-|--------------|--------|-----------------------------------------------|
-| **owner_id** | int    | Отрицательный ID сообщества                   |
-| **amount**   | int    | Сумма платежа                                 |
-| **source**   | string | Параметр, использующийся для сбора статистики |
+| Параметр     | Тип    | Описание                                                    |
+|--------------|--------|-------------------------------------------------------------|
+| **owner_id** | int    | Отрицательный ID сообщества                                 |
+| **amount**   | int    | Сумма платежа                                               |
+| **source**   | string | Параметр, использующийся для сбора статистики. Любая строка |
 
 Если `amount` будет меньше, чем минимальная сумма платежа, сервер вернет ошибку `10 Internal server error`.
-Параметр `source` может иметь любое значение.
-
-Чтобы пользователь оплатил подписку, приложение должно открыть ссылку из поля `payment_link`.
 
 ### Тип возвращаемого значения
 
@@ -130,7 +127,7 @@ interface DonutGetPaymentLink {
 
   ```json
   {
-    "payment_link": "https://vk.com/vkpay",
+    "payment_link": "https://vk.com/vkpay#action=recurrent&merchant_id=681000&data=%7B%22merchant_data%22%3A%22somerandomstring%3D%3D%22%2C%22merchant_sign%22%3A%22somerandomstring%22%7D",
     "merchant_id": 681000,
     "merchant_data": "...",
     "merchant_sign": "...",
