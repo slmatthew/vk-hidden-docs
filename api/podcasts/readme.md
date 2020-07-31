@@ -5,7 +5,9 @@
 
 ## Доступ
 
-Большинство методов из данной секции будут работать только с токеном от VKUI-приложения "Подкасты".
+Большинство методов из данной секции будут работать только с токеном от мини-приложения "Подкасты".
+
+Для получения подходящего токена достаточно открыть ссылку `https://oauth.vk.com/authorize?client_id=6756455&scope=0&redirect_uri=https://oauth.vk.com/blank.html&display=page&response_type=token&revoke=1` и скопировать токен. Учтите, что по (пока что) неизвестным причинам scope=offline **не работает** и попытка его указать приведет к ошибке сервера ВК.
 
 AppID Staging: **6828929**
 
@@ -13,8 +15,8 @@ AppID Production: **6756455**
 
 ## Список методов
 
-* [podcasts.search](#podcastssearch) — поиск по каталогу
 * [podcasts.getStartPage](#podcastsgetstartpage) — главная страница подкастов
+* [podcasts.search](#podcastssearch) — поиск по каталогу
 * [podcasts.clearRecentSearches](#podcastsclearrecentsearches) — очистка истории поиска
 * [podcasts.getRandomEpisode](#podcastsgetrandomepisode) — получить рандомный эпизод
 * [podcasts.markAsListened](#podcastsmarkaslistened) — уведомить о прослушанном эпизоде
@@ -161,7 +163,7 @@ interface PodcastsSearch {
 
 ## podcasts.getStartPage
 
-Главная страница VKUI-приложения "Подкасты".
+Главная страница мини-приложения "Подкасты".
 
 ### Параметры
 
