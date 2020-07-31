@@ -21,7 +21,7 @@ ID приложения (бета): `6828929`
 * [podcasts.clearRecentSearches](#podcastsclearrecentsearches) — очистка истории поиска подкастов
 * [podcasts.getRandomEpisode](#podcastsgetrandomepisode) — получить случайный эпизод случайного подкаста
 * [podcasts.markAsListened](#podcastsmarkaslistened) — уведомить о прослушанном эпизоде
-
+* [podcasts.getFeed](#podcastsgetfeed) — получить прослушанные/в процессе прослушивания подкасты в формате ленты
 
 
 ## podcasts.search
@@ -166,10 +166,10 @@ interface VKPodcastMeta {
 
 ### Параметры
 
-| Параметр | Тип    | Описание                             |
-|----------|--------|--------------------------------------|
-| extended | number | Возрат расширенных данных о профилях |
-| fields   | string | Возрат полей профилей                |
+| Параметр | Тип    | Описание                                       |
+|----------|--------|------------------------------------------------|
+| extended | number | Возвращать в ответе поля `profiles` и `groups` |
+| fields   | string | Возрат полей профилей                          |
 
 ### Тип возвращаемого значения
 
@@ -358,6 +358,49 @@ type PodcastsGetRandomEpisode = VKAudio;
 
 ```ts
 type PodcastsMarkAsListened = number;
+```
+
+### Пример ответа
+
+<details>
+  <summary>Открыть</summary>
+
+  ```json
+  1
+  ```
+</details>
+
+
+
+## podcasts.getFeed
+
+Получение ленты подкастов с выбранным фильтром и количеством. 
+
+### Доступные фильтры
+
+| Название        | Описание                    |
+|-----------------|-----------------------------|
+| **recent**      | Недавно прослушанное        |
+| **in_progress** | В процессе воспроизведения  |
+
+### Параметры
+
+| Параметр       | Тип    | Описание                                        |
+|----------------|--------|-------------------------------------------------|
+| **filter**     | string | Фильтр ленты                                    |
+| **count**      | number | Количество подкастов                            |
+| start_from     | string | Смещение (поле `next_from`)                     |
+| extended       | number | Возвращать в ответе поля `profiles` и `groups`  |
+
+### Тип возвращаемого значения
+
+```ts
+interface PodcastsGetFeed {
+  items: VKAudio[],
+  next_from: string,
+  profiles: VKUser[],
+  groups: VKGroup[]
+}
 ```
 
 ### Пример ответа
