@@ -183,7 +183,7 @@ interface VKPodcastCategory {
 
 interface VKCover {
   height: number
-  width: numbeк
+  width: number
   url: string
 }
 
@@ -265,81 +265,81 @@ type PodcastsGetRandomEpisode = VKAudio
   <summary>Открыть</summary>
 
   ```json
-  {
-  "response": {
-    "artist": "theBatya",
-    "id": 456242831,
-    "owner_id": -36965584,
-    "title": "3D-художников не хватает, нейросети нас не заменят, а универсального софта нет",
-    "duration": 3057,
-    "is_explicit": false,
-    "is_focus_track": false,
-    "url": "*URL*",
-    "date": 1595257408,
-    "lyrics_id": 448775225,
-    "no_search": 1,
-    "podcast_info": {
-      "cover": {
-        "sizes": [
-          {
-            "height": 640,
-            "url": "https:\/\/sun1-15.userapi.com\/Tnh4tHVpPEOOPebmpDr049xT29GXNUheWsVY2w\/_AVcq3xh7NU.jpg",
-            "type": "a",
-            "width": 640
-          },
-          {
-            "height": 320,
-            "url": "https:\/\/sun1-47.userapi.com\/X17ieiAcn58cFuAvEibZOIbYrIpUqAcfMW5lPw\/vbFAXbIoIKo.jpg",
-            "type": "c",
-            "width": 320
-          },
-          {
-            "height": 160,
-            "url": "https:\/\/sun1-97.userapi.com\/T83ONCZY80o_69jIy54fanB0E6Nh1peg4hLmAg\/Ma7N31Y_70Q.jpg",
-            "type": "e",
-            "width": 160
-          },
-          {
-            "height": 240,
-            "url": "https:\/\/sun1-47.userapi.com\/EXgMSLbA8Ml0lhk4SUATEpxCbpgvwmA4rXxbSw\/uArLxD3kwtI.jpg",
-            "type": "b",
-            "width": 240
-          },
-          {
-            "height": 120,
-            "url": "https:\/\/sun1-27.userapi.com\/Exs2VXzHCnHwB4z56xSDgXR3jSoSvzSoCNzo4g\/X_9zG1aCIJI.jpg",
-            "type": "d",
-            "width": 120
-          },
-          {
-            "height": 100,
-            "url": "https:\/\/sun1-30.userapi.com\/8a1uQVxCh3bCg7jevZH7ieHsMfIv6RQiIv0ZfQ\/_ggMpQwvHTA.jpg",
-            "type": "f",
-            "width": 100
-          },
-          {
-            "height": 50,
-            "url": "https:\/\/sun1-85.userapi.com\/bM7mw1F0OsQFRieSNntpJkIczrAtUiwAXr6SdA\/_U2-BDqWPCs.jpg",
-            "type": "h",
-            "width": 50
-          },
-          {
-            "height": 1400,
-            "url": "https:\/\/sun1-47.userapi.com\/vfFcgaYcy2oMs9npAk12UkApmzd6fq9Zzx7JPA\/X_C5xr1vZ_Q.jpg",
-            "type": "x",
-            "width": 1400
-          }
-        ]
+{
+   "response":{
+      "artist":"theBatya",
+      "id":456242831,
+      "owner_id":-36965584,
+      "title":"3D-художников не хватает, нейросети нас не заменят, а универсального софта нет",
+      "duration":3057,
+      "is_explicit":false,
+      "is_focus_track":false,
+      "url":"*URL*",
+      "date":1595257408,
+      "lyrics_id":448775225,
+      "no_search":1,
+      "podcast_info":{
+         "cover":{
+            "sizes":[
+               {
+                  "height":640,
+                  "url":"https:\/\/sun1-15.userapi.com\/Tnh4tHVpPEOOPebmpDr049xT29GXNUheWsVY2w\/_AVcq3xh7NU.jpg",
+                  "type":"a",
+                  "width":640
+               },
+               {
+                  "height":320,
+                  "url":"https:\/\/sun1-47.userapi.com\/X17ieiAcn58cFuAvEibZOIbYrIpUqAcfMW5lPw\/vbFAXbIoIKo.jpg",
+                  "type":"c",
+                  "width":320
+               },
+               {
+                  "height":160,
+                  "url":"https:\/\/sun1-97.userapi.com\/T83ONCZY80o_69jIy54fanB0E6Nh1peg4hLmAg\/Ma7N31Y_70Q.jpg",
+                  "type":"e",
+                  "width":160
+               },
+               {
+                  "height":240,
+                  "url":"https:\/\/sun1-47.userapi.com\/EXgMSLbA8Ml0lhk4SUATEpxCbpgvwmA4rXxbSw\/uArLxD3kwtI.jpg",
+                  "type":"b",
+                  "width":240
+               },
+               {
+                  "height":120,
+                  "url":"https:\/\/sun1-27.userapi.com\/Exs2VXzHCnHwB4z56xSDgXR3jSoSvzSoCNzo4g\/X_9zG1aCIJI.jpg",
+                  "type":"d",
+                  "width":120
+               },
+               {
+                  "height":100,
+                  "url":"https:\/\/sun1-30.userapi.com\/8a1uQVxCh3bCg7jevZH7ieHsMfIv6RQiIv0ZfQ\/_ggMpQwvHTA.jpg",
+                  "type":"f",
+                  "width":100
+               },
+               {
+                  "height":50,
+                  "url":"https:\/\/sun1-85.userapi.com\/bM7mw1F0OsQFRieSNntpJkIczrAtUiwAXr6SdA\/_U2-BDqWPCs.jpg",
+                  "type":"h",
+                  "width":50
+               },
+               {
+                  "height":1400,
+                  "url":"https:\/\/sun1-47.userapi.com\/vfFcgaYcy2oMs9npAk12UkApmzd6fq9Zzx7JPA\/X_C5xr1vZ_Q.jpg",
+                  "type":"x",
+                  "width":1400
+               }
+            ]
+         },
+         "description":"В гостях Юрий Порубов, 3D-художник по персонажам. Работал как фрилансер над Dragon age Inqisition, Agenst of Mayhem, Overkill's the Walking Dead и Anthem. Портфолио: www.artstation.com\/yuriy_porubov_art\n\nПодкаст на сайте: thebatya.com\/podcasts\/long-live-3d\/\n\nДо 30 сентября XYZ School набирает новичков и любителей 3D-моделирования на курс, обучающий созданию стилизованных персонажей. Курс продлится 5 месяцев, на нём научат всему процессу моделирования, а итоговые работы в портфолио помогут податься на работу. До 28 июля можно записаться с 20% скидкой на любой из трёх типов курсов: просмотр, стандарт и продвинутый. Промокод theBatya даст дополнительные 10% скидки при регистрации вплоть до начала обучения. Страница курса: bit.ly\/3hmqsjz\n\nХотите рассказать интересное или важное об индустрии и играх — пишите на podcast@thebatya.com",
+         "is_favorite":false,
+         "plays":81,
+         "position":0,
+         "is_random":true
       },
-      "description": "В гостях Юрий Порубов, 3D-художник по персонажам. Работал как фрилансер над Dragon age Inqisition, Agenst of Mayhem, Overkill's the Walking Dead и Anthem. Портфолио: www.artstation.com\/yuriy_porubov_art\n\nПодкаст на сайте: thebatya.com\/podcasts\/long-live-3d\/\n\nДо 30 сентября XYZ School набирает новичков и любителей 3D-моделирования на курс, обучающий созданию стилизованных персонажей. Курс продлится 5 месяцев, на нём научат всему процессу моделирования, а итоговые работы в портфолио помогут податься на работу. До 28 июля можно записаться с 20% скидкой на любой из трёх типов курсов: просмотр, стандарт и продвинутый. Промокод theBatya даст дополнительные 10% скидки при регистрации вплоть до начала обучения. Страница курса: bit.ly\/3hmqsjz\n\nХотите рассказать интересное или важное об индустрии и играх — пишите на podcast@thebatya.com",
-      "is_favorite": false,
-      "plays": 81,
-      "position": 0,
-      "is_random": true
-    },
-    "short_videos_allowed": false,
-    "stories_allowed": false
-  }
+      "short_videos_allowed":false,
+      "stories_allowed":false
+   }
 }
   ```
 </details>
