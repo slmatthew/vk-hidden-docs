@@ -409,6 +409,97 @@ interface PodcastsGetFeed {
   <summary>Открыть</summary>
 
   ```json
-  1
+  {
+    "items": [
+      {
+        "artist": "Zavtracast",
+        "id": 456239286,
+        "owner_id": -114035565,
+        "title": "Завтракаст №194 – There is no need to be upset",
+        "duration": 11667,
+        "is_explicit": false,
+        "is_focus_track": false,
+        "url": "*URL*",
+        "date": 1596134144,
+        "lyrics_id": 448930449,
+        "no_search": 1,
+        "podcast_info": {
+          "cover": {
+            "sizes": [
+              {
+                "height": 807,
+                "url": "https:\/\/sun9-37.userapi.com\/c857216\/v857216946\/1e494f\/o_Alf9NgRh4.jpg",
+                "type": "a",
+                "width": 807
+              },
+              {
+                "height": 320,
+                "url": "https:\/\/sun9-49.userapi.com\/c857216\/v857216946\/1e4954\/wvidkLYgYZY.jpg",
+                "type": "c",
+                "width": 320
+              },
+              {
+                "height": 200,
+                "url": "https:\/\/sun9-38.userapi.com\/c857216\/v857216946\/1e4953\/vKA0KH_KLmM.jpg",
+                "type": "e",
+                "width": 200
+              },
+              {
+                "height": 320,
+                "url": "https:\/\/sun9-49.userapi.com\/c857216\/v857216946\/1e4954\/wvidkLYgYZY.jpg",
+                "type": "b",
+                "width": 320
+              },
+              {
+                "height": 130,
+                "url": "https:\/\/sun9-52.userapi.com\/c857216\/v857216946\/1e494d\/PqvB1WQKY00.jpg",
+                "type": "d",
+                "width": 130
+              },
+              {
+                "height": 130,
+                "url": "https:\/\/sun9-52.userapi.com\/c857216\/v857216946\/1e494d\/PqvB1WQKY00.jpg",
+                "type": "f",
+                "width": 130
+              },
+              {
+                "height": 75,
+                "url": "https:\/\/sun9-20.userapi.com\/c857216\/v857216946\/1e494c\/mm1NhGFsiqk.jpg",
+                "type": "h",
+                "width": 75
+              },
+              {
+                "height": 604,
+                "url": "https:\/\/sun9-54.userapi.com\/c857216\/v857216946\/1e494e\/WMPEYzCHomo.jpg",
+                "type": "x",
+                "width": 604
+              }
+            ]
+          },
+          "description": "Нет нужды расстр...",
+          "is_favorite": false,
+          "plays": 19,
+          "position": 0
+        },
+        "short_videos_allowed": false,
+        "stories_allowed": false
+      }
+    ],
+    "next_from": "*NEXT_FROM*",
+    "profiles": [],
+    "groups": [
+      {
+        "id": 114035565,
+        "name": "Zavtracast",
+        "screen_name": "zavtracast",
+        "is_closed": 0,
+        "type": "page",
+        "members_count": 10244,
+        "photo_50": "https:\/\/sun1-97.userapi.com\/c639223\/v639223461\/3959b\/kT3AnekfIe4.jpg?ava=1",
+        "photo_100": "https:\/\/sun1-30.userapi.com\/c639223\/v639223461\/3959a\/8u_BUbTIDls.jpg?ava=1",
+        "photo_200": "https:\/\/sun1-98.userapi.com\/c639223\/v639223461\/39599\/HP1unvj0v2c.jpg?ava=1"
+      }
+    ]
+  }
   ```
 </details>
