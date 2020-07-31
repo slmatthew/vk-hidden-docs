@@ -1,24 +1,25 @@
 # podcasts
 
 Методы для работы с подкастами.
-Подкасты - это те же аудиофайлы, но с дополнительной метадатой.
+
+Подкасты - это те же аудиозаписи, но с дополнительной метадатой.
 
 ## Доступ
 
 Большинство методов из данной секции будут работать только с токеном от мини-приложения "Подкасты".
 
-Для получения подходящего токена достаточно открыть ссылку `https://oauth.vk.com/authorize?client_id=6756455&scope=0&redirect_uri=https://oauth.vk.com/blank.html&display=page&response_type=token&revoke=1` и скопировать токен. Учтите, что по (пока что) неизвестным причинам scope=offline **не работает** и попытка его указать приведет к ошибке сервера ВК.
+Для получения токена нужно открыть ссылку `https://oauth.vk.com/authorize?client_id=6756455&redirect_uri=https://oauth.vk.com/blank.html&display=page&response_type=token` и скопировать токен.
 
-AppID Staging: **6828929**
+ID приложения (релиз): `6756455`
 
-AppID Production: **6756455**
+ID приложения (бета): `6828929`
 
 ## Список методов
 
-* [podcasts.getStartPage](#podcastsgetstartpage) — главная страница подкастов
-* [podcasts.search](#podcastssearch) — поиск по каталогу
-* [podcasts.clearRecentSearches](#podcastsclearrecentsearches) — очистка истории поиска
-* [podcasts.getRandomEpisode](#podcastsgetrandomepisode) — получить рандомный эпизод
+* [podcasts.getStartPage](#podcastsgetstartpage) — получить главную страницу подкастов
+* [podcasts.search](#podcastssearch) — поиск по каталогу подкастов
+* [podcasts.clearRecentSearches](#podcastsclearrecentsearches) — очистка истории поиска подкастов
+* [podcasts.getRandomEpisode](#podcastsgetrandomepisode) — получить случайный эпизод случайного подкаста
 * [podcasts.markAsListened](#podcastsmarkaslistened) — уведомить о прослушанном эпизоде
 
 
@@ -38,17 +39,17 @@ AppID Production: **6756455**
 Возвращает список найденных подкастов и эпизодов.
 
 ```ts
+interface PodcastsSearch {
+  podcasts: VKPodcastMeta[]
+  episodes: VKAudio[]
+  profiles: VKUser[]
+  groups: VKGroup[]
+}
+
 interface VKPodcastMeta {
   owner_id: number,
   podcast_title: string
 }
-
-interface PodcastsSearch {
-  podcasts: VKPodcastMeta[]
-  episodes: VKAudio[]
-  profiles: VKProfile[]
-  groups: VKProfile[]
-};
 ```
 
 ### Пример ответа
@@ -58,7 +59,6 @@ interface PodcastsSearch {
 
   ```json
   {
-  "response": {
     "podcasts": [
       {
         "owner_id": -114035565,
@@ -155,7 +155,6 @@ interface PodcastsSearch {
       }
     ]
   }
-}
   ```
 </details>
 
@@ -177,6 +176,25 @@ interface PodcastsSearch {
 Возвращает главную страницу с рекоммендациями и блоками.
 
 ```ts
+interface PodcastsGetStartPage {
+  order: string[]
+  in_progress: VKAudio[]
+  bookmarks: VKAudio[]
+  articles: VKArticle[]
+  static_how_to: boolean[]
+  subscriptions: VKAudio[]
+  chart: VKPodcastChart
+  search_tooltip: VKTooltip
+  categories_list: VKPodcastCategory[]
+  recommended_episodes: VKAudio[]
+  catalog: VKPodcastCatalogBlock[]
+}
+
+interface VKPodcastCatalogBlock {
+  category: VKPodcastCategory
+  items: VKPodcastMeta[]
+}
+
 interface VKPodcastCategory {
   id: number
   title: string
@@ -194,9 +212,9 @@ interface VKPodcastMeta {
   podcast_title: string
 }
 
-interface VKPodcastCatalogBlock {
-  category: VKPodcastCategory
-  items: VKPodcastMeta[]
+interface VKPodcastChart {
+  chart: VKPodcastChartMeta[]
+  items: VKAudio[]
 }
 
 interface VKPodcastChartMeta {
@@ -204,37 +222,18 @@ interface VKPodcastChartMeta {
   position: number
   diff: number
 }
-
-interface VKPodcastChart {
-  chart: VKPodcastChartMeta[]
-  items: VKAudio[]
-}
-
-interface PodcastsGetStartPage {
-  order: string[]
-  in_progress: VKAudio[]
-  bookmarks: VKAudio[]
-  articles: VKArticle[]
-  static_how_to: boolean[]
-  subscriptions: VKAudio[]
-  chart: VKPodcastChart
-  search_tooltip: VKTooltip
-  categories_list: VKPodcastCategory[]
-  recommended_episodes: VKAudio[]
-  catalog: VKPodcastCatalogBlock[]
-};
 ```
 
 
 
 ## podcasts.clearRecentSearches
 
-Очистка истории поиска.
+Очистка истории поиска подкастов.
 
 ### Тип возвращаемого значения
 
 ```ts
-type PodcastsClearRecentSearches = number
+type PodcastsClearRecentSearches = number;
 ```
 
 ### Пример ответа
@@ -243,9 +242,7 @@ type PodcastsClearRecentSearches = number
   <summary>Открыть</summary>
 
   ```json
-  {
-    "response": 1
-  }
+  1
   ```
 </details>
 
@@ -258,7 +255,7 @@ type PodcastsClearRecentSearches = number
 ### Тип возвращаемого значения
 
 ```ts
-type PodcastsGetRandomEpisode = VKAudio
+type PodcastsGetRandomEpisode = VKAudio;
 ```
 
 ### Пример ответа
@@ -268,7 +265,6 @@ type PodcastsGetRandomEpisode = VKAudio
 
   ```json
 {
-   "response":{
       "artist":"theBatya",
       "id":456242831,
       "owner_id":-36965584,
@@ -342,7 +338,6 @@ type PodcastsGetRandomEpisode = VKAudio
       "short_videos_allowed":false,
       "stories_allowed":false
    }
-}
   ```
 </details>
 
@@ -354,16 +349,15 @@ type PodcastsGetRandomEpisode = VKAudio
 
 ### Параметры
 
-| Параметр       | Тип    | Описание                |
-|----------------|--------|-------------------------|
-| **owner_id**   | number | ID владельца            |
-| **episode_id** | number | ID эпизода              |
-| ref            | string | Данные для статистики   |
+| Параметр       | Тип    | Описание     |
+|----------------|--------|--------------|
+| **owner_id**   | number | ID владельца |
+| **episode_id** | number | ID эпизода   |
 
 ### Тип возвращаемого значения
 
 ```ts
-type PodcastsMarkAsListened = number
+type PodcastsMarkAsListened = number;
 ```
 
 ### Пример ответа
@@ -372,8 +366,6 @@ type PodcastsMarkAsListened = number
   <summary>Открыть</summary>
 
   ```json
-  {
-      "response": 1
-}
+  1
   ```
 </details>
