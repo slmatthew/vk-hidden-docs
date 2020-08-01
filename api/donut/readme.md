@@ -4,7 +4,12 @@
 
 ## Доступ
 
-Для доступа к секции `donut` можно использовать любой токен пользователя.
+Для доступа к секции `donut` рекомендуется использовать токен VK для Android:
+   - Методы `donut.cancelSubscription`, `donut.getFriends` и `donut.getPaymentLink`
+     работают только при использовании токена VK для Android;
+   - Метод `donut.getSubscriptions` возвращает поля `profiles`, `groups` и `count`
+     только при использовании токена VK для Android;
+   - Остальные методы могут работать с любым токеном.
 
 ## Список методов
 
@@ -45,6 +50,7 @@ type DonutCancelSubscription = 1;
 
 ### Связанные методы
 
+* [donut.getSubscriptions](#donutgetsubscriptions) — получить список подписок
 * [donut.revertUnsubscription](#donutrevertunsubscription) — возобновить подписку на сообщество
 
 
@@ -55,12 +61,12 @@ type DonutCancelSubscription = 1;
 
 ### Параметры
 
-| Параметр     | Тип    | Описание                                      |
-|--------------|--------|-----------------------------------------------|
-| **owner_id** | int    | Отрицательный ID сообщества                   |
-| **count**    | int    | Количество друзей                             |
-| offset       | int    | Смещение                                      |
-| fields       | string | Дополнительные поля для `profiles` и `groups` |
+| Параметр     | Тип    | Описание                          |
+|--------------|--------|-----------------------------------|
+| **owner_id** | int    | Отрицательный ID сообщества       |
+| **count**    | int    | Количество друзей                 |
+| offset       | int    | Смещение                          |
+| fields       | string | Дополнительные поля пользователей |
 
 ### Тип возвращаемого значения
 
@@ -96,15 +102,15 @@ interface DonutGetFriends {
 
 Возвращает данные для оплаты подписки на сообщество.
 
-Чтобы пользователь оплатил подписку, приложение должно открыть ссылку из поля `payment_link`.
+Чтобы оплатить подписку, нужно открыть ссылку из поля `payment_link` в ответе.
 
 ### Параметры
 
-| Параметр     | Тип    | Описание                                                    |
-|--------------|--------|-------------------------------------------------------------|
-| **owner_id** | int    | Отрицательный ID сообщества                                 |
-| **amount**   | int    | Сумма платежа                                               |
-| **source**   | string | Параметр, использующийся для сбора статистики. Любая строка |
+| Параметр     | Тип    | Описание                                        |
+|--------------|--------|-------------------------------------------------|
+| **owner_id** | int    | Отрицательный ID сообщества                     |
+| **amount**   | int    | Сумма платежа                                   |
+| **source**   | string | Любая строка. Используется для сбора статистики |
 
 Если `amount` будет меньше, чем минимальная сумма платежа, сервер вернет ошибку `10 Internal server error`.
 
@@ -156,7 +162,7 @@ interface DonutGetSubscriptions {
   subscriptions: {
     owner_id: number
     next_payment_date: number
-    // Активная подписка - active, отмененная - expiring
+    // active - активная подписка, expiring - отмененная
     status: 'active' | 'expiring'
     // Только если status = expiring
     payment_link?: string
@@ -294,3 +300,4 @@ type DonutRevertUnsubscription = 1;
 ### Связанные методы
 
 * [donut.cancelSubscription](#donutcancelsubscription) — отменить подписку на сообщество
+* [donut.getSubscriptions](#donutgetsubscriptions) — получить список подписок
