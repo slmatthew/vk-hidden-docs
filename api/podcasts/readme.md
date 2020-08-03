@@ -56,55 +56,55 @@ interface VKPodcastMeta {
   <summary>Открыть</summary>
 
   ```json
-  {
-    "podcasts": [{
+{
+  "podcasts": [{
       "owner_id": -114035565,
       "podcast_title": "Zavtracast"
-    }],
-    "episodes": [
-      {
-        "artist": "Zavtracast",
-        "id": 456239071,
-        "owner_id": -114035565,
-        "title": "Zavtracast Special  - Вопросы и Ответы: летняя версия",
-        "duration": 3623,
-        "is_explicit": false,
-        "is_focus_track": false,
-        "url": "...",
-        "date": 1536848792,
-        "lyrics_id": 430797219,
-        "no_search": 1,
-        "podcast_info": {
-          "cover": {
-            "sizes": [{
-                "height": 807,
-                "url": "...",
-                "type": "a",
-                "width": 807
-            }]
-          },
-          "description": "Привет, наши дорогие слуша...",
-          "is_favorite": false,
-          "plays": 5,
-          "position": 0
+  }],
+  "episodes": [{
+      "artist": "Zavtracast",
+      "id": 456239071,
+      "owner_id": -114035565,
+      "title": "Zavtracast Special  - Вопросы и Ответы: летняя версия",
+      "duration": 3623,
+      "is_explicit": false,
+      "is_focus_track": false,
+      "url": "...",
+      "date": 1536848792,
+      "lyrics_id": 430797219,
+      "no_search": 1,
+      "podcast_info": {
+        "cover": {
+          "sizes": [
+            {
+              "height": 807,
+              "url": "...",
+              "type": "a",
+              "width": 807
+            }
+          ]
         },
-        "short_videos_allowed": false,
-        "stories_allowed": false
-      }
-    ],
-    "profiles": [],
-    "groups": [{
-        "id": 114035565,
-        "name": "Zavtracast",
-        "screen_name": "zavtracast",
-        "is_closed": 0,
-        "type": "page",
-        "members_count": 10242,
-        "photo_50": "https:\/\/sun1-97.userapi.com\/c639223\/v639223461\/3959b\/kT3AnekfIe4.jpg?ava=1",
-        "photo_100": "https:\/\/sun1-30.userapi.com\/c639223\/v639223461\/3959a\/8u_BUbTIDls.jpg?ava=1",
-        "photo_200": "https:\/\/sun1-98.userapi.com\/c639223\/v639223461\/39599\/HP1unvj0v2c.jpg?ava=1"
-    }]
-  }
+        "description": "Привет, наши дорогие слуша...",
+        "is_favorite": false,
+        "plays": 5,
+        "position": 0
+      },
+      "short_videos_allowed": false,
+      "stories_allowed": false
+  }],
+  "profiles": [],
+  "groups": [{
+      "id": 114035565,
+      "name": "Zavtracast",
+      "screen_name": "zavtracast",
+      "is_closed": 0,
+      "type": "page",
+      "members_count": 10242,
+      "photo_50": "https://sun1-97.userapi.com/c639223/v639223461/3959b/kT3AnekfIe4.jpg?ava=1",
+      "photo_100": "https://sun1-30.userapi.com/c639223/v639223461/3959a/8u_BUbTIDls.jpg?ava=1",
+      "photo_200": "https://sun1-98.userapi.com/c639223/v639223461/39599/HP1unvj0v2c.jpg?ava=1"
+  }]
+}
   ```
 </details>
 
@@ -213,35 +213,35 @@ type PodcastsGetRandomEpisode = VKAudio;
 
   ```json
 {
-      "artist":"theBatya",
-      "id":456242831,
-      "owner_id":-36965584,
-      "title":"3D-художников не хватает, нейросети нас не заменят, а универсального софта нет",
-      "duration":3057,
-      "is_explicit":false,
-      "is_focus_track":false,
-      "url":"...",
-      "date":1595257408,
-      "lyrics_id":448775225,
-      "no_search":1,
-      "podcast_info":{
-         "cover": {
-            "sizes":[{
-              "height":640,
-              "url":"...",
-              "type":"a",
-              "width":640
-            }]
-         },
-         "description":"В гостях Юри...",
-         "is_favorite":false,
-         "plays":81,
-         "position":0,
-         "is_random":true
-      },
-      "short_videos_allowed":false,
-      "stories_allowed":false
-   }
+  "artist": "theBatya",
+  "id": 456242831,
+  "owner_id": -36965584,
+  "title": "3D-художников не хватает, нейросети нас не заменят, а универсального софта нет",
+  "duration": 3057,
+  "is_explicit": false,
+  "is_focus_track": false,
+  "url": "...",
+  "date": 1595257408,
+  "lyrics_id": 448775225,
+  "no_search": 1,
+  "podcast_info": {
+    "cover": {
+      "sizes": [{
+          "height": 640,
+          "url": "...",
+          "type": "a",
+          "width": 640
+      }]
+    },
+    "description": "В гостях Юри...",
+    "is_favorite": false,
+    "plays": 81,
+    "position": 0,
+    "is_random": true
+  },
+  "short_videos_allowed": false,
+  "stories_allowed": false
+}
   ```
 </details>
 
@@ -313,49 +313,49 @@ interface PodcastsGetFeed {
   <summary>Открыть</summary>
 
   ```json
-  {
-    "items": [{
-        "artist": "Zavtracast",
-        "id": 456239286,
-        "owner_id": -114035565,
-        "title": "Завтракаст №194 – There is no need to be upset",
-        "duration": 11667,
-        "is_explicit": false,
-        "is_focus_track": false,
-        "url": "...",
-        "date": 1596134144,
-        "lyrics_id": 448930449,
-        "no_search": 1,
-        "podcast_info": {
-          "cover": {
-            "sizes": [{
-                "height": 807,
-                "url": "...",
-                "type": "a",
-                "width": 807
-            }]
-          },
-          "description": "Нет нужды расстр...",
-          "is_favorite": false,
-          "plays": 19,
-          "position": 0
-        },
-        "short_videos_allowed": false,
-        "stories_allowed": false
-    }],
-    "next_from": "...",
-    "profiles": [],
-    "groups": [{
-        "id": 114035565,
-        "name": "Zavtracast",
-        "screen_name": "zavtracast",
-        "is_closed": 0,
-        "type": "page",
-        "members_count": 10244,
-        "photo_50": "https:\/\/sun1-97.userapi.com\/c639223\/v639223461\/3959b\/kT3AnekfIe4.jpg?ava=1",
-        "photo_100": "https:\/\/sun1-30.userapi.com\/c639223\/v639223461\/3959a\/8u_BUbTIDls.jpg?ava=1",
-        "photo_200": "https:\/\/sun1-98.userapi.com\/c639223\/v639223461\/39599\/HP1unvj0v2c.jpg?ava=1"
-    }]
-  }
+{
+  "items": [{
+    "artist": "Zavtracast",
+    "id": 456239286,
+    "owner_id": -114035565,
+    "title": "Завтракаст №194 – There is no need to be upset",
+    "duration": 11667,
+    "is_explicit": false,
+    "is_focus_track": false,
+    "url": "...",
+    "date": 1596134144,
+    "lyrics_id": 448930449,
+    "no_search": 1,
+    "podcast_info": {
+      "cover": {
+        "sizes": [{
+          "height": 807,
+          "url": "...",
+          "type": "a",
+          "width": 807
+        }]
+      },
+      "description": "Нет нужды расстр...",
+      "is_favorite": false,
+      "plays": 19,
+      "position": 0
+    },
+    "short_videos_allowed": false,
+    "stories_allowed": false
+  }],
+  "next_from": "...",
+  "profiles": [],
+  "groups": [{
+    "id": 114035565,
+    "name": "Zavtracast",
+    "screen_name": "zavtracast",
+    "is_closed": 0,
+    "type": "page",
+    "members_count": 10244,
+    "photo_50": "https://sun1-97.userapi.com/c639223/v639223461/3959b/kT3AnekfIe4.jpg?ava=1",
+    "photo_100": "https://sun1-30.userapi.com/c639223/v639223461/3959a/8u_BUbTIDls.jpg?ava=1",
+    "photo_200": "https://sun1-98.userapi.com/c639223/v639223461/39599/HP1unvj0v2c.jpg?ava=1"
+  }]
+}
   ```
 </details>
