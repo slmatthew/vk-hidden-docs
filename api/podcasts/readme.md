@@ -26,7 +26,7 @@ ID приложения (бета): `6828929`
 
 ## podcasts.search
 
-Поиск по каталогу подкастов.
+Возвращает результаты поиска по каталогу подкастов.
 
 ### Параметры
 
@@ -35,8 +35,6 @@ ID приложения (бета): `6828929`
 | **query_string** | string | Поисковый запрос |
 
 ### Тип возвращаемого значения
-
-Возвращает список найденных подкастов и эпизодов.
 
 ```ts
 interface PodcastsSearch {
@@ -59,12 +57,10 @@ interface VKPodcastMeta {
 
   ```json
   {
-    "podcasts": [
-      {
-        "owner_id": -114035565,
-        "podcast_title": "Zavtracast"
-      }
-    ],
+    "podcasts": [{
+      "owner_id": -114035565,
+      "podcast_title": "Zavtracast"
+    }],
     "episodes": [
       {
         "artist": "Zavtracast",
@@ -74,64 +70,20 @@ interface VKPodcastMeta {
         "duration": 3623,
         "is_explicit": false,
         "is_focus_track": false,
-        "url": "*URL*",
+        "url": "...",
         "date": 1536848792,
         "lyrics_id": 430797219,
         "no_search": 1,
         "podcast_info": {
           "cover": {
-            "sizes": [
-              {
+            "sizes": [{
                 "height": 807,
-                "url": "https:\/\/sun9-47.userapi.com\/c850228\/v850228583\/2945b\/QMo2OhFElHc.jpg",
+                "url": "...",
                 "type": "a",
                 "width": 807
-              },
-              {
-                "height": 320,
-                "url": "https:\/\/sun9-15.userapi.com\/c850228\/v850228583\/29460\/V88ztOpoDpY.jpg",
-                "type": "c",
-                "width": 320
-              },
-              {
-                "height": 200,
-                "url": "https:\/\/sun9-5.userapi.com\/c850228\/v850228583\/2945f\/U_5i34MqGjw.jpg",
-                "type": "e",
-                "width": 200
-              },
-              {
-                "height": 320,
-                "url": "https:\/\/sun9-15.userapi.com\/c850228\/v850228583\/29460\/V88ztOpoDpY.jpg",
-                "type": "b",
-                "width": 320
-              },
-              {
-                "height": 130,
-                "url": "https:\/\/sun9-69.userapi.com\/c850228\/v850228583\/29459\/cFyW287T9lg.jpg",
-                "type": "d",
-                "width": 130
-              },
-              {
-                "height": 130,
-                "url": "https:\/\/sun9-69.userapi.com\/c850228\/v850228583\/29459\/cFyW287T9lg.jpg",
-                "type": "f",
-                "width": 130
-              },
-              {
-                "height": 75,
-                "url": "https:\/\/sun9-62.userapi.com\/c850228\/v850228583\/29458\/yc8kU9Jdqls.jpg",
-                "type": "h",
-                "width": 75
-              },
-              {
-                "height": 604,
-                "url": "https:\/\/sun9-30.userapi.com\/c850228\/v850228583\/2945a\/goBRElwhSgw.jpg",
-                "type": "x",
-                "width": 604
-              }
-            ]
+            }]
           },
-          "description": "Привет, наши дорогие слушатели! Мы давно обещали сделать еще один специальный выпуск Завтракаста, в котором ответим на накопившиеся вопросы жизни и смерти. Чем занимается Дима в свободное от работы время, как Максим нашел себе жену, зачем Тимур так много фотографирует небо — ответы на эти вопросы вы не узнаете из этого выпуска, зато мы рассказали про многое другое интересное. Надеемся, этот выпуск поможет вам скрасить ожидание до следующего сезона Завтракаста, который должен стартануть уже вот-вот совсем скоро.\n\nНе забывайте, что вы можете подписаться на наш музыкальный подкаст Zavtratunes, в рамках которого у нас на прошлой неделе вышло аж два выпуска сразу. И присылайте свои новые вопросы к нам на почту zavtracast@gmail.com и оставляйте в специально отведенной для этого теме в ВК.",
+          "description": "Привет, наши дорогие слуша...",
           "is_favorite": false,
           "plays": 5,
           "position": 0
@@ -141,8 +93,7 @@ interface VKPodcastMeta {
       }
     ],
     "profiles": [],
-    "groups": [
-      {
+    "groups": [{
         "id": 114035565,
         "name": "Zavtracast",
         "screen_name": "zavtracast",
@@ -152,8 +103,7 @@ interface VKPodcastMeta {
         "photo_50": "https:\/\/sun1-97.userapi.com\/c639223\/v639223461\/3959b\/kT3AnekfIe4.jpg?ava=1",
         "photo_100": "https:\/\/sun1-30.userapi.com\/c639223\/v639223461\/3959a\/8u_BUbTIDls.jpg?ava=1",
         "photo_200": "https:\/\/sun1-98.userapi.com\/c639223\/v639223461\/39599\/HP1unvj0v2c.jpg?ava=1"
-      }
-    ]
+    }]
   }
   ```
 </details>
@@ -162,7 +112,7 @@ interface VKPodcastMeta {
 
 ## podcasts.getStartPage
 
-Главная страница мини-приложения "Подкасты".
+Главная страница мини-приложения "Подкасты". Возвращает главную страницу с рекомендациями, чартом и блоками.
 
 ### Параметры
 
@@ -172,8 +122,6 @@ interface VKPodcastMeta {
 | fields   | string | Возрат полей профилей                          |
 
 ### Тип возвращаемого значения
-
-Возвращает главную страницу с рекоммендациями и блоками.
 
 ```ts
 interface PodcastsGetStartPage {
@@ -233,7 +181,7 @@ interface VKPodcastChartMeta {
 ### Тип возвращаемого значения
 
 ```ts
-type PodcastsClearRecentSearches = number;
+type PodcastsClearRecentSearches = 1;
 ```
 
 ### Пример ответа
@@ -272,64 +220,20 @@ type PodcastsGetRandomEpisode = VKAudio;
       "duration":3057,
       "is_explicit":false,
       "is_focus_track":false,
-      "url":"*URL*",
+      "url":"...",
       "date":1595257408,
       "lyrics_id":448775225,
       "no_search":1,
       "podcast_info":{
-         "cover":{
-            "sizes":[
-               {
-                  "height":640,
-                  "url":"https:\/\/sun1-15.userapi.com\/Tnh4tHVpPEOOPebmpDr049xT29GXNUheWsVY2w\/_AVcq3xh7NU.jpg",
-                  "type":"a",
-                  "width":640
-               },
-               {
-                  "height":320,
-                  "url":"https:\/\/sun1-47.userapi.com\/X17ieiAcn58cFuAvEibZOIbYrIpUqAcfMW5lPw\/vbFAXbIoIKo.jpg",
-                  "type":"c",
-                  "width":320
-               },
-               {
-                  "height":160,
-                  "url":"https:\/\/sun1-97.userapi.com\/T83ONCZY80o_69jIy54fanB0E6Nh1peg4hLmAg\/Ma7N31Y_70Q.jpg",
-                  "type":"e",
-                  "width":160
-               },
-               {
-                  "height":240,
-                  "url":"https:\/\/sun1-47.userapi.com\/EXgMSLbA8Ml0lhk4SUATEpxCbpgvwmA4rXxbSw\/uArLxD3kwtI.jpg",
-                  "type":"b",
-                  "width":240
-               },
-               {
-                  "height":120,
-                  "url":"https:\/\/sun1-27.userapi.com\/Exs2VXzHCnHwB4z56xSDgXR3jSoSvzSoCNzo4g\/X_9zG1aCIJI.jpg",
-                  "type":"d",
-                  "width":120
-               },
-               {
-                  "height":100,
-                  "url":"https:\/\/sun1-30.userapi.com\/8a1uQVxCh3bCg7jevZH7ieHsMfIv6RQiIv0ZfQ\/_ggMpQwvHTA.jpg",
-                  "type":"f",
-                  "width":100
-               },
-               {
-                  "height":50,
-                  "url":"https:\/\/sun1-85.userapi.com\/bM7mw1F0OsQFRieSNntpJkIczrAtUiwAXr6SdA\/_U2-BDqWPCs.jpg",
-                  "type":"h",
-                  "width":50
-               },
-               {
-                  "height":1400,
-                  "url":"https:\/\/sun1-47.userapi.com\/vfFcgaYcy2oMs9npAk12UkApmzd6fq9Zzx7JPA\/X_C5xr1vZ_Q.jpg",
-                  "type":"x",
-                  "width":1400
-               }
-            ]
+         "cover": {
+            "sizes":[{
+              "height":640,
+              "url":"...",
+              "type":"a",
+              "width":640
+            }]
          },
-         "description":"В гостях Юрий Порубов, 3D-художник по персонажам. Работал как фрилансер над Dragon age Inqisition, Agenst of Mayhem, Overkill's the Walking Dead и Anthem. Портфолио: www.artstation.com\/yuriy_porubov_art\n\nПодкаст на сайте: thebatya.com\/podcasts\/long-live-3d\/\n\nДо 30 сентября XYZ School набирает новичков и любителей 3D-моделирования на курс, обучающий созданию стилизованных персонажей. Курс продлится 5 месяцев, на нём научат всему процессу моделирования, а итоговые работы в портфолио помогут податься на работу. До 28 июля можно записаться с 20% скидкой на любой из трёх типов курсов: просмотр, стандарт и продвинутый. Промокод theBatya даст дополнительные 10% скидки при регистрации вплоть до начала обучения. Страница курса: bit.ly\/3hmqsjz\n\nХотите рассказать интересное или важное об индустрии и играх — пишите на podcast@thebatya.com",
+         "description":"В гостях Юри...",
          "is_favorite":false,
          "plays":81,
          "position":0,
@@ -376,13 +280,6 @@ type PodcastsMarkAsListened = number;
 
 Получение ленты подкастов с выбранным фильтром и количеством. 
 
-### Доступные фильтры
-
-| Название        | Описание                    |
-|-----------------|-----------------------------|
-| **recent**      | Недавно прослушанное        |
-| **in_progress** | В процессе воспроизведения  |
-
 ### Параметры
 
 | Параметр       | Тип    | Описание                                        |
@@ -391,6 +288,13 @@ type PodcastsMarkAsListened = number;
 | **count**      | number | Количество подкастов                            |
 | start_from     | string | Смещение (поле `next_from`)                     |
 | extended       | number | Возвращать в ответе поля `profiles` и `groups`  |
+
+#### Доступные фильтры
+
+| Название        | Описание                    |
+|-----------------|-----------------------------|
+| **recent**      | Недавно прослушанное        |
+| **in_progress** | В процессе воспроизведения  |
 
 ### Тип возвращаемого значения
 
@@ -410,8 +314,7 @@ interface PodcastsGetFeed {
 
   ```json
   {
-    "items": [
-      {
+    "items": [{
         "artist": "Zavtracast",
         "id": 456239286,
         "owner_id": -114035565,
@@ -419,62 +322,18 @@ interface PodcastsGetFeed {
         "duration": 11667,
         "is_explicit": false,
         "is_focus_track": false,
-        "url": "*URL*",
+        "url": "...",
         "date": 1596134144,
         "lyrics_id": 448930449,
         "no_search": 1,
         "podcast_info": {
           "cover": {
-            "sizes": [
-              {
+            "sizes": [{
                 "height": 807,
-                "url": "https:\/\/sun9-37.userapi.com\/c857216\/v857216946\/1e494f\/o_Alf9NgRh4.jpg",
+                "url": "...",
                 "type": "a",
                 "width": 807
-              },
-              {
-                "height": 320,
-                "url": "https:\/\/sun9-49.userapi.com\/c857216\/v857216946\/1e4954\/wvidkLYgYZY.jpg",
-                "type": "c",
-                "width": 320
-              },
-              {
-                "height": 200,
-                "url": "https:\/\/sun9-38.userapi.com\/c857216\/v857216946\/1e4953\/vKA0KH_KLmM.jpg",
-                "type": "e",
-                "width": 200
-              },
-              {
-                "height": 320,
-                "url": "https:\/\/sun9-49.userapi.com\/c857216\/v857216946\/1e4954\/wvidkLYgYZY.jpg",
-                "type": "b",
-                "width": 320
-              },
-              {
-                "height": 130,
-                "url": "https:\/\/sun9-52.userapi.com\/c857216\/v857216946\/1e494d\/PqvB1WQKY00.jpg",
-                "type": "d",
-                "width": 130
-              },
-              {
-                "height": 130,
-                "url": "https:\/\/sun9-52.userapi.com\/c857216\/v857216946\/1e494d\/PqvB1WQKY00.jpg",
-                "type": "f",
-                "width": 130
-              },
-              {
-                "height": 75,
-                "url": "https:\/\/sun9-20.userapi.com\/c857216\/v857216946\/1e494c\/mm1NhGFsiqk.jpg",
-                "type": "h",
-                "width": 75
-              },
-              {
-                "height": 604,
-                "url": "https:\/\/sun9-54.userapi.com\/c857216\/v857216946\/1e494e\/WMPEYzCHomo.jpg",
-                "type": "x",
-                "width": 604
-              }
-            ]
+            }]
           },
           "description": "Нет нужды расстр...",
           "is_favorite": false,
@@ -483,12 +342,10 @@ interface PodcastsGetFeed {
         },
         "short_videos_allowed": false,
         "stories_allowed": false
-      }
-    ],
-    "next_from": "*NEXT_FROM*",
+    }],
+    "next_from": "...",
     "profiles": [],
-    "groups": [
-      {
+    "groups": [{
         "id": 114035565,
         "name": "Zavtracast",
         "screen_name": "zavtracast",
@@ -498,8 +355,7 @@ interface PodcastsGetFeed {
         "photo_50": "https:\/\/sun1-97.userapi.com\/c639223\/v639223461\/3959b\/kT3AnekfIe4.jpg?ava=1",
         "photo_100": "https:\/\/sun1-30.userapi.com\/c639223\/v639223461\/3959a\/8u_BUbTIDls.jpg?ava=1",
         "photo_200": "https:\/\/sun1-98.userapi.com\/c639223\/v639223461\/39599\/HP1unvj0v2c.jpg?ava=1"
-      }
-    ]
+    }]
   }
   ```
 </details>
