@@ -20,7 +20,7 @@
 * [store.deactivateProduct](#storedeactivateproduct) — удалить набор стикеров из списка стикерпаков
 * [store.getCatalog](#storegetcatalog) — получить баннеры и названия разделов со стикерпаками
 * [store.getFavoriteStickers](#storegetfavoritestickers) — получить избранные стикеры
-* [store.getProducts](#storegetproducts) — получить купленные или активные стикерпаки
+* [store.getProducts](#storegetproducts) — получить купленные или активные стикерпаки у себя или у другого пользователя
 * [store.getStickers](#storegetstickers) — получить стикеры по ID
 * [store.getStickersKeywords](#storegetstickerskeywords) — получить подсказки для стикеров
 * [store.getStockItemByName](#storegetstockitembyname) — получить стикерпак по его названию
@@ -355,7 +355,7 @@ interface StoreGetFavoriteStickers {
 
 ## store.getProducts
 
-Возвращает купленные или активные стикерпаки.
+Возвращает купленные или активные стикерпаки у себя или у другого пользователя.
 
 ### Параметры
 
@@ -363,6 +363,7 @@ interface StoreGetFavoriteStickers {
 |-------------|--------|----------------------------------------------|
 | **type**    | string | `stickers`                                   |
 | **filters** | string | Список из `purchased`, `active` и `promoted` |
+| user_id     | int    | ID пользователя, чьи стикеры нужно получить  |
 | extended    | flag   | Возвращать картинки в объектах стикеров      |
 
 Поле `filters` должно включать как минимум одно из предложенных значений,
