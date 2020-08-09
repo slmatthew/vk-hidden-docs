@@ -1,3 +1,7 @@
+# utils
+## Список методов
+* [utils.guessUserSex](guessUserSex.md)
+
 # utils.guessUserSex
 Получить пол пользователя, основываясь на имени и фамилии
 
