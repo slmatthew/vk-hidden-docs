@@ -49,6 +49,7 @@ type DonutCancelSubscription = 1;
 
 ### Связанные методы
 
+* execute.cancelDonutSubscription — отменить подписку на сообщество
 * [donut.getSubscriptions](#donutgetsubscriptions) — получить список подписок
 * [donut.revertUnsubscription](#donutrevertunsubscription) — возобновить подписку на сообщество
 

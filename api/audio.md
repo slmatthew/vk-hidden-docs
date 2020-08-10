@@ -116,6 +116,10 @@ type AudioAddToPlaylist = { audio_id: number }[];
   ```
 </details>
 
+### Связанные методы
+
+* execute.addAudioToPlaylist — добавить аудиозаписи в плейлист
+
 
 
 ## audio.createPlaylist
@@ -404,6 +408,10 @@ interface AudioGet {
   }
   ```
 </details>
+
+### Связанные методы
+
+* execute.CommunityAudiosAndPlaylists — получить превью треков и плейлистов
 
 
 
