@@ -4,7 +4,7 @@
 
 ## Список методов
 
-* [utils.guessUserSex](utils.guessUserSex) — получить пол пользователя, основываясь на его имени и фамилии
+* [utils.guessUserSex](#utilsguessusersex) — получить пол пользователя, основываясь на его имени и фамилии
 
 
 

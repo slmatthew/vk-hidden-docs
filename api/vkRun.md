@@ -8,10 +8,10 @@ VK Run — это шагомер от ВКонтакте, релиз котор�
 
 ## Список методов
 
-* [vkRun.getLeaderboard](vkrungetleaderboard) — получить топ по шагам
-* [vkRun.getSteps](vkrungetsteps) — получить количество шагов
-* [vkRun.setSteps](vkrunsetsteps) — установить количество пройденных шагов
-* [vkRun.setTarget](vkrunsettarget) — установить цель по шагам
+* [vkRun.getLeaderboard](#vkrungetleaderboard) — получить топ по шагам
+* [vkRun.getSteps](#vkrungetsteps) — получить количество шагов
+* [vkRun.setSteps](#vkrunsetsteps) — установить количество пройденных шагов
+* [vkRun.setTarget](#vkrunsettarget) — установить цель по шагам
 
 
 
