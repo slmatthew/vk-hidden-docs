@@ -4,12 +4,11 @@
 
 ## Доступ
 
-Для доступа к секции `donut` рекомендуется использовать токен VK для Android:
-   - Методы `donut.cancelSubscription`, `donut.getFriends` и `donut.getPaymentLink`
-     работают только при использовании токена VK для Android;
-   - Метод `donut.getSubscriptions` возвращает поля `profiles`, `groups` и `count`
-     только при использовании токена VK для Android;
-   - Остальные методы могут работать с любым токеном.
+- Методы `donut.cancelSubscription`, `donut.getFriends` и `donut.getPaymentLink`
+  работают только при использовании токена VK для Android;
+- Метод `donut.getSubscriptions` возвращает поля `profiles`, `groups` и `count`
+  только при использовании токена VK для Android;
+- Остальные методы могут работать с любым токеном.
 
 ## Список методов
 
