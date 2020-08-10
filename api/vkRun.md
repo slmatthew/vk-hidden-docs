@@ -1,119 +1,198 @@
 # vkRun
+
 VK Run — это шагомер от ВКонтакте, релиз которого, судя по всему, отложили из-за пандемии коронавируса.
 
-## Список методов
-* [vkRun.getLeaderboard](getLeaderboard.md)
-* [vkRun.getSteps](getSteps.md)
-* [vkRun.setSteps](setSteps.md)
-* [vkRun.setTarget](setTarget.md)
-
 ## Доступ
-Для доступа к этой секции нужен токен от VK для Android.
 
-# vkRun.getLeaderboard
-Получение топа по шагам.
+Для доступа к секции `vkRun` необходимо использовать токен от VK для Android.
 
-## Параметры
-Оба параметра не являются обязательными.
+## Список методов
+
+* [vkRun.getLeaderboard](vkrungetleaderboard) — получить топ по шагам
+* [vkRun.getSteps](vkrungetsteps) — получить количество шагов
+* [vkRun.setSteps](vkrunsetsteps) — установить количество пройденных шагов
+* [vkRun.setTarget](vkrunsettarget) — установить цель по шагам
+
+
+
+## vkRun.getLeaderboard
+
+Возвращает топ по шагам.
+
+### Параметры
 
 | Параметр   | Тип    | Описание                                     |
 |------------|--------|----------------------------------------------|
 | local_time | string | Текущая дата в формате `yyyy-mm-ddThh:mm:ss` |
 | date       | string | Текущая дата в формате `yyyy-mm-dd`          |
 
-## Возможный ответ
-`km_count` может иметь тип `int`, если равен нулю.
+### Тип возвращаемого значения
 
-```json
-{
-  "response": {
+```ts
+interface VkRunGetLeaderboard {
+  daily: VkRunLeaderboard
+  monthly: VkRunLeaderboard
+}
+
+interface VkRunLeaderboard {
+  steps: number
+  // Дистанция в метрах
+  distance: number
+  target_steps: number
+  // Дистанция в километрах. Всегда дробное кроме 0
+  km_count: number
+  // Позиция в топе
+  position: number
+  leaderboard: {
+    steps: number
+    distance: number
+    user: {
+      id: number
+      name: string
+      photo_50: string
+      photo_100: string
+      photo_200: string
+    }
+  }[]
+}
+```
+
+### Пример ответа
+
+<details>
+  <summary>Открыть</summary>
+
+  ```json
+  {
     "daily": {
-      "steps": 2,
-      "distance": 7,
+      "steps": 0,
+      "distance": 0,
       "target_steps": 8000,
-      "km_count": 0.007,
+      "km_count": 0,
       "position": 1,
-      "leaderboard": [
-        {
-          "steps": 2,
-          "distance": 7,
-          "user": {
-            "id": 305360617,
-            "name": "Матвей Вишневский",
-            "photo_50": "https://sun1-95.userapi.com/bswxPp5CLI_p2a-rZZd1xjiudXVekZ1ak4flaQ/tSDUGjqZaTU.jpg?ava=1",
-            "photo_100": "https://sun1-18.userapi.com/277tRs6qmz_zng9pXKUWu18p0Dd2xZfze2G4bg/0OgGfXyvJ7A.jpg?ava=1",
-            "photo_200": "https://sun1-94.userapi.com/GB6tjihUNfMctO9GJP4eydzbJB12iKT9VgdLqg/ijSF_DqqF1o.jpg?ava=1"
-          }
+      "leaderboard": [{
+        "steps": 0,
+        "distance": 0,
+        "user": {
+          "id": 305360617,
+          "name": "Матвей Вишневский",
+          "photo_50": "...",
+          "photo_100": "...",
+          "photo_200": "..."
         }
-      ]
+      }]
     },
     "monthly": {
-      "steps": 2,
-      "distance": 7,
-      "km_count": 0.007,
+      "steps": 0,
+      "distance": 0,
+      "km_count": 0,
       "position": 1,
-      "leaderboard": [
-        {
-          "steps": 2,
-          "distance": 7,
-          "user": {
-            "id": 305360617,
-            "name": "Матвей Вишневский",
-            "photo_50": "https://sun1-95.userapi.com/bswxPp5CLI_p2a-rZZd1xjiudXVekZ1ak4flaQ/tSDUGjqZaTU.jpg?ava=1",
-            "photo_100": "https://sun1-18.userapi.com/277tRs6qmz_zng9pXKUWu18p0Dd2xZfze2G4bg/0OgGfXyvJ7A.jpg?ava=1",
-            "photo_200": "https://sun1-94.userapi.com/GB6tjihUNfMctO9GJP4eydzbJB12iKT9VgdLqg/ijSF_DqqF1o.jpg?ava=1"
-          }
+      "leaderboard": [{
+        "steps": 0,
+        "distance": 0,
+        "user": {
+          "id": 305360617,
+          "name": "Матвей Вишневский",
+          "photo_50": "...",
+          "photo_100": "...",
+          "photo_200": "..."
         }
-      ]
+      }]
     }
   }
+  ```
+</details>
+
+
+
+## vkRun.getSteps
+
+Судя по названию, должен возвращать количество шагов, но в ответе всегда единица.
+
+### Тип возвращаемого значения
+
+```ts
+type VkRunGetSteps = 1;
+```
+
+### Пример ответа
+
+<details>
+  <summary>Открыть</summary>
+
+  ```json
+  1
+  ```
+</details>
+
+
+
+## vkRun.setSteps
+
+Устанавливает количество пройденных шагов.
+
+### Параметры
+
+| Параметр     | Тип    | Описание                           |
+|--------------|--------|------------------------------------|
+| **steps**    | int    | Количество шагов                   |
+| **distance** | int    | Дистанция ходьбы                   |
+| **date**     | string | Дата, в которую были пройдены шаги |
+
+Дистанция ходьбы (`distance`) указывается в метрах.
+
+Дата (`date`) должна быть в формате `год-месяц-день`.
+
+### Тип возвращаемого значения
+
+```ts
+interface VkRunSetSteps {
+  steps: number
+  distance: number
 }
 ```
 
-# vkRun.getSteps
-Должен возвращать количество шагов, но не делает этого
+### Пример ответа
 
-## Пример ответа
-```json
-{
-  "response": 1
-}
-```
+<details>
+  <summary>Открыть</summary>
 
-# vkRun.setSteps
-Шагомер
-
-## Параметры
-| Параметр | Тип    | Описание                        |
-|----------|--------|---------------------------------|
-| steps    | int    | Количество шагов                |
-| distance | int    | Дистанция ходьбы (в метрах)     |
-| date     | string | Дата в формате `год-месяц-день` |
-
-## Пример ответа
-```json
-{
-  "response": {
-    "steps": 2,
-    "distance": 7
+  ```json
+  {
+    "steps": 8000,
+    "distance": 8000
   }
+  ```
+</details>
+
+
+
+## vkRun.setTarget
+
+Устанавливает цель по шагам.
+
+### Параметры
+
+| Параметр  | Тип | Описание         |
+|-----------|-----|------------------|
+| **steps** | int | Количество шагов |
+
+### Тип возвращаемого значения
+
+```ts
+interface VkRunSetTarget {
+  steps: number
 }
 ```
 
-# vkRun.setTarget
-Установить цель по шагам
+### Пример ответа
 
-## Параметры
+<details>
+  <summary>Открыть</summary>
 
-| Параметр | Тип | Описание         |
-|----------|-----|------------------|
-| steps    | int | Количество шагов |
-
-## Пример ответа
-```json
-{
-  "response": {
-    "steps": 8000
+  ```json
+  {
+    "steps": 10000
   }
-}
-```
+  ```
+</details>
