@@ -96,6 +96,7 @@ type StoreAddStickersToFavorite = 1;
 ### Связанные методы
 
 * [store.getFavoriteStickers](#storegetfavoritestickers) — получить избранные стикеры
+* [store.hasNewItems](#storehasnewitems) — проверить наличие изменений в списке стикерпаков, в подсказках для стикеров и в избранных стикерах
 * [store.removeStickersFromFavorite](#storeremovestickersfromfavorite) — удалить стикеры из избранных
 
 
@@ -462,15 +463,21 @@ type StoreGetStickers = VKSticker[];
 
 ### Параметры
 
-| Параметр      | Тип  | Описание                                       |
-|---------------|------|------------------------------------------------|
-| aliases       | flag | Возвращать подсказки для сразу нескольких слов |
-| need_stickers | flag | Возвращать картинки в объектах стикеров        |
+| Параметр      | Тип    | Описание                                         |
+|---------------|--------|--------------------------------------------------|
+| stickers_ids  | string | ID стикеров, для которых нужно вернуть подсказки |
+| aliases       | flag   | Возвращать подсказки для сразу нескольких слов   |
+| need_stickers | flag   | Возвращать картинки в объектах стикеров          |
 
-По умолчанию оба параметра включены.
+Если не указать параметр `stickers_ids`, то придут подсказки для всех стикеров.
 
-Если указать параметр `aliases: 0`, то в ответе в поле `words` всегда будет приходить только одно слово.
+По умолчанию у параметров `aliases` и `need_stickers` установлено значение `1`.
+
+Если указать параметр `aliases: 0`, то в ответе в поле `words` почти всегда будет приходить только одно слово.
+Исключением являются те слова, которые были добавлены самим пользователем.
 Если же его не указывать, то в поле `words` сможет находиться сразу несколько слов.
+
+Рекомендую не указывать поле `aliases`, потому что вам все равно придется обрабатывать сразу несколько слов в некоторых случаях.
 
 ### Тип возвращаемого значения
 
@@ -548,6 +555,10 @@ interface KeywordsWithoutStickers {
   }
   ```
 </details>
+
+### Связанные методы
+
+* [store.hasNewItems](#storehasnewitems) — проверить наличие изменений в списке стикерпаков, в подсказках для стикеров и в избранных стикерах
 
 
 
@@ -1049,7 +1060,10 @@ interface StoreHasNewItems {
 
 ### Связанные методы
 
+* [store.getFavoriteStickers](#storegetfavoritestickers) — получить избранные стикеры
+* [store.getStickersKeywords](#storegetstickerskeywords) — получить подсказки для стикеров
 * [store.markAsViewed](#storemarkasviewed) — пометить новые стикерпаки в магазине как просмотренные
+* [store.removeStickersFromFavorite](#storeremovestickersfromfavorite) — удалить стикеры из избранных
 
 
 
@@ -1123,6 +1137,7 @@ type StoreRemoveStickersFromFavorite = 1;
 
 * [store.addStickersToFavorite](#storeaddstickerstofavorite) — добавить стикеры в избранные
 * [store.getFavoriteStickers](#storegetfavoritestickers) — получить избранные стикеры
+* [store.hasNewItems](#storehasnewitems) — проверить наличие изменений в списке стикерпаков, в подсказках для стикеров и в избранных стикерах
 
 
 
