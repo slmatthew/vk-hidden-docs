@@ -4,12 +4,8 @@
 
 ## Доступ
 
-Для доступа к большинству методов данной секции необходимо использовать токен VK для Android.
-
-Существует всего 4 метода, для которых не обязательно использовать токен VK для Android:
-`audio.add`, `audio.edit`, `audio.getUploadServer` и `audio.save`.
-Для этих методов есть официальная документация, которую можно открыть по ссылке вида
-`https://vk.com/dev/<название метода>`.
+Для доступа ко всем методам, кроме `audio.add`, `audio.edit`, `audio.getUploadServer` и `audio.save`,
+необходимо использовать токен VK для Android.
 
 ## Список методов
 
@@ -119,6 +115,10 @@ type AudioAddToPlaylist = { audio_id: number }[];
   ]
   ```
 </details>
+
+### Связанные методы
+
+* execute.addAudioToPlaylist — добавить аудиозаписи в плейлист
 
 
 
@@ -408,6 +408,10 @@ interface AudioGet {
   }
   ```
 </details>
+
+### Связанные методы
+
+* execute.CommunityAudiosAndPlaylists — получить превью треков и плейлистов
 
 
 
