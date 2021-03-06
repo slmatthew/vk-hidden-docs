@@ -4,19 +4,15 @@
 
 ## Доступ
 
-- Методы `donut.cancelSubscription`, `donut.getFriends` и `donut.getPaymentLink`
+- Методы `donut.cancelSubscription`, `donut.getPaymentLink` и `donut.revertUnsubscription`
   работают только при использовании токена VK для Android;
-- Метод `donut.getSubscriptions` возвращает поля `profiles`, `groups` и `count`
-  только при использовании токена VK для Android;
 - Остальные методы могут работать с любым токеном.
 
 ## Список методов
 
 * [donut.cancelSubscription](#donutcancelsubscription) — отменить подписку на сообщество
-* [donut.getFriends](#donutgetfriends) — получить список друзей-донов в сообществе
 * [donut.getPaymentLink](#donutgetpaymentLink) — получить данные для оплаты подписки
 * [donut.getSubscriptions](#donutgetsubscriptions) — получить список подписок
-* [donut.isDon](#donutisdon) — проверить, является ли текущий пользователь доном сообщества
 * [donut.revertUnsubscription](#donutrevertunsubscription) — возобновить подписку на сообщество
 
 
@@ -52,49 +48,6 @@ type DonutCancelSubscription = 1;
 * execute.cancelDonutSubscription — отменить подписку на сообщество
 * [donut.getSubscriptions](#donutgetsubscriptions) — получить список подписок
 * [donut.revertUnsubscription](#donutrevertunsubscription) — возобновить подписку на сообщество
-
-
-
-## donut.getFriends
-
-Возвращает список друзей-донов в сообществе.
-
-### Параметры
-
-| Параметр     | Тип    | Описание                          |
-|--------------|--------|-----------------------------------|
-| **owner_id** | int    | Отрицательный ID сообщества       |
-| **count**    | int    | Количество друзей                 |
-| offset       | int    | Смещение                          |
-| fields       | string | Дополнительные поля пользователей |
-
-### Тип возвращаемого значения
-
-```ts
-interface DonutGetFriends {
-  count: number
-  items: VKUser[]
-}
-```
-
-### Пример ответа
-
-<details>
-  <summary>Открыть</summary>
-
-  ```json
-  {
-    "count": 4,
-    "items": [{
-      "id": 180544766,
-      "first_name": "Михаил",
-      "last_name": "Милестон",
-      "is_closed": false,
-      "can_access_closed": true
-    }]
-  }
-  ```
-</details>
 
 
 
@@ -148,12 +101,15 @@ interface DonutGetPaymentLink {
 
 Возвращает список подписок текущего пользователя.
 
+Этот метод [описан](https://vk.com/dev/donut.getSubscriptions) в официальной документации VK. Однако, здесь немного больше информации по этому методу.
+
 ### Параметры
 
-| Параметр  | Тип | Описание            |
-|-----------|-----|---------------------|
-| **count** | int | Количество подписок |
-| offset    | int | Смещение            |
+| Параметр  | Тип    | Описание                                      |
+|-----------|--------|-----------------------------------------------|
+| **count** | int    | Количество подписок                           |
+| offset    | int    | Смещение                                      |
+| fields    | string | Дополнительные поля для `profiles` и `groups` |
 
 ### Тип возвращаемого значения
 
@@ -161,6 +117,7 @@ interface DonutGetPaymentLink {
 interface DonutGetSubscriptions {
   subscriptions: {
     owner_id: number
+    // unixtime
     next_payment_date: number
     // active - активная подписка, expiring - отмененная
     status: 'active' | 'expiring'
@@ -242,33 +199,6 @@ interface DonutGetSubscriptions {
 * [donut.cancelSubscription](#donutcancelsubscription) — отменить подписку на сообщество
 * [donut.revertUnsubscription](#donutrevertunsubscription) — возобновить подписку на сообщество
 
-
-
-## donut.isDon
-
-Проверяет, является ли текущий пользователь доном сообщества.
-
-### Параметры
-
-| Параметр     | Тип | Описание                    |
-|--------------|-----|-----------------------------|
-| **owner_id** | int | Отрицательный ID сообщества |
-
-### Тип возвращаемого значения
-
-```ts
-type DonutIsDon = 0 | 1;
-```
-
-### Пример ответа
-
-<details>
-  <summary>Открыть</summary>
-
-  ```json
-  1
-  ```
-</details>
 
 
 ## donut.revertUnsubscription
