@@ -23,20 +23,45 @@
 | 3032107       | NOmHf1JNKONiIG5zPJUu | BlackBerry    |
 
 Далее составьте запрос к `https://oauth.vk.com/token` с этими параметрами:
-* `scope = all`
-* `client_id` — ID выбранного приложения
-* `client_secret` — секретный ключ выбранного приложения
-* `username` — логин
-* `password` — пароль
-* `2fa_supported` — `1`, если вы готовы обрабатывать 2FA
-* `grant_type = password`
-* `lang = ru`
-* `v = 5.130`
-* `trusted_hash` — если у вас есть `trusted_hash`, то указывайте. Этот параметр нужен для пропуска 2FA
+
+| Параметр       | Тип    | Описание                                                        |
+|----------------|--------|-----------------------------------------------------------------|
+| scope          | string | `all`                                                           |
+| client_id      | int    | ID выбранного приложения                                        |
+| client_secret  | string | Секретный ключ выбранного приложения                            |
+| username       | string | Логин                                                           |
+| password       | string | Пароль                                                          |
+| 2fa_supported  | int    | `1`, если вы готовы обрабатывать 2FA                            |
+| grant_type     | string | `password`                                                      |
+| lang           | string | `ru`                                                            |
+| v              | string | `5.130`                                                         |
+| *trusted_hash* | string | Если у вас есть `trusted_hash`, то укажите его для пропуска 2FA |
 
 Итоговый URL: `https://oauth.vk.com/token?scope=all&client_id=2274003&client_secret=hHbZxrka2uZ6jB1inYsH&username=88005553535&password=qwerty123456&2fa_supported=1&grant_type=password&lang=ru&v=5.130`
 
 Если у вас отключена 2FA, то на этом этапе вы уже получите свой `access_token`.
+
+```ts
+interface OauthSuccess {
+  access_token: string
+  expires_in: 0
+  user_id: int
+  trusted_hash?: string
+}
+```
+
+<details>
+  <summary>Пример ответа</summary>
+
+  ```json
+  {
+    "access_token": "",
+    "expires_in": 0,
+    "user_id": 123456789,
+    "trusted_hash": "0a1.."
+  }
+  ```
+</details>
 
 ### 2FA
 Если у вас настроена двухфакторная аутентификация, то вам будет необходимо получить и отправить код подтверждения.
