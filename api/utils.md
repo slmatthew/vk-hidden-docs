@@ -38,7 +38,9 @@
 * `undefined` - нет ни имени, ни фамилии, или передано мужское имя и женская фамилия
 
 ```ts
-type UtilsGuessUserSex = { sex: 'male' | 'female' | 'unknown' | 'undefined' };
+interface UtilsGuessUserSex {
+  sex: 'male' | 'female' | 'unknown' | 'undefined'
+}
 ```
 
 ### Пример ответа
