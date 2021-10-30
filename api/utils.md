@@ -38,17 +38,13 @@
 * `undefined` - нет ни имени, ни фамилии, или передано мужское имя и женская фамилия
 
 ```ts
-interface UtilsGuessUserSex {
-  sex: 'male' | 'female' | 'unknown' | 'undefined'
-}
+type UtilsGuessUserSex = { sex: 'male' | 'female' | 'unknown' | 'undefined' };
 ```
 
 ### Пример ответа
 
 <details>
   <summary>Открыть</summary>
-
-  Если передать мужское имя и женскую фамилию, то вернется `undefined`.
 
   ```json
   {
