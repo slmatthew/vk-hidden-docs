@@ -80,6 +80,8 @@ interface TwoFactorAuthError {
 }
 ```
 
+> **Обратите внимание:** поля `error`, `error_description` и `validation_type` имеют указанные значения только при необходимости пройти 2FA.
+
 <details>
   <summary>Пример ответа</summary>
 
@@ -88,7 +90,7 @@ interface TwoFactorAuthError {
     "error": "need_validation",
     "error_description": "use app code",
     "validation_type": "2fa_app",
-    "validation_sid": "2fa_userid_clientid_sid",
+    "validation_sid": "2fa..",
     "phone_mask": "+7 *** *** ** 89",
     "redirect_uri": "https://m.vk.com/login?act=authcheck&api_hash=",
     "validation_resend": "sms"
