@@ -132,7 +132,7 @@ interface AuthValidatePhone {
   ```json
   {
     "sid": "2fa_userid_clientid_sid",
-    "delay": 120, // полагаю, это время в секундах, когда можно будет отправить еще один запрос
+    "delay": 120,
     "validation_type": "sms",
     "validation_resend": "sms"
   }
