@@ -573,6 +573,588 @@ interface BugtrackerGetInfo {
 
 
 
+## bugtracker.getProductBranches
+
+Возвращает ветки продукта.
+
+### Параметры
+
+| Параметр       | Тип | Описание    |
+|----------------|-----|-------------|
+| **product_id** | int | ID продукта |
+
+### Тип возвращаемого значения
+
+```ts
+interface VKParentProduct {
+  id: number
+  title: string
+  description: string
+  photo: string
+  is_over: boolean
+}
+
+interface BugtrackerGetProductBranches {
+  count: number
+  items: {
+    id: number
+    title: string
+    description: string
+    photo: string
+    is_over: boolean
+    parent_product: VKParentProduct
+    reports_count: number
+  }[]
+}
+```
+
+### Пример ответа
+
+<details>
+  <summary>Открыть</summary>
+
+  ```json
+  {
+    "count": 1,
+    "items": [{
+      "id": 2,
+      "title": "название",
+      "description": "описание",
+      "photo": "",
+      "is_over": false,
+      "parent_product": {
+        "id": 1,
+        "title": "название",
+        "description": "описание",
+        "photo": "",
+        "is_over": false
+      },
+      "reports_count": 1234
+    }]
+  }
+  ```
+</details>
+
+
+
+## bugtracker.getProducts
+
+Возвращает список продуктов.
+
+### Параметры
+
+| Параметр    | Тип    | Описание                        |
+|-------------|--------|---------------------------------|
+| **section** | string | Секция: `all`, `my`, `download` |
+| platform    | int    | ID платформы                    |
+| q           | string | Строка поиска                   |
+| count       | int    | Количество продуктов            |
+| offset      | int    | Смещение                        |
+
+Параметр `platform` обладает очень странной логикой. Если указать `0` или `4` *(возможно есть и другие)*, в `response.sections` появится секция `download`:
+
+```json
+{
+  "sections": [{
+    "id": "all"
+  }, {
+    "id": "my",
+    "products_count": 78
+  }, {
+    "id": "download",
+    "products_count": 2
+  }]
+}
+```
+
+Если указать иное значение `platform`, то будет возвращены две секции:
+
+```json
+{
+  "sections": [{
+    "id": "all"
+  }, {
+    "id": "my",
+    "products_count": 78
+  }]
+}
+```
+
+Такое поведение может быть связано с тем, что вкладка `Скачать` (`download`) доступна только в МБТ для Android.
+
+### Тип возвращаемого значения
+
+```ts
+interface VKParentProduct {
+  id: number
+  title: string
+  description: string
+  photo: string
+  is_over: boolean
+}
+
+interface BugtrackerGetProducts {
+  items: {
+    id: number
+    title: string
+    description: string
+    photo: string
+    is_available: boolean
+    is_over: boolean
+    parent_product?: VKParentProduct
+    reports_count: number
+    wishes_reports_count: number
+  }[]
+}
+```
+
+### Пример ответа
+
+<details>
+  <summary>Открыть</summary>
+
+  ```json
+  {
+    "items": [{
+      "id": 2,
+      "title": "дочерний продукт",
+      "description": "описание",
+      "photo": "",
+      "is_available": true,
+      "is_over": false,
+      "parent_product": {
+        "id": 1,
+        "title": "родительский продукт",
+        "description": "описание",
+        "photo": "",
+        "is_over": false
+      },
+      "reports_count": 123,
+      "wishes_reports_count": 12
+    }, {
+      "id": 1,
+      "title": "родительский продукт",
+      "description": "описание",
+      "photo": "",
+      "is_available": true,
+      "is_over": false,
+      "reports_count": 123,
+      "wishes_reports_count": 12
+    }],
+    "sections": [{
+      "id": "all"
+    }, {
+      "id": "my",
+      "products_count": 78
+    }]
+  }
+  ```
+</details>
+
+
+
+## bugtracker.getProductsById
+
+Описание метода
+
+### Параметры
+
+| Параметр | Тип | Описание |
+|----------|-----|----------|
+
+Необязательные дополнения для параметров: более подробное описание, предупреждение или варианты использования
+
+### Тип возвращаемого значения
+
+```ts
+interface BugtrackerGetProductsByIdSimple {
+  id: number
+  title: string
+  description: string
+  photo: string
+  is_available: boolean
+  is_over: boolean
+  parent_product?: VKParentProduct
+  reports_count?: number
+  wishes_reports_count?: number
+}
+
+interface BugtrackerGetProductsByIdExtendedInProduct {
+  id: number
+  title: string
+  description: string
+  photo: string
+  is_available: boolean
+  is_over: boolean
+  parent_product?: VKParentProduct
+  counters: {
+    type: string
+    count: number
+    url: string
+  }[]
+  reports_count: number
+  wishes_reports_count: number
+  open_reports_count: number
+  in_progress_reports_count: number
+  closed_reports_count: number
+  members_count: number
+  can_add_report: boolean
+  can_view_versions: boolean
+  leave_hash: string
+  leave_button: 'Выйти из тестирования'
+  note: string
+  status_note: string // 'Вы отказались от участия в тестировании'
+  licence_status: number
+  is_licence_ok: boolean
+  is_notify_enabled: boolean
+  set_notify_hash: string
+  can_view_branches?: boolean
+}
+
+// Возвращается, когда пользователь не вступил в продукт,
+// вышел из него или когда заявка всё ещё рассматривается
+interface BugtrackerGetProductsByIdExtendedNotInProduct {
+  id: number
+  title: string
+  description: string
+  photo: string
+  is_available: boolean
+  is_over: boolean
+  parent_product?: VKParentProduct
+  can_view_versions?: boolean
+  // Только когда заявка в продукт ещё рассматривается
+  leave_hash?: string
+  leave_button?: 'Отменить заявку'
+  // Поля join_ отсутствуют, если тестирование продукта завершено
+  join_hash?: string
+  join_button?: 'Присоединиться'
+  note: string
+  status_note: string // 'Вы отказались от участия в тестировании'
+  licence_status?: number
+  is_licence_ok?: boolean
+  app_id?: number
+}
+```
+
+### Пример ответа
+
+<!-- пиздец надо будет тоже пересмотреть это говно --->
+
+<details>
+  <summary>Пользователь в продукте, extended = 0</summary>
+
+  Типизация: `BugtrackerGetProductsByIdSimple`
+
+  ```json
+  {
+    "items": [{
+      "id": 1,
+      "title": "название",
+      "description": "описание",
+      "photo": "",
+      "is_available": true,
+      "is_over": false,
+      "reports_count": 12345,
+      "wishes_reports_count": 1234
+    }]
+  }
+  ```
+</details>
+
+<details>
+  <summary>Пользователь в продукте, extended = 1</summary>
+
+  Типизация: `BugtrackerGetProductsByIdExtendedInProduct`
+
+  ```json
+  {
+    "items": [{
+      "id": 1,
+      "title": "название",
+      "description": "описание",
+      "photo": "",
+      "is_available": true,
+      "is_over": false,
+      "counters": [{
+        "type": "reporters_count",
+        "count": 1234,
+        "url": ""
+      }, {
+        "type": "reports_count",
+        "count": 12345,
+        "url": "bugs?act=reports&product=1&status=100"
+      }, {
+        "type": "open_reports_count",
+        "count": 12,
+        "url": "bugs?act=reports&product=1&status=0,7"
+      }, {
+        "type": "in_progress_reports_count",
+        "count": 1234,
+        "url": "bugs?act=reports&product=1&status=1,4,2"
+      }, {
+        "type": "closed_reports_count",
+        "count": 12345,
+        "url": "bugs?act=reports&product=1&status=2,11,12,5"
+      }],
+      "reports_count": 12345,
+      "wishes_reports_count": 1234,
+      "open_reports_count": 12,
+      "in_progress_reports_count": 1234,
+      "closed_reports_count": 12345,
+      "members_count": 1234,
+      "can_add_report": true,
+      "can_view_versions": true,
+      "leave_hash": "...",
+      "leave_button": "Выйти из тестирования",
+      "note": "Версия ...",
+      "status_note": "",
+      "licence_status": 3,
+      "is_licence_ok": true,
+      "is_notify_enabled": true,
+      "set_notify_hash": "...",
+      "can_view_branches": true
+    }]
+  }
+  ```
+</details>
+
+<details>
+  <summary>К продукту можно присоединиться или пользователь вышел из продукта, extended = 0</summary>
+
+  Типизация: `BugtrackerGetProductsByIdSimple`
+
+  ```json
+  {
+    "items": [{
+      "id": 2,
+      "title": "название",
+      "description": "описание",
+      "photo": "",
+      "is_available": false,
+      "is_over": false
+    }]
+  }
+  ```
+</details>
+
+<details>
+  <summary>К продукту можно присоединиться, extended = 1</summary>
+
+  Типизация: `BugtrackerGetProductsByIdExtendedNotInProduct`
+
+  ```json
+  {
+    "items": [{
+      "id": 2,
+      "title": "название",
+      "description": "описание",
+      "photo": "",
+      "is_available": false,
+      "is_over": false,
+      "join_hash": "...",
+      "join_button": "Присоединиться",
+      "note": "",
+      "status_note": "",
+      "app_id": 1234567
+    }]
+  }
+  ```
+</details>
+
+<details>
+  <summary>Пользователь вышел из продукта, extended = 1</summary>
+
+  Типизация: `BugtrackerGetProductsByIdExtendedNotInProduct`
+
+  ```json
+  {
+    "items": [{
+      "id": 3,
+      "title": "название",
+      "description": "описание",
+      "photo": "описание",
+      "is_available": false,
+      "is_over": false,
+      "join_hash": "...",
+      "join_button": "Присоединиться",
+      "note": "",
+      "status_note": "Вы отказались от участия в тестировании",
+      "licence_status": 5,
+      "is_licence_ok": false,
+      "app_id": 1234567
+    }]
+  }
+  ```
+</details>
+
+
+
+## bugtracker.getProductVersions
+
+Возвращает информацию о версиях продукта.
+
+### Параметры
+
+| Параметр       | Тип  | Описание                             |
+|----------------|------|--------------------------------------|
+| **product_id** | int  | ID продукта                          |
+| count          | int  | Количество возвращаемых значений     |
+| offset         | int  | Смещение                             |
+| extended       | flag | Возвращать дополнительную информацию |
+
+Поле `extended` предназначено для получения `download_hash`, необходимого при скачивании прикрепленного к версии файла.
+
+### Тип возвращаемого значения
+
+```ts
+interface BugtrackerGetProductVersions {
+  items: {
+    id: number
+    product_id: number
+    title: string
+    release_notes: string
+    date: number
+    reports_count: number
+    reports_url: string
+    closed_reports_count: number
+    closed_reports_url: string
+    vulnerability_reports_count: number
+    is_hidden: boolean
+    platform?: number // только при extended = 1; наблюдал только 4
+    download_hash?: string // только при extended = 1
+  }[]
+}
+```
+
+### Пример ответа
+
+<details>
+  <summary>Ответ при extended = 0</summary>
+
+  ```json
+  {
+    "items": [{
+      "id": 1,
+      "product_id": 1,
+      "title": "версия 1",
+      "release_notes": "описание версии",
+      "date": 1635523223,
+      "reports_count": 70,
+      "reports_url": "\/bugs?act=reports&product=1&version=1&status=100",
+      "closed_reports_count": 0,
+      "closed_reports_url": "\/bugs?act=reports&product=1&version=1&status=5",
+      "vulnerability_reports_count": 0,
+      "is_hidden": false
+    }]
+  }
+  ```
+</details>
+
+<details>
+  <summary>Ответ при extended = 1</summary>
+
+  ```json
+  {
+    "items": [{
+      "id": 1,
+      "product_id": 1,
+      "title": "версия 1",
+      "release_notes": "описание версии",
+      "date": 1635523223,
+      "reports_count": 70,
+      "reports_url": "\/bugs?act=reports&product=1&version=1&status=100",
+      "closed_reports_count": 0,
+      "closed_reports_url": "\/bugs?act=reports&product=1&version=1&status=5",
+      "vulnerability_reports_count": 0,
+      "is_hidden": false,
+      "platform": 4,
+      "download_hash": "..."
+    }]
+  }
+  ```
+</details>
+
+
+
+## bugtracker.getReporterProducts
+
+Возвращает продукты, в которых состоит тестировщик.
+
+### Параметры
+
+| Параметр    | Тип  | Описание                                      |
+|-------------|------|-----------------------------------------------|
+| reporter_id | int  | ID пользователя                               |
+| preview     | flag | Укажите `1` для получения сокращённого списка |
+
+Если не указать `reporter_id`, будут возвращены продукты текущего пользователя.
+
+Если `preview = 1`, то метод вернёт 3 случайных продукта, в которых состоит пользователь.
+
+### Тип возвращаемого значения
+
+```ts
+interface VKParentProduct {
+  id: number
+  title: string
+  description: string
+  photo: string
+  is_over: boolean
+}
+
+interface BugtrackerGetReporterProducts {
+  items: {
+    id: number
+    title: string
+    description: string
+    photo: string
+    is_available: boolean
+    user_reports_count: number
+    is_over: boolean
+    parent_product?: VKParentProduct
+    reports_count: number
+    wishes_reports_count: number
+  }[]
+  available_products_count: number
+  secret_products_count: number
+  secret_reports_count: number
+  uncounted_reports_count: number
+  unshown_reports_count: number
+}
+```
+
+### Пример ответа
+
+<details>
+  <summary>Открыть</summary>
+
+  ```json
+  {
+    "items": [{
+      "id": 1,
+      "title": "название",
+      "description": "описание",
+      "photo": "",
+      "is_available": true,
+      "user_reports_count": 0,
+      "is_over": false,
+      "reports_count": 338,
+      "wishes_reports_count": 47
+    }],
+    // Всего продуктов
+    "available_products_count": 5,
+    // В карточке тестировщика secret_products отображаются как '4 секретных продукта'
+    "secret_products_count": 4,
+    // В карточке тестировщика secret_reports отображаются как '6 отчётов скрыто'
+    "secret_reports_count": 0,
+    "uncounted_reports_count": 0,
+    "unshown_reports_count": 0
+  }
+  ```
+</details>
+
+
+
 ## bugtracker.getSettings
 
 Возвращает настройки профиля тестировщика.
@@ -613,6 +1195,64 @@ interface BugtrackerGetSettings {
     }],
     "can_add_device": true
   }
+  ```
+</details>
+
+
+
+## bugtracker.joinProduct
+
+Позволяет вступить или вернуться в тестирование продукта.
+
+### Параметры
+
+| Параметр       | Тип    | Описание                        |
+|----------------|--------|---------------------------------|
+| **product_id** | int    | ID продукта                     |
+| **hash**       | string | `join_hash` из объекта продукта |
+
+### Тип возвращаемого значения
+
+```ts
+type BugtrackerJoinProduct = 1;
+```
+
+### Пример ответа
+
+<details>
+  <summary>Открыть</summary>
+
+  ```json
+  1
+  ```
+</details>
+
+
+
+## bugtracker.leaveProduct
+
+Описание метода
+
+### Параметры
+
+| Параметр       | Тип    | Описание                         |
+|----------------|--------|----------------------------------|
+| **product_id** | int    | ID продукта                      |
+| **hash**       | string | `leave_hash` из объекта продукта |
+
+### Тип возвращаемого значения
+
+```ts
+type BugtrackerLeaveProduct = 1;
+```
+
+### Пример ответа
+
+<details>
+  <summary>Открыть</summary>
+
+  ```json
+  1
   ```
 </details>
 
@@ -735,6 +1375,42 @@ interface BugtrackerSearchDevices {
       "add_hash": "..."
     }],
     "save_device_hash": "..."
+  }
+  ```
+</details>
+
+
+
+## bugtracker.setProductVersionNotify
+
+Включает или выключает оповещения о новых версиях продукта.
+
+### Параметры
+
+| Параметр       | Тип    | Описание                                    |
+|----------------|--------|---------------------------------------------|
+| **product_id** | int    | ID продукта                                 |
+| **hash**       | string | `set_notify_hash` из объекта продукта       |
+| notify         | flag   | `1` - включить уведомления, `0` - выключить |
+
+Если не указать параметр `notify`, метод из сеттера превратится в геттер.
+
+### Тип возвращаемого значения
+
+```ts
+interface BugtrackerSetProductVersionNotify {
+  is_notify_enabled: boolean
+}
+```
+
+### Пример ответа
+
+<details>
+  <summary>Открыть</summary>
+
+  ```json
+  {
+    "is_notify_enabled": false
   }
   ```
 </details>
