@@ -525,6 +525,54 @@ interface BugtrackerGetEditDeviceFormData {
 
 
 
+## bugtracker.getInfo
+
+Возвращает информацию о текущем пользователем.
+
+### Тип возвращаемого значения
+
+```ts
+interface BugtrackerGetInfo {
+  balance: number
+  updates_count: number
+  can_add_report: boolean
+  can_search_reports: boolean
+  can_view_products_list: boolean
+  can_view_testers_list: boolean
+  can_view_updates: boolean
+  can_view_shop: boolean
+  can_view_personal_page: boolean
+  can_view_personal_settings: boolean
+  can_view_authored_reports: boolean
+  can_view_bookmarks: boolean
+}
+```
+
+### Пример ответа
+
+<details>
+  <summary>Открыть</summary>
+
+  ```json
+  {
+    "balance": 53,
+    "updates_count": 0,
+    "can_add_report": true,
+    "can_search_reports": true,
+    "can_view_products_list": true,
+    "can_view_testers_list": true,
+    "can_view_updates": true,
+    "can_view_shop": true,
+    "can_view_personal_page": true,
+    "can_view_personal_settings": true,
+    "can_view_authored_reports": true,
+    "can_view_bookmarks": true
+  }
+  ```
+</details>
+
+
+
 ## bugtracker.getSettings
 
 Возвращает настройки профиля тестировщика.
