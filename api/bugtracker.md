@@ -27,8 +27,8 @@ TODO
 
 ```ts
 interface BugtrackerAddUserDevice {
-	can_add_device: boolean
-	device: VKDevice
+  can_add_device: boolean
+  device: VKDevice
 }
 ```
 
@@ -38,25 +38,25 @@ interface BugtrackerAddUserDevice {
   <summary>Открыть</summary>
 
   ```json
-	{
-		"can_add_device": true,
-		"device": {
-			"id": 21984,
-			"status": 0,
-			"title": "Apple iPhone 12",
-			"platform": {
-				"id": 3,
-				"name": "iOS"
-			},
-			"model": "MGJA3RU\/A",
-			"platform_version": {
-				"id": 3,
-				"name": "iOS 10"
-			},
-			"user_device_id": 483300000,
-			"edit_hash": "...",
-			"remove_hash": "..."
-		}
+  {
+    "can_add_device": true,
+    "device": {
+      "id": 21984,
+      "status": 0,
+      "title": "Apple iPhone 12",
+      "platform": {
+        "id": 3,
+        "name": "iOS"
+      },
+      "model": "MGJA3RU\/A",
+      "platform_version": {
+        "id": 3,
+        "name": "iOS 10"
+      },
+      "user_device_id": 483300000,
+      "edit_hash": "...",
+      "remove_hash": "..."
+    }
   }
   ```
 </details>
@@ -82,10 +82,10 @@ interface BugtrackerAddUserDevice {
 
 ```ts
 interface BugtrackerBookmark {
-	is_bookmarked: boolean
-	subscribe_state: {
-		can_set_subscribe: boolean
-	}
+  is_bookmarked: boolean
+  subscribe_state: {
+    can_set_subscribe: boolean
+  }
 }
 ```
 
@@ -95,12 +95,12 @@ interface BugtrackerBookmark {
   <summary>Открыть</summary>
 
   ```json
-	{
-		"is_bookmarked": false,
-		"subscribe_state": {
-			"can_set_subscribe": false
-		}
-	}
+  {
+    "is_bookmarked": false,
+    "subscribe_state": {
+      "can_set_subscribe": false
+    }
+  }
   ```
 </details>
 
@@ -133,7 +133,7 @@ type BugtrackerChangeBugreportStatus = 0 | 1;
   <summary>Открыть</summary>
 
   ```json
-	1
+  1
   ```
 </details>
 
@@ -156,11 +156,11 @@ type BugtrackerChangeBugreportStatus = 0 | 1;
 
 ```ts
 interface BugtrackerCreateComment {
-	comment: VKBugtrackerComment
-	comment_flood: boolean
-	subscribe_state: {
-		can_set_subscribe: boolean
-	}
+  comment: VKBugtrackerComment
+  comment_flood: boolean
+  subscribe_state: {
+    can_set_subscribe: boolean
+  }
 }
 ```
 
@@ -170,22 +170,22 @@ interface BugtrackerCreateComment {
   <summary>Открыть</summary>
 
   ```json
-	{
-		"comment": {
-			"bugreport_id": 123456,
-			"comment_id": 4,
-			"created": 1635624195,
-			"text": "just a test",
-			"from_id": 305360617,
-			"author_name": "Матвей Саловский",
-			"author_photo": "",
-			"edit_hash": "...",
-			"remove_hash": "..."
-		},
-		"comment_flood": false,
-		"subscribe_state": {
-			"can_set_subscribe": false
-		}
+  {
+    "comment": {
+      "bugreport_id": 123456,
+      "comment_id": 4,
+      "created": 1635624195,
+      "text": "just a test",
+      "from_id": 305360617,
+      "author_name": "Матвей Саловский",
+      "author_photo": "",
+      "edit_hash": "...",
+      "remove_hash": "..."
+    },
+    "comment_flood": false,
+    "subscribe_state": {
+      "can_set_subscribe": false
+    }
   }
   ```
 </details>
@@ -213,10 +213,10 @@ interface BugtrackerCreateComment {
 
 ```ts
 interface BugtrackerDeleteComment {
-	restore_hash: string
-	subscribe_state: {
-		can_set_subscribe: boolean
-	}
+  restore_hash: string
+  subscribe_state: {
+    can_set_subscribe: boolean
+  }
 }
 ```
 
@@ -226,12 +226,12 @@ interface BugtrackerDeleteComment {
   <summary>Открыть</summary>
 
   ```json
-	{
-		"restore_hash": "...",
-		"subscribe_state": {
-			"can_set_subscribe": false
-		}
-	}
+  {
+    "restore_hash": "...",
+    "subscribe_state": {
+      "can_set_subscribe": false
+    }
+  }
   ```
 </details>
 
@@ -256,8 +256,8 @@ interface BugtrackerDeleteComment {
 
 ```ts
 interface BugtrackerDeleteUserDevice {
-	can_add_device: boolean
-	platform_ids: int[] // ID платформ, для которых остались добавленные устройства
+  can_add_device: boolean
+  platform_ids: int[] // ID платформ, для которых остались добавленные устройства
 }
 ```
 
@@ -267,14 +267,14 @@ interface BugtrackerDeleteUserDevice {
   <summary>Открыть</summary>
 
   ```json
-	{
-		"can_add_device": true,
-		"platform_ids": [
-			1,
-			4,
-			3
-		]
-	}
+  {
+    "can_add_device": true,
+    "platform_ids": [
+      1,
+      4,
+      3
+    ]
+  }
   ```
 </details>
 
@@ -300,7 +300,7 @@ interface BugtrackerDeleteUserDevice {
 
 ```ts
 interface BugtrackerEditComment {
-	comment: VKBugtrackerComment
+  comment: VKBugtrackerComment
 }
 ```
 
@@ -310,19 +310,19 @@ interface BugtrackerEditComment {
   <summary>Открыть</summary>
 
   ```json
-	{
-		"comment": {
-			"bugreport_id": 123456,
-			"comment_id": 4,
-			"created": 1635624195,
-			"text": "just a test 2",
-			"from_id": 305360617,
-			"author_name": "Матвей Саловский",
-			"author_photo": "",
-			"edit_hash": "...",
-			"remove_hash": "..."
-		}
-	}
+  {
+    "comment": {
+      "bugreport_id": 123456,
+      "comment_id": 4,
+      "created": 1635624195,
+      "text": "just a test 2",
+      "from_id": 305360617,
+      "author_name": "Матвей Саловский",
+      "author_photo": "",
+      "edit_hash": "...",
+      "remove_hash": "..."
+    }
+  }
   ```
 </details>
 
@@ -348,21 +348,21 @@ interface BugtrackerEditComment {
 
 ```ts
 interface BugtrackerGetComments {
-	count: number
-	items: {
-		bugreport_id: number
-		comment_id: number
-		created: number
-		text: string
-		meta_text?: string
-		from_id?: number
-		author_name: string
-		author_photo: string
-	}[]
-	comment_hash: string
-	comment_flood: boolean
-	can_add_hidden_comment: boolean
-	can_add_moder_comment: boolean
+  count: number
+  items: {
+    bugreport_id: number
+    comment_id: number
+    created: number
+    text: string
+    meta_text?: string
+    from_id?: number
+    author_name: string
+    author_photo: string
+  }[]
+  comment_hash: string
+  comment_flood: boolean
+  can_add_hidden_comment: boolean
+  can_add_moder_comment: boolean
 }
 ```
 
@@ -372,24 +372,24 @@ interface BugtrackerGetComments {
   <summary>Открыть</summary>
 
   ```json
-	{
+  {
     "count": 2,
     "items": [{
-			"bugreport_id": 123456,
-			"comment_id": 1,
-			"created": 1559760889,
-			"text": "йоу йоу йоу",
-			"from_id": 305360617,
-			"author_name": "Матвей Саловский",
-			"author_photo": ""
-		}, {
-			"bugreport_id": 123456,
-			"comment_id": 2,
-			"created": 1559834261,
-			"text": "",
-			"meta_text": "Новый статус отчёта – <b>На рассмотрении<\/b>",
-			"author_name": "Модератор",
-			"author_photo": ""
+      "bugreport_id": 123456,
+      "comment_id": 1,
+      "created": 1559760889,
+      "text": "йоу йоу йоу",
+      "from_id": 305360617,
+      "author_name": "Матвей Саловский",
+      "author_photo": ""
+    }, {
+      "bugreport_id": 123456,
+      "comment_id": 2,
+      "created": 1559834261,
+      "text": "",
+      "meta_text": "Новый статус отчёта – <b>На рассмотрении<\/b>",
+      "author_name": "Модератор",
+      "author_photo": ""
     }],
     "comment_hash": "...",
     "comment_flood": false,
@@ -411,18 +411,18 @@ interface BugtrackerGetComments {
 
 ```ts
 interface SimpleItem {
-	id: number
-	name: string
+  id: number
+  name: string
 }
 
 interface VKPlatform {
-	id: number
-	name: string
-	versions: SimpleItem[]
+  id: number
+  name: string
+  versions: SimpleItem[]
 }
 
 interface BugtrackerGetEditDeviceFormData {
-	platforms: VKPlatform[]
+  platforms: VKPlatform[]
 }
 ```
 
@@ -432,32 +432,32 @@ interface BugtrackerGetEditDeviceFormData {
   <summary>Открыть</summary>
 
   ```json
-	{
-		"platforms": [{
-			"id": 0,
-			"name": "Другая",
-			"versions": []
-		},
-		{
-			"id": 1,
-			"name": "Windows",
-			"versions": [{
-				"id": 0,
-				"name": "Другая"
-			}]
-		},
-		{
-			"id": 3,
-			"name": "iOS",
-			"versions": [{
-				"id": 8,
-				"name": "iOS 15"
-			}, {
-				"id": 7,
-				"name": "iOS 14"
-			}]
-		}]
-	}
+  {
+    "platforms": [{
+      "id": 0,
+      "name": "Другая",
+      "versions": []
+    },
+    {
+      "id": 1,
+      "name": "Windows",
+      "versions": [{
+        "id": 0,
+        "name": "Другая"
+      }]
+    },
+    {
+      "id": 3,
+      "name": "iOS",
+      "versions": [{
+        "id": 8,
+        "name": "iOS 15"
+      }, {
+        "id": 7,
+        "name": "iOS 14"
+      }]
+    }]
+  }
   ```
 </details>
 
@@ -471,9 +471,9 @@ interface BugtrackerGetEditDeviceFormData {
 
 ```ts
 interface BugtrackerGetSettings {
-	login_tf: string // логин в TestFlight
-	devices: VKDevice[]
-	can_add_device: boolean
+  login_tf: string // логин в TestFlight
+  devices: VKDevice[]
+  can_add_device: boolean
 }
 ```
 
@@ -483,26 +483,26 @@ interface BugtrackerGetSettings {
   <summary>Открыть</summary>
 
   ```json
-	{
-		"login_tf": "tf***@slmatthew.dev",
-		"devices": [{
-			"id": 20321,
-			"status": 0,
-			"title": "Apple iPhone 11",
-			"platform": {
-					"id": 3,
-					"name": "iOS"
-			},
-			"platform_version": {
-					"id": 8,
-					"name": "iOS 15"
-			},
-			"user_device_id": 48330000,
-			"edit_hash": "...",
-			"remove_hash": "..."
-		}],
-		"can_add_device": true
-	}
+  {
+    "login_tf": "tf***@slmatthew.dev",
+    "devices": [{
+      "id": 20321,
+      "status": 0,
+      "title": "Apple iPhone 11",
+      "platform": {
+          "id": 3,
+          "name": "iOS"
+      },
+      "platform_version": {
+          "id": 8,
+          "name": "iOS 15"
+      },
+      "user_device_id": 48330000,
+      "edit_hash": "...",
+      "remove_hash": "..."
+    }],
+    "can_add_device": true
+  }
   ```
 </details>
 
@@ -532,7 +532,7 @@ type BugtrackerRestoreComment = 1;
   <summary>Открыть</summary>
 
   ```json
-	1
+  1
   ```
 </details>
 
@@ -568,7 +568,7 @@ type BugtrackerSaveUserDevice = 1;
   <summary>Открыть</summary>
 
   ```json
-	1
+  1
   ```
 </details>
 
@@ -591,8 +591,8 @@ type BugtrackerSaveUserDevice = 1;
 
 ```ts
 interface BugtrackerSearchDevices {
-	items: VKDevice[]
-	save_device_hash: string
+  items: VKDevice[]
+  save_device_hash: string
 }
 ```
 
@@ -602,29 +602,29 @@ interface BugtrackerSearchDevices {
   <summary>Открыть</summary>
 
   ```json
-	{
-		"items": [{
-			"id": 17318,
-			"status": 0,
-			"title": "Apple iPhone 7",
-			"platform": {
-					"id": 3,
-					"name": "iOS"
-			},
-			"add_hash": "..."
-		},
-		{
-			"id": 17344,
-			"status": 0,
-			"title": "Apple IPhone SE",
-			"platform": {
-					"id": 3,
-					"name": "iOS"
-			},
-			"model": "SE",
-			"add_hash": "..."
-		}],
-		"save_device_hash": "..."
-	}
+  {
+    "items": [{
+      "id": 17318,
+      "status": 0,
+      "title": "Apple iPhone 7",
+      "platform": {
+          "id": 3,
+          "name": "iOS"
+      },
+      "add_hash": "..."
+    },
+    {
+      "id": 17344,
+      "status": 0,
+      "title": "Apple IPhone SE",
+      "platform": {
+          "id": 3,
+          "name": "iOS"
+      },
+      "model": "SE",
+      "add_hash": "..."
+    }],
+    "save_device_hash": "..."
+  }
   ```
 </details>
