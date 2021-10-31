@@ -333,6 +333,68 @@ interface BugtrackerEditComment {
 
 
 
+## bugtracker.getAchievementById
+
+Возвращает информацию о достижении.
+
+### Параметры
+
+| Параметр           | Тип    | Описание                                |
+|--------------------|--------|-----------------------------------------|
+| **achievement_id** | int    | ID достижения                           |
+| from_id            | int    | todo                                    |
+| extended           | int    | Укажите `1`, чтобы метод вернул профили |
+| fields             | string | https://vk.com/dev/objects/user         |
+
+### Тип возвращаемого значения
+
+```ts
+interface BugtrackerGetAchievementById {
+  achievement: {
+    id: number
+    title: string
+    description: string
+    score: number
+    photo_url: string
+    status_self: {
+      text: string
+      date?: number
+    }
+    owner_ids?: int[]
+  }
+  profiles?: VKUser[]
+}
+```
+
+### Пример ответа
+
+<details>
+  <summary>Открыть</summary>
+
+  ```json
+  {
+    "achievement": {
+      "id": 12,
+      "title": "Элементарно!",
+      "description": "Отчёт об уязвимости получает положительный статус",
+      "score": 20,
+      "photo_url": "",
+      "status_self": {
+        "text": "Вы получили это достижение {date}",
+        "date": 1630538618
+      },
+      "owner_ids": [
+        1,
+        100,
+        101
+      ]
+    }
+  }
+  ```
+</details>
+
+
+
 ## bugtracker.getComments
 
 Возвращает комментарии к отчёту.
