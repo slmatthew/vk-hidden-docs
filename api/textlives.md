@@ -10,13 +10,19 @@ https://oauth.vk.com/authorize?client_id=7512376&scope=&redirect_uri=https://oau
 
 ## Список методов
 
-* [textlives.changeFollowState](#textliveschangefollowstate)
-* [textlives.changeState](#textliveschangestate)
-* [textlives.deletePost](#textlivesdeletepost)
-* [textlives.getCounters](#textlivesgetcounters)
-* [textlives.getPosts](#textlivesgetposts)
-* [textlives.getTextlive](#textlivesgettextlive)
-* [textlives.pinPost](#textlivespinpost)
+* [textlives.changeFollowState](#textliveschangefollowstate) — включить или выключить уведомления
+* [textlives.changeState](#textliveschangestate) — изменить статус репортажа
+* [textlives.createTextlive](#textlivescreatetextlive) — создать репортаж
+* [textlives.deletePost](#textlivesdeletepost) — удалить запись
+* [textlives.editPost](#textliveseditpost) — редактирует запись
+* [textlives.editTextlive](#textlivesedittextlive) — редактирует информацию о репортаже
+* [textlives.getCounters](#textlivesgetcounters) — получить количество читателей
+* [textlives.getOwnerStatus](#textlivesgetownerstatus) — получить информацию о репортажах в сообществе
+* [textlives.getPosts](#textlivesgetposts) — получить список записей в репортаже
+* [textlives.getTextlive](#textlivesgettextlive) — получить информацию о репортаже
+* [textlives.pinPost](#textlivespinpost) — закрепить запись
+* [textlives.setActivity](#textlivessetactivity) — изменяет статус набора
+* [likes.add](#likesadd) — поставить лайк на запись или убрать его
 
 
 
@@ -87,6 +93,64 @@ type TextlivesChangeState = 1;
 
 
 
+## textlives.createTextlive
+
+Позволяет создать репортаж.
+
+### Параметры
+
+| Параметр        | Тип     | Описание                                                              |
+|-----------------|---------|-----------------------------------------------------------------------|
+| **owner_id**    | int     | Отрицательный ID сообщества, от имени которого будет вестись репортаж |
+| title           | string  | Название репортажа                                                    |
+| display_authors | flag    | `1` - включить отображение авторов записей                            |
+| cover_photo_id  | unknown | ???                                                                   |
+
+Репортажи могут вести только сообщества, поэтому в `owner_id` нельзя передать положительный ID.
+
+### Тип возвращаемого значения
+
+```ts
+type TextlivesCreateTextlive = TextlivesGetTextLive;
+```
+
+### Пример ответа
+
+<details>
+  <summary>Открыть</summary>
+
+  ```json
+  {
+    "textlive": {
+      "id": 1,
+      "title": "тест",
+      "state": 1,
+      "readers_count": 1,
+      "owner_id": -194700000,
+      "owner_title": "хардбасия",
+      "is_admin": true,
+      "display_authors": true,
+      "owner_photo": {
+        "album_id": 0,
+        "date": 0,
+        "id": 0,
+        "owner_id": 0,
+        "has_tags": false,
+        "sizes": [{
+          "height": 50,
+          "url": "",
+          "type": "e",
+          "width": 50
+        }]
+      },
+      "owner_is_verified": false
+    }
+  }
+  ```
+</details>
+
+
+
 ## textlives.deletePost
 
 Удаляет запись из репортажа.
@@ -111,6 +175,102 @@ type TextlivesDeletePost = 1;
 
   ```json
   1
+  ```
+</details>
+
+
+
+## textlives.editPost
+
+Редактирует запись в репортаже.
+
+### Параметры
+
+| Параметр        | Тип    | Описание         |
+|-----------------|--------|------------------|
+| **textlive_id** | int    | ID репортажа     |
+| **post_id**     | int    | ID записи        |
+| **message**     | string | Текст записи     |
+| **author_id**   | int    | ID автора записи |
+| attachment      | string | Вложение         |
+
+`author_id` должен быть таким же, как в оригинальной записи.
+
+Не передавайте параметр `attachment`, чтобы убрать вложение.
+
+Вложением может быть фотография, видеозапись или опрос. Формат значения параметра `attachment`: `{type}{owner_id}_{item_id}`. Пример: `photo-194700000_457200000`
+
+### Тип возвращаемого значения
+
+```ts
+type TextlivesEditPost = 1;
+```
+
+### Пример ответа
+
+<details>
+  <summary>Открыть</summary>
+
+  ```json
+  1
+  ```
+</details>
+
+
+
+## textlives.editTextlive
+
+Редактирует информацию о репортаже.
+
+### Параметры
+
+| Параметр            | Тип    | Описание                                   |
+|---------------------|--------|--------------------------------------------|
+| **textlive_id**     | int    | ID репортажа                               |
+| **title**           | string | Название репортажа                         |
+| **display_authors** | flag   | `1` - включить отображение авторов записей |
+| **cover_photo_id**  | int    | `0`                                        |
+
+Я так и не разобрался, как правильно `cover_photo_id`, поэтому используйте `0` *(обложка будет сброшена)*.
+
+### Тип возвращаемого значения
+
+```ts
+type TextlivesEditTextlive = TextlivesGetTextLive;
+```
+
+### Пример ответа
+
+<details>
+  <summary>Открыть</summary>
+
+  ```json
+  {
+    "textlive": {
+      "id": 1,
+      "title": "название 2",
+      "state": 2,
+      "readers_count": 1,
+      "owner_id": -194700000,
+      "owner_title": "хардбасия",
+      "is_admin": true,
+      "display_authors": true,
+      "owner_photo": {
+        "album_id": 0,
+        "date": 0,
+        "id": 0,
+        "owner_id": 0,
+        "has_tags": false,
+        "sizes": [{
+          "height": 50,
+          "url": "",
+          "type": "e",
+          "width": 50
+        }]
+      },
+      "owner_is_verified": false
+    }
+  }
   ```
 </details>
 
@@ -145,6 +305,65 @@ interface TextlivesGetCounters {
   {
     "counters": [],
     "readers_count": 492
+  }
+  ```
+</details>
+
+
+
+## textlives.getOwnerStatus
+
+Возвращает информацию о последнем проведённом репортаже и ID авторов репортажей.
+
+### Параметры
+
+| Параметр     | Тип | Описание                    |
+|--------------|-----|-----------------------------|
+| **owner_id** | int | Отрицательный ID сообщества |
+
+### Тип возвращаемого значения
+
+```ts
+interface TextlivesGetOwnerStatus {
+  last_textlive: VKTextlive
+  textlive_creators: int[]
+}
+```
+
+### Пример ответа
+
+<details>
+  <summary>Открыть</summary>
+
+  ```json
+  {
+    "last_textlive": {
+      "id": 1,
+      "title": "ааааа",
+      "state": 5,
+      "readers_count": 1,
+      "owner_id": -194700000,
+      "owner_title": "хардбасия",
+      "is_admin": true,
+      "display_authors": true,
+      "owner_photo": {
+        "album_id": 0,
+        "date": 0,
+        "id": 0,
+        "owner_id": 0,
+        "has_tags": false,
+        "sizes": [{
+          "height": 50,
+          "url": "",
+          "type": "e",
+          "width": 50
+        }]
+      },
+      "owner_is_verified": false
+    },
+    "textlive_creators": [
+      305360617
+    ]
   }
   ```
 </details>
@@ -282,38 +501,40 @@ interface VKPhotoSizes {
   width: number
 }
 
-interface TextlivesGetTextLive {
-  textlive: {
+interface VKTextlive {
+  id: number
+  title: string
+  state: number
+  readers_count: number
+  owner_id: number
+  owner_title: string
+  is_admin: boolean
+  display_authors: boolean
+  end_date?: number
+  cover_photo?: {
+    album_id: number
+    date: number
     id: number
-    title: string
-    state: number
-    readers_count: number
     owner_id: number
-    owner_title: string
-    is_admin: boolean
-    display_authors: boolean
-    end_date?: number
-    cover_photo?: {
-      album_id: number
-      date: number
-      id: number
-      owner_id: number
-      has_tags: boolean
-      sizes: VKPhotoSizes[]
-      text: string
-      user_id: number // 100
-    }
-    owner_photo: {
-      album_id: number // 0
-      date: number // 0
-      id: number // 0
-      owner_id: number // 0
-      has_tags: boolean
-      sizes: VKPhotoSizes[]
-    }
-    owner_is_verified: boolean
+    has_tags: boolean
+    sizes: VKPhotoSizes[]
+    text: string
+    user_id: number // 100
   }
-  follow_state: number
+  owner_photo: {
+    album_id: number // 0
+    date: number // 0
+    id: number // 0
+    owner_id: number // 0
+    has_tags: boolean
+    sizes: VKPhotoSizes[]
+  }
+  owner_is_verified: boolean
+}
+
+interface TextlivesGetTextLive {
+  textlive: VKTextlive
+  follow_state?: number
 }
 ```
 
@@ -381,5 +602,74 @@ type TextlivesPinPost = 1;
 
   ```json
   1
+  ```
+</details>
+
+
+
+## textlives.setActivity
+
+Изменяет статус набора текста в репортаже. Статус `Администратор сообщества печатает...` оторабажется 10 секунд.
+
+### Параметры
+
+| Параметр        | Тип    | Описание     |
+|-----------------|--------|--------------|
+| **textlive_id** | int    | ID репортажа |
+| **activity**    | string | `typing`     |
+
+### Тип возвращаемого значения
+
+```ts
+type TextlivesSetActivity = 1;
+```
+
+### Пример ответа
+
+<details>
+  <summary>Открыть</summary>
+
+  ```json
+  1
+  ```
+</details>
+
+
+
+## likes.add
+
+Добавляет лайк на запись в репортаже.
+
+Основная документация: https://vk.com/dev/likes.add
+
+Все нижеуказанные параметры подходят и для [likes.delete](https://vk.com/dev/likes.delete).
+
+### Параметры
+
+| Параметр     | Тип    | Описание     |
+|--------------|--------|--------------|
+| **type**     | string | `textpost`   |
+| **owner_id** | int    | ID репортажа |
+| **item_id**  | int    | ID записи    |
+
+### Тип возвращаемого значения
+
+```ts
+interface LikesAdd {
+  likes: number
+}
+
+type LikesDelete = LikesAdd;
+```
+
+### Пример ответа
+
+<details>
+  <summary>Открыть</summary>
+
+  ```json
+  {
+    "likes": 1
+  }
   ```
 </details>
