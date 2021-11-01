@@ -310,8 +310,8 @@ interface TextlivesGetTextLive {
       owner_id: number // 0
       has_tags: boolean
       sizes: VKPhotoSizes[]
-      owner_is_verified: boolean
     }
+    owner_is_verified: boolean
   }
   follow_state: number
 }
