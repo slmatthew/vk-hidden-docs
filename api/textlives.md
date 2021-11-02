@@ -33,13 +33,13 @@ https://oauth.vk.com/authorize?client_id=7512376&scope=&redirect_uri=https://oau
 
 ### Параметры
 
-| Параметр        | Тип    | Описание         |
-|-----------------|--------|------------------|
-| **textlive_id** | int    | ID репортажа     |
-| **message**     | string | Текст записи     |
-| **author_id**   | int    | ID автора записи |
-| **is_important** | flag | Пометить запись как важную |
-| attachment      | string | Вложение         |
+| Параметр         | Тип    | Описание                   |
+|------------------|--------|----------------------------|
+| **textlive_id**  | int    | ID репортажа               |
+| **message**      | string | Текст записи               |
+| **author_id**    | int    | ID автора записи           |
+| **is_important** | flag   | Пометить запись как важную |
+| attachment       | string | Вложение                   |
 
 В `message` может быть **не более 500 символов**.
 
