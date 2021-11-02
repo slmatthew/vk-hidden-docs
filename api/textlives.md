@@ -10,6 +10,7 @@ https://oauth.vk.com/authorize?client_id=7512376&scope=&redirect_uri=https://oau
 
 ## Список методов
 
+* [textlives.addPost](#textlivesaddpost) — добавить запись
 * [textlives.changeFollowState](#textliveschangefollowstate) — включить или выключить уведомления
 * [textlives.changeState](#textliveschangestate) — изменить статус репортажа
 * [textlives.createTextlive](#textlivescreatetextlive) — создать репортаж
@@ -23,6 +24,48 @@ https://oauth.vk.com/authorize?client_id=7512376&scope=&redirect_uri=https://oau
 * [textlives.pinPost](#textlivespinpost) — закрепить запись
 * [textlives.setActivity](#textlivessetactivity) — изменяет статус набора
 * [likes.add](#likesadd) — поставить лайк на запись или убрать его
+
+
+
+## textlives.addPost
+
+Добавляет запись в репортаж.
+
+### Параметры
+
+| Параметр        | Тип    | Описание         |
+|-----------------|--------|------------------|
+| **textlive_id** | int    | ID репортажа     |
+| **message**     | string | Текст записи     |
+| **author_id**   | int    | ID автора записи |
+| **is_important** | flag | Пометить запись как важную |
+| attachment      | string | Вложение         |
+
+В `message` может быть **не более 500 символов**.
+
+Если при создании репортажа `display_authors = 1`, то `author_id` должен быть равен отрицательному ID сообщества. В ином случае — ID текущего пользователя.
+
+Вложением может быть фотография, видеозапись или опрос. Формат значения параметра `attachment`: `{type}{owner_id}_{item_id}`. Пример: `photo-194700000_457200000`
+
+### Тип возвращаемого значения
+
+```ts
+interface TextlivesAddPost {
+  post_id: number
+}
+```
+
+### Пример ответа
+
+<details>
+  <summary>Открыть</summary>
+
+  ```json
+  {
+    "post_id": 4
+  }
+  ```
+</details>
 
 
 
