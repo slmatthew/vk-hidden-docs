@@ -194,6 +194,8 @@ type TextlivesDeletePost = 1;
 | **author_id**   | int    | ID автора записи |
 | attachment      | string | Вложение         |
 
+В `message` может быть **не более 500 символов**.
+
 `author_id` должен быть таким же, как в оригинальной записи.
 
 Не передавайте параметр `attachment`, чтобы убрать вложение.
@@ -278,20 +280,25 @@ type TextlivesEditTextlive = TextlivesGetTextLive;
 
 ## textlives.getCounters
 
-Возвращает количество читателей.
+Возвращает показатели репортажа.
 
 ### Параметры
 
 | Параметр        | Тип | Описание     |
 |-----------------|-----|--------------|
 | **textlive_id** | int | ID репортажа |
-<!--| post_ids        | int | ID записей   |-->
+| post_ids        | int | ID записей   |
 
 ### Тип возвращаемого значения
 
 ```ts
 interface TextlivesGetCounters {
-  counters: []
+  counters: {
+    post_id: number
+    likes: number
+    shares: number
+    views: number
+  }[]
   readers_count: number
 }
 ```
