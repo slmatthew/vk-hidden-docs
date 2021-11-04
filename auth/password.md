@@ -1,10 +1,10 @@
 # Прямая авторизация
-Прямая авторизация — это авторизация по логину и паролю. Такой тип авторизации доступен маленькому кругу приложений, чаще всего это официальные приложения ВКонтакте.
+Прямая авторизация — это авторизация по логину и паролю. Такой тип авторизации доступен маленькому кругу приложений, из которого большинство — официальные приложения ВКонтакте.
 
 При использовании прямой авторизации вы можете получить токен с полным доступом к аккаунту.
 
 ## Что делать?
-Для начала вам нужно выбрать приложение, которое вы будете использовать. *Я рекомендую использовать Android*
+Для начала вам нужно выбрать приложение, которое вы будете использовать. Рекомендуется использовать данные приложения для Android.
 
 | ID приложения | Секретный ключ       | Описание      |
 |---------------|----------------------|---------------|
@@ -23,50 +23,123 @@
 | 3032107       | NOmHf1JNKONiIG5zPJUu | BlackBerry    |
 
 Далее составьте запрос к `https://oauth.vk.com/token` с этими параметрами:
-* `scope = all`
-* `client_id` — ID выбранного приложения
-* `client_secret` — секретный ключ выбранного приложения
-* `username` — логин
-* `password` — пароль
-* `2fa_supported` — `1`, если вы готовы обрабатывать 2FA
-* `grant_type = password`
-* `lang = ru`
-* `v = 5.130`
-* `trusted_hash` — если у вас есть `trusted_hash`, то указывайте. Этот параметр нужен для пропуска 2FA
+
+| Параметр       | Тип    | Описание                                                        |
+|----------------|--------|-----------------------------------------------------------------|
+| scope          | string | `all`                                                           |
+| client_id      | int    | ID выбранного приложения                                        |
+| client_secret  | string | Секретный ключ выбранного приложения                            |
+| username       | string | Логин                                                           |
+| password       | string | Пароль                                                          |
+| 2fa_supported  | int    | `1`, если вы готовы обрабатывать 2FA                            |
+| grant_type     | string | `password`                                                      |
+| lang           | string | `ru`                                                            |
+| v              | string | `5.130`                                                         |
+| *trusted_hash* | string | Если у вас есть `trusted_hash`, то укажите его для пропуска 2FA |
 
 Итоговый URL: `https://oauth.vk.com/token?scope=all&client_id=2274003&client_secret=hHbZxrka2uZ6jB1inYsH&username=88005553535&password=qwerty123456&2fa_supported=1&grant_type=password&lang=ru&v=5.130`
 
 Если у вас отключена 2FA, то на этом этапе вы уже получите свой `access_token`.
 
-### 2FA
-Если у вас настроена двухфакторная аутентификация, то вам будет необходимо пройти еще одну проверку.
-
-Сервер авторизации VK вернёт примерно такой JSON:
-
-```json
-{
-  "error": "need_validation",
-  "error_description": "use app code",
-  "validation_type": "2fa_app",
-  "validation_sid": "2fa_305360617_2274003_somehash",
-  "phone_mask": "+7 *** *** ** 11",
-  "redirect_uri": "https://m.vk.com/login?act=authcheck&api_hash="
+```ts
+interface OauthSuccess {
+  access_token: string
+  expires_in: 0
+  user_id: int
+  trusted_hash?: string
 }
 ```
 
-#### Редирект
-Вы можете перенаправить пользователя на `redirect_uri`, где он должен будет ввести код. После успешной авторизации будет произведен редирект на страницу `https://oauth.vk.com/blank.html#success=1&access_token=&user_id=123`.
+<details>
+  <summary>Пример ответа</summary>
 
-Если вам не нравится способ с редиректом, то вы должны просто переотправить запрос, добавив параметр `code` с кодом подтверждения.
+  ```json
+  {
+    "access_token": "",
+    "expires_in": 0,
+    "user_id": 123456789,
+    "trusted_hash": "0a1.."
+  }
+  ```
+</details>
+
+### 2FA
+Если у вас настроена двухфакторная аутентификация, то вам будет необходимо получить и отправить код подтверждения.
+
+Сервер авторизации VK вернёт такой ответ:
+
+```ts
+interface TwoFactorAuthError {
+  error: 'need_validation'
+  error_description: 'use app code'
+  validation_type: '2fa_app'
+  validation_sid: string
+  phone_mask: string
+  redirect_uri: string
+  validation_resend: string
+}
+```
+
+> **Обратите внимание:** поля `error`, `error_description` и `validation_type` имеют указанные значения только при необходимости пройти 2FA.
+
+<details>
+  <summary>Пример ответа</summary>
+
+  ```json
+  {
+    "error": "need_validation",
+    "error_description": "use app code",
+    "validation_type": "2fa_app",
+    "validation_sid": "2fa..",
+    "phone_mask": "+7 *** *** ** 89",
+    "redirect_uri": "https://m.vk.com/login?act=authcheck&api_hash=",
+    "validation_resend": "sms"
+  }
+  ```
+</details>
+
+#### Как отправить код
+
+Если вы выбрали не редирект, а иной способ подтверждения, вам нужно переотправить запрос, добавив параметр `code` с кодом подтверждения.
+
+#### Редирект
+Вы можете перенаправить пользователя на `redirect_uri`, где он должен будет ввести код. После успешной авторизации будет произведен редирект на страницу `https://oauth.vk.com/blank.html#success=1&access_token=&user_id=123`
 
 #### Получение кода подтверждения на телефон
 Вы можете отправить код подтверждения на номер телефона. Для этого используйте метод `auth.validatePhone`, передав следующие параметры:
-* `client_id` — ID приложения для авторизации. Используйте то же значение, что и при отправке запроса
-* `client_secret` — ID приложения для авторизации. Используйте то же значение, что и при отправке запроса
-* `api_id` — то же самое, что и `client_id`
-* `sid` — `validation_sid` от oauth-сервера
 
-После этого на привязанный к странице номер телефона придёт SMS с кодом подтверждения.
+| Параметр      | Тип    | Описание                                 |
+|---------------|--------|------------------------------------------|
+| client_id     | int    | ID выбранного приложения                 |
+| client_secret | string | Секретный ключ выбранного приложения     |
+| api_id        | int    | То же, что и `client_id`                 |
+| sid           | string | `validation_sid` из ответа OAuth-сервера |
+
+Сервер вернет такой ответ (поле `response` в типизации и в ответе опущено):
+
+```ts
+interface AuthValidatePhone {
+  sid: string
+  delay: int
+  validation_type: 'sms'
+  validation_resend: 'sms'
+}
+```
+
+<details>
+  <summary>Пример ответа</summary>
+
+  ```json
+  {
+    "sid": "2fa_userid_clientid_sid",
+    "delay": 120,
+    "validation_type": "sms",
+    "validation_resend": "sms"
+  }
+  ```
+</details>
+
+После вызова этого метода на привязанный к странице номер телефона придёт SMS с [кодом подтверждения](#как-отправить-код).
 
 ## Обработка капчи
 Сервер может вернуть ответ, где будет `error = need_captcha`. В этом случае вы должны показать пользователю капчу. Ссылку на изображение можно получить так: `https://api.vk.com/captcha.php?sid={result.captcha_sid}&s=1`

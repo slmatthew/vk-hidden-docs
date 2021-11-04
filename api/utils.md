@@ -48,8 +48,6 @@ interface UtilsGuessUserSex {
 <details>
   <summary>Открыть</summary>
 
-  Если передать мужское имя и женскую фамилию, то вернется `undefined`.
-
   ```json
   {
     "sex": "male"

@@ -4,26 +4,34 @@
 ## vk.com
 Для начала сделайте запрос к `https://vk.com`, сохраните куки.
 
-В полученном HTML найдите два хеша. Можно использовать эти регулярки:
+В полученном HTML найдите два хеша: `ip_h` и `lg_h`. Можно использовать эти регулярки:
 * `/name=\"ip_h\" value=\"(.*?)\"/s`
 * `/name=\"lg_h\" value=\"(.*?)\"/s`
 
-Сделайте POST-запрос к `https://login.vk.com/?act=login` с этими параметрами:
-* `act = login`
-* `role = al_frame`
-* `_origin = https://vk.com`
-* `utf8 = 1`
-* `email` - логин
-* `pass` - пароль
-* `lg_h` - полученный `lg_h`
-* `ip_h` - полученный `ip_h`
+Сделайте POST-запрос к `https://login.vk.com/` с этими параметрами:
 
-Сохраните полученные куки, после чего сделайте запрос к значению поля `Location` из хедеров. Сохраните куки.
+| Параметр | Тип    | Описание            |
+|----------|--------|---------------------|
+| act      | string | `login`             |
+| role     | string | `al_frame`          |
+| _origin  | string | `https://vk.com`    |
+| utf8     | int    | `1`                 |
+| email    | string | Логин пользователя  |
+| pass     | string | Пароль пользователя |
+| lg_h     | string | Полученный `lg_h`   |
+| ip_h     | string | Полученный `ip_h`   |
 
-Вот пример кода на PHP:
+1. Сохраните полученные cookies
+2. Сделайте запрос на url из значения `Location` из хедеров
+3. Сохраните полученные cookies
+4. Вы авторизованы!
+
+## Пример на PHP
 
 ```php
 // requests.php
+
+// Функция для запросов, сохраняющая cookies и возвращающая хедеры
 function request(string $url, array &$cookie, array $postfields = [], string $agent = 'Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/46.0.2490.86 Safari/537.36'): array {
   $ch = curl_init($url);
   $headers = [];
@@ -84,13 +92,14 @@ function request(string $url, array &$cookie, array $postfields = [], string $ag
 }
 
 // main.php
-const VK_USERNAME = '';
-const VK_PASSWORD = '';
+const VK_USERNAME = ''; // логин
+const VK_PASSWORD = ''; // пароль
 
 $cookie = [];
 
 $main = request('https://vk.com', $cookie);
 
+// ищем хеши и записываем их
 preg_match('/name=\"ip_h\" value=\"(.*?)\"/s', $main['data'], $ip_h);
 preg_match('/name=\"lg_h\" value=\"(.*?)\"/s', $main['data'], $lg_h);
 
@@ -109,12 +118,12 @@ $post = [
 ];
 
 $login = request('https://login.vk.com/?act=login', $cookie, $post);
-if(!isset($login['headers']['location'])) {
+if(!isset($login['headers']['location'])) { // этот адрес обязательный, без него ничего не выйдет. если его нет - выходим из скрипта
   die('Login failed');
 }
 
 $final = request($login['headers']['location'][0], $cookie);
-if(!isset($final['headers']['set-cookie'])) {
+if(!isset($final['headers']['set-cookie'])) { // авторизация с получением куки без куки? зачем она нужна...
   die('Login (2) failed');
 }
 ```

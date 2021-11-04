@@ -153,7 +153,7 @@ type AudioCreatePlaylist = VKPlaylist;
     "id": 8,
     "owner_id": 88262293,
     "type": 0,
-    "title": "Тайтл",
+    "title": "Название",
     "description": "Описание",
     "count": 0,
     "followers": 0,
@@ -166,7 +166,9 @@ type AudioCreatePlaylist = VKPlaylist;
       "play": true,
       "share": true,
       "edit": true,
-      "follow": true
+      "follow": true,
+      "delete": true,
+      "boom_download": true
     },
     "subtitle_badge": false,
     "play_button": false,
@@ -287,6 +289,8 @@ type AudioEdit = number;
 ## audio.editPlaylist
 
 Редактирует данные плейлиста.
+
+**Обратите внимание:** для официальных музыкальных альбомов приходит 203 ошибка API `Access to group denied`, для чужих плейлистов — ошибка 15 `Access Denied`.
 
 ### Параметры
 
