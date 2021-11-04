@@ -9,18 +9,19 @@
 ## Реализация
 Подготовьте запрос к `https://oauth.vk.com/authorize` со следующими параметрами:
 
-| Параметр      | Тип    | Описание                                       |
-|---------------|--------|------------------------------------------------|
-| redirect_uri  | string | `https://oauth.vk.com/blank.html`              |
-| display       | string | `page`                                         |
-| response_type | string | `token`                                        |
-| access_token  | string | [Полученный токен](password.md)                |
-| revoke        | int    | `1`                                            |
-| lang          | string | `ru`                                           |
-| scope         | int    | `136297695` *(для всех прав доступа)*          |
-| client_id     | int    | ID вашего приложения                           |
-| v             | string | Версия API. Рекомендуется использовать `5.130` |
-| sdk_package   | string | Значение поля «Название пакета для Android»    |
+| Параметр        | Тип    | Описание                                          |
+|-----------------|--------|---------------------------------------------------|
+| redirect_uri    | string | `https://oauth.vk.com/blank.html`                 |
+| display         | string | `page`                                            |
+| response_type   | string | `token`                                           |
+| access_token    | string | [Полученный токен](password.md)                   |
+| revoke          | int    | `1`                                               |
+| lang            | string | `ru`                                              |
+| scope           | int    | `136297695` *(для всех прав доступа)*             |
+| client_id       | int    | ID вашего приложения                              |
+| v               | string | Версия API. Рекомендуется использовать `5.130`    |
+| sdk_package     | string | Значение поля «Название пакета для Android»       |
+| sdk_fingerprint | string | Значение поля «Отпечаток сертификата для Android» |
 
 На данном этапе вы можете выбрать между двумя способами: самостоятельно получить токен в браузере или реализовать это через код.
 
